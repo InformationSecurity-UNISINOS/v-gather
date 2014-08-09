@@ -28,7 +28,7 @@ def GetRpmDict():
     rdb={}
     for pkg in rpmlist:
         rdb[pkg['name']]=pkg['version']
- return rdb
+    return rdb
 
 def CheckRpm(package):
     rpmdb=GetRpmDict()
