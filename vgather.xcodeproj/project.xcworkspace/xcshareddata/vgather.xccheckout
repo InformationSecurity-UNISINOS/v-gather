@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3D7FE994-9C59-41DF-97C6-9FFC980491E2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>vgather</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7729D223-5EAC-4EF2-A34A-2E080A41AA1B</key>
+		<string>https://github.com/InformationSecurity-UNISINOS/v-gather.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>vgather.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7729D223-5EAC-4EF2-A34A-2E080A41AA1B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/InformationSecurity-UNISINOS/v-gather.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7729D223-5EAC-4EF2-A34A-2E080A41AA1B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7729D223-5EAC-4EF2-A34A-2E080A41AA1B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>vgather</string>
+		</dict>
+	</array>
+</dict>
+</plist>
