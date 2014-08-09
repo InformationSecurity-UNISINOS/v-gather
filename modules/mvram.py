@@ -16,6 +16,7 @@ from mnet import *
 '               Caso apenas o nome da distribuição coincida o valor retornado será 1
 '               Caso o nome da distribuição e a versão coincidam, o retorno será 2
 '               Caso nada coincida, o retorno será zero
+'
 '''
 def CheckLinuxDist(distname,distver,verbose):
     

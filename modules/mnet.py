@@ -4,6 +4,7 @@ import nmap
 '''
 ''verifica fingerprint do servico que atende
 '' determinada porta 
+''
 '''
 def CheckSvcFPrint(ip,port,proto):
     nm=nmap.PortScanner()

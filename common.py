@@ -87,8 +87,6 @@ nlist=[]
 svc_udp_checked={}
 svc_tcp_checked={}
 
-
-
 def CheckMatch(pattern,string):
  import re
  if re.match(pattern,string):

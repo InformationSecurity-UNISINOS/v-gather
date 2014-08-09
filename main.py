@@ -93,7 +93,6 @@ from rbase import *
 
 #if GetLinuxDist().lower()=="centos":
 #    pacote=CheckRpm("sudo","1.8.6p3")
-    
 #if pacote==PKG_FOUND:
 #    print "Instalado"
 #if pacote==PKG_VERMATCH:
