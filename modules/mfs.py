@@ -37,7 +37,7 @@ def CheckRpm(package):
         ret=PKG_FOUND
         if rpmdb.get(package)==version:
                 ret=PKG_VERMATCH
- return ret
+    return ret
 
 def CheckDpkg(package):
     dpkgdb=GetDpkgDict()
