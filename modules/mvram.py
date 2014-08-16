@@ -163,13 +163,7 @@ def GetDaemons():
 
         daemon_io=[]
         daemon_io=GetOpenFiles(pid)
-        daemon_io_dac=[]
-        for tokens in iter(daemon_io):
-            print tokens
-        
-        
-        
-        sys.exit(1)
+        GetFileProperties(daemon_io)
         nodo.daemon=daemon
         nodo.downer_uid=u_real
         nodo.downer_gid=g_real
@@ -194,6 +188,19 @@ def GetDaemons():
         
         
         nlist.append(nodo)
+
+'''
+'' Recebe lista e retorna uma nova lista contendo
+'' fullpath do arquivo, owner, dacmode e filetype.
+''
+'''
+def GetFileProperties(filelist):
+
+    ret=[]
+    for tokens in iter(filelist):
+        print tokens
+
+
 
 
 
