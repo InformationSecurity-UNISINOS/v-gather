@@ -167,7 +167,7 @@ def GetDaemons():
         nodo.downer_uid=u_real
         nodo.downer_gid=g_real
         nodo.pid=pid
-        nodo.io_files=daemon_io
+        #nodo.io_files=daemon_io
         nodo.args=GetProcArgs(pid)
         nodo.tcp=tcp_port
         nodo.udp=udp_port
@@ -196,9 +196,14 @@ def GetDaemons():
 def GetFileProperties(filelist):
 
     ret=[]
-    for tokens in iter(filelist):
-        ret.append(tokens)
-
+    for token in iter(filelist):
+        dac=GetDacMode(token)
+        
+    
+    
+    
+    
+        ret.append(token)
     return ret
 
 

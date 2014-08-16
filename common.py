@@ -35,7 +35,7 @@ class DaemonInfo(object):
                 self.pid = None
                 self.downer_uid = None
                 self.downer_gid = None
-                self.io_files=[]
+                self.io_files=FileInfo()
                 self.args = None
                 self.tcp = []
                 self.svc_tcp_fp = {}
@@ -82,6 +82,61 @@ class DaemonInfo(object):
 
         def __str__(self):
                 return "%s %s" % (self.daemon, self.args)
+
+
+class FileInfo(object):
+        def __init__(self):
+                self.file = None
+                self.uid = None
+                self.gid = None
+                self.uname = None
+                self.gname = None
+                self.type = None
+                self.dac = None
+                self.suid = None
+                self.link = None
+                self.dir = None
+                self.chr = None
+                self.blk = None
+                self.reg = None
+                self.fif = None
+                self.sck = None
+        def getFile(self):
+                return self.file
+        def getUid(self):
+                return self.uid
+        def getGid(self):
+                return self.gid
+        def getUname(self):
+                return self.uname
+        def getGname(self):
+                return self.gname
+        def getType(self):
+                return self.type
+        def getDac(self):
+                return self.Dac
+        def isSuid(self):
+                return self.uname
+        def isLink(self):
+                return self.link
+        def isDir(self):
+                return self.dir
+        def isChr(self):
+                return self.chr
+        def isBlk(self):
+                return self.blk
+        def isReg(self):
+                return self.reg
+        def isFif(self):
+                return self.fif
+        def isSck(self):
+                return self.sck
+
+        def __str__(self):
+                return "%s %s %s" % (self.uname, self.gname, self.file)
+
+
+
 nlist=[]
 #portas ja scaneadas: 
 svc_udp_checked={}
