@@ -162,7 +162,7 @@ def GetDaemons():
 
 
         daemon_io = []
-        daemon_io = GetFileProperties(GetOpenFiles(pid))
+        daemon_io = mfs.GetFileProperties(GetOpenFiles(pid))
         nodo.daemon=daemon
         nodo.downer_uid=u_real
         nodo.downer_gid=g_real
