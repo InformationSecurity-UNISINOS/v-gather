@@ -119,7 +119,7 @@ for item in nlist:
         print "Daemon Gid: %d" %item.getDaemonGid()
         iof=item.getDaemonIo()
         for token in iter(iof):
-            print "%d/%s %d/%s\t%d\t%s" %(token.getUid(),token.getUname(),token.getGid(),token.getGname(),token.getDac(),token.GetFile())
+            print "%d/%s %d/%s\t%d\t%s" %(token.getUid(),token.getUname(),token.getGid(),token.getGname(),token.getDac(),token.getFile())
             print "\t\t%s" %token.getType()
 
         #print "Daemon IO Files: %s" %item.getDaemonIo()
