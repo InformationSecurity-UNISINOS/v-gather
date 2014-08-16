@@ -9,7 +9,6 @@ def DumpBase(data):
     pickle.dump(data, output)
     output.close()
 
-
 def OpenBase():
     y=[]
     with open('data.p', 'rb') as f:

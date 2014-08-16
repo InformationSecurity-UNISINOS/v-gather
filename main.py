@@ -10,108 +10,65 @@ from modules.mfs import *
 from modules.mvram import *
 from common import *
 from rbase import *
+import getopt
+
+def usage():
+    print "%s <opcao> "
+    print "\t-s\tMostrar estado da base de casos"
+    print "\t-a\tAnalisar ambiente"
+    print "\t-r\tRegistrar um novo caso (interativo)"
+    print "\t-c arquivo.txt\tCarregar novo caso a partir de um arquivo"
+    print "\t-e arquivo.txt\tExportar base de casos para texto plano"
 
 
-# pega argumentos da linha de comando:
-# -c verificar configuraçoes de serviços apenas
-# -d verificar esquema DAC de arquivos apenas
-# -a verificar tudo
-# -i realizar apenas o fingerprint deste sistema e reportar quantos casos existem na base
-# -w salvar resultado em arquivo texto
-# -f formato do arquivo report (txt ou xml)
-# -v modo verbose (apenas 1 nivel)
-# -x explorar automaticamente alguma vulnerabilidade que permita escalada de privilégios para o uid a ser especificado via switch -t
-# -t especifica qual é o uid alvo da exploração (escalada de privilégios)
+def ShowDBStatus():
+    print "status beleza"
+    print "existem x casos na base"
+
+def RegisterCase():
+    print "beleza, vamos registrar"
+
+def LoadCaseFromFile(casefile):
+    print "beleza, vou carregar o caso"
+
+def ExportCaseToFile(outputfile):
+    print "Beleza, vou exportar os casos pro arquivo"
+    data=[]
+    data=OpenBase()
+    fd=open(outputfile,'w')
+    fd.write("Daemon: %s"%(item.getDaemon()))
+
+
+def main():
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "sarc:e:")
+    except getopt.GetoptError as err:
+        print str(err)
+        usage()
+        sys.exit(2)
+
+    for opcao, argumento in opts:
+    if opcao == "-s":
+        ShowDBStatus()
+    if opcao == "-a":
+        StartScan()
+    if opcao == "-r":
+        RegisterCase()
+    if opcao == "-c":
+        LoadCaseFromFile(argumento)
+    if opcao == "-e":
+        ExportCaseToFile(argumento)
 
 
 
-#CheckLinuxDist("Kali","1.0.7",True)
-
-#CheckDacMode("/tmp/teste",04755,True)
-#
-
-#owner=GetOwnerName("/tmp/teste",True)
-#if owner[0]>0:
-#    print "User: "+ str(owner[0]) + " Group: " + str(owner[1])
-#    owner=CheckIdOwner("/tmp/teste",True)
-#    print "uid: "+ str(owner[0]) + " guid: " + str(owner[1])
-#    print GetUserInfo(owner[0],True)
-
-#print "Porcurando pelo arquivo suidt:"
-#files=WalkDir("/", "suidt", FILESEARCH)
-#print "Arquivos encontrados: " + str(len(files))
-#for arquivo in files:
-#    print "Arquivo: " + str(arquivo)
+sys.exit()
 
 
-#print "*"*100
-#print "Porcurando por arquivos suid:"
-#files=WalkDir("/", 04755, DACSEARCH)
-#print "Arquivos encontrados: " + str(len(files))
-#for arquivo in files:
-#    owner=GetOwnerName(arquivo,True)
-#    nowner=CheckIdOwner(arquivo,True)
-#    print str(nowner[0]) +"/"+ str(owner[0]) + " \t " + str(nowner[1]) +"/" +str(owner[1]) + " \t " + str(arquivo)
-#CheckProc()
-#
-#print "Porcurando por arquivos socket:"
-#files=WalkDir("/", FT_SCK, FYPESEARCH)
-#print "Arquivos encontrados: " + str(len(files))
-#for arquivo in files:
-#    owner=GetOwnerName(arquivo,False)
-#    nowner=CheckIdOwner(arquivo,False)
-#    print str(nowner[0]) +"/"+ str(owner[0]) + " \t " + str(nowner[1]) +"/" +str(owner[1]) + " \t " + str(arquivo)
-#print "*"*100
-#print "Porcurando pelo diretorio cron:"
-#files=WalkDir("/var/spool", "cron", DIRSEARCH)
-#print "Arquivos encontrados: " + str(len(files))
-#for arquivo in files:
-#    owner=GetOwnerName(arquivo,False)
-#    nowner=CheckIdOwner(arquivo,False)
-#    print str(nowner[0]) +"/"+ str(owner[0]) + " \t " + str(nowner[1]) +"/" +str(owner[1]) + " \t " + str(arquivo)
-
-
-#print "*"*100
-#files=SearchWritable("/", 501,501, WFILSEARCH)
-#print "Arquivos que o usuario 501 pode escrever: " + str(len(files))
-#for arquivo in files:
-#    owner=GetOwnerName(arquivo,False)
-#    nowner=CheckIdOwner(arquivo,False)
-#    print str(nowner[0]) +"/"+ str(owner[0]) + " \t " + str(nowner[1]) +"/" +str(owner[1]) + " \t " + str(arquivo)
-#print "*"*100
-#verifica se tem algum processo do mysql rodando, se tiver, retorna a linha visivel no ps aux
-#p=CheckRunningProc("mysql",False)
-#if p: 
-#    for cmd in p:
-#        print cmd
-
-
-#print GetLinuxDist()
-#print "*"*100
-#if GetLinuxDist().lower()=="debian":
-#    pacote=CheckDpkg("sudo","1.8.5p2-1+nmu1")
-
-#if GetLinuxDist().lower()=="centos":
-#    pacote=CheckRpm("sudo","1.8.6p3")
-#if pacote==PKG_FOUND:
-#    print "Instalado"
-#if pacote==PKG_VERMATCH:
-#    print "Versão confere!!!"
-#if pacote==PKG_NOTFOUND:
-#    print "Não instalado!"
-
-#print "*" * 500
-#print "VERIFICANDO ARQUIVOS ABERTOS"
-#CheckProOpencFiles()
-
-#pacote=FileToPackage("/usr/bin/id")
-#print pacote
 
 GetDaemons()
 DumpBase(nlist)
 nlist=[]
 nlist=OpenBase()
-
 for item in nlist:
         print "Daemon: %s"  %item.getDaemon()
         print "Pid: %d"  %item.getDaemonPid()
@@ -131,9 +88,6 @@ for item in nlist:
                 group=token.getGname()
             
             print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
-        
-
-        #print "Daemon IO Files: %s" %item.getDaemonIo()
         print "Daemon Args: %s" %item.getDaemonArgs()
 
         print "Daemon TCP port: %s" %item.getDaemonTcp()
@@ -147,7 +101,7 @@ for item in nlist:
         print "Daemon File Dac: %d" %item.getFileDac()
         print "Daemon File Uid: %d" %item.getFileUid()
         print "Daemon File Gid: %d" %item.getFileGid()
-        print "*"* 150#
+        print "*"* 150
 
 
 
@@ -156,7 +110,8 @@ for item in nlist:
 
 
 
-
+if __name__ == "__main__":
+    main()
 
 
 
