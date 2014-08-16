@@ -6,6 +6,7 @@ from common import *
 from treedict import TreeDict
 import mfs
 from mnet import *
+import sys
 
 '''
 '   ChkLinuxDist: Verifica Distribuição Linux 
@@ -162,6 +163,13 @@ def GetDaemons():
 
         daemon_io=[]
         daemon_io=GetOpenFiles(pid)
+        daemon_io_dac=[]
+        for tokens in iter(daemon_io):
+            print tokens
+        
+        
+        
+        sys.exit(1)
         nodo.daemon=daemon
         nodo.downer_uid=u_real
         nodo.downer_gid=g_real
