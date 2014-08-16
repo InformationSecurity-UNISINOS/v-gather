@@ -390,7 +390,7 @@ def FileToDpkg(searchstr):
                                                 if re.search(pattern,line):
                                                         pname=os.path.basename(fullpath).split('.')[0]
                                                         pver=GetDpkgVer(pname)
-                                                        if pver not None:
+                                                        if pver != None:
                                                             package=pname+"-"+pver
                                                         else:
                                                             package=pname
