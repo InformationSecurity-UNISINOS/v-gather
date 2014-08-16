@@ -41,10 +41,7 @@ def ExportCaseToFile(outputfile):
 
 def main():
     print "v-gather CBR"
-    
-    if sys.argc < 2:
-        usage()
-        sys.exit(2)
+   
     try:
         opts, args = getopt.getopt(sys.argv[1:], "sarc:e:h")
     except getopt.GetoptError as err:
@@ -66,9 +63,6 @@ def main():
         if opcao == "-e":
             ExportCaseToFile(argumento)
 
-
-
-sys.exit()
 
 
 
@@ -109,11 +103,6 @@ for item in nlist:
         print "Daemon File Uid: %d" %item.getFileUid()
         print "Daemon File Gid: %d" %item.getFileGid()
         print "*"* 150
-
-
-
-
-
 
 
 
