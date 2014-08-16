@@ -118,7 +118,7 @@ for item in nlist:
         print "Daemon Uid: %d" %item.getDaemonUid()
         print "Daemon Gid: %d" %item.getDaemonGid()
         
-        print "Daemon IO Files: %s" %item.getDaemonIo.getFile()
+        print "Daemon IO Files: %s" %item.getDaemonIo()
         
         
         
