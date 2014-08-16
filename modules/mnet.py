@@ -12,9 +12,9 @@ def CheckSvcFPrint(ip,port,proto):
     if ip == '0.0.0.0':
         ip="127.0.0.1"
     lastoct=ip.split('.')[3]
-    if lastoct == 255:
+    if lastoct == "255":
         ip="127.0.0.1"
-    if lastoct == 0:
+    if lastoct == "0":
         ip="127.0.0.1"
 
     if proto == "UDP":
