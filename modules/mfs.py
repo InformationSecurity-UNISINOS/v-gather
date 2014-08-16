@@ -390,9 +390,9 @@ def FileToDpkg(searchstr):
                                                 if re.search(pattern,line):
                                                         pname=os.path.basename(fullpath).split('.')[0]
                                                         pver=GetDpkgVer(pname)
+                                                        package=pname+"-"+pver
                                                         
-                                                        print "%s-%s" %(pname,pver)
-                                                        return os.path.basename(fullpath).split('.')[0]
+                                                        return package
 
 def FileToRpm(searchstr):
     import rpm
