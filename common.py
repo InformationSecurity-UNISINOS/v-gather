@@ -114,7 +114,7 @@ class FileInfo(object):
         def getType(self):
                 return self.type
         def getDac(self):
-                return self.Dac
+                return self.dac
         def isLink(self):
                 return self.link
         def isDir(self):
