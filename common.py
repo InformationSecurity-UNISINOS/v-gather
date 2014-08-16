@@ -56,7 +56,7 @@ class DaemonInfo(object):
         def getDaemonGid(self):
                 return self.downer_gid
         def getDaemonIo(self):
-                for token iter(self.io_files):
+                for token in iter(self.io_files):
                     return token.getFile()
         
         def getDaemonArgs(self):
