@@ -162,8 +162,7 @@ def GetDaemons():
 
 
         daemon_io=[]
-        daemon_io=GetOpenFiles(pid)
-        GetFileProperties(daemon_io)
+        daemon_io = GetFileProperties(GetOpenFiles(pid))
         nodo.daemon=daemon
         nodo.downer_uid=u_real
         nodo.downer_gid=g_real
@@ -198,9 +197,9 @@ def GetFileProperties(filelist):
 
     ret=[]
     for tokens in iter(filelist):
-        print tokens
+        ret.append(tokens)
 
-
+    return ret
 
 
 
