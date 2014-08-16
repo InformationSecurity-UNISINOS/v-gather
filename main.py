@@ -13,7 +13,7 @@ from rbase import *
 import getopt
 
 def usage():
-    print "%s <opcao> "
+    print "%s <opcao> " %(sys.argv[0])
     print "\t-s\tMostrar estado da base de casos"
     print "\t-a\tAnalisar ambiente"
     print "\t-r\tRegistrar um novo caso (interativo)"
