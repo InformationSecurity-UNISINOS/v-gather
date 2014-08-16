@@ -117,10 +117,21 @@ for item in nlist:
         print "Pid: %d"  %item.getDaemonPid()
         print "Daemon Uid: %d" %item.getDaemonUid()
         print "Daemon Gid: %d" %item.getDaemonGid()
+        print "Daemon IO Files:"
         iof=item.getDaemonIo()
         for token in iter(iof):
-            print "%d/%s %d/%s\t%d\t%s" %(token.getUid(),token.getUname(),token.getGid(),token.getGname(),token.getDac(),token.getFile())
-            print "\t\t%s" %token.getType()
+            if token.getUname() == None:
+                user=token.getUid()
+            else:
+                user=token.getUname()
+            
+            if token.getGname() == None:
+                group=token.getGid()
+            else:
+                group=token.getGname()
+            
+            print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
+        
 
         #print "Daemon IO Files: %s" %item.getDaemonIo()
         print "Daemon Args: %s" %item.getDaemonArgs()
