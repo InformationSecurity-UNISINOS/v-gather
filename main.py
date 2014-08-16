@@ -40,11 +40,13 @@ def ExportCaseToFile(outputfile):
 
 
 def main():
+    print "v-gather CBR"
+    
     if sys.argc < 2:
         usage()
         sys.exit(2)
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "sarc:e:")
+        opts, args = getopt.getopt(sys.argv[1:], "sarc:e:h")
     except getopt.GetoptError as err:
         print str(err)
         usage()
@@ -53,6 +55,8 @@ def main():
     for opcao, argumento in opts:
         if opcao == "-s":
             ShowDBStatus()
+        if opcao == "-h":
+            usage()
         if opcao == "-a":
             StartScan()
         if opcao == "-r":
