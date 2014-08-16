@@ -11,6 +11,12 @@ def CheckSvcFPrint(ip,port,proto):
     fprint=""
     if ip == '0.0.0.0':
         ip="127.0.0.1"
+    lastoct=ip.split('.')[4]
+    if lastoct == 255:
+        ip="127.0.0.1"
+    if lastoct == 0:
+        ip="127.0.0.1"
+
     if proto == "UDP":
         args="-n -sUV -T5 --version-intensity 0 -p "+str(port)
         nm.scan(ip,arguments=args)
