@@ -117,7 +117,11 @@ for item in nlist:
         print "Pid: %d"  %item.getDaemonPid()
         print "Daemon Uid: %d" %item.getDaemonUid()
         print "Daemon Gid: %d" %item.getDaemonGid()
-        print "Daemon IO Files: %s" %item.getDaemonIo()
+        
+        print "Daemon IO Files: %s" %item.getDaemonIo.getFile()
+        
+        
+        
         print "Daemon Args: %s" %item.getDaemonArgs()
 
         print "Daemon TCP port: %s" %item.getDaemonTcp()

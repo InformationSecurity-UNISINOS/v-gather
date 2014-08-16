@@ -119,7 +119,7 @@ def GetDacMode(filestr):
 ''' Esta funcao retorna tipo do arquivo
 '   tipo pode ser, socket, arquivo regular, device, link, diretorio, etc
 '''
-def GetFileType(filestr,verbose):
+def GetFileType(filestr):
     try:
         mode = os.stat(filestr).st_mode
     except:
@@ -159,7 +159,7 @@ def CheckIdOwner(filestr):
 '   0 = user owner
 '   1 = group owner
 '''
-def GetOwnerName(filestr,verbose):
+def GetOwnerName(filestr):
     owner={}
     try:
         st = os.stat(filestr)
@@ -172,7 +172,7 @@ def GetOwnerName(filestr,verbose):
 ''' Esta funcao retorna as informacoes do usuario
 '   disponiveis no arquivo /etc/passwd
 '''
-def GetUserInfo(uid,verbose):
+def GetUserInfo(uid):
     
     try:
         userinfo=[]
@@ -240,7 +240,7 @@ def WalkDir(dirstr, searchstr, mode):
             for fname in fileList:
                 fullpath=dirName+"/"+fname
                 if not re.search('^/proc/.+', fullpath):
-                    if GetFileType(fullpath,False) == searchstr:
+                    if GetFileType(fullpath) == searchstr:
                         filesfound.append(fullpath)
 
     
@@ -257,7 +257,7 @@ def SearchWritable(dirstr, uid,gid, mode):
         for dirName, subdirList, fileList in os.walk(dirstr):
             fullpath=dirName
             if not re.search('^/proc/.+', fullpath):
-                if GetFileType(fullpath,False) != FT_LNK:
+                if GetFileType(fullpath) != FT_LNK:
                     if CheckWrite(fullpath,uid,gid) == True:
                         filesfound.append(fullpath)
 
@@ -267,7 +267,7 @@ def SearchWritable(dirstr, uid,gid, mode):
             for fname in fileList:
                 fullpath=dirName+"/"+fname
                 if not re.search('^/proc/.+', fullpath):
-                    if GetFileType(fullpath,False) != FT_LNK:
+                    if GetFileType(fullpath) != FT_LNK:
                         if CheckWrite(fullpath,uid,gid) == True:
                             filesfound.append(fullpath)
     return filesfound
@@ -282,7 +282,7 @@ def SearchReadable(dirstr, uid,gid, mode):
         for dirName, subdirList, fileList in os.walk(dirstr):
             fullpath=dirName
             if not re.search('^/proc/.+', fullpath):
-                if GetFileType(fullpath,False) != FT_LNK:
+                if GetFileType(fullpath) != FT_LNK:
                     if CheckWrite(fullpath,uid,gid) == True:
                         filesfound.append(fullpath)
 
@@ -292,7 +292,7 @@ def SearchReadable(dirstr, uid,gid, mode):
             for fname in fileList:
                 fullpath=dirName+"/"+fname
                 if not re.search('^/proc/.+', fullpath):
-                    if GetFileType(fullpath,False) != FT_LNK:
+                    if GetFileType(fullpath) != FT_LNK:
                         if CheckWrite(fullpath,uid,gid) == True:
                             filesfound.append(fullpath)
     return filesfound
@@ -408,7 +408,7 @@ def FileToPackage(searchstr):
     return ret
 
 
-def GetFileType(fullpath):
+def GetFileMagicStr(fullpath):
     import magic
     try:
         ft = magic.from_file(fullpath)
@@ -417,7 +417,56 @@ def GetFileType(fullpath):
     return ft
     
     
-    
+'''
+'' Recebe lista de arquivos e retorna uma nova lista contendo
+'' uma lista da classe fileinfo
+''
+'''
+def GetFileProperties(filelist):
+
+    ret=[]
+    for token in iter(filelist):
+        finfo=FileInfo()
+        finfo.dac=mfs.GetDacMode(token)
+        finfo.file=token
+        
+        owner=GetOwnerName(token)
+        if owner[0]>0:
+            finfo.uname=str(owner[0])
+        if owner[1]>0:
+            finfo.gname=str(owner[1])
+        finfo.type=GetFileMagicStr(token)
+        
+        owner=CheckIdOwner(token)
+        finfo.uid=int(owner[0])
+        finfo.gid=int(owner[1])
+        if GetFileType(filelist) == FT_SUID:
+            finfo.suid=True
+        
+        if GetFileType(filelist) == FT_LNK:
+            finfo.link=True
+        
+        if GetFileType(filelist) == FT_DIR:
+            finfo.dir=True
+        
+        if GetFileType(filelist) == FT_CHR:
+            finfo.chr=True
+        
+        if GetFileType(filelist) == FT_BLK:
+            finfo.blk=True
+        
+        if GetFileType(filelist) == FT_REG:
+            finfo.reg=True
+        
+        if GetFileType(filelist) == FT_FIF:
+            finfo.fif=True
+        
+        if GetFileType(filelist) == FT_SCK:
+            finfo.sck=True
+
+        ret.append(finfo)
+    return ret
+
     
     
     

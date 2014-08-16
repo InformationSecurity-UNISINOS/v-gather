@@ -161,13 +161,13 @@ def GetDaemons():
                         nodo.svc_tcp_fp[tcpport]=svc_ident
 
 
-        daemon_io=[]
+        daemon_io = []
         daemon_io = GetFileProperties(GetOpenFiles(pid))
         nodo.daemon=daemon
         nodo.downer_uid=u_real
         nodo.downer_gid=g_real
         nodo.pid=pid
-        #nodo.io_files=daemon_io
+        nodo.io_files=daemon_io
         nodo.args=GetProcArgs(pid)
         nodo.tcp=tcp_port
         nodo.udp=udp_port
@@ -188,23 +188,6 @@ def GetDaemons():
         
         nlist.append(nodo)
 
-'''
-'' Recebe lista e retorna uma nova lista contendo
-'' fullpath do arquivo, owner, dacmode e filetype.
-''
-'''
-def GetFileProperties(filelist):
-
-    ret=[]
-    for token in iter(filelist):
-        dac=GetDacMode(token)
-        
-    
-    
-    
-    
-        ret.append(token)
-    return ret
 
 
 
