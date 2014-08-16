@@ -57,7 +57,9 @@ class DaemonInfo(object):
                 return self.downer_gid
         def getDaemonIo(self):
                 for token in iter(self.io_files):
-                    return token.getFile()
+                    print "%d/%s %d/%s\t%d\t%s" %(token.getUid,token.getUname(),token.getGid(),token.getGname(),token.getDac(),token.GetFile())
+                    print "\t\t%s" %token.getType()
+                return token
         
         def getDaemonArgs(self):
                 return self.args
