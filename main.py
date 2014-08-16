@@ -40,6 +40,9 @@ def ExportCaseToFile(outputfile):
 
 
 def main():
+    if sys.argc < 2:
+        usage()
+        sys.exit(2)
     try:
         opts, args = getopt.getopt(sys.argv[1:], "sarc:e:")
     except getopt.GetoptError as err:
