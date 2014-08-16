@@ -48,16 +48,16 @@ def main():
         sys.exit(2)
 
     for opcao, argumento in opts:
-    if opcao == "-s":
-        ShowDBStatus()
-    if opcao == "-a":
-        StartScan()
-    if opcao == "-r":
-        RegisterCase()
-    if opcao == "-c":
-        LoadCaseFromFile(argumento)
-    if opcao == "-e":
-        ExportCaseToFile(argumento)
+        if opcao == "-s":
+            ShowDBStatus()
+        if opcao == "-a":
+            StartScan()
+        if opcao == "-r":
+            RegisterCase()
+        if opcao == "-c":
+            LoadCaseFromFile(argumento)
+        if opcao == "-e":
+            ExportCaseToFile(argumento)
 
 
 
