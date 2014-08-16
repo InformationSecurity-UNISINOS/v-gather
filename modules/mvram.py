@@ -191,33 +191,4 @@ def GetDaemons():
 
 
 
-def GenStruct():
-    t = TreeDict()
-    t.distro.name = GetLinuxDist(DIST_NAME)
-    t.distro.ver  = GetLinuxDist(DIST_VER)
-    t.pids.procname="/usr/sbin/httpd"
-    t.pids.procargs=""
-    t.pids.rpm=True
-    t.pids.rpmname="httpd-2.2.15"
-    t.pids.uid="48"
-    t.pids.owner_u="apache"
-    t.pids.gid="48"
-    t.pids.owner_g="apache"
-    t.pids.openfile.f1.name="/var/log/httpd/error_log"
-    t.pids.openfile.f1.dac="400"
-    t.pids.openfile.f2.name="/var/log/httpd/access_log"
-    t.pids.openfile.f2.dac="400"
-    t.pids.tcp="80"
-    t.pids.udp=""
-
-    #print "report: "
-    #print t.makeReport()
-    #print "distro: "
-    #print t.distro.items()
-    #print "pids: "
-    #print t.pids.items()
-
-
-
-
 

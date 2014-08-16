@@ -165,10 +165,6 @@ def CheckIpv6(ipaddr):
         return(False)
 
 
-def FuzzSimilarity(string_a,string_b):
-    from fuzzywuzzy import fuzz
-    from fuzzywuzzy import process
-    return fuzz.ratio(string_a,string_b)
 
 
 

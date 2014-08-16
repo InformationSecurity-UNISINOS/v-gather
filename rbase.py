@@ -17,6 +17,7 @@ def OpenBase():
     return y
 
 
-#def FromJson(data):
-#    import json
-#    print json.dumps(data)
+def Similarity(string_a,string_b):
+    from fuzzywuzzy import fuzz
+    from fuzzywuzzy import process
+    return fuzz.ratio(string_a,string_b)

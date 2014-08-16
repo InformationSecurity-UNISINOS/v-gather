@@ -388,6 +388,8 @@ def FileToDpkg(searchstr):
                                         for line in f:
                                                 pattern="^" + searchstr + "$"
                                                 if re.search(pattern,line):
+                                                        pname=os.path.basename(fullpath)
+                                                        print pname
                                                         return os.path.basename(fullpath).split('.')[0]
 
 def FileToRpm(searchstr):
