@@ -93,7 +93,6 @@ class FileInfo(object):
                 self.gname = None
                 self.type = None
                 self.dac = None
-                self.suid = None
                 self.link = None
                 self.dir = None
                 self.chr = None
@@ -115,8 +114,6 @@ class FileInfo(object):
                 return self.type
         def getDac(self):
                 return self.Dac
-        def isSuid(self):
-                return self.uname
         def isLink(self):
                 return self.link
         def isDir(self):

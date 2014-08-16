@@ -440,8 +440,6 @@ def GetFileProperties(filelist):
         owner=CheckIdOwner(token)
         finfo.uid=int(owner[0])
         finfo.gid=int(owner[1])
-        if GetFileType(filelist) == FT_SUID:
-            finfo.suid=True
         
         if GetFileType(filelist) == FT_LNK:
             finfo.link=True
