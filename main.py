@@ -94,7 +94,7 @@ def ExportCaseToFile(outputfile):
 
 def main():
     print "v-gather CBR"
-    if sys.argc < 2:
+    if len(sys.argv) < 2:
         usage()
         sys.exit(1)
     try:
