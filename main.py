@@ -23,9 +23,8 @@ def usage():
 
 def StartScan():
     GetDaemons()
-    DumpBase(nlist)
-    nlist=[]
-    nlist=OpenBase()
+    #nlist=[]
+    #nlist=OpenBase()
     for item in nlist:
         print "Daemon: %s"  %item.getDaemon()
         print "Pid: %d"  %item.getDaemonPid()
@@ -59,6 +58,7 @@ def StartScan():
         print "Daemon File Uid: %d" %item.getFileUid()
         print "Daemon File Gid: %d" %item.getFileGid()
         print "*"* 150
+        DumpBase(nlist)
 
 def ShowDBStatus():
     print "status beleza"
@@ -66,6 +66,20 @@ def ShowDBStatus():
 
 def RegisterCase():
     print "beleza, vamos registrar"
+    print "Serviço: "
+    print "Uid do processo: "
+    print "Gid do processo: "
+    print "Arquivos IO: "
+    print "Argumentos do processo: "
+    print "Portas TCP: "
+    print "Portas UDP: "
+    print "Fingerprint: "
+    print "Arquivo do serviço: "
+    print "Permissões DAC do arquivo do processo: "
+    print "Uid do arquivo do processo: "
+    print "Gid do arquivo do processo: "
+    print "RPM: "
+    print "DPKG: "
 
 def LoadCaseFromFile(casefile):
     print "beleza, vou carregar o caso"
@@ -80,7 +94,9 @@ def ExportCaseToFile(outputfile):
 
 def main():
     print "v-gather CBR"
-   
+    if sys.argc < 2:
+        usage()
+        sys.exit(1)
     try:
         opts, args = getopt.getopt(sys.argv[1:], "sarc:e:h")
     except getopt.GetoptError as err:
