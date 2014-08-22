@@ -63,7 +63,6 @@ def StartServer():
                 t.add(data)
         except:
             break
-
     Sair()
  
 def Sair():
