@@ -30,7 +30,7 @@ def StartServer():
 
 
 
-def thandler(clientsock,None):
+def thandler(clientsock,none):
     while 1:
         data = clientsock.recv()
         if not data:
