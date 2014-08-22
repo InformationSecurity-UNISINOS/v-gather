@@ -17,18 +17,4 @@ def SendData():
     serialized = SerializeData(nlist)
     print "size of stream: %d" %(len(serialized))
     client.send(serialized)
-
-
-def SendData():
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    try:
-        try:
-            sock.connect((MANAGERADDR, PORTA))
-        except:
-            print "Impossível conectar no Manager"
-            sys.exit(3)
-    
-        sock.sendall(serialized)
-        
-    finally:
-        sock.close()
+    client.close()
