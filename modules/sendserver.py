@@ -11,12 +11,7 @@ def SerializeData(data):
     serialized=pickle.dumps(data)
     return serialized
 
-def CompressData(data):
-    import zlib
-    cdata = zlib.compress(data)
-    return cdata
-
-def SendData(data):
+def SendData():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         try:
@@ -24,10 +19,9 @@ def SendData(data):
         except:
             print "Impossível conectar no Manager"
             sys.exit(3)
-        serialized = SerializeData(data)
-        compressed = CompressData(serialized)
-        print "size of stream: {}".len(compressed)
-        sock.sendall(compressed);
+        serialized = SerializeData(nlist)
+        print "size of stream: {}".len(serialized)
+        sock.sendall(serialized);
 
     finally:
         sock.close()

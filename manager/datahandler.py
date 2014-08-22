@@ -6,15 +6,9 @@ def Deserialize(serialized):
     import pickle
     import pickletools
     return pickle.loads(serialized)
-
-def Decompress(compressed):
-    import zlib
-    return zlib.decompress(compressed)
  
 def HandleStream(stream):
-    decompressed=Decompress(stream)
-    data=[]
-    data=Deserialize(decompressed)
+    data=Deserialize(stream)
     ProcessData(data)
 
 def ProcessData(data):
