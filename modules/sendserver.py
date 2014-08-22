@@ -13,7 +13,7 @@ def SerializeData(data):
 
 def SendData():
     from multiprocessing.connection import Client
-    client = Client((MANAGER, PORTA))
+    client = Client((MANAGERADDR, PORTA))
     serialized = SerializeData(nlist)
     print "size of stream: %d" %(len(serialized))
     client.send(serialized)
