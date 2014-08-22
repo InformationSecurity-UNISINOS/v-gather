@@ -1,24 +1,71 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import SocketServer
+#!/usr/bin/env python
+# server.py
+ 
+import socket
+import select
+import config as cfg
+import Queue
+from threading import Thread
+from time import sleep
+from random import randint
+import sys
+ 
+class DoThread(Thread):
+    def __init__(self):
+        super(DoThread, self).__init__()
+        self.running = True
+        self.fila = Queue.Queue()
+ 
+    def add(self, data):
+        self.fila.put(data)
+ 
+    def stop(self):
+        self.running = False
+ 
+    def run(self):
+        fila = self.fila
+        while self.running:
+            try:
+                # block for 5 seconds :
+                value = fila.get(block=True, timeout=5)
+                HandleStream(value)
+            except Queue.Empty:
+                #sys.stdout.write('.')
+                #sys.stdout.flush()
+                continue
+    
+        if not fila.empty():
+            print "Elements left in the queue:"
+            while not fila.empty():
+                print fila.get()
 
-class MyTCPHandler(SocketServer.BaseRequestHandler):
-    """
-    The RequestHandler class for our server.
-
-    It is instantiated once per connection to the server, and must
-    override the handle() method to implement communication to the
-    client.
-    """
-
-    def handle(self):
-        # self.request is the TCP socket connected to the client
-        self.data = self.request.recv(BUFSIZE).strip()
-        print "{} wrote:".format(self.client_address[0])
-        print self.data
-        # just send back the same data, but upper-cased
-        self.request.sendall(self.data.upper())
-
+t = DoThread()
+t.start()
+ 
+def HandleStream(value):
+    print value
+    sleep(randint(1,9))
+ 
 def StartServer():
-    server = SocketServer.TCPServer((BINDIP, PORTA), MyTCPHandler)
-    server.serve_forever()
+    s = socket.socket()
+    host = BINDIP
+    port = PORTA
+    s.bind((host, port))
+    s.listen(5)
+    while True:
+        try:
+            client, addr = s.accept()
+            ready = select.select([client,],[], [],2)
+            if ready[0]:
+                data = client.recv(BUFSIZE)
+                t.add(data)
+        except:
+            break
+
+    Sair()
+ 
+def Sair():
+    t.stop()
+    t.join()
