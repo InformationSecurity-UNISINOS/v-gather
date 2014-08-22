@@ -17,12 +17,12 @@ def CompressData(data):
     return cdata
 
 def SendData(data):
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-try:
-    sock.connect((MANAGER, PORTA))
-    serialized = SerializeData(data)
-    compressed = CompressData(serialized)
-    sock.sendall(compressed);
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        sock.connect((MANAGER, PORTA))
+        serialized = SerializeData(data)
+        compressed = CompressData(serialized)
+        sock.sendall(compressed);
 
-finally:
-    sock.close()
+    finally:
+        sock.close()
