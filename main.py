@@ -25,7 +25,7 @@ def StartScan():
     GetDaemons()
     #nlist=[]
     #nlist=OpenBase()
-    group=user=""
+    group=user=token=""
     
     for item in nlist:
         print "Daemon: %s"  %item.getDaemon()
@@ -44,8 +44,8 @@ def StartScan():
                 group=token.getGid()
             else:
                 group=token.getGname()
+            print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
             
-        print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
         print "Daemon Args: %s" %item.getDaemonArgs()
 
         print "Daemon TCP port: %s" %item.getDaemonTcp()
