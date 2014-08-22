@@ -117,8 +117,10 @@ def GetProcCmd(pid):
 def GetDaemons():
     pids=psutil.pids()
     for pid in pids:
-        p = psutil.Process(pid)
-        
+        try:
+            p = psutil.Process(pid)
+        except:
+            continue
         daemon = p.name()
         if len(daemon) == 0:
                 daemon=p.exe()
