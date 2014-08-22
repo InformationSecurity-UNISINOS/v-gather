@@ -10,8 +10,9 @@ def SerializeData(data):
     import pickletools
     import zlib
     
-    zdata = zlib.compress(data)
-    return pickle.dumps(zdata)
+    pdata = pickle.dumps(data)
+    zdata = zlib.compress(pdata)
+    return zdata
 
 def SendData():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
