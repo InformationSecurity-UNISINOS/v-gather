@@ -140,10 +140,7 @@ class FileInfo(object):
         def __str__(self):
                 return "%s %s %s" % (self.uname, self.gname, self.file)
 
-
-pickled_stream=""
 nlist=[]
-rsize=0
 
 def CheckMatch(pattern,string):
  import re

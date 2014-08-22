@@ -13,7 +13,7 @@ def StartServer():
     data = conn.recv()
     print type(data)
     print "tamanho: %d"%(len(data))
-    print Deserialize(data)
+    ProcessData(Deserialize(data))
 
 if __name__ == "__main__":
     StartServer()

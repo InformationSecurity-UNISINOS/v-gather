@@ -8,7 +8,6 @@ from common import *
 def SerializeData(data):
     import pickle
     import pickletools
-    
     return pickle.dumps(data)
 
 def SendData():
