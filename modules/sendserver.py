@@ -21,11 +21,11 @@ def SendData():
             print "Impossível conectar no Manager"
             sys.exit(3)
         serialized = SerializeData(nlist)
-        payload = len(serialized)
-        payload += ":"
-        payload += serialized
-        print "size of stream: %d" %(len(payload))
-        sock.sendall(payload)
+        #payload = len(serialized)
+        #payload += ":"
+        #payload += serialized
+        print "size of stream: %d" %(len(serialized))
+        sock.sendall(serialized)
         
     finally:
         sock.close()

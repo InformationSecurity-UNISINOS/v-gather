@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 from common import *
 
+
+
+
 def Deserialize(serialized):
     import pickle
     import pickletools
@@ -9,9 +12,7 @@ def Deserialize(serialized):
     
     return pickle.loads(base64.b64decode(serialized))
  
-def HandleStream(stream):
-    data=Deserialize(stream)
-    ProcessData(data)
+
 
 def ProcessData(data):
     nlist=[]
@@ -49,3 +50,10 @@ def ProcessData(data):
         print "Daemon File Uid: %d" %item.getFileUid()
         print "Daemon File Gid: %d" %item.getFileGid()
         print "*"* 150
+
+
+
+
+def HandleStream(stream):
+    data=Deserialize(stream)
+    ProcessData(data)
