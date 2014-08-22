@@ -23,13 +23,12 @@ def StartServer():
 
     while 1:
         print 'waiting for connection...'
-        clientsock, addr = serversock.accept()
-        print '...connected from:', addr
-        thread.start_new_thread(thandler, (clientsock, addr))
+        conn = serversock.accept()
+        thread.start_new_thread(thandler, (conn))
 
 
 
-def thandler(clientsock,addr):
+def thandler(clientsock):
     while 1:
         data = clientsock.recv()
         if not data:
