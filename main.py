@@ -9,7 +9,7 @@ import sys
 from modules.mfs import *
 from modules.mvram import *
 from common import *
-from sendserver import *
+from modules.sendserver import *
 from rbase import *
 import getopt
 
