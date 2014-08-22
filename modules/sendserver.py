@@ -19,7 +19,11 @@ def CompressData(data):
 def SendData(data):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        sock.connect((MANAGERADDR, PORTA))
+        try:
+            sock.connect((MANAGERADDR, PORTA))
+        except:
+            print "Impossível conectar no Manager"
+            sys.exit(3)
         serialized = SerializeData(data)
         compressed = CompressData(serialized)
         sock.sendall(compressed);

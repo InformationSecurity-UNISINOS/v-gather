@@ -11,6 +11,8 @@ from threading import Thread
 from time import sleep
 from random import randint
 import sys
+from common import *
+from datahandler import *
  
 class DoThread(Thread):
     def __init__(self):
@@ -43,10 +45,7 @@ class DoThread(Thread):
 
 t = DoThread()
 t.start()
- 
-def HandleStream(value):
-    print value
-    sleep(randint(1,9))
+
  
 def StartServer():
     s = socket.socket()
