@@ -8,11 +8,16 @@ from common import *
 def SerializeData(data):
     import pickle
     import pickletools
-    import zlib
     
-    pdata = pickle.dumps(data)
-    zdata = zlib.compress(pdata)
-    return zdata
+    return pickle.dumps(data)
+
+def SendData():
+    from multiprocessing.connection import Client
+    client = Client((MANAGER, PORTA))
+    serialized = SerializeData(nlist)
+    print "size of stream: %d" %(len(serialized))
+    client.send(serialized)
+
 
 def SendData():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -22,11 +27,7 @@ def SendData():
         except:
             print "Impossível conectar no Manager"
             sys.exit(3)
-        serialized = SerializeData(nlist)
-        payload = len(serialized)
-        payload += ":"
-        payload += serialized
-        print "size of stream: %d" %(len(serialized))
+    
         sock.sendall(serialized)
         
     finally:

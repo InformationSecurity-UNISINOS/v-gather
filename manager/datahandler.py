@@ -3,22 +3,15 @@
 from common import *
 
 
-
-
 def Deserialize(serialized):
     import pickle
     import pickletools
-    import zlib
     
     print "Tamanho da porra: %d" %(len(serialized))
     print "*"*200
     print serialized
     print "*"*200
-    p = zlib.uncompress(serialized)
-    # tamanho:pickle
-    
-    
-    dado = pickle.loads(p)
+    dado = pickle.loads(serialized)
     return dado
 
 def ProcessData(data):
