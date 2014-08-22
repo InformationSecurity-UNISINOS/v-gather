@@ -173,5 +173,3 @@ def CheckIpv6(ipaddr):
 
 
 
-
-

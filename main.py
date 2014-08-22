@@ -9,6 +9,7 @@ import sys
 from modules.mfs import *
 from modules.mvram import *
 from common import *
+from sendserver import *
 from rbase import *
 import getopt
 
@@ -24,6 +25,8 @@ def StartScan():
     GetDaemons()
     #nlist=[]
     #nlist=OpenBase()
+    group=user=""
+    
     for item in nlist:
         print "Daemon: %s"  %item.getDaemon()
         print "Pid: %d"  %item.getDaemonPid()
@@ -57,7 +60,7 @@ def StartScan():
         print "Daemon File Uid: %d" %item.getFileUid()
         print "Daemon File Gid: %d" %item.getFileGid()
         print "*"* 150
-        DumpBase(nlist)
+        SendData(nlist)
 
 def ShowDBStatus():
     print "status beleza"
