@@ -8,8 +8,9 @@ from common import *
 def SerializeData(data):
     import pickle
     import pickletools
-    serialized=pickle.dumps(data)
-    return serialized
+    import base64
+    
+    return base64.b64encode(pickle.dumps(data))
 
 def SendData():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,8 +21,11 @@ def SendData():
             print "Impossível conectar no Manager"
             sys.exit(3)
         serialized = SerializeData(nlist)
-        print "size of stream: {}".len(serialized)
-        sock.sendall(serialized);
-
+        payload = len(serialized)
+        payload += ":"
+        payload += serialized
+        print "size of stream: %d" %(len(payload))
+        sock.sendall(payload)
+        
     finally:
         sock.close()

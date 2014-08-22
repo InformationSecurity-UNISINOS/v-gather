@@ -5,7 +5,9 @@ from common import *
 def Deserialize(serialized):
     import pickle
     import pickletools
-    return pickle.loads(serialized)
+    import base64
+    
+    return pickle.loads(base64.b64decode(serialized))
  
 def HandleStream(stream):
     data=Deserialize(stream)
