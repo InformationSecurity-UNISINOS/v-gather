@@ -67,3 +67,11 @@ def StartServer():
 def Sair():
     t.stop()
     t.join()
+
+
+if __name__ == "__main__":
+    StartServer()
+
+
+
+    

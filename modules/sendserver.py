@@ -26,6 +26,7 @@ def SendData(data):
             sys.exit(3)
         serialized = SerializeData(data)
         compressed = CompressData(serialized)
+        print "size of stream: {}".len(compressed)
         sock.sendall(compressed);
 
     finally:
