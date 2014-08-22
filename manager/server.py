@@ -32,6 +32,7 @@ class DoThread(Thread):
             try:
                 # block for 5 seconds :
                 value = fila.get(block=True, timeout=5)
+                
                 HandleStream(value)
             except Queue.Empty:
                 #sys.stdout.write('.')
@@ -48,14 +49,12 @@ t.start()
 
  
 def StartServer():
-    s = socket.socket()
-    host = BINDIP
-    port = PORTA
-    s.bind((host, port))
-    s.listen(5)
+    conn = socket.socket()
+    conn.bind((BINDIP, PORTA))
+    conn.listen(5)
     while True:
         try:
-            client, addr = s.accept()
+            client, addr = conn.accept()
             ready = select.select([client,],[], [],2)
             if ready[0]:
                 data = client.recv(BUFSIZE)

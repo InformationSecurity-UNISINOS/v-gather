@@ -9,10 +9,13 @@ def Deserialize(serialized):
     import pickle
     import pickletools
     import base64
-    
-    return pickle.loads(base64.b64decode(serialized))
- 
-
+    print "Tamanho da porra: %d" %(len(serialized))
+    print "*"*200
+    print serialized
+    print "*"*200
+    p=base64.b64decode(serialized)
+    dado = pickle.loads(p)
+    return dado
 
 def ProcessData(data):
     nlist=[]
@@ -57,3 +60,5 @@ def ProcessData(data):
 def HandleStream(stream):
     data=Deserialize(stream)
     ProcessData(data)
+
+
