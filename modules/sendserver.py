@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import socket
 import sys
-import common
+from common import *
 
 
 def SerializeData(data):
@@ -19,7 +19,7 @@ def CompressData(data):
 def SendData(data):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        sock.connect((MANAGER, PORTA))
+        sock.connect((MANAGERADDR, PORTA))
         serialized = SerializeData(data)
         compressed = CompressData(serialized)
         sock.sendall(compressed);

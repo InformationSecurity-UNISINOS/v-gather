@@ -60,7 +60,7 @@ def StartScan():
         print "Daemon File Uid: %d" %item.getFileUid()
         print "Daemon File Gid: %d" %item.getFileGid()
         print "*"* 150
-        SendData(nlist)
+    SendData(nlist)
 
 def ShowDBStatus():
     print "status beleza"

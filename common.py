@@ -5,7 +5,7 @@
 
 #COMUNICACAO COM O MANAGER
 PORTA=3339
-MANAGER="10.211.55.12"
+MANAGERADDR="10.211.55.12"
 
 # Tipos de pesquisa, usados na funcao WalkDir
 DACSEARCH=1
