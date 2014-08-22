@@ -20,7 +20,6 @@ def usage():
     print "\t-c arquivo.txt\tCarregar novo caso a partir de um arquivo"
     print "\t-e arquivo.txt\tExportar base de casos para texto plano"
 
-
 def StartScan():
     GetDaemons()
     #nlist=[]
@@ -43,7 +42,7 @@ def StartScan():
             else:
                 group=token.getGname()
             
-            print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
+        print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
         print "Daemon Args: %s" %item.getDaemonArgs()
 
         print "Daemon TCP port: %s" %item.getDaemonTcp()
@@ -91,7 +90,6 @@ def ExportCaseToFile(outputfile):
     fd=open(outputfile,'w')
     fd.write("Daemon: %s"%(item.getDaemon()))
 
-
 def main():
     print "v-gather CBR"
     if len(sys.argv) < 2:
@@ -117,10 +115,6 @@ def main():
             LoadCaseFromFile(argumento)
         if opcao == "-e":
             ExportCaseToFile(argumento)
-
-
-
-
 
 
 if __name__ == "__main__":

@@ -9,6 +9,10 @@
 /* Begin PBXFileReference section */
 		A540B43B1986C32F0022D47C /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		A540B43C1986DDBA0022D47C /* rbase.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = rbase.py; sourceTree = SOURCE_ROOT; };
+		A570E26019A76AC70034E7F4 /* server.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = server.py; path = manager/server.py; sourceTree = SOURCE_ROOT; };
+		A570E26119A76AEA0034E7F4 /* common.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = common.py; path = manager/common.py; sourceTree = SOURCE_ROOT; };
+		A570E26219A770DC0034E7F4 /* main.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = main.py; path = manager/main.py; sourceTree = SOURCE_ROOT; };
+		A570E26319A778870034E7F4 /* sendserver.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = sendserver.py; path = modules/sendserver.py; sourceTree = "<group>"; };
 		A5EE403B1986BE60002B55EA /* common.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = common.py; sourceTree = "<group>"; };
 		A5EE403C1986BE60002B55EA /* main.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = main.py; sourceTree = "<group>"; };
 		A5EE403F1986BE60002B55EA /* mfs.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = mfs.py; sourceTree = "<group>"; };
@@ -23,8 +27,21 @@
 				A5EE403B1986BE60002B55EA /* common.py */,
 				A540B43C1986DDBA0022D47C /* rbase.py */,
 				A5EE403C1986BE60002B55EA /* main.py */,
+				A570E26319A778870034E7F4 /* sendserver.py */,
+				A547C88119A769D600BDE7BA /* manager */,
 				A5EE403D1986BE60002B55EA /* modules */,
 			);
+			sourceTree = "<group>";
+		};
+		A547C88119A769D600BDE7BA /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				A570E26019A76AC70034E7F4 /* server.py */,
+				A570E26119A76AEA0034E7F4 /* common.py */,
+				A570E26219A770DC0034E7F4 /* main.py */,
+			);
+			name = manager;
+			path = vgather.xcodeproj;
 			sourceTree = "<group>";
 		};
 		A5EE403D1986BE60002B55EA /* modules */ = {
