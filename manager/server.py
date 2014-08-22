@@ -32,7 +32,6 @@ class DoThread(Thread):
             try:
                 # block for 5 seconds :
                 value = fila.get(block=True, timeout=5)
-                
                 HandleStream(value)
             except Queue.Empty:
                 #sys.stdout.write('.')

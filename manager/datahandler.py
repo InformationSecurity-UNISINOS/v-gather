@@ -8,12 +8,16 @@ from common import *
 def Deserialize(serialized):
     import pickle
     import pickletools
-    import base64
+    import zlib
+    
     print "Tamanho da porra: %d" %(len(serialized))
     print "*"*200
     print serialized
     print "*"*200
-    p=base64.b64decode(serialized)
+    p = zlib.uncompress(serialized)
+    # tamanho:pickle
+    
+    
     dado = pickle.loads(p)
     return dado
 
