@@ -28,8 +28,67 @@ def StartScan():
     group=user=token=""
     
     for item in nlist:
-        SendData(item.getDaemonPid())
-        SendData(item.getDaemon())
+        p_pid = item.getDaemonPid()
+        p_name = item.getDaemon()
+        p_uid = item.getDaemonUid()
+        p_gid = item.getDaemonGid()
+        p_tcp_l = item.getDaemonTcp()
+        #TCP port: 0.0.0.0:8005,0.0.0.0:8009,0.0.0.0:8080,
+        #TCP FP: {8080: u'Apache Tomcat/Coyote JSP engine', 8009: u'Apache Jserv', 8005: ''}
+
+
+        for svc in p_tcp_l.split(','):
+            try:
+                ip = svc.split(':')[0]
+                porta = svc.split(':')[1]
+            except:
+                continue
+            p_tcp_fp_l = item.getDaemonTcpFp()
+            for fp in p_tcp_fp_l.split(','):
+                print "porta: %s" %(str(fp[0]))
+                print "banner: %s" %(str(fp[1]))
+        
+        
+        
+        p_udp_l = item.getDaemonUdp()
+        p_udp_fp_l = item.getDaemonUdpFp()
+        p_rpm = item.getDaemonRpm()
+        p_dpkg = item.getDaemonDpkg()
+        pf_path = item.getFilePath()
+        pf_dac = item.getFileDac()
+        pf_uid = item.getFileUid()
+        pf_gid = item.getFileGid()
+        
+        
+        continue
+    sys.exit(1)
+        
+        # converter pra base64 e no server restaurar e fazer update no banco
+        # enviar payload no formato:
+        # pid:base64_encoded
+        p_args = item.getDaemonArgs()
+        
+        # converter pra base64 e no server restaurar e fazer update no banco
+        # enviar payload no formato:
+        # pid:base64_encoded
+        iof=item.getDaemonIo()
+        for token in iter(iof):
+            if token.getUname() == None:
+                user=token.getUid()
+            else:
+                user=token.getUname()
+
+            if token.getGname() == None:
+                group=token.getGid()
+            else:
+                group=token.getGname()
+            SendData()
+            print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
+        
+        
+
+
+
         #print "Daemon: %s"  %item.getDaemon()
         #print "Pid: %d"  %item.getDaemonPid()
         #print "Daemon Uid: %d" %item.getDaemonUid()
