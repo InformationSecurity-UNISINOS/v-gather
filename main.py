@@ -41,12 +41,14 @@ def StartScan():
             try:
                 ip = svc.split(':')[0]
                 porta = svc.split(':')[1]
+                p_tcp_fp_l = item.getDaemonTcpFp()
+                fp = p_tcp_fp_l.get(porta)
+            
             except:
                 continue
-            p_tcp_fp_l = item.getDaemonTcpFp()
-            for fp in p_tcp_fp_l.split(','):
-                print "porta: %s" %(str(fp[0]))
-                print "banner: %s" %(str(fp[1]))
+            print "IP: %s" %ip
+            print "PORTA: %s" %porta
+            print "FP: %s" %fp
         
         
         
