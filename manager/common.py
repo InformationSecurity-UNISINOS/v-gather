@@ -160,17 +160,17 @@ def HandleStream(stream):
 
 from twisted.web import xmlrpc, server
 class XmlHandler(xmlrpc.XMLRPC):
-    def ping(self):
+    def xmlrpc_ping(self):
         return True
 
-    def echo(self,item):
+    def xmlrpc_echo(self,item):
         # recebo item via xmlrpc
         # filtro sql injection e outros lixos
         # insert no banco
         print item
         return True
 
-    def Fault(self):
+    def xmlrpc_Fault(self):
         """
         Raise a Fault indicating that the procedure should not be used.
         """
