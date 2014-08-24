@@ -43,26 +43,34 @@ def StartScan():
         #TCP port: 0.0.0.0:8005,0.0.0.0:8009,0.0.0.0:8080,
         #TCP FP: {8080: u'Apache Tomcat/Coyote JSP engine', 8009: u'Apache Jserv', 8005: ''}
         
-        for svc in p_tcp_l.split(','):
+        for svctcp in p_tcp_l.split(','):
             try:
-                ip = svc.split(':')[0]
-                porta = svc.split(':')[1]
+                ip = svctcp.split(':')[0]
+                porta = svctcp.split(':')[1]
                 p_tcp_fp_l={}
                 p_tcp_fp_l = item.getDaemonTcpFp()
                 banner = p_tcp_fp_l.get(int(porta))
                 print "%s:%s:%s"%(ip,porta,banner)
-  
-                print "*"*50
-                
             except:
                 continue
-
+    
+        p_udp_l = item.getDaemonUdp()
+        for svcudp in p_udp_l.split(','):
+            try:
+                ip = svcudp.split(':')[0]
+                porta = svcudp.split(':')[1]
+                p_tcp_fp_l={}
+                p_udp_fp_l = item.getDaemonUdpFp()
+                banner = p_udp_fp_l.get(int(porta))
+                print "%s:%s:%s"%(ip,porta,banner)
+            except:
+                continue
  
             
         
         
-        p_udp_l = item.getDaemonUdp()
-        p_udp_fp_l = item.getDaemonUdpFp()
+        
+
 
         
         
