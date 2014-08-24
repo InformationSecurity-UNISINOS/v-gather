@@ -66,24 +66,24 @@ def StartScan():
         # converter pra base64 e no server restaurar e fazer update no banco
         # enviar payload no formato:
         # pid:base64_encoded
-        p_args = item.getDaemonArgs()
+ #       p_args = item.getDaemonArgs()
         
         # converter pra base64 e no server restaurar e fazer update no banco
         # enviar payload no formato:
         # pid:base64_encoded
-        iof=item.getDaemonIo()
-        for token in iter(iof):
-            if token.getUname() == None:
-                user=token.getUid()
-            else:
-                user=token.getUname()
+ #       iof=item.getDaemonIo()
+ #       for token in iter(iof):
+ #           if token.getUname() == None:
+ #               user=token.getUid()
+ #           else:
+ #               user=token.getUname()
 
-            if token.getGname() == None:
-                group=token.getGid()
-            else:
-                group=token.getGname()
-            SendData()
-            print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
+ #            if token.getGname() == None:
+ #               group=token.getGid()
+ #           else:
+ #               group=token.getGname()
+ #           SendData()
+ #           print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
         
         
 
