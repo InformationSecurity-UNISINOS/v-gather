@@ -39,23 +39,23 @@ def StartScan():
         pf_uid = item.getFileUid()
         pf_gid = item.getFileGid()
         #SendData(p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid)
-        
         p_tcp_l = item.getDaemonTcp()
         #TCP port: 0.0.0.0:8005,0.0.0.0:8009,0.0.0.0:8080,
         #TCP FP: {8080: u'Apache Tomcat/Coyote JSP engine', 8009: u'Apache Jserv', 8005: ''}
-        print "TCP: %s" %p_tcp_l
         
         for svc in p_tcp_l.split(','):
             try:
                 ip = svc.split(':')[0]
                 porta = svc.split(':')[1]
+                p_tcp_fp_l={}
                 p_tcp_fp_l = item.getDaemonTcpFp()
-                for key, value in p_tcp_fp_l.iteritems():
-                    print "KEY: %s" %key
-                    print "BANNER: %s" %value
+                #for key, value in p_tcp_fp_l.iteritems():
+                #    print "KEY: %s" %key
+                #    print "BANNER: %s" %value
                 
                 print "IP: %s" %ip
                 print "PORTA: %s" %porta
+                print p_tcp_fp_l.get(porta)
                 print "*"*50
                 
             except:
