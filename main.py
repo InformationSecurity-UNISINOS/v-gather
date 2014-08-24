@@ -46,9 +46,8 @@ def StartScan():
                 continue
             #print "IP: %s" %ip
             #print "PORTA: %s" %porta
-            print type(p_tcp_fp_l)
-            print "FPget: %s" %p_tcp_fp_l.get(porta)
-            print "FP: %s" %p_tcp_fp_l
+            for k in p_tcp_fp_l.keys()
+                print "Key: %s" %str(k)
         
         
         p_udp_l = item.getDaemonUdp()
