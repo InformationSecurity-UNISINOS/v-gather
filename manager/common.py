@@ -158,8 +158,7 @@ def HandleStream(stream):
     y = pickle.load(stream)
     return y
 
-
-
+from twisted.web import xmlrpc, server
 class XmlHandle(xmlrpc.XMLRPC):
     def ping(self):
         return True
