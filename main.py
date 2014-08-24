@@ -50,7 +50,7 @@ def StartScan():
                 p_tcp_fp_l={}
                 p_tcp_fp_l = item.getDaemonTcpFp()
                 banner = p_tcp_fp_l.get(int(porta))
-                print "%s:%s:%s"%(ip,porta,banner)
+                print "tcp:%s:%s:%s"%(ip,porta,banner)
             except:
                 continue
     
@@ -62,7 +62,7 @@ def StartScan():
                 p_tcp_fp_l={}
                 p_udp_fp_l = item.getDaemonUdpFp()
                 banner = p_udp_fp_l.get(int(porta))
-                print "%s:%s:%s"%(ip,porta,banner)
+                print "udp:%s:%s:%s"%(ip,porta,banner)
             except:
                 continue
  
