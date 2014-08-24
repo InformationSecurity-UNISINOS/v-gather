@@ -52,6 +52,10 @@ def StartScan():
                 for key, value in p_tcp_fp_l.iteritems():
                     if key == porta:
                         print "%s:%s:%s" %(ip,porta,value)
+                    else:
+                        print key
+                        print value
+                        print porta
                 print "*"*50
                 
             except:
