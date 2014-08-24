@@ -21,8 +21,9 @@ if __name__ == "__main__":
     #StartServer()
 
     from twisted.internet import reactor
-    r = XmlHandle()
+    r = XmlHandler()
     reactor.listenTCP(PORTA, server.Site(r))
+    print "Started XMLRPC"
     reactor.run()
 
     

@@ -159,7 +159,7 @@ def HandleStream(stream):
     return y
 
 from twisted.web import xmlrpc, server
-class XmlHandle(xmlrpc.XMLRPC):
+class XmlHandler(xmlrpc.XMLRPC):
     def ping(self):
         return True
 
