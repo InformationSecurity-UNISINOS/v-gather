@@ -46,7 +46,7 @@ def StartScan():
                 continue
             #print "IP: %s" %ip
             #print "PORTA: %s" %porta
-            for k in p_tcp_fp_l.keys()
+            for k in p_tcp_fp_l.keys():
                 print "Key: %s" %str(k)
         
         
