@@ -32,38 +32,42 @@ def StartScan():
         p_name = item.getDaemon()
         p_uid = item.getDaemonUid()
         p_gid = item.getDaemonGid()
-        p_tcp_l = item.getDaemonTcp()
-        #TCP port: 0.0.0.0:8005,0.0.0.0:8009,0.0.0.0:8080,
-        #TCP FP: {8080: u'Apache Tomcat/Coyote JSP engine', 8009: u'Apache Jserv', 8005: ''}
-
-
-        for svc in p_tcp_l.split(','):
-            try:
-                ip = svc.split(':')[0]
-                porta = svc.split(':')[1]
-                p_tcp_fp_l = item.getDaemonTcpFp()
-                print "keys: " + p_tcp_fp_l.keys()
-                print "PORTA: %s" %porta
-                if porta in p_tcp_fp_l.keys():
-                    print p_tcp_fp_l.get(porta)
-            except:
-                continue
-            #print "IP: %s" %ip
-            #
-            #for key, value in p_tcp_fp_l.iteritems():
-            #    if key == porta:
-            #        banner = value
-            
-        
-        
-        p_udp_l = item.getDaemonUdp()
-        p_udp_fp_l = item.getDaemonUdpFp()
         p_rpm = item.getDaemonRpm()
         p_dpkg = item.getDaemonDpkg()
         pf_path = item.getFilePath()
         pf_dac = item.getFileDac()
         pf_uid = item.getFileUid()
         pf_gid = item.getFileGid()
+        #SendData(p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid)
+        
+        p_tcp_l = item.getDaemonTcp()
+        #TCP port: 0.0.0.0:8005,0.0.0.0:8009,0.0.0.0:8080,
+        #TCP FP: {8080: u'Apache Tomcat/Coyote JSP engine', 8009: u'Apache Jserv', 8005: ''}
+        print "TCP: %s" %p_tcp_l
+        
+        for svc in p_tcp_l.split(','):
+            try:
+                ip = svc.split(':')[0]
+                porta = svc.split(':')[1]
+                p_tcp_fp_l = item.getDaemonTcpFp()
+               for key, value in p_tcp_fp_l.iteritems():
+                    if key == porta:
+                    banner = value
+                    
+                print "IP: %s" %ip
+                print "PORTA: %s" %porta
+                print "BANNER: %s" %banner
+                
+            except:
+                continue
+
+ 
+            
+        
+        
+        p_udp_l = item.getDaemonUdp()
+        p_udp_fp_l = item.getDaemonUdpFp()
+
         
         
         continue
