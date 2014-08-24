@@ -160,11 +160,22 @@ def HandleStream(stream):
 
 
 
+class XmlHandle(xmlrpc.XMLRPC):
+    def ping(self):
+        return True
 
+    def echo(self,item):
+        # recebo item via xmlrpc
+        # filtro sql injection e outros lixos
+        # insert no banco
+        print item
+        return True
 
-
-
-
+    def Fault(self):
+        """
+        Raise a Fault indicating that the procedure should not be used.
+        """
+        raise xmlrpc.Fault(123, "The fault procedure is faulty.")
 
 
 

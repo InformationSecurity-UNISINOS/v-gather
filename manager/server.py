@@ -9,7 +9,7 @@ from datahandler import *
 import threading
 import thread
 
-def StartServer():
+def StartSock():
     server_sock = Listener((BINDIP, PORTA))
     conn = server_sock.accept()
     data = conn.recv()
@@ -18,8 +18,11 @@ def StartServer():
     ProcessData(Deserialize(data))
 
 if __name__ == "__main__":
-    StartServer()
+    #StartServer()
 
-
+    from twisted.internet import reactor
+    r = XmlHandle()
+    reactor.listenTCP(7080, server.Site(r))
+    reactor.run()
 
     
