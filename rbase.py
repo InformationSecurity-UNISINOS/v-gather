@@ -15,7 +15,6 @@ def OpenBase():
         y = pickle.load(f)
     return y
 
-
 def Similarity(string_a,string_b):
     from fuzzywuzzy import fuzz
     from fuzzywuzzy import process
