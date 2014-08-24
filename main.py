@@ -42,12 +42,14 @@ def StartScan():
                 ip = svc.split(':')[0]
                 porta = svc.split(':')[1]
                 p_tcp_fp_l = item.getDaemonTcpFp()
+                print "keys: " + p_tcp_fp_l.keys()
+                print "PORTA: %s" %porta
                 if porta in p_tcp_fp_l.keys():
                     print p_tcp_fp_l.get(porta)
             except:
                 continue
             #print "IP: %s" %ip
-            #print "PORTA: %s" %porta
+            #
             #for key, value in p_tcp_fp_l.iteritems():
             #    if key == porta:
             #        banner = value
