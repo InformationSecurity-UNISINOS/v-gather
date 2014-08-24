@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     from twisted.internet import reactor
     r = XmlHandle()
-    reactor.listenTCP(7080, server.Site(r))
+    reactor.listenTCP(PORTA, server.Site(r))
     reactor.run()
 
     
