@@ -50,12 +50,8 @@ def StartScan():
                 p_tcp_fp_l={}
                 p_tcp_fp_l = item.getDaemonTcpFp()
                 for key, value in p_tcp_fp_l.iteritems():
-                    if key == porta:
+                    if int(key) == int(porta):
                         print "%s:%s:%s" %(ip,porta,value)
-                    else:
-                        print key
-                        print value
-                        print porta
                 print "*"*50
                 
             except:
