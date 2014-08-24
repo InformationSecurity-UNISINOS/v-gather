@@ -20,6 +20,6 @@ def SerializeData(data):
 
 def SendData(string):
     import xmlrpclib
-    remote_server="http://"+MANAGERADDR+":"+PORTA
+    remote_server="http://"+str(MANAGERADDR)+":"+str(PORTA)
     s = xmlrpclib.Server(remote_server)
     s.echo(string)
