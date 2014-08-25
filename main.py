@@ -50,8 +50,8 @@ def StartScan():
                 p_tcp_fp_l={}
                 p_tcp_fp_l = item.getDaemonTcpFp()
                 banner = base64.b64encode(p_tcp_fp_l.get(int(porta)))
-                service = p_pid+"tcp:"+ip+":"+porta+":"+banner
-                SendData(BANNER,service)
+                buf=p_pid+"tcp:"+ip+":"+porta+":"+banner
+                SendData(BANNER,buf)
             
             except:
                 continue
@@ -64,8 +64,8 @@ def StartScan():
                 p_tcp_fp_l={}
                 p_udp_fp_l = item.getDaemonUdpFp()
                 banner = base64.b64encode((p_udp_fp_l.get(int(porta)))
-                service = p_pid+"udp:"+ip+":"+porta+":"+banner
-                SendData(BANNER,service)
+                buf=p_pid+"udp:"+ip+":"+porta+":"+banner
+                SendData(BANNER,buf)
             except:
                 continue
 
