@@ -57,7 +57,7 @@ def StartScan():
                 p_tcp_fp_l={}
                 p_tcp_fp_l = item.getDaemonTcpFp()
                 banner = b64encode(p_tcp_fp_l.get(int(porta)))
-                buf=str(p_pid)+"tcp:"+ip+":"+porta+":"+banner
+                buf="tcp:"+ip+":"+porta+":"+banner
                 SendBanner(server,domain,p_pid,buf)
             
             except:
@@ -71,12 +71,12 @@ def StartScan():
                 p_tcp_fp_l={}
                 p_udp_fp_l = item.getDaemonUdpFp()
                 banner = b64encode(p_udp_fp_l.get(int(porta)))
-                buf=str(p_pid)+"udp:"+ip+":"+porta+":"+banner
+                buf="udp:"+ip+":"+porta+":"+banner
                 SendData(BANNER,server,domain,p_pid,buf)
             except:
                 continue
 
-        p_args = str(p_pid)+":"+b64encode(item.getDaemonArgs())
+        p_args = b64encode(item.getDaemonArgs())
         SendArgs(server,domain,p_pid,p_args)
 
         iof=item.getDaemonIo()
