@@ -91,7 +91,7 @@ def StartScan():
             else:
                 group=token.getGname()
             
-            buf = user+":"+group+":"+token.getDac()+":"+token.getFile()
+            buf = str(user)+":"+str(group)+":"+str(token.getDac())+":"+token.getFile()
             pf_io = str(p_pid)+":"+b64encode(buf)
             SendOfiles(server,domain,p_pid,pf_io)
 
