@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import common
 import nmap
+import netifaces
 '''
 ''verifica fingerprint do servico que atende
 '' determinada porta 
