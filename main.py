@@ -88,7 +88,7 @@ def StartScan():
             else:
                 user=token.getUname()
 
-             if token.getGname() == None:
+            if token.getGname() == None:
                 group=token.getGid()
             else:
                 group=token.getGname()
