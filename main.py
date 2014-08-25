@@ -23,7 +23,7 @@ def usage():
     print "\t-e arquivo.txt\tExportar base de casos para texto plano"
 
 def StartScan():
-    domain,server=GetHostNetwork()    
+    domain,server=GetHostNetwork()
     GetDaemons()
     group=user=token=""
     
@@ -56,7 +56,7 @@ def StartScan():
                 porta = svctcp.split(':')[1]
                 p_tcp_fp_l={}
                 p_tcp_fp_l = item.getDaemonTcpFp()
-                banner = base64.b64encode(p_tcp_fp_l.get(int(porta)))
+                banner = b64encode(p_tcp_fp_l.get(int(porta)))
                 buf=str(p_pid)+"tcp:"+ip+":"+porta+":"+banner
                 SendBanner(server,domain,p_pid,buf)
             
@@ -70,13 +70,13 @@ def StartScan():
                 porta = svcudp.split(':')[1]
                 p_tcp_fp_l={}
                 p_udp_fp_l = item.getDaemonUdpFp()
-                banner = base64.b64encode(p_udp_fp_l.get(int(porta)))
+                banner = b64encode(p_udp_fp_l.get(int(porta)))
                 buf=str(p_pid)+"udp:"+ip+":"+porta+":"+banner
                 SendData(BANNER,server,domain,p_pid,buf)
             except:
                 continue
 
-        p_args = str(p_pid)+":"+base64.b64encode(item.getDaemonArgs())
+        p_args = str(p_pid)+":"+b64encode(item.getDaemonArgs())
         SendArgs(server,domain,p_pid,p_args)
 
         iof=item.getDaemonIo()
@@ -92,7 +92,7 @@ def StartScan():
                 group=token.getGname()
             
             buf = user+":"+group+":"+token.getDac()+":"+token.getFile()
-            pf_io = str(p_pid)+":"+base64.b64encode(buf)
+            pf_io = str(p_pid)+":"+b64encode(buf)
             SendOfiles(server,domain,p_pid,pf_io)
 
         #print "Daemon: %s"  %item.getDaemon()
