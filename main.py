@@ -69,7 +69,7 @@ def StartScan():
                 p_tcp_fp_l={}
                 p_tcp_fp_l = item.getDaemonTcpFp()
                 banner = base64.b64encode(p_tcp_fp_l.get(int(porta)))
-                buf=p_pid+"tcp:"+ip+":"+porta+":"+banner
+                buf=str(p_pid)+"tcp:"+ip+":"+porta+":"+banner
                 SendData(BANNER,buf)
             
             except:
@@ -83,7 +83,7 @@ def StartScan():
                 p_tcp_fp_l={}
                 p_udp_fp_l = item.getDaemonUdpFp()
                 banner = base64.b64encode(p_udp_fp_l.get(int(porta)))
-                buf=p_pid+"udp:"+ip+":"+porta+":"+banner
+                buf=str(p_pid)+"udp:"+ip+":"+porta+":"+banner
                 SendData(BANNER,buf)
             except:
                 continue
@@ -92,7 +92,7 @@ def StartScan():
         # converter pra base64 e no server restaurar e fazer update no banco
         # enviar payload no formato:
         # pid:base64_encoded
-        p_args = p_pid+":"+base64.b64encode(item.getDaemonArgs())
+        p_args = str(p_pid)+":"+base64.b64encode(item.getDaemonArgs())
         SendData(ARGS,p_args)
         
         
@@ -113,7 +113,7 @@ def StartScan():
                 group=token.getGname()
             
             buf = user+":"+group+":"+token.getDac()+":"+token.getFile()
-            pf_io = p_pid+":"+base64.b64encode(buf)
+            pf_io = str(p_pid)+":"+base64.b64encode(buf)
             SendData(OFILES,pf_io)
 
 
