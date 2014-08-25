@@ -1,20 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import socket
 import sys
 from common import *
+import xmlrpclib
 
-def SendData(mode,string):
-    import xmlrpclib
+
+def SendGeneral(server,domain,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid):
     remote_server="http://"+str(MANAGERADDR)+":"+str(PORTA)
     s = xmlrpclib.Server(remote_server)
-    if mode == OFILES:
-        s.ofiles(string)
-    if mode == BANNER:
-        s.banner(string)
-    if mode == ARGS:
-        s.args(string)
-    if mode == GENERAL:
-        s.general(string)
+    s.general(server,domain,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid)
     
-    #s.echo(string)
+def SendBanner(server,domain,p_pid,buf):
+    remote_server="http://"+str(MANAGERADDR)+":"+str(PORTA)
+    s = xmlrpclib.Server(remote_server)
+    s.banner(server,domain,p_pid,buf)
+    
+def SendOfiles(server,domain,p_pid,pf_io):
+    remote_server="http://"+str(MANAGERADDR)+":"+str(PORTA)
+    s = xmlrpclib.Server(remote_server)
+    s.ofiles(server,domain,p_pid,pf_io)
+
+def SendArgs(server,domain,p_pid,p_args):
+    remote_server="http://"+str(MANAGERADDR)+":"+str(PORTA)
+    s = xmlrpclib.Server(remote_server)
+    s.args(server,domain,p_pid,p_args)
+    
+

@@ -2,18 +2,6 @@
 # -*- coding: utf-8 -*-
 from common import *
 
-
-def Deserialize(serialized):
-    import pickle
-    import pickletools
-    
-    print "Tamanho da porra: %d" %(len(serialized))
-    print "*"*200
-    print serialized
-    print "*"*200
-    dado = pickle.loads(serialized)
-    return dado
-
 def ProcessData(data):
     nlist=[]
     nlist=data
@@ -51,11 +39,5 @@ def ProcessData(data):
         print "Daemon File Gid: %d" %item.getFileGid()
         print "*"* 150
 
-
-
-
-def HandleStream(stream):
-    data=Deserialize(stream)
-    ProcessData(data)
 
 

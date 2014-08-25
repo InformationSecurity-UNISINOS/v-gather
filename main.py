@@ -11,7 +11,7 @@ from modules.mvram import *
 from common import *
 from modules.sendserver import *
 from base64 import *
-from rbase import *
+from queue import *
 import getopt
 
 def usage():
@@ -24,8 +24,6 @@ def usage():
 
 def StartScan():
     GetDaemons()
-    #nlist=[]
-    #nlist=OpenBase()
     group=user=token=""
     
     for item in nlist:
@@ -45,10 +43,8 @@ def StartScan():
         pf_dac = str(item.getFileDac())
         pf_uid = str(item.getFileUid())
         pf_gid = str(item.getFileGid())
-        buf=str(p_pid)+":"+base64.b64encode(p_name+":"+p_uid+":"+p_gid+":"+p_rpm+":"+p_dpkg+":"+pf_path+":"+pf_dac+":"+pf_uid+":"+pf_gid)
 
-
-        SendData(GENERAL,buf)
+        SendGeneral(server,domain,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid)
         
         p_tcp_l = item.getDaemonTcp()
         for svctcp in p_tcp_l.split(','):
@@ -59,7 +55,7 @@ def StartScan():
                 p_tcp_fp_l = item.getDaemonTcpFp()
                 banner = base64.b64encode(p_tcp_fp_l.get(int(porta)))
                 buf=str(p_pid)+"tcp:"+ip+":"+porta+":"+banner
-                SendData(BANNER,buf)
+                SendBanner(server,domain,p_pid,buf)
             
             except:
                 continue
@@ -73,22 +69,13 @@ def StartScan():
                 p_udp_fp_l = item.getDaemonUdpFp()
                 banner = base64.b64encode(p_udp_fp_l.get(int(porta)))
                 buf=str(p_pid)+"udp:"+ip+":"+porta+":"+banner
-                SendData(BANNER,buf)
+                SendData(BANNER,server,domain,p_pid,buf)
             except:
                 continue
 
-        
-        # converter pra base64 e no server restaurar e fazer update no banco
-        # enviar payload no formato:
-        # pid:base64_encoded
         p_args = str(p_pid)+":"+base64.b64encode(item.getDaemonArgs())
-        SendData(ARGS,p_args)
-        
-        
-        
-        # converter pra base64 e no server restaurar e fazer update no banco
-        # enviar payload no formato:
-        # pid:base64_encoded
+        SendArgs(server,domain,p_pid,p_args)
+
         iof=item.getDaemonIo()
         for token in iter(iof):
             if token.getUname() == None:
@@ -103,9 +90,7 @@ def StartScan():
             
             buf = user+":"+group+":"+token.getDac()+":"+token.getFile()
             pf_io = str(p_pid)+":"+base64.b64encode(buf)
-            SendData(OFILES,pf_io)
-
-
+            SendOfiles(server,domain,p_pid,pf_io)
 
         #print "Daemon: %s"  %item.getDaemon()
         #print "Pid: %d"  %item.getDaemonPid()
