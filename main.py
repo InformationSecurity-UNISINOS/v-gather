@@ -23,8 +23,14 @@ def usage():
     print "\t-e arquivo.txt\tExportar base de casos para texto plano"
 
 def StartScan():
+    domain,server=GetHostNetwork()
+    
+    print "GW: %s" %str(defaultgw)
+    
     GetDaemons()
     group=user=token=""
+    
+    
     
     for item in nlist:
         p_pid = item.getDaemonPid()

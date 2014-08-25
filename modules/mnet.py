@@ -31,3 +31,13 @@ def CheckSvcFPrint(ip,port,proto):
 
     #print "PORTA: %s" %str(port)
     return fprint
+
+
+
+def GetHostNetwork():
+    gws = gateways()
+    iface = gws['default'][AF_INET][1]
+    addrgw = gws['default'][AF_INET][0]
+    address=ifaddresses(iface)
+    ipv4=address[2][0]['addr']
+    return addrgw,ipv4
