@@ -60,7 +60,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         print "  + Servidor: %s" %agent
         print "  + Domain: %s" %domain
         print "  + PID: %s" %str(p_pid)
-        print "    - Argumentos: %s" %p_banner
+        print "    - Argumentos: %s" %p_args
         return True
     
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid):
