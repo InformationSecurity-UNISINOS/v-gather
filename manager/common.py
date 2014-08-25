@@ -68,7 +68,12 @@ class XmlHandler(xmlrpc.XMLRPC):
         return True
     
     def xmlrpc_general(self,payload):
+        import base64
         print "general"
+        p_pid=payload.split(':')[0]
+        buf=payload.split(':')[1]
+        print "\tp_pid: %s"%p_pid
+        print "\tbuf: %s" %buf
         return True
     
     def xmlrpc_ofiles(self,payload):
