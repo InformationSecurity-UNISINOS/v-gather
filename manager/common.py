@@ -78,8 +78,8 @@ class XmlHandler(xmlrpc.XMLRPC):
         pf_uid = rcv_pf_uid
         pf_gid = rcv_pf_gid
         
-        print "  + Servidor: %s" agent
-        print "  + Domain: %s" domain
+        print "  + Servidor: %s" %agent
+        print "  + Domain: %s" %domain
         print "  + PID: %s" %str(p_pid)
         print "    - Processo: %s" %p_name
         print "    - P.UID: %s" %p_uid
@@ -98,8 +98,8 @@ class XmlHandler(xmlrpc.XMLRPC):
         p_pid = rcv_p_pid
         pf_io = rcv_pf_io
         
-        print "  + Servidor: %s" agent
-        print "  + Domain: %s" domain
+        print "  + Servidor: %s" %agent
+        print "  + Domain: %s" %domain
         print "  + PID: %s" %str(p_pid)
         print "    - Arquivo IO: %s" %pf_io
         return True
