@@ -30,35 +30,24 @@ def StartScan():
     
     for item in nlist:
         p_pid = item.getDaemonPid()
-        buf = str(p_pid)+":"
         p_name = item.getDaemon()
-        buf += p_name+":"
         p_uid = str(item.getDaemonUid())
-        buf += p_uid+":"
         p_gid = str(item.getDaemonGid())
-        buf += p_gid+":"
         p_rpm = item.getDaemonRpm()
-        
         if p_rpm == None:
             p_rpm="nada"
-        buf += p_rpm+":"
         p_dpkg = item.getDaemonDpkg()
         if p_dpkg == None:
             p_dpkg="nada"
-        buf += p_rpm+":"
         pf_path = item.getFilePath()
         if pf_path == None:
             pf_path="nada"
-        buf += pf_path+":"
-        
         pf_dac = str(item.getFileDac())
-        buf += pf_dac+":"
         pf_uid = str(item.getFileUid())
-        buf += pf_uid+":"
-        
         pf_gid = str(item.getFileGid())
-        buf += pf_gid+":"
-        
+        buf=str(p_pid)+":"+base64.b64encode(p_name+":"+p_uid+":"+p_gid+":"+p_rpm+":"+p_dpkg+":"+pf_path+":"+pf_dac+":"+pf_uid+":"+pf_gid)
+
+
         SendData(GENERAL,buf)
         
         p_tcp_l = item.getDaemonTcp()
