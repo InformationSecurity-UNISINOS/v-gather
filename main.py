@@ -10,6 +10,7 @@ from modules.mfs import *
 from modules.mvram import *
 from common import *
 from modules.sendserver import *
+from base64 import *
 from rbase import *
 import getopt
 
@@ -38,19 +39,20 @@ def StartScan():
         pf_dac = item.getFileDac()
         pf_uid = item.getFileUid()
         pf_gid = item.getFileGid()
-        #SendData(p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid)
-        p_tcp_l = item.getDaemonTcp()
-        #TCP port: 0.0.0.0:8005,0.0.0.0:8009,0.0.0.0:8080,
-        #TCP FP: {8080: u'Apache Tomcat/Coyote JSP engine', 8009: u'Apache Jserv', 8005: ''}
+        buf = p_pid+":"+p_name+":"+p_uid+":"+p_gid+":"+p_rpm+":"+p_dpkg+":"+pf_path+":"+pf_dac+":"+pf_uid+":"+pf_gid
+        SendData(GENERAL,buf)
         
+        p_tcp_l = item.getDaemonTcp()
         for svctcp in p_tcp_l.split(','):
             try:
                 ip = svctcp.split(':')[0]
                 porta = svctcp.split(':')[1]
                 p_tcp_fp_l={}
                 p_tcp_fp_l = item.getDaemonTcpFp()
-                banner = p_tcp_fp_l.get(int(porta))
-                print "tcp:%s:%s:%s"%(ip,porta,banner)
+                banner = base64.b64encode(p_tcp_fp_l.get(int(porta)))
+                service = p_pid+"tcp:"+ip+":"+porta+":"+banner
+                SendData(BANNER,service)
+            
             except:
                 continue
     
@@ -61,45 +63,39 @@ def StartScan():
                 porta = svcudp.split(':')[1]
                 p_tcp_fp_l={}
                 p_udp_fp_l = item.getDaemonUdpFp()
-                banner = p_udp_fp_l.get(int(porta))
-                print "udp:%s:%s:%s"%(ip,porta,banner)
+                banner = base64.b64encode((p_udp_fp_l.get(int(porta)))
+                service = p_pid+"udp:"+ip+":"+porta+":"+banner
+                SendData(BANNER,service)
             except:
                 continue
- 
+
+        
+        # converter pra base64 e no server restaurar e fazer update no banco
+        # enviar payload no formato:
+        # pid:base64_encoded
+        p_args = p_pid+":"+base64.b64encode(item.getDaemonArgs())
+        SendData(ARGS,p_args)
+        
+        
+        
+        # converter pra base64 e no server restaurar e fazer update no banco
+        # enviar payload no formato:
+        # pid:base64_encoded
+        iof=item.getDaemonIo()
+        for token in iter(iof):
+            if token.getUname() == None:
+                user=token.getUid()
+            else:
+                user=token.getUname()
+
+             if token.getGname() == None:
+                group=token.getGid()
+            else:
+                group=token.getGname()
             
-        
-        
-        
-
-
-        
-        
-        continue
-    sys.exit(1)
-        
-        # converter pra base64 e no server restaurar e fazer update no banco
-        # enviar payload no formato:
-        # pid:base64_encoded
- #       p_args = item.getDaemonArgs()
-        
-        # converter pra base64 e no server restaurar e fazer update no banco
-        # enviar payload no formato:
-        # pid:base64_encoded
- #       iof=item.getDaemonIo()
- #       for token in iter(iof):
- #           if token.getUname() == None:
- #               user=token.getUid()
- #           else:
- #               user=token.getUname()
-
- #            if token.getGname() == None:
- #               group=token.getGid()
- #           else:
- #               group=token.getGname()
- #           SendData()
- #           print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
-        
-        
+            buf = user+":"+group+":"+token.getDac()+":"+token.getFile()
+            pf_io = p_pid+":"+base64.b64encode(buf)
+            SendData(OFILES,pf_io)
 
 
 

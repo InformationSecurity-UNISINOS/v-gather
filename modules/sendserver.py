@@ -4,22 +4,17 @@ import socket
 import sys
 from common import *
 
-
-def SerializeData(data):
-    import pickle
-    import pickletools
-    return pickle.dumps(data)
-
-#def SendData():
-#    from multiprocessing.connection import Client
-#    client = Client((MANAGERADDR, PORTA))
-#    serialized = SerializeData(nlist)
-#    print "size of stream: %d" %(len(serialized))
-#    client.send(serialized)
-#    client.close()
-
-def SendData(string):
+def SendData(mode,string):
     import xmlrpclib
     remote_server="http://"+str(MANAGERADDR)+":"+str(PORTA)
     s = xmlrpclib.Server(remote_server)
-    s.echo(string)
+    if mode == OFILES:
+        s.ofiles(string)
+    if mode == BANNER:
+        s.banner(string)
+    if mode == ARGS:
+        s.args(string)
+    if mode == GENERAL:
+        s.general(string)
+    
+    #s.echo(string)
