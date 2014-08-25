@@ -63,7 +63,7 @@ def StartScan():
                 porta = svcudp.split(':')[1]
                 p_tcp_fp_l={}
                 p_udp_fp_l = item.getDaemonUdpFp()
-                banner = base64.b64encode((p_udp_fp_l.get(int(porta)))
+                banner = base64.b64encode(p_udp_fp_l.get(int(porta)))
                 buf=p_pid+"udp:"+ip+":"+porta+":"+banner
                 SendData(BANNER,buf)
             except:
