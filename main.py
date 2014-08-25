@@ -39,7 +39,7 @@ def StartScan():
         pf_dac = item.getFileDac()
         pf_uid = item.getFileUid()
         pf_gid = item.getFileGid()
-        buf = p_pid+":"+p_name+":"+p_uid+":"+p_gid+":"+p_rpm+":"+p_dpkg+":"+pf_path+":"+pf_dac+":"+pf_uid+":"+pf_gid
+        buf = str(p_pid)+":"+p_name+":"+str(p_uid)+":"+str(p_gid)+":"+p_rpm+":"+p_dpkg+":"+pf_path+":"+str(pf_dac)+":"+str(pf_uid)+":"+str(pf_gid)
         SendData(GENERAL,buf)
         
         p_tcp_l = item.getDaemonTcp()
