@@ -140,7 +140,7 @@ def main():
         if opcao == "-t":
             if PingManager() == 1:
                 print "[+] Manager Online"
-            else
+            else:
                 print '[+] Manager Offline'
         if opcao == "-h":
             usage()
