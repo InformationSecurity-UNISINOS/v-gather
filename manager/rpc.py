@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+ 
 '''
 ' DEFINICOES GLOBAIS 
 '''
@@ -6,9 +8,6 @@ BUFSIZE=200000
 PORTA=3339
 BINDIP="0.0.0.0"
 
-
-from Queue import Queue
-RequestQueue = Queue(maxsize=0)
 
 '''
  Recebe Registro de Agente
@@ -40,12 +39,12 @@ class XmlHandler(xmlrpc.XMLRPC):
         print "[+] Registrando Banner"
 
         agent = rcv_agent
-        domain = rcv_domain
+        gateway = rcv_domain
         p_pid = rcv_p_pid
         p_banner = rcv_p_banner
         
         print "  + Servidor: %s" %agent
-        print "  + Domain: %s" %domain
+        print "  + Gateway: %s" %gateway
         print "  + PID: %s" %str(p_pid)
         print "    - Banner: %s"%p_banner
         return True
@@ -53,12 +52,12 @@ class XmlHandler(xmlrpc.XMLRPC):
     def xmlrpc_args(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_arg):
         print "[+] Registrando Argumentos"
         agent = rcv_agent
-        domain = rcv_domain
+        gateway = rcv_domain
         p_pid = rcv_p_pid
         p_args = rcv_p_arg
         
         print "  + Servidor: %s" %agent
-        print "  + Domain: %s" %domain
+        print "  + Gateway: %s" %gateway
         print "  + PID: %s" %str(p_pid)
         print "    - Argumentos: %s" %p_args
         return True
@@ -66,7 +65,7 @@ class XmlHandler(xmlrpc.XMLRPC):
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid):
         print "[+] Registrando Dados Gerais"
         agent = rcv_agent
-        domain = rcv_domain
+        gateway = rcv_domain
         p_pid = rcv_p_pid
         p_name = rcv_p_name
         p_uid = rcv_p_uid
@@ -79,7 +78,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         pf_gid = rcv_pf_gid
         
         print "  + Servidor: %s" %agent
-        print "  + Domain: %s" %domain
+        print "  + Gateway: %s" %gateway
         print "  + PID: %s" %str(p_pid)
         print "    - Processo: %s" %p_name
         print "    - P.UID: %s" %p_uid
@@ -94,21 +93,18 @@ class XmlHandler(xmlrpc.XMLRPC):
     def xmlrpc_ofiles(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_pf_io):
         print "[+] Registrando Arquivos Abertos"
         agent = rcv_agent
-        domain = rcv_domain
+        gateway = rcv_domain
         p_pid = rcv_p_pid
         pf_io = rcv_pf_io
         
         print "  + Servidor: %s" %agent
-        print "  + Domain: %s" %domain
+        print "  + Gateway: %s" %gateway
         print "  + PID: %s" %str(p_pid)
         print "    - Arquivo IO: %s" %pf_io
         return True
 
     def xmlrpc_Fault(self):
-        """
-        Raise a Fault indicating that the procedure should not be used.
-        """
-        raise xmlrpc.Fault(123, "The fault procedure is faulty.")
+        raise xmlrpc.Fault(123, "Erro.")
 
 
 

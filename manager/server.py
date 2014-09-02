@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
-# server.py
  
 from multiprocessing.connection import Listener
 from common import *

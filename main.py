@@ -130,7 +130,7 @@ def main():
         usage()
         sys.exit(1)
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "sarc:e:h")
+        opts, args = getopt.getopt(sys.argv[1:], "ath")
     except getopt.GetoptError as err:
         print str(err)
         usage()
