@@ -18,6 +18,7 @@ def usage():
     print "%s <opcao> " %(sys.argv[0])
     print "\t-t\tTestar comunicação com o manager"
     print "\t-a\tAnalisar ambiente"
+    print "\t-h\tMostrar este help"
 
 def StartScan():
     domain,server=GetHostNetwork()
@@ -137,7 +138,10 @@ def main():
 
     for opcao, argumento in opts:
         if opcao == "-t":
-            print PingManager()
+            if PingManager() == 1:
+                print "[+] Manager Online"
+            else
+                print '[+] Manager Offline'
         if opcao == "-h":
             usage()
         if opcao == "-a":

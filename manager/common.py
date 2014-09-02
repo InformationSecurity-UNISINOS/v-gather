@@ -34,7 +34,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         return True
     
     def xmlrpc_ping(self):
-        return True
+        return 1
     
     def xmlrpc_banner(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_banner):
         print "[+] Registrando Banner"
