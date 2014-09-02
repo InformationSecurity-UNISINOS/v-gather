@@ -16,18 +16,13 @@ import getopt
 
 def usage():
     print "%s <opcao> " %(sys.argv[0])
-    print "\t-s\tMostrar estado da base de casos"
+    print "\t-t\tTestar comunicação com o manager"
     print "\t-a\tAnalisar ambiente"
-    print "\t-r\tRegistrar um novo caso (interativo)"
-    print "\t-c arquivo.txt\tCarregar novo caso a partir de um arquivo"
-    print "\t-e arquivo.txt\tExportar base de casos para texto plano"
 
 def StartScan():
     domain,server=GetHostNetwork()
     GetDaemons()
     group=user=token=""
-    
-    
     
     for item in nlist:
         p_pid = item.getDaemonPid()
@@ -128,38 +123,6 @@ def StartScan():
         #print "Daemon File Gid: %d" %item.getFileGid()
         #print "*"* 150
 
-
-def ShowDBStatus():
-    print "status beleza"
-    print "existem x casos na base"
-
-def RegisterCase():
-    print "beleza, vamos registrar"
-    print "Serviço: "
-    print "Uid do processo: "
-    print "Gid do processo: "
-    print "Arquivos IO: "
-    print "Argumentos do processo: "
-    print "Portas TCP: "
-    print "Portas UDP: "
-    print "Fingerprint: "
-    print "Arquivo do serviço: "
-    print "Permissões DAC do arquivo do processo: "
-    print "Uid do arquivo do processo: "
-    print "Gid do arquivo do processo: "
-    print "RPM: "
-    print "DPKG: "
-
-def LoadCaseFromFile(casefile):
-    print "beleza, vou carregar o caso"
-
-def ExportCaseToFile(outputfile):
-    print "Beleza, vou exportar os casos pro arquivo"
-    data=[]
-    data=OpenBase()
-    fd=open(outputfile,'w')
-    fd.write("Daemon: %s"%(item.getDaemon()))
-
 def main():
     print "v-gather CBR"
     if len(sys.argv) < 2:
@@ -173,18 +136,13 @@ def main():
         sys.exit(2)
 
     for opcao, argumento in opts:
-        if opcao == "-s":
-            ShowDBStatus()
+        if opcao == "-t":
+            print PingManager()
         if opcao == "-h":
             usage()
         if opcao == "-a":
             StartScan()
-        if opcao == "-r":
-            RegisterCase()
-        if opcao == "-c":
-            LoadCaseFromFile(argumento)
-        if opcao == "-e":
-            ExportCaseToFile(argumento)
+        
 
 
 if __name__ == "__main__":

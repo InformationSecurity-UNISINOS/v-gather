@@ -24,5 +24,9 @@ def SendArgs(server,domain,p_pid,p_args):
     remote_server="http://"+str(MANAGERADDR)+":"+str(PORTA)
     s = xmlrpclib.Server(remote_server)
     s.args(server,domain,p_pid,p_args)
-    
 
+def PingManager():
+    remote_server="http://"+str(MANAGERADDR)+":"+str(PORTA)
+    s = xmlrpclib.Server(remote_server)
+    ret=s.ping()
+    return ret
