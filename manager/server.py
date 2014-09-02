@@ -5,9 +5,7 @@
  
 from multiprocessing.connection import Listener
 from common import *
-from datahandler import *
-import threading
-import thread
+from rpcdata import *
 
 if __name__ == "__main__":
     from twisted.internet import reactor

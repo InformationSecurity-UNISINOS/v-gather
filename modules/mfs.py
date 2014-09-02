@@ -16,7 +16,6 @@ import re
 from common import *
 from mvram import *
 
-
 ''' Esta função verifica se o pacote informado está instalado
 '   e se a versão confere
 '''
