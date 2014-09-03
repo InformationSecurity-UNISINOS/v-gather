@@ -46,31 +46,45 @@ def StartScan():
         SendGeneral(server,domain,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid)
         
         p_tcp_l = item.getDaemonTcp()
+        tbuf=None
         for svctcp in p_tcp_l.split(','):
             try:
                 ip = svctcp.split(':')[0]
                 porta = svctcp.split(':')[1]
                 p_tcp_fp_l={}
                 p_tcp_fp_l = item.getDaemonTcpFp()
-                banner = b64encode(p_tcp_fp_l.get(int(porta)))
-                buf="tcp:"+ip+":"+porta+":"+banner
-                SendBanner(server,domain,p_pid,buf)
-            
+                fp_item=p_tcp_fp_l.get(int(porta))
+                if fp_item is not '' and fp_item is not None:
+                    banner=b64encode(fp_item)
+                    tbuf="tcp:"+ip+":"+porta+":"+banner
+                    break
+                    
             except:
                 continue
-    
+
         p_udp_l = item.getDaemonUdp()
+        ubuf=None
         for svcudp in p_udp_l.split(','):
             try:
                 ip = svcudp.split(':')[0]
                 porta = svcudp.split(':')[1]
                 p_tcp_fp_l={}
                 p_udp_fp_l = item.getDaemonUdpFp()
-                banner = b64encode(p_udp_fp_l.get(int(porta)))
-                buf="udp:"+ip+":"+porta+":"+banner
-                SendData(BANNER,server,domain,p_pid,buf)
+                fp_item=p_udp_fp_l.get(int(porta))
+                if fp_item is not '' and fp_item is not None:
+                    banner = b64encode(fp_item)
+                    ubuf="udp:"+ip+":"+porta+":"+banner
+                    break
+                    #SendData(BANNER,server,domain,p_pid,buf)
             except:
                 continue
+
+        if tbuf is not None:
+            #banner=tbuf
+            SendBanner(server,domain,p_pid,tbuf)
+        if ubuf is not None:
+            SendData(BANNER,server,domain,p_pid,ubuf)
+            #banner=ubuf
 
         p_args = b64encode(item.getDaemonArgs())
         SendArgs(server,domain,p_pid,p_args)
@@ -91,38 +105,7 @@ def StartScan():
             pf_io = str(p_pid)+":"+b64encode(buf)
             SendOfiles(server,domain,p_pid,pf_io)
 
-        #print "Daemon: %s"  %item.getDaemon()
-        #print "Pid: %d"  %item.getDaemonPid()
-        #print "Daemon Uid: %d" %item.getDaemonUid()
-        #print "Daemon Gid: %d" %item.getDaemonGid()
-        #print "Daemon IO Files:"
-        #iof=item.getDaemonIo()
-        #for token in iter(iof):
-        #    if token.getUname() == None:
-        #        user=token.getUid()
-        #    else:
-        #        user=token.getUname()
-        #
-        #    if token.getGname() == None:
-        #        group=token.getGid()
-        #    else:
-        #        group=token.getGname()
-        #    print "\t%s\t%s\t%d\t%s" %(user,group,token.getDac(),token.getFile())
-        #
-        #print "Daemon Args: %s" %item.getDaemonArgs()
-
-        #print "Daemon TCP port: %s" %item.getDaemonTcp()
-        #print "Daemon TCP FP: %s" %item.getDaemonTcpFp()
-
-        #print "Daemon UDP port: %s" %item.getDaemonUdp()
-        #print "Daemon UDP FP: %s" %item.getDaemonUdpFp()
-        #print "Daemon file Path: %s" %item.getFilePath()
-        #print "Daemon Rpm Package: %s" %item.getDaemonRpm()
-        #print "Daemon Dpkb Package: %s" %item.getDaemonDpkg()
-        #print "Daemon File Dac: %d" %item.getFileDac()
-        #print "Daemon File Uid: %d" %item.getFileUid()
-        #print "Daemon File Gid: %d" %item.getFileGid()
-        #print "*"* 150
+        
 
 def main():
     print "v-gather CBR"

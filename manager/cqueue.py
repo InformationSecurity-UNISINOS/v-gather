@@ -32,6 +32,23 @@ A lista de todos os casos já está disponível no frontend
 
 '''
 
-def Organizer(TIPO,**ParamDict):
 
-	print ParamDict
+
+def Organizer(mode,params={}):
+        
+	if mode==GENERAL:
+                print "GENERAL: " + params.keys()       
+
+        
+	if mode==BANNER:
+                print "BANNER: " + params.keys()  
+
+	if mode==ARGS:
+                print "ARGS: " + params.keys()  
+
+	if mode==IOFILES:
+                print "IOFILES: " + params.keys() 
+
+
+
+                 

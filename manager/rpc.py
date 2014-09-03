@@ -30,21 +30,23 @@ class XmlHandler(xmlrpc.XMLRPC):
     
     def xmlrpc_banner(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_banner):
         print "[+] Registrando Banner"
-        agent = rcv_agent
-        gateway = rcv_domain
-        p_pid = rcv_p_pid
-        p_banner = rcv_p_banner
+        ParamDict={}
+        ParamDict["agent"]=rcv_agent
+        ParamDict["gateway"]=rcv_domain
+        ParamDict["p_pid"]=rcv_p_pid
+        ParamDict["p_banner"]=rcv_p_banner
         
         Organizer(BANNER,ParamDict)
         return True
     
     def xmlrpc_args(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_arg):
         print "[+] Registrando Argumentos"
-        agent = rcv_agent
-        gateway = rcv_domain
-        p_pid = rcv_p_pid
-        p_args = rcv_p_arg
-        
+        ParamDict={}
+        ParamDict["agent"]=rcv_agent
+        ParamDict["gateway"]=rcv_domain
+        ParamDict["p_pid"]=rcv_p_pid
+        ParamDict["p_arg"]=rcv_p_arg
+
         Organizer(ARGS,ParamDict)
         return True
     

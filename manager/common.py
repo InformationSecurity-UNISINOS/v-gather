@@ -12,3 +12,8 @@ GENERAL=100
 BANNER=200
 ARGS=300
 IOFILES=400
+nlist={}
+
+
+pdict={}
+plist=[]
