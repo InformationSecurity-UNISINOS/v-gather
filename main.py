@@ -100,10 +100,28 @@ def StartScan():
         # soh aproveita o banner udp se o banner udp nao existir
         if tbuf is not "":
             tbanner=tbuf+":"+str(tloop)
+
         if ubuf is not "":
             ubanner=ubuf+":"+str(uloop)
 
         if PingManager()==1:
+            print "Server: "+server
+            print "Gw: "+domain
+            print "Distro: "+distro
+            print "DistroVer: "+distro_version
+            print "Pid: "+p_pid
+            print "PName: "+p_name
+            print "Puid: "+p_uid
+            print "Pgid: "+p_gid
+            print "Prmp: "+p_rpm
+            print "Pdpkg: "+p_dpkg
+            print "FPath: "+pf_path
+            print "FDac: "+pf_dac
+            print "Fuid: "+pf_uid
+            print "Fgid: "+pf_gid
+            print "Fargs: "+p_args
+            print "Tbanner: "+tbanner
+            print "Ubanner: "+ubanner
             SendData(server,domain,distro,distro_version,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tbanner,ubanner)
         else:
             print "[x] Manager offline"
