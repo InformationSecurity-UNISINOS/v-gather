@@ -39,18 +39,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         Organizer(BANNER,ParamDict)
         return True
     
-    def xmlrpc_args(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_arg):
-        print "[+] Registrando Argumentos"
-        ParamDict={}
-        ParamDict["agent"]=rcv_agent
-        ParamDict["gateway"]=rcv_domain
-        ParamDict["p_pid"]=rcv_p_pid
-        ParamDict["p_arg"]=rcv_p_arg
-
-        Organizer(ARGS,ParamDict)
-        return True
-    
-    def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid):
+    def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args):
         print "[+] Registrando Dados Gerais"
 
         ParamDict={}
@@ -60,6 +49,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["p_name"]=rcv_p_name
         ParamDict["p_uid"]=rcv_p_uid
         ParamDict["p_gid"]=rcv_p_gid
+        ParamDict["p_args"]=rcv_p_args
         ParamDict["p_rpm"]=rcv_p_rpm
         ParamDict["p_dpkg"]=rcv_p_dpkg
         ParamDict["pf_path"]=rcv_pf_path
