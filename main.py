@@ -49,7 +49,7 @@ def StartScan():
         tbuf=tbanner=""
         tcp_ports=0
         if p_tcp_l is not "":
-            tloop=1
+            tloop=0
             for svctcp in p_tcp_l.split(','):
                 try:
                     ip = svctcp.split(':')[0]
@@ -79,7 +79,7 @@ def StartScan():
         ubuf=ubanner=""
         udp_ports=0
         if p_udp_l is not "":
-            uloop=1
+            uloop=0
             for svcudp in p_udp_l.split(','):
                 try:
                     ip = svcudp.split(':')[0]
