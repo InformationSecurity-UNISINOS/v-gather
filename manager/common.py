@@ -14,6 +14,6 @@ ARGS=300
 IOFILES=400
 nlist={}
 
-
-pdict={}
 plist=[]
+from collections import deque
+pqueue = deque()
