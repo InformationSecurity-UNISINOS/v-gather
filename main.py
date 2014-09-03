@@ -46,7 +46,9 @@ def StartScan():
         #SendArgs(server,domain,p_pid,p_args)
 
         p_tcp_l = item.getDaemonTcp()
+        print "tcp_l: "
         print p_tcp_l
+        print type(p_tcp_l)
         sys.exit(1)
 
 
