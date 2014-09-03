@@ -1,12 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
- 
-'''
-' DEFINICOES GLOBAIS 
-'''
-BUFSIZE=200000
-PORTA=3339
-BINDIP="0.0.0.0"
+from common import *
+from twisted.web import xmlrpc, server
+from cqueue import *
 
 
 '''
@@ -19,12 +15,9 @@ BINDIP="0.0.0.0"
  Domain: Para registrar de qual empresa veio a request, para agrupar todos os IPS pertinentes.
  p_pid: vai identificar qual é o processo, dentro do servidor em questão, a qual cada item se refere
  
- 
- 
- 
+
 '''
 
-from twisted.web import xmlrpc, server
 class XmlHandler(xmlrpc.XMLRPC):
     def xmlrpc_register(self,address,domain,code):
         agent = code
@@ -37,16 +30,12 @@ class XmlHandler(xmlrpc.XMLRPC):
     
     def xmlrpc_banner(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_banner):
         print "[+] Registrando Banner"
-
         agent = rcv_agent
         gateway = rcv_domain
         p_pid = rcv_p_pid
         p_banner = rcv_p_banner
         
-        print "  + Servidor: %s" %agent
-        print "  + Gateway: %s" %gateway
-        print "  + PID: %s" %str(p_pid)
-        print "    - Banner: %s"%p_banner
+        Organizer(BANNER,ParamDict)
         return True
     
     def xmlrpc_args(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_arg):
@@ -56,51 +45,39 @@ class XmlHandler(xmlrpc.XMLRPC):
         p_pid = rcv_p_pid
         p_args = rcv_p_arg
         
-        print "  + Servidor: %s" %agent
-        print "  + Gateway: %s" %gateway
-        print "  + PID: %s" %str(p_pid)
-        print "    - Argumentos: %s" %p_args
+        Organizer(ARGS,ParamDict)
         return True
     
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid):
         print "[+] Registrando Dados Gerais"
-        agent = rcv_agent
-        gateway = rcv_domain
-        p_pid = rcv_p_pid
-        p_name = rcv_p_name
-        p_uid = rcv_p_uid
-        p_gid = rcv_p_gid
-        p_rpm = rcv_p_rpm
-        p_dpkg = rcv_p_dpkg
-        pf_path = rcv_pf_path
-        pf_dac = rcv_pf_dac
-        pf_uid = rcv_pf_uid
-        pf_gid = rcv_pf_gid
-        
-        print "  + Servidor: %s" %agent
-        print "  + Gateway: %s" %gateway
-        print "  + PID: %s" %str(p_pid)
-        print "    - Processo: %s" %p_name
-        print "    - P.UID: %s" %p_uid
-        print "    - P.GID: %s" %p_gid
-        print "    - RPM: %s" %p_rpm
-        print "    - DPKG: %s" %p_dpkg
-        print "    - Path: %s" %pf_path
-        print "    - File Uid: %s" %pf_uid
-        print "    - File Gid: %s" %pf_gid
+
+        ParamDict={}
+        ParamDict["agent"]=rcv_agent
+        ParamDict["gateway"]=rcv_domain
+        ParamDict["p_pid"]=rcv_p_pid
+        ParamDict["p_name"]=rcv_p_name
+        ParamDict["p_uid"]=rcv_p_uid
+        ParamDict["p_gid"]=rcv_p_gid
+        ParamDict["p_rpm"]=rcv_p_rpm
+        ParamDict["p_dpkg"]=rcv_p_dpkg
+        ParamDict["pf_path"]=rcv_pf_path
+        ParamDict["pf_dac"]=rcv_pf_dac
+        ParamDict["pf_uid"]=rcv_pf_uid
+        ParamDict["pf_gid"]=rcv_pf_gid
+
+        Organizer(GENERAL,ParamDict)
         return True
     
     def xmlrpc_ofiles(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_pf_io):
         print "[+] Registrando Arquivos Abertos"
-        agent = rcv_agent
-        gateway = rcv_domain
-        p_pid = rcv_p_pid
-        pf_io = rcv_pf_io
         
-        print "  + Servidor: %s" %agent
-        print "  + Gateway: %s" %gateway
-        print "  + PID: %s" %str(p_pid)
-        print "    - Arquivo IO: %s" %pf_io
+        ParamDict={}
+        ParamDict["agent"]=rcv_agent
+        ParamDict["gateway"]=rcv_domain
+        ParamDict["p_pid"]=rcv_p_pid
+        ParamDict["pf_io"]=rcv_pf_io
+
+        Organizer(IOFILES,ParamDict)
         return True
 
     def xmlrpc_Fault(self):

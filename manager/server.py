@@ -3,15 +3,14 @@
  
 from multiprocessing.connection import Listener
 from common import *
-from datahandler import *
-import threading
-import thread
+from rpc import *
 
 if __name__ == "__main__":
     from twisted.internet import reactor
     r = XmlHandler()
-    reactor.listenTCP(PORTA, server.Site(r))
-    print "Started XMLRPC"
+    reactor.listenTCP(PORT_BIND, server.Site(r))
+    print "[*] Server Started"
+    print "="*100
     reactor.run()
 
     
