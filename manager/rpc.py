@@ -56,7 +56,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         print "  + GID do Processo: " +ParamDict["p_gid"]
         print "  + Argumentos do Processo: " +ParamDict["p_args"]
         print "  + Pacote RPM: " +ParamDict["p_rpm"]
-        print "  + Pacote DPKG: " +ParamDict["p_dpkg"]=rcv_p_dpkg
+        print "  + Pacote DPKG: " +ParamDict["p_dpkg"]
         print "  + Patch do binário do processo: " +ParamDict["pf_path"]
         print "  + Dac do binário do processo: " +ParamDict["pf_dac"]
         print "  + Uid do binário do processo: "+ParamDict["pf_uid"]
