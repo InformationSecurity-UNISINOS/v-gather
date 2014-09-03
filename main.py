@@ -26,6 +26,8 @@ def StartScan():
     group=user=token=""
     
     for item in nlist:
+        distro=item.getDistro()
+        distro_version=item.getDistroVer()
         p_pid = item.getDaemonPid()
         p_name = item.getDaemon()
         p_uid = str(item.getDaemonUid())
@@ -102,7 +104,7 @@ def StartScan():
             ubanner=ubuf+":"+str(uloop)
 
         if PingManager()==1:
-            SendData(server,domain,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tbanner,ubanner)
+            SendData(server,domain,distro,distro_version,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tbanner,ubanner)
         else:
             print "[x] Manager offline"
         

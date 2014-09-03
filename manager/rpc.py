@@ -28,12 +28,14 @@ class XmlHandler(xmlrpc.XMLRPC):
     def xmlrpc_ping(self):
         return 1
     
-    def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
+    def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_distro,rcv_distro_version,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
         print "[+] Registrando Dados Gerais"
 
         ParamDict={}
         ParamDict["agent"]=rcv_agent
         ParamDict["gateway"]=rcv_domain
+        ParamDict["distro"]=rcv_distro
+        ParamDict["distro_version"]=rcv_distro_version
         ParamDict["p_pid"]=rcv_p_pid
         ParamDict["p_name"]=rcv_p_name
         ParamDict["p_uid"]=rcv_p_uid
@@ -48,9 +50,11 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["tbanner"]=rcv_p_tbanner
         ParamDict["ubanner"]=rcv_p_ubanner
 
-'''
+
         print "  + Agente: "+ ParamDict["agent"]
         print "  + Gateway: "+ ParamDict["gateway"]
+        print "  + Distro: "+ str(ParamDict["distro"])
+        print "  + Distro Version: "+ str(ParamDict["distro_version"])
         print "  + Pid: "+ str(ParamDict["p_pid"])
         print "  + Processo: " +ParamDict["p_name"]
         print "  + UID do Processo: " +str(ParamDict["p_uid"])
@@ -64,7 +68,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         print "  + Gid do binário do processo: " +str(ParamDict["pf_gid"])
         print "  + Banner TCP do processo: " +ParamDict["tbanner"]
         print "  + Banner UDP do processo: " +ParamDict["ubanner"]
-'''
+
         pqueue.append(ParamDict)
         
         return True
