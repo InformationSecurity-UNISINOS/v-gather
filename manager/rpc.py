@@ -47,7 +47,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["pf_gid"]=rcv_pf_gid
         ParamDict["tbanner"]=rcv_p_tbanner
         ParamDict["ubanner"]=rcv_p_ubanner
-
+        print ParamDict["p_pid"]
 
         return True
     

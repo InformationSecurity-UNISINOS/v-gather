@@ -97,9 +97,9 @@ def StartScan():
 
         # soh aproveita o banner udp se o banner udp nao existir
         if tbuf is not "":
-            tbanner=tbuf+":"+tloop
+            tbanner=tbuf+":"+str(tloop)
         if ubuf is not "":
-            ubanner=ubuf+":"+uloop
+            ubanner=ubuf+":"+str(uloop)
 
         if PingManager()==1:
             SendData(server,domain,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tbanner,ubanner)
