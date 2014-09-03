@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from common import *
+import common
 from twisted.web import xmlrpc, server
 from cqueue import *
 

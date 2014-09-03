@@ -44,66 +44,78 @@ def StartScan():
         pf_gid = str(item.getFileGid())
         p_args = b64encode(item.getDaemonArgs())
         #SendArgs(server,domain,p_pid,p_args)
+
+        p_tcp_l = item.getDaemonTcp()
+        print p_tcp_l
+        sys.exit(1)
+
+        
+        tbuf=""
+        tloop=1
+        for svctcp in p_tcp_l.split(','):
+            try:
+                ip = svctcp.split(':')[0]
+                porta = svctcp.split(':')[1]
+                p_tcp_fp_l={}
+                p_tcp_fp_l = item.getDaemonTcpFp()
+                fp_item=p_tcp_fp_l.get(int(porta))
+                if fp_item is not '' and fp_item is not None:
+                    '''
+                        Se o servico tiver muitas portas,
+                        aproveitarei somente o banner da primeira, os demais 
+                        eu presumo que sao iguais.
+                        Porém eu nao saio do loop, e aproveito o 
+                        tloop pra contabilizar quantas portas abertas
+                        esse serviço tem.
+                    '''
+                    if tloop==1: 
+                        banner=b64encode(fp_item)
+                        tbuf="tcp:"+ip+":"+porta+":"+banner
+                    tloop+=1
+
+            except:
+                continue
+
+        p_udp_l = item.getDaemonUdp()
+        ubuf=""
+        uloop=1
+        for svcudp in p_udp_l.split(','):
+            try:
+                ip = svcudp.split(':')[0]
+                porta = svcudp.split(':')[1]
+                p_tcp_fp_l={}
+                p_udp_fp_l = item.getDaemonUdpFp()
+                fp_item=p_udp_fp_l.get(int(porta))
+                if fp_item is not '' and fp_item is not None:
+                                        '''
+                        Se o servico tiver muitas portas,
+                        aproveitarei somente o banner da primeira, os demais 
+                        eu presumo que sao iguais.
+                        Porém eu nao saio do loop, e aproveito o 
+                        uloop pra contabilizar quantas portas abertas
+                        esse serviço tem.
+                    '''
+                    if uloop==1:
+                        banner = b64encode(fp_item)
+                        ubuf="udp:"+ip+":"+porta+":"+banner
+                    uloop+=1
+            except:
+                continue
+
+        # soh aproveita o banner udp se o banner udp nao existir
+        if tbuf is not "":
+            tbanner=tbuf
+            tcp_ports=tloop
+
+        if ubuf is not "":
+            ubanner=ubuf
+            udp_ports=uloop
+
         if PingManager()==1:
-            SendData(server,domain,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args)
+            SendData(server,domain,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_ports,tbanner,udp_ports,ubanner)
         else:
             print "[x] Manager offline"
-        #p_tcp_l = item.getDaemonTcp()
-        #tbuf=None
-        #for svctcp in p_tcp_l.split(','):
-        #    try:
-        #        ip = svctcp.split(':')[0]
-        #        porta = svctcp.split(':')[1]
-        #        p_tcp_fp_l={}
-        #        p_tcp_fp_l = item.getDaemonTcpFp()
-        #        fp_item=p_tcp_fp_l.get(int(porta))
-        #        if fp_item is not '' and fp_item is not None:
-        #            banner=b64encode(fp_item)
-        #            tbuf="tcp:"+ip+":"+porta+":"+banner
-        #            break
-        #            
-        #    except:
-        #        continue
-
-        #p_udp_l = item.getDaemonUdp()
-        #ubuf=None
-        #for svcudp in p_udp_l.split(','):
-        #    try:
-        #        ip = svcudp.split(':')[0]
-        #        porta = svcudp.split(':')[1]
-        #        p_tcp_fp_l={}
-        #        p_udp_fp_l = item.getDaemonUdpFp()
-        #        fp_item=p_udp_fp_l.get(int(porta))
-        #        if fp_item is not '' and fp_item is not None:
-        #            banner = b64encode(fp_item)
-        #            ubuf="udp:"+ip+":"+porta+":"+banner
-        #            break
-        #            #SendData(BANNER,server,domain,p_pid,buf)
-        #    except:
-        #        continue
-
-        #if tbuf is not None:
-        #    #banner=tbuf
-        #    SendBanner(server,domain,p_pid,tbuf)
-        #if ubuf is not None:
-        #    SendData(BANNER,server,domain,p_pid,ubuf)
-        #    #banner=ubuf
-
-        #iof=item.getDaemonIo()
-        #for token in iter(iof):
-        #    if token.getUname() == None:
-        #        user=token.getUid()
-        #    else:
-        #        user=token.getUname()
-
-        #   if token.getGname() == None:
-        #        group=token.getGid()
-        #    else:
-        #        group=token.getGname()
-        #    
-        #    buf = str(user)+":"+str(group)+":"+str(token.getDac())+":"+token.getFile()
-        #    pf_io = str(p_pid)+":"+b64encode(buf)
-        #    SendOfiles(server,domain,p_pid,pf_io)
+        
 
 def main():
     print "v-gather CBR"
