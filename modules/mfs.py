@@ -119,27 +119,26 @@ def GetDacMode(filestr):
 ''' Esta funcao retorna tipo do arquivo
 '   tipo pode ser, socket, arquivo regular, device, link, diretorio, etc
 '''
-def GetFileType(filestr):
-    try:
-        mode = os.stat(filestr).st_mode
-    except:
-        return -1
+#def GetFileType(filestr):
+#    try:
+#        mode = os.stat(filestr).st_mode
+#    except:
+#        return -1
 
-    if stat.S_ISDIR(mode):
-        return FT_DIR
-    if stat.S_ISCHR(mode):
-        return FT_CHR
-    if stat.S_ISBLK(mode):
-        return FT_BLK
-    if stat.S_ISREG(mode):
-        return FT_REG
-    if stat.S_ISFIFO(mode):
-        return FT_FIF
-    if stat.S_ISLNK(mode):
-         return FT_LNK
-    if stat.S_ISSOCK(mode):
-        return FT_SCK
-
+#    if stat.S_ISDIR(mode):
+#        return FT_DIR
+#    if stat.S_ISCHR(mode):
+#        return FT_CHR
+#    if stat.S_ISBLK(mode):
+#        return FT_BLK
+#    if stat.S_ISREG(mode):
+#        return FT_REG
+#    if stat.S_ISFIFO(mode):
+#        return FT_FIF
+#    if stat.S_ISLNK(mode):
+#         return FT_LNK
+#    if stat.S_ISSOCK(mode):
+#        return FT_SCK
 
 
 def CheckIdOwner(filestr):
@@ -172,29 +171,29 @@ def GetOwnerName(filestr):
 ''' Esta funcao retorna as informacoes do usuario
 '   disponiveis no arquivo /etc/passwd
 '''
-def GetUserInfo(uid):
-    
-    try:
-        userinfo=[]
-        userinfo.append(pwd.getpwuid(int(uid)).pw_name)
-        userinfo.append(pwd.getpwuid(int(uid)).pw_uid)
-        userinfo.append(pwd.getpwuid(int(uid)).pw_gid)
-        userinfo.append(pwd.getpwuid(int(uid)).pw_dir)
-        userinfo.append(pwd.getpwuid(int(uid)).pw_shell)
-        return userinfo
-    except:
-        return -1
+#def GetUserInfo(uid):
+#    
+#    try:
+#        userinfo=[]
+#        userinfo.append(pwd.getpwuid(int(uid)).pw_name)
+#        userinfo.append(pwd.getpwuid(int(uid)).pw_uid)
+#        userinfo.append(pwd.getpwuid(int(uid)).pw_gid)
+#        userinfo.append(pwd.getpwuid(int(uid)).pw_dir)
+#        userinfo.append(pwd.getpwuid(int(uid)).pw_shell)
+#        return userinfo
+#    except:
+#        return -1
 '''
 ' Verifica qual é o processador presente
 ' e quantos cores tem
 '''
-def CheckProcessor():
-    with open('/proc/cpuinfo') as f:
-        for line in f:
-            if line.strip():
-                if line.rstrip('\n').startswith('model name'):
-                    model_name = line.rstrip('\n').split(':')[1]
-                    print(model_name)
+#def CheckProcessor():
+#    with open('/proc/cpuinfo') as f:
+#        for line in f:
+#            if line.strip():
+#                if line.rstrip('\n').startswith('model name'):
+#                    model_name = line.rstrip('\n').split(':')[1]
+#                    print(model_name)
 
 '''
 ' Função recursiva de visita a diretórios
@@ -208,169 +207,169 @@ def CheckProcessor():
 ' FTYPESEARCH: procura por um tipo determinado de arquivo (devices, sockets, etc)
 '
 '''
-def WalkDir(dirstr, searchstr, mode):
-
-    
-    if mode == DACSEARCH:
-        filesfound=[]
-        for dirName, subdirList, fileList in os.walk(dirstr):
-            for fname in fileList:
-                fullpath=dirName+"/"+fname
-                if not re.search('^/proc/.+', fullpath):
-                    if CheckDacMode(fullpath,searchstr,False) == True:
-                        filesfound.append(fullpath)
-    
-    if mode == DIRSEARCH:
-        filesfound=[]
-        for dirName, subdirList, fileList in os.walk(dirstr):
-            if searchstr in dirName:
-                    filesfound.append(dirName)
-
-    if mode == FILESEARCH:
-        filesfound=[]
-        for dirName, subdirList, fileList in os.walk(dirstr):
-            for fname in fileList:
-                if searchstr in fname:
-                    fullpath=dirName+"/"+fname
-                    filesfound.append(fullpath)
-
-    if mode == FYPESEARCH:
-        filesfound=[]
-        for dirName, subdirList, fileList in os.walk(dirstr):
-            for fname in fileList:
-                fullpath=dirName+"/"+fname
-                if not re.search('^/proc/.+', fullpath):
-                    if GetFileType(fullpath) == searchstr:
-                        filesfound.append(fullpath)
-
-    
-    return filesfound
+#def WalkDir(dirstr, searchstr, mode):
+#
+#    
+#    if mode == DACSEARCH:
+#        filesfound=[]
+#        for dirName, subdirList, fileList in os.walk(dirstr):
+#            for fname in fileList:
+#                fullpath=dirName+"/"+fname
+#                if not re.search('^/proc/.+', fullpath):
+#                    if CheckDacMode(fullpath,searchstr,False) == True:
+#                        filesfound.append(fullpath)
+#    
+#    if mode == DIRSEARCH:
+#        filesfound=[]
+#        for dirName, subdirList, fileList in os.walk(dirstr):
+#            if searchstr in dirName:
+#                    filesfound.append(dirName)
+#
+#    if mode == FILESEARCH:
+#        filesfound=[]
+#        for dirName, subdirList, fileList in os.walk(dirstr):
+#            for fname in fileList:
+#                if searchstr in fname:
+#                    fullpath=dirName+"/"+fname
+#                    filesfound.append(fullpath)
+#
+#    if mode == FYPESEARCH:
+#        filesfound=[]
+#        for dirName, subdirList, fileList in os.walk(dirstr):
+#           for fname in fileList:
+#                fullpath=dirName+"/"+fname
+#                if not re.search('^/proc/.+', fullpath):
+#                    if GetFileType(fullpath) == searchstr:
+#                        filesfound.append(fullpath)
+#
+#    
+#    return filesfound
 
 '''
 ' Procura por arquivos ou diretórios com permissao de escrita
 ' para  
 '''
-def SearchWritable(dirstr, uid,gid, mode):
-    filesfound=[]
-    if mode == WDIRSEARCH:
-        filesfound=[]
-        for dirName, subdirList, fileList in os.walk(dirstr):
-            fullpath=dirName
-            if not re.search('^/proc/.+', fullpath):
-                if GetFileType(fullpath) != FT_LNK:
-                    if CheckWrite(fullpath,uid,gid) == True:
-                        filesfound.append(fullpath)
-
-    if mode == WFILSEARCH:
-        filesfound=[]
-        for dirName, subdirList, fileList in os.walk(dirstr):
-            for fname in fileList:
-                fullpath=dirName+"/"+fname
-                if not re.search('^/proc/.+', fullpath):
-                    if GetFileType(fullpath) != FT_LNK:
-                        if CheckWrite(fullpath,uid,gid) == True:
-                            filesfound.append(fullpath)
-    return filesfound
+#def SearchWritable(dirstr, uid,gid, mode):
+#    filesfound=[]
+#    if mode == WDIRSEARCH:
+#        filesfound=[]
+#        for dirName, subdirList, fileList in os.walk(dirstr):
+#            fullpath=dirName
+#            if not re.search('^/proc/.+', fullpath):
+#                if GetFileType(fullpath) != FT_LNK:
+#                    if CheckWrite(fullpath,uid,gid) == True:
+#                        filesfound.append(fullpath)
+#
+#    if mode == WFILSEARCH:
+#        filesfound=[]
+#        for dirName, subdirList, fileList in os.walk(dirstr):
+#            for fname in fileList:
+#                fullpath=dirName+"/"+fname
+#                if not re.search('^/proc/.+', fullpath):
+#                    if GetFileType(fullpath) != FT_LNK:
+#                        if CheckWrite(fullpath,uid,gid) == True:
+#                            filesfound.append(fullpath)
+#    return filesfound
 '''
 ' Procura por arquivos ou diretórios com permissao de leitura
 ' para determinado uid e/ou gid
 '''
-def SearchReadable(dirstr, uid,gid, mode):
-    filesfound=[]
-    if mode == RDIRSEARCH:
-        filesfound=[]
-        for dirName, subdirList, fileList in os.walk(dirstr):
-            fullpath=dirName
-            if not re.search('^/proc/.+', fullpath):
-                if GetFileType(fullpath) != FT_LNK:
-                    if CheckWrite(fullpath,uid,gid) == True:
-                        filesfound.append(fullpath)
-
-    if mode == RFILSEARCH:
-        filesfound=[]
-        for dirName, subdirList, fileList in os.walk(dirstr):
-            for fname in fileList:
-                fullpath=dirName+"/"+fname
-                if not re.search('^/proc/.+', fullpath):
-                    if GetFileType(fullpath) != FT_LNK:
-                        if CheckWrite(fullpath,uid,gid) == True:
-                            filesfound.append(fullpath)
-    return filesfound
+#def SearchReadable(dirstr, uid,gid, mode):
+#    filesfound=[]
+#    if mode == RDIRSEARCH:
+#        filesfound=[]
+#        for dirName, subdirList, fileList in os.walk(dirstr):
+#            fullpath=dirName
+#            if not re.search('^/proc/.+', fullpath):
+#                if GetFileType(fullpath) != FT_LNK:
+#                    if CheckWrite(fullpath,uid,gid) == True:
+#                        filesfound.append(fullpath)
+#
+#    if mode == RFILSEARCH:
+#        filesfound=[]
+#        for dirName, subdirList, fileList in os.walk(dirstr):
+#            for fname in fileList:
+#                fullpath=dirName+"/"+fname
+#                if not re.search('^/proc/.+', fullpath):
+#                    if GetFileType(fullpath) != FT_LNK:
+#                        if CheckWrite(fullpath,uid,gid) == True:
+#                            filesfound.append(fullpath)
+#    return filesfound
 '''
 ' Verifica se determinado usuario pode escrever no arquivo
 '''
-def CheckWrite(file,uid,gid):
-    try:
-        st = os.stat(file)
-    except:
-        return -1
-    uid=int(uid)
-    gid=int(gid)
-    ouid = int(st.st_uid)
-    ogid = int(st.st_gid)
-    mode = st.st_mode
-    writable=False
-    
-    if uid == ouid and (stat.S_IWUSR & mode):
-        writable=True
-    if gid == ogid and (stat.S_IWGRP & mode):
-        writable=True
-    if uid != ouid and (stat.S_IWOTH & mode):
-        writable=True
-    if gid != ogid and (stat.S_IWOTH & mode):
-        writable=True
-
-    return writable
+#def CheckWrite(file,uid,gid):
+#    try:
+#        st = os.stat(file)
+#    except:
+#        return -1
+#    uid=int(uid)
+#    gid=int(gid)
+#    ouid = int(st.st_uid)
+#    ogid = int(st.st_gid)
+#    mode = st.st_mode
+#    writable=False
+#    
+#    if uid == ouid and (stat.S_IWUSR & mode):
+#        writable=True
+#    if gid == ogid and (stat.S_IWGRP & mode):
+#        writable=True
+#    if uid != ouid and (stat.S_IWOTH & mode):
+#        writable=True
+#    if gid != ogid and (stat.S_IWOTH & mode):
+#        writable=True
+#
+#    return writable
 
 
 '''
 ' Verifica se determinado usuario pode ler arquivo
 '''
-def CheckRead(file,uid,gid):
-    try:
-        mode = os.stat(filepath).st_mode
-    except:
-        return -1
-    uid=int(uid)
-    gid=int(gid)
-    ouid = int(st.st_uid)
-    ogid = int(st.st_gid)
-    readable=False
-
-    if uid == ouid and (stat.S_IRUSR & mode):
-        readable=True
-    if gid == ogid and (stat.S_IRGRP & mode):
-        readable=True
-    if uid != ouid and (stat.S_IROTH & mode):
-        readable=True
-    if gid != ogid and (stat.S_IROTH & mode):
-        readable=True
-    return readable
+#def CheckRead(file,uid,gid):
+#    try:
+#        mode = os.stat(filepath).st_mode
+#    except:
+#        return -1
+#    uid=int(uid)
+#    gid=int(gid)
+#    ouid = int(st.st_uid)
+#    ogid = int(st.st_gid)
+#    readable=False
+#
+#    if uid == ouid and (stat.S_IRUSR & mode):
+#        readable=True
+#    if gid == ogid and (stat.S_IRGRP & mode):
+#        readable=True
+#    if uid != ouid and (stat.S_IROTH & mode):
+#        readable=True
+#    if gid != ogid and (stat.S_IROTH & mode):
+#        readable=True
+#    return readable
 
 '''
 ' Verifica se determinado usuario pode executar arquivo
 '''
-def CheckExec(file,uid,gid):
-    try:
-        st = os.stat(file)
-    except:
-        return -1
-    uid=int(uid)
-    gid=int(gid)
-    ouid = int(st.st_uid)
-    ogid = int(st.st_gid)
-    mode = st.st_mode
-    executable=False
-    
-    if uid == ouid and (st.S_IXUSR & mode):
-        executable=True
-    if gid == ogid and (st.S_IXGRP & mode):
-        executable=True
-    if uid != ouid and (st.S_IXOTH & mode):
-        executable=True
-    if gid != ogid and (st.S_IXOTH & mode):
-        executable=True
-    return executable
+#def CheckExec(file,uid,gid):
+#    try:
+#        st = os.stat(file)
+#    except:
+#        return -1
+#    uid=int(uid)
+#    gid=int(gid)
+#    ouid = int(st.st_uid)
+#    ogid = int(st.st_gid)
+#    mode = st.st_mode
+#    executable=False
+#    
+#    if uid == ouid and (st.S_IXUSR & mode):
+#        executable=True
+#    if gid == ogid and (st.S_IXGRP & mode):
+#        executable=True
+#    if uid != ouid and (st.S_IXOTH & mode):
+#        executable=True
+#    if gid != ogid and (st.S_IXOTH & mode):
+#        executable=True
+#    return executable
 
 '''
 '' Qual pacote instalado fornece tal arquivo
@@ -414,13 +413,13 @@ def FileToPackage(searchstr):
     return ret
 
 
-def GetFileMagicStr(fullpath):
-    import magic
-    try:
-        ft = magic.from_file(fullpath)
-    except:
-        ft = None
-    return ft
+#def GetFileMagicStr(fullpath):
+#    import magic
+#    try:
+#        ft = magic.from_file(fullpath)
+#    except:
+#        ft = None
+#    return ft
     
     
 '''
@@ -428,48 +427,48 @@ def GetFileMagicStr(fullpath):
 '' uma lista da classe fileinfo
 ''
 '''
-def GetFileProperties(filelist):
-
-    ret=[]
-    for token in iter(filelist):
-        finfo=FileInfo()
-        finfo.dac=mfs.GetDacMode(token)
-        finfo.file=token
-        
-        owner=GetOwnerName(token)
-        if owner[0]>0:
-            finfo.uname=str(owner[0])
-        if owner[1]>0:
-            finfo.gname=str(owner[1])
-        finfo.type=GetFileMagicStr(token)
-        
-        owner=CheckIdOwner(token)
-        finfo.uid=int(owner[0])
-        finfo.gid=int(owner[1])
-        
-        if GetFileType(filelist) == FT_LNK:
-            finfo.link=True
-        
-        if GetFileType(filelist) == FT_DIR:
-            finfo.dir=True
-        
-        if GetFileType(filelist) == FT_CHR:
-            finfo.chr=True
-        
-        if GetFileType(filelist) == FT_BLK:
-            finfo.blk=True
-        
-        if GetFileType(filelist) == FT_REG:
-            finfo.reg=True
-        
-        if GetFileType(filelist) == FT_FIF:
-            finfo.fif=True
-        
-        if GetFileType(filelist) == FT_SCK:
-            finfo.sck=True
-
-        ret.append(finfo)
-    return ret
+#def GetFileProperties(filelist):
+#
+#    ret=[]
+#    for token in iter(filelist):
+#        finfo=FileInfo()
+#        finfo.dac=mfs.GetDacMode(token)
+#        finfo.file=token
+#        
+#        owner=GetOwnerName(token)
+#        if owner[0]>0:
+#            finfo.uname=str(owner[0])
+#        if owner[1]>0:
+#            finfo.gname=str(owner[1])
+#        finfo.type=GetFileMagicStr(token)
+#        
+#        owner=CheckIdOwner(token)
+#        finfo.uid=int(owner[0])
+#        finfo.gid=int(owner[1])
+#        
+#        if GetFileType(filelist) == FT_LNK:
+#            finfo.link=True
+#        
+#        if GetFileType(filelist) == FT_DIR:
+#            finfo.dir=True
+#        
+#        if GetFileType(filelist) == FT_CHR:
+#            finfo.chr=True
+#        
+#        if GetFileType(filelist) == FT_BLK:
+#            finfo.blk=True
+#        
+#        if GetFileType(filelist) == FT_REG:
+#            finfo.reg=True
+#        
+#        if GetFileType(filelist) == FT_FIF:
+#            finfo.fif=True
+#        
+#        if GetFileType(filelist) == FT_SCK:
+#            finfo.sck=True
+#
+#        ret.append(finfo)
+#    return ret
 
     
     

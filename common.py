@@ -45,7 +45,7 @@ class DaemonInfo(object):
                 self.pid = None
                 self.downer_uid = None
                 self.downer_gid = None
-                self.io_files=[]
+                #self.io_files=[]
                 self.args = None
                 self.tcp = []
                 self.svc_tcp_fp = {}
@@ -65,8 +65,8 @@ class DaemonInfo(object):
                 return self.downer_uid
         def getDaemonGid(self):
                 return self.downer_gid
-        def getDaemonIo(self):
-                return self.io_files
+        #def getDaemonIo(self):
+        #        return self.io_files
         
         def getDaemonArgs(self):
                 return self.args

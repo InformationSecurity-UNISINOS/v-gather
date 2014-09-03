@@ -46,67 +46,63 @@ def StartScan():
         #SendArgs(server,domain,p_pid,p_args)
 
         p_tcp_l = item.getDaemonTcp()
-        print "tcp_l: "
-        print p_tcp_l
-        print type(p_tcp_l)
-        sys.exit(1)
-
-
         tbuf=""
-        tloop=1
-        for svctcp in p_tcp_l.split(','):
-            try:
-                ip = svctcp.split(':')[0]
-                porta = svctcp.split(':')[1]
-                p_tcp_fp_l={}
-                p_tcp_fp_l = item.getDaemonTcpFp()
-                fp_item=p_tcp_fp_l.get(int(porta))
-                if fp_item is not '' and fp_item is not None:
-                    '''
-                        Se o servico tiver muitas portas,
-                        aproveitarei somente o banner da primeira, os demais 
-                        eu presumo que sao iguais.
-                        Porém eu nao saio do loop, e aproveito o 
-                        tloop pra contabilizar quantas portas abertas
-                        esse serviço tem.
-                    '''
-                    if tloop==1: 
-                        banner=b64encode(fp_item)
-                        tbuf="tcp:"+ip+":"+porta+":"+banner
-                    tloop+=1
+        tcp_ports=0
+        if p_tcp_l is not "":
+            tloop=1
+            for svctcp in p_tcp_l.split(','):
+                try:
+                    ip = svctcp.split(':')[0]
+                    porta = svctcp.split(':')[1]
+                    p_tcp_fp_l={}
+                    p_tcp_fp_l = item.getDaemonTcpFp()
+                    fp_item=p_tcp_fp_l.get(int(porta))
+                    if fp_item is not '' and fp_item is not None:
+                        '''
+                            Se o servico tiver muitas portas,
+                            aproveitarei somente o banner da primeira, os demais 
+                            eu presumo que sao iguais.
+                            Porém eu nao saio do loop, e aproveito o 
+                            tloop pra contabilizar quantas portas abertas
+                            esse serviço tem.
+                        '''
+                        if tloop==1: 
+                            banner=b64encode(fp_item)
+                            tbuf="tcp:"+ip+":"+porta+":"+banner
+                        tloop+=1
 
-            except:
-                continue
+                except:
+                    continue
+
 
         p_udp_l = item.getDaemonUdp()
         ubuf=""
-        uloop=1
-        for svcudp in p_udp_l.split(','):
-            try:
-                ip = svcudp.split(':')[0]
-                porta = svcudp.split(':')[1]
-                p_tcp_fp_l={}
-                p_udp_fp_l = item.getDaemonUdpFp()
-                fp_item=p_udp_fp_l.get(int(porta))
-                if fp_item is not '' and fp_item is not None:
-                    if uloop==1:
-                        banner = b64encode(fp_item)
-                        ubuf="udp:"+ip+":"+porta+":"+banner
-                    uloop+=1
-            except:
-                continue
+        udp_ports=0
+        if p_udp_l is not "":
+            uloop=1
+            for svcudp in p_udp_l.split(','):
+                try:
+                    ip = svcudp.split(':')[0]
+                    porta = svcudp.split(':')[1]
+                    p_tcp_fp_l={}
+                    p_udp_fp_l = item.getDaemonUdpFp()
+                    fp_item=p_udp_fp_l.get(int(porta))
+                    if fp_item is not '' and fp_item is not None:
+                        if uloop==1:
+                            banner = b64encode(fp_item)
+                            ubuf="udp:"+ip+":"+porta+":"+banner
+                        uloop+=1
+                except:
+                    continue
 
         # soh aproveita o banner udp se o banner udp nao existir
         if tbuf is not "":
-            tbanner=tbuf
-            tcp_ports=tloop
-
+            tbanner=tbuf+":"+tloop
         if ubuf is not "":
-            ubanner=ubuf
-            udp_ports=uloop
+            ubanner=ubuf+":"+uloop
 
         if PingManager()==1:
-            SendData(server,domain,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_ports,tbanner,udp_ports,ubanner)
+            SendData(server,domain,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tbanner,ubanner)
         else:
             print "[x] Manager offline"
         

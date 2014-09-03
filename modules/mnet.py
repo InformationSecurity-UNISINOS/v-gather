@@ -42,3 +42,6 @@ def GetHostNetwork():
     address=ifaddresses(iface)
     ipv4=address[2][0]['addr']
     return addrgw,ipv4
+
+
+    

@@ -51,39 +51,39 @@ def GetLinuxDist(opt):
 '' Captura o output de algum comando de sistema
 ''
 '''
-def CheckCmdOutput(cmd,arguments,argtok,verbose):
-    args=[]
-    alist=arguments.split(argtok)
-    for a in alist:
-        args.append(a)
+#def CheckCmdOutput(cmd,arguments,argtok,verbose):
+#    args=[]
+#    alist=arguments.split(argtok)
+#    for a in alist:
+#        args.append(a)
 
-    p = subprocess.Popen([cmd ] + args, stdout=subprocess.PIPE)
-    out, err = p.communicate()
-    return out
+#    p = subprocess.Popen([cmd ] + args, stdout=subprocess.PIPE)
+#    out, err = p.communicate()
+#    return out
 
 '''
 '' Verifica processos em execução
 ''
 '''
-def CheckRunningProc(procname,verbose):
-    ret=[]
-    pids=psutil.pids()
-    for pid in pids:
-        p = psutil.Process(pid)
-        cmdline=p.cmdline()
-        if len(cmdline) < 2:
-            cmdline=p.name()
-
-        if procname in cmdline:
-            ret.append(cmdline)
-        else:
-            if any(procname in s for s in cmdline):
-                ret.append(cmdline)
-
-    if len(ret)>0:
-        return ret
-    else:
-        return None
+#def CheckRunningProc(procname,verbose):
+#    ret=[]
+#    pids=psutil.pids()
+#    for pid in pids:
+#        p = psutil.Process(pid)
+#        cmdline=p.cmdline()
+#        if len(cmdline) < 2:
+#            cmdline=p.name()
+#
+#        if procname in cmdline:
+#            ret.append(cmdline)
+#        else:
+#            if any(procname in s for s in cmdline):
+ #               ret.append(cmdline)
+#
+#    if len(ret)>0:
+#        return ret
+#    else:
+#        return None
 
 '''
 '' Verifica arquivos abertos por processos
@@ -99,13 +99,6 @@ def GetProcArgs(pid):
         first=1
     return args
 
-def GetOpenFiles(pid):
-    ofiles=[]
-    p=psutil.Process(pid)
-    of_list = p.open_files()
-    for item in of_list:
-        ofiles.append(item[0])
-    return ofiles
 
 def GetProcCmd(pid):
     p=psutil.Process(pid)
@@ -162,14 +155,10 @@ def GetDaemons():
                         tcp_port+=str(ipaddr)+":"+str(tcpport)+","
                         nodo.svc_tcp_fp[tcpport]=svc_ident
 
-
-        daemon_io = []
-        daemon_io = mfs.GetFileProperties(GetOpenFiles(pid))
         nodo.daemon=daemon
         nodo.downer_uid=u_real
         nodo.downer_gid=g_real
         nodo.pid=pid
-        nodo.io_files=daemon_io
         nodo.args=GetProcArgs(pid)
         nodo.tcp=tcp_port
         nodo.udp=udp_port
