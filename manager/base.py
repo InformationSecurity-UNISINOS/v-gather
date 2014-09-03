@@ -71,21 +71,21 @@ def GetCase(case_id):
 	cursor.execute(query)
 	results = cursor.fetchall()
 	db_id=results[0][0]
-	db_version
-	db_p_name
-	db_p_uid
-	db_p_gid
-	db_p_tcp_banner
-	db_p_tcp_portcount
-	db_p_udp_banner
-	db_p_udp_portcount
-	db_p_args
-	db_p_package
-	db_p_package_type_id
-	db_pf_path
-	db_pf_uid
-	db_pf_gid
-	db_pf_dac
+	db_version=results[0][1]
+	db_p_name=results[0][2]
+	db_p_uid=results[0][3]
+	db_p_gid=results[0][4]
+	db_p_tcp_banner=results[0][5]
+	db_p_tcp_portcount=results[0][6]
+	db_p_udp_banner=results[0][7]
+	db_p_udp_portcount=results[0][8]
+	db_p_args=results[0][9]
+	db_p_package=results[0][10]
+	db_p_package_type_id=results[0][11]
+	db_pf_path=results[0][12]
+	db_pf_uid=results[0][13]
+	db_pf_gid=results[0][14]
+	db_pf_dac=results[0][15]
 
 
 
