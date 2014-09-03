@@ -4,7 +4,7 @@
 '''
 O server abre o listener e chama o rpc pra receber os dados.
 o rpc recebe os dados do agente e joga pro queue organizar tudo em uma fila de dicionários (um dicionário por processo)
-Quando os dados estiverem organizados, o queue.py deve retornar a lista para o rpc.
+Quando os dados estiverem organizados, o queue.py deve retornar a fila(queue) para o rpc.
 O rpc vai receber os dados tratados e encaminhar para o core.py
 
 O core.py vai solicitar para o base.py um caso usando um index (case_id) incremental, via laço for.
@@ -31,24 +31,6 @@ Talvez seja interessante colocar uma outra flag pra determinar que este foi um c
 A lista de todos os casos já está disponível no frontend
 
 '''
-
-
-
-def Organizer(mode,params={}):
-        
-	if mode==GENERAL:
-                print "GENERAL: " + params.keys()       
-
-        
-	if mode==BANNER:
-                print "BANNER: " + params.keys()  
-
-	if mode==ARGS:
-                print "ARGS: " + params.keys()  
-
-	if mode==IOFILES:
-                print "IOFILES: " + params.keys() 
-
-
-
-                 
+from collections import deque
+pqueue = deque()
+                

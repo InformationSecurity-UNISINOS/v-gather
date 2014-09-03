@@ -66,7 +66,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         print "  + Banner UDP do processo: " +ParamDict["ubanner"]
 '''
         pqueue.append(ParamDict)
-
+        
         return True
     
     def xmlrpc_Fault(self):

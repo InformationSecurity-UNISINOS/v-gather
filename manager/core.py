@@ -31,3 +31,7 @@ Talvez seja interessante colocar uma outra flag pra determinar que este foi um c
 A lista de todos os casos já está disponível no frontend
 
 '''
+
+def CaseHandler():
+
+
