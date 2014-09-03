@@ -28,18 +28,7 @@ class XmlHandler(xmlrpc.XMLRPC):
     def xmlrpc_ping(self):
         return 1
     
-    def xmlrpc_banner(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_banner):
-        print "[+] Registrando Banner"
-        ParamDict={}
-        ParamDict["agent"]=rcv_agent
-        ParamDict["gateway"]=rcv_domain
-        ParamDict["p_pid"]=rcv_p_pid
-        ParamDict["p_banner"]=rcv_p_banner
-        
-        Organizer(BANNER,ParamDict)
-        return True
-    
-    def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args):
+    def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
         print "[+] Registrando Dados Gerais"
 
         ParamDict={}
@@ -56,22 +45,12 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["pf_dac"]=rcv_pf_dac
         ParamDict["pf_uid"]=rcv_pf_uid
         ParamDict["pf_gid"]=rcv_pf_gid
+        ParamDict["tbanner"]=rcv_p_tbanner
+        ParamDict["ubanner"]=rcv_p_ubanner
 
-        Organizer(GENERAL,ParamDict)
+
         return True
     
-    def xmlrpc_ofiles(self,rcv_agent,rcv_domain,rcv_p_pid,rcv_pf_io):
-        print "[+] Registrando Arquivos Abertos"
-        
-        ParamDict={}
-        ParamDict["agent"]=rcv_agent
-        ParamDict["gateway"]=rcv_domain
-        ParamDict["p_pid"]=rcv_p_pid
-        ParamDict["pf_io"]=rcv_pf_io
-
-        Organizer(IOFILES,ParamDict)
-        return True
-
     def xmlrpc_Fault(self):
         raise xmlrpc.Fault(123, "Erro.")
 
