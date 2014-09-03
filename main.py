@@ -46,7 +46,7 @@ def StartScan():
         #SendArgs(server,domain,p_pid,p_args)
 
         p_tcp_l = item.getDaemonTcp()
-        tbuf=""
+        tbuf=tbanner=""
         tcp_ports=0
         if p_tcp_l is not "":
             tloop=1
@@ -76,7 +76,7 @@ def StartScan():
 
 
         p_udp_l = item.getDaemonUdp()
-        ubuf=""
+        ubuf=ubanner=""
         udp_ports=0
         if p_udp_l is not "":
             uloop=1
