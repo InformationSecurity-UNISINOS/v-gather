@@ -49,7 +49,7 @@ def StartScan():
         print p_tcp_l
         sys.exit(1)
 
-        
+
         tbuf=""
         tloop=1
         for svctcp in p_tcp_l.split(','):
@@ -87,14 +87,6 @@ def StartScan():
                 p_udp_fp_l = item.getDaemonUdpFp()
                 fp_item=p_udp_fp_l.get(int(porta))
                 if fp_item is not '' and fp_item is not None:
-                                        '''
-                        Se o servico tiver muitas portas,
-                        aproveitarei somente o banner da primeira, os demais 
-                        eu presumo que sao iguais.
-                        Porém eu nao saio do loop, e aproveito o 
-                        uloop pra contabilizar quantas portas abertas
-                        esse serviço tem.
-                    '''
                     if uloop==1:
                         banner = b64encode(fp_item)
                         ubuf="udp:"+ip+":"+porta+":"+banner
