@@ -47,7 +47,7 @@ def AddQueue(dict={}):
 	pqueue.append(dict)
 
 def LenQueue():
-	return pqueue.size()
+	return len(pqueue)
 
 def EmptyQueue():
 	if pqueue.isEmpty() == True:
