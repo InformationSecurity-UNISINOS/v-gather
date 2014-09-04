@@ -3,6 +3,7 @@
 import common
 from twisted.web import xmlrpc, server
 from cqueue import *
+from match import *
 
 
 '''
@@ -50,7 +51,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["tbanner"]=rcv_p_tbanner
         ParamDict["ubanner"]=rcv_p_ubanner
 
-
+'''
         print "  + Agente: "+ ParamDict["agent"]
         print "  + Gateway: "+ ParamDict["gateway"]
         print "  + Distro: "+ str(ParamDict["distro"])
@@ -68,9 +69,9 @@ class XmlHandler(xmlrpc.XMLRPC):
         print "  + Gid do binário do processo: " +str(ParamDict["pf_gid"])
         print "  + Banner TCP do processo: " +ParamDict["tbanner"]
         print "  + Banner UDP do processo: " +ParamDict["ubanner"]
-
-        pqueue.append(ParamDict)
-        
+'''
+        AddQueue(ParamDict)
+        MatchData()
         return True
     
     def xmlrpc_Fault(self):

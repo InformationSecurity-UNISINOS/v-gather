@@ -33,4 +33,10 @@ A lista de todos os casos já está disponível no frontend
 '''
 from collections import deque
 pqueue = deque()
+
+def GetQueue():
+	 return pqueue.popleft()
+
+def AddQueue(dict={})
+	pqueue.append(dict)
                 

@@ -66,7 +66,7 @@ def GetCase(case_id):
 			process_args, \
 			package_name,package_type_id,process_binary,process_binary_uid, \
 			process_binary_gid,process_binary_dac \
-			from use_cases where id=1" 
+			from use_cases where id=%i" %case_id 
 
 	cursor.execute(query)
 	results = cursor.fetchall()
