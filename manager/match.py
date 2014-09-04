@@ -56,6 +56,7 @@ def MatchData():
 
 			if qitem['p_name'] == 'apache2' or qitem['p_name'] == 'httpd':
 				print "*********************************************APACHE-start"
+				print "qitem['p_tcp_banner']: "+qitem['p_tcp_banner']
 			print "[+] RATIO"
 			print "  + SO NAME: " +str(so_name_ratio)
 			print "  + SO VER: " +str(so_version_ratio)
@@ -75,6 +76,9 @@ def MatchData():
 			print "  + FILE DAC: " +str(pf_dac_ratio)
 			if qitem['p_name'] == 'apache2' or qitem['p_name'] == 'httpd':
 				print "*********************************************APACHE-end"
+
+			
+
 			qlen-=1
 		case_id+=1
 	DestroyQueue()
