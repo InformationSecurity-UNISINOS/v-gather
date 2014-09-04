@@ -95,7 +95,19 @@ def DbGetCase(case_id):
 	conn.close()
 	return db_case
 	
-
+def DbGetPkgMgr(package_type_id):
+	conn=DbConnect()
+	if conn == None:
+		return False
+	if SqlCountCases == 0:
+		# nao existem casos na base
+		return 0 
+	cursor = conn.cursor()
+	query="Select name from package_types where id=%i" %package_type_id 
+	cursor.execute(query)
+	results = cursor.fetchone()
+	conn.close()
+	return result[0]
 
 def DbGetSoName(so_id):
 	conn=DbConnect()
@@ -105,7 +117,7 @@ def DbGetSoName(so_id):
 		# nao existem casos na base
 		return 0 
 	cursor = conn.cursor()
-	query="Sselect name from sos where id=%i" %so_id 
+	query="Select name from sos where id=%i" %so_id 
 	cursor.execute(query)
 	results = cursor.fetchone()
 	conn.close()

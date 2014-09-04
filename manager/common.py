@@ -19,3 +19,17 @@ BANNER=200
 ARGS=300
 IOFILES=400
 
+def ParseBanner(string):
+	from base64 import *
+	# tcp:0.0.0.0:8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
+	banner=b64decode(string.split(':')[4])
+	return banner
+
+def ParsePortCount(string):
+	# tcp:0.0.0.0:8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
+	pcount=string.split(':')[5]
+	return int(pcount)
+
+def ParseArgs(string):
+	from base64 import *
+	return b64decode(string)
