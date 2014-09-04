@@ -35,7 +35,7 @@ from collections import deque
 pqueue = deque()
 
 def DestroyQueue():
-	while EmptyQueue() is not True:
+	while LenQueue() >0:
 		pqueue.popleft()
 
 def GetQueue():
@@ -49,10 +49,6 @@ def AddQueue(dict={}):
 def LenQueue():
 	return len(pqueue)
 
-def EmptyQueue():
-	if pqueue.isEmpty() == True:
-		return True
-	else:
-		return False
+
 
                 

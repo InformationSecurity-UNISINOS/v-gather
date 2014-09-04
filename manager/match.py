@@ -24,7 +24,7 @@ def MatchData():
 	while case_id <= total_cases:
 		db_case={}
 		db_case=DbGetCase(case_id)
-		while EmptyQueue() is not True:
+		while qlen >0:
 			qitem=GetQueue()
 			db_so_name=DbGetSoName(db_case['so_version'])
 			db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
@@ -75,7 +75,7 @@ def MatchData():
 			print "  + FILE DAC: " +str(pf_dac_ratio)
 			if qitem['p_name'] == 'apache2' or qitem['p_name'] == 'httpd':
 				print "*********************************************APACHE-end"
-
+			qlen-=1
 		case_id+=1
 	DestroyQueue()
 
