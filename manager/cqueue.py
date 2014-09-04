@@ -37,6 +37,6 @@ pqueue = deque()
 def GetQueue():
 	 return pqueue.popleft()
 
-def AddQueue(dict={})
+def AddQueue(dict={}):
 	pqueue.append(dict)
                 
