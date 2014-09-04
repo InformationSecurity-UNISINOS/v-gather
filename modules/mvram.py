@@ -168,11 +168,6 @@ def GetDaemons():
         if GetLinuxDist(DIST_NAME).lower()=="centos":
             nodo.rpm=mfs.FileToRpm(arq)
 
-        nodo.distro=GetLinuxDist(DIST_NAME)
-        print "MVRAM>DISTRO: " +GetLinuxDist(DIST_NAME)
-        nodo.distro_ver=GetLinuxDist(DIST_VER)
-        print "MVRAM>DIST_VER: " +GetLinuxDist(DIST_VER)
-        
         nodo.file_path=arq
         nodo.file_dac=mfs.GetDacMode(arq)
         owner=mfs.CheckIdOwner(arq)

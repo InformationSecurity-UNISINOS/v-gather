@@ -107,8 +107,8 @@ def StartScan():
         if PingManager()==1:
             print "Server: "+server
             print "Gw: "+domain
-            print "Distro: "+distro
-            print "DistroVer: "+distro_version
+            print "Distro: "+GetLinuxDist(DIST_NAME)
+            print "DistroVer: "+GetLinuxDist(DIST_VER)
             print "Pid: "+p_pid
             print "PName: "+p_name
             print "Puid: "+p_uid
@@ -122,7 +122,7 @@ def StartScan():
             print "Fargs: "+p_args
             print "Tbanner: "+tbanner
             print "Ubanner: "+ubanner
-            SendData(server,domain,distro,distro_version,p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tbanner,ubanner)
+            SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tbanner,ubanner)
         else:
             print "[x] Manager offline"
         
