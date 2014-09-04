@@ -61,12 +61,16 @@ def GetCase(case_id):
 		# nao existem casos na base
 		return 0 
 	cursor = conn.cursor()
-	query="SELECT id,so_id,so_version,process_name,process_uid,process_gid,\
-			process_tcp_banner,process_tcp_portcount,process_udp_banner,process_udp_portcount\
-			process_args, \
-			package_name,package_type_id,process_binary,process_binary_uid, \
-			process_binary_gid,process_binary_dac \
-			from use_cases where id=%i" %case_id 
+	query="SELECT id, \
+		so_id,so_version, \
+		process_name,process_uid,process_gid,\
+		process_tcp_banner,process_tcp_portcount, \
+		process_udp_banner,process_udp_portcount, \
+		process_args, \
+		package_name, package_type_id, \
+		process_binary,process_binary_uid, \
+		process_binary_gid,process_binary_dac \
+		from use_cases where id=%i" %case_id 
 
 	cursor.execute(query)
 	results = cursor.fetchall()
