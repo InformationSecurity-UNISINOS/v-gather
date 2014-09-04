@@ -19,12 +19,14 @@ def MatchData():
 
 	print "[>] MatchData->total_cases: %i" %total_cases
 	# ok, criar loop pra recuberar cada caso da base
-	for case_id in range(1,total_cases):
+	case_id=1
+	while case_id < total_cases:
 		print "**"*50
 		GetCase(case_id)
 		print "**"*50
 		print GetQueue()
 		print "**"*50
+		case_id+=1
 
 	# pega primeiro caso da base
 
