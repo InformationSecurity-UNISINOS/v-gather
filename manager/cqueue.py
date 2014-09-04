@@ -34,12 +34,25 @@ A lista de todos os casos já está disponível no frontend
 from collections import deque
 pqueue = deque()
 
+def DestroyQueue():
+	while EmptyQueue() is not True:
+		pqueue.popleft()
+
 def GetQueue():
-	 return pqueue.popleft()
+	 item=pqueue.popleft()
+	 AddQueue(item)
+	 return item
 
 def AddQueue(dict={}):
 	pqueue.append(dict)
 
-def CountQueue():
-	return len(pqueue)
+def LenQueue():
+	return pqueue.size()
+
+def EmptyQueue():
+	if pqueue.isEmpty() == True:
+		return True
+	else:
+		return False
+
                 
