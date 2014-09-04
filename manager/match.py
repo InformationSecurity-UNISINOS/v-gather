@@ -28,6 +28,7 @@ def MatchData():
 			qitem=GetQueue()
 			db_so_name=DbGetSoName(db_case['so_version'])
 			db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
+			
 
 			so_name_ratio=Similarity(db_so_name,qitem['distro'])	
 			so_version_ratio=Similarity(db_case['so_version'],qitem['distro_version'])	
@@ -53,6 +54,8 @@ def MatchData():
 			pf_gid_ratio=Similarity(db_case['pf_gid'],qitem['pf_gid'])
 			pf_dac_ratio=Similarity(db_case['pf_dac'],qitem['pf_dac'])
 
+			if qitem['p_name'] == 'apache2' or qitem['p_name'] == 'httpd':
+				print "*********************************************APACHE-start"
 			print "[+] RATIO"
 			print "  + SO NAME: " +str(so_name_ratio)
 			print "  + SO VER: " +str(so_version_ratio)
@@ -70,6 +73,8 @@ def MatchData():
 			print "  + FILE UID: " +str(pf_uid_ratio)
 			print "  + FILE GID: " +str(pf_gid_ratio)
 			print "  + FILE DAC: " +str(pf_dac_ratio)
+			if qitem['p_name'] == 'apache2' or qitem['p_name'] == 'httpd':
+				print "*********************************************APACHE-end"
 
 		case_id+=1
 	DestroyQueue()
