@@ -20,7 +20,7 @@ def MatchData():
 	print "[>] MatchData->total_cases: %i" %total_cases
 	# ok, criar loop pra recuberar cada caso da base
 	case_id=1
-	while case_id < total_cases:
+	while case_id <= total_cases:
 		print "**"*50
 		GetCase(case_id)
 		print "**"*50
