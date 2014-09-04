@@ -107,7 +107,7 @@ def DbGetPkgMgr(package_type_id):
 	cursor.execute(query)
 	results = cursor.fetchone()
 	conn.close()
-	return result[0]
+	return results[0]
 
 def DbGetSoName(so_id):
 	conn=DbConnect()
@@ -121,7 +121,7 @@ def DbGetSoName(so_id):
 	cursor.execute(query)
 	results = cursor.fetchone()
 	conn.close()
-	return result[0]
+	return results[0]
 
 
 
