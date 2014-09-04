@@ -68,6 +68,7 @@ def StartScan():
                         '''
                         if tloop==1: 
                             banner=b64encode(fp_item)
+                            print "StartScan>banner: "+banner
                             tbuf="tcp:"+ip+":"+porta+":"+banner
                         tloop+=1
 
