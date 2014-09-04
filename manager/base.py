@@ -103,7 +103,7 @@ def DbGetPkgMgr(package_type_id):
 		# nao existem casos na base
 		return 0 
 	cursor = conn.cursor()
-	query="Select name from package_types where id=%i" %package_type_id 
+	query="Select name from package_types where id=%i" %int(package_type_id)
 	cursor.execute(query)
 	results = cursor.fetchone()
 	conn.close()
@@ -117,7 +117,7 @@ def DbGetSoName(so_id):
 		# nao existem casos na base
 		return 0 
 	cursor = conn.cursor()
-	query="Select name from sos where id=%i" %so_id 
+	query="Select name from sos where id=%i" %int(so_id)
 	cursor.execute(query)
 	results = cursor.fetchone()
 	conn.close()
