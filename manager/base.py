@@ -77,6 +77,7 @@ def DbGetCase(case_id):
 	db_case={}
 	db_case['case_id']=results[0][0]
 	db_case['so_id']=results[0][1]
+	print "SO_ID DEBUG: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + db_case['so_id']
 	db_case['so_version']=results[0][2]
 	db_case['p_name']=results[0][3]
 	db_case['p_uid']=results[0][4]
