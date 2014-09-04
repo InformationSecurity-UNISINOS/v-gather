@@ -57,10 +57,6 @@ class DaemonInfo(object):
                 self.file_dac = None
                 self.file_uid = None
                 self.file_gid = None
-        def getDistro(self):
-                return self.distro
-        def getDistroVer(self):
-                return self.distro_version
         def getDaemon(self):
                 return self.daemon
         def getDaemonPid(self):
