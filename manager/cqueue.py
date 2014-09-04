@@ -39,4 +39,7 @@ def GetQueue():
 
 def AddQueue(dict={}):
 	pqueue.append(dict)
+
+def CountQueue()
+	return len(pqueue)
                 

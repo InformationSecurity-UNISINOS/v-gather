@@ -51,25 +51,6 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["tbanner"]=rcv_p_tbanner
         ParamDict["ubanner"]=rcv_p_ubanner
 
-        '''
-        print "  + Agente: "+ ParamDict["agent"]
-        print "  + Gateway: "+ ParamDict["gateway"]
-        print "  + Distro: "+ str(ParamDict["distro"])
-        print "  + Distro Version: "+ str(ParamDict["distro_version"])
-        print "  + Pid: "+ str(ParamDict["p_pid"])
-        print "  + Processo: " +ParamDict["p_name"]
-        print "  + UID do Processo: " +str(ParamDict["p_uid"])
-        print "  + GID do Processo: " +str(ParamDict["p_gid"])
-        print "  + Argumentos do Processo: " +ParamDict["p_args"]
-        print "  + Pacote RPM: " +ParamDict["p_rpm"]
-        print "  + Pacote DPKG: " +ParamDict["p_dpkg"]
-        print "  + Patch do binário do processo: " +ParamDict["pf_path"]
-        print "  + Dac do binário do processo: " +str(ParamDict["pf_dac"])
-        print "  + Uid do binário do processo: "+str(ParamDict["pf_uid"])
-        print "  + Gid do binário do processo: " +str(ParamDict["pf_gid"])
-        print "  + Banner TCP do processo: " +ParamDict["tbanner"]
-        print "  + Banner UDP do processo: " +ParamDict["ubanner"]
-        '''
         AddQueue(ParamDict)
         MatchData()
         return True
