@@ -26,8 +26,6 @@ def StartScan():
     group=user=token=""
     
     for item in nlist:
-        distro=item.getDistro()
-        distro_version=item.getDistroVer()
         p_pid = item.getDaemonPid()
         p_name = item.getDaemon()
         p_uid = str(item.getDaemonUid())
