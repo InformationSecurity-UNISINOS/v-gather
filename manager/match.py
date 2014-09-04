@@ -18,7 +18,7 @@ def MatchData():
 		return False
 
 	# ok, criar loop pra recuberar cada caso da base
-	for (case_id=1;case_id <= total_cases;case_id++):
+	for case_id in range(1,total_cases):
 		print "**"*50
 		GetCase(case_id)
 		print "**"*50
