@@ -41,7 +41,7 @@ def DbConnect():
 		ret=None
 	return ret
 
-def SqlCountCases():
+def DbCountCases():
 	conn=DbConnect()
 	if conn == None:
 		return False
@@ -53,7 +53,7 @@ def SqlCountCases():
 	return int(result[0])
 	
 
-def GetCase(case_id):
+def DbGetCase(case_id):
 	conn=DbConnect()
 	if conn == None:
 		return False
@@ -92,17 +92,25 @@ def GetCase(case_id):
 	db_case['pf_uid']=results[0][14]
 	db_case['pf_gid']=results[0][15]
 	db_case['pf_dac']=results[0][16]
+	conn.close()
 	return db_case
 	
 
 
-def SqlQuery():
-	
-	
-	cursor.execute ("select VERSION()")
-	row = cursor.fetchone()
-	print "Server version: ", row[0]
-	cursor.close ()
+def DbGetSoName(so_id):
+	conn=DbConnect()
+	if conn == None:
+		return False
+	if SqlCountCases == 0:
+		# nao existem casos na base
+		return 0 
+	cursor = conn.cursor()
+	query="Sselect name from sos where id=%i" %so_id 
+	cursor.execute(query)
+	results = cursor.fetchone()
+	conn.close()
+	return result[0]
+
 
 
 def SqlInsert():
