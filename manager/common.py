@@ -22,6 +22,7 @@ IOFILES=400
 from base64 import *
 def ParseBanner(string):
 	banner=""
+	print ">>>>>>>>>> "+string
 	if string is not '' or string is not None:
 		# tcp:0.0.0.0:8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
 		banner=b64decode(string.split(':')[3])
@@ -31,6 +32,7 @@ def ParseBanner(string):
 def ParsePortCount(string):
 	# tcp:0.0.0.0:8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
 	pcount=0
+	print ">>>>>>>>>> "+string
 	if string is not '' or string is not None:
 		pcount=string.split(':')[4]
 	return int(pcount)
