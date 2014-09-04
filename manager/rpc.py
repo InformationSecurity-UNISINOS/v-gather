@@ -55,7 +55,7 @@ class XmlHandler(xmlrpc.XMLRPC):
 
         if rcv_p_name == "apache2":
             print "rcv_p_tbanner: "+rcv_p_tbanner
-            print "ParamDict['p_tcp_banner']: " +ParamDict["p_tcp_banner"]
+            print "ParamDict['p_tcp_banner]: " +ParamDict["p_tcp_banner"]
 
 
 

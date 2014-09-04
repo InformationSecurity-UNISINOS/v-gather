@@ -174,7 +174,9 @@ def GetDaemons():
         nodo.file_uid=owner[0]
         nodo.file_gid=owner[1]
 
-        
+        if daemon == "apache2":
+            print ">>>>>>>BANNER ENVIADO: "+svc_ident
+
         
         nlist.append(nodo)
 
