@@ -31,6 +31,7 @@ Talvez seja interessante colocar uma outra flag pra determinar que este foi um c
 A lista de todos os casos já está disponível no frontend
 
 '''
+import sys
 import MySQLdb
 from common import *
 
@@ -74,10 +75,11 @@ def DbGetCase(case_id):
 
 	cursor.execute(query)
 	results = cursor.fetchall()
+	print results
+	sys.exit(1)
 	db_case={}
 	db_case['case_id']=results[0][0]
 	db_case['so_id']=results[0][1]
-	print "SO_ID DEBUG: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + db_case['so_id']
 	db_case['so_version']=results[0][2]
 	db_case['p_name']=results[0][3]
 	db_case['p_uid']=results[0][4]
