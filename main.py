@@ -107,16 +107,16 @@ def StartScan():
             print "Gw: "+domain
             print "Distro: "+GetLinuxDist(DIST_NAME)
             print "DistroVer: "+GetLinuxDist(DIST_VER)
-            print "Pid: "+p_pid
+            print "Pid: "+str(p_pid)
             print "PName: "+p_name
-            print "Puid: "+p_uid
-            print "Pgid: "+p_gid
+            print "Puid: "+str(p_uid)
+            print "Pgid: "+str(p_gid)
             print "Prmp: "+p_rpm
             print "Pdpkg: "+p_dpkg
             print "FPath: "+pf_path
-            print "FDac: "+pf_dac
-            print "Fuid: "+pf_uid
-            print "Fgid: "+pf_gid
+            print "FDac: "+str(pf_dac)
+            print "Fuid: "+str(pf_uid)
+            print "Fgid: "+str(pf_gid)
             print "Fargs: "+p_args
             print "Tbanner: "+tbanner
             print "Ubanner: "+ubanner
