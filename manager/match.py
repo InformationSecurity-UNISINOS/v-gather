@@ -17,6 +17,7 @@ def MatchData():
 	if total_cases == False:
 		return False
 
+	print "[>] MatchData->total_cases: %i" %total_cases
 	# ok, criar loop pra recuberar cada caso da base
 	for case_id in range(1,total_cases):
 		print "**"*50
