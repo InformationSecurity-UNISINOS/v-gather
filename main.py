@@ -54,6 +54,8 @@ def StartScan():
                 try:
                     ip = svctcp.split(':')[0]
                     porta = svctcp.split(':')[1]
+                    if porta == 80:
+                        print "DEBUG>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>PORTA 80"
                     p_tcp_fp_l={}
                     p_tcp_fp_l = item.getDaemonTcpFp()
                     fp_item=p_tcp_fp_l.get(int(porta))
@@ -68,7 +70,7 @@ def StartScan():
                         '''
                         if tloop==1: 
                             banner=b64encode(fp_item)
-                            print "StartScan>banner: "+banner
+                            print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>banner: "+banner
                             tbuf="tcp:"+ip+":"+porta+":"+banner
                         tloop+=1
 
