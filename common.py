@@ -41,7 +41,7 @@ PKG_VERMATCH=200
 
 class DaemonInfo(object):
         def __init__(self):
-                self.distro = None
+                self.daemon =None
                 self.pid = None
                 self.downer_uid = None
                 self.downer_gid = None
@@ -64,10 +64,7 @@ class DaemonInfo(object):
         def getDaemonUid(self):
                 return self.downer_uid
         def getDaemonGid(self):
-                return self.downer_gid
-        #def getDaemonIo(self):
-        #        return self.io_files
-        
+                return self.downer_gid        
         def getDaemonArgs(self):
                 return self.args
         def getDaemonTcp(self):
