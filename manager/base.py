@@ -61,7 +61,7 @@ def GetCase(case_id):
 		# nao existem casos na base
 		return 0 
 	cursor = conn.cursor()
-	query="SELECT so_id,so_version,process_name,process_uid,process_gid,\
+	query="SELECT id,so_id,so_version,process_name,process_uid,process_gid,\
 			process_tcp_banner,process_tcp_portcount,process_udp_banner,process_udp_portcount\
 			process_args, \
 			package_name,package_type_id,process_binary,process_binary_uid, \
@@ -71,23 +71,42 @@ def GetCase(case_id):
 	cursor.execute(query)
 	results = cursor.fetchall()
 	db_id=results[0][0]
-	db_version=results[0][1]
-	db_p_name=results[0][2]
-	db_p_uid=results[0][3]
-	db_p_gid=results[0][4]
-	db_p_tcp_banner=results[0][5]
-	db_p_tcp_portcount=results[0][6]
-	db_p_udp_banner=results[0][7]
-	db_p_udp_portcount=results[0][8]
-	db_p_args=results[0][9]
-	db_p_package=results[0][10]
-	db_p_package_type_id=results[0][11]
-	db_pf_path=results[0][12]
-	db_pf_uid=results[0][13]
-	db_pf_gid=results[0][14]
-	db_pf_dac=results[0][15]
+	db_so_id=results[0][1]
+	db_so_version=results[0][2]
+	db_p_name=results[0][3]
+	db_p_uid=results[0][4]
+	db_p_gid=results[0][5]
+	db_p_tcp_banner=results[0][6]
+	db_p_tcp_portcount=results[0][7]
+	db_p_udp_banner=results[0][8]
+	db_p_udp_portcount=results[0][9]
+	db_p_args=results[0][10]
+	db_p_package=results[0][11]
+	db_p_package_type_id=results[0][12]
+	db_pf_path=results[0][13]
+	db_pf_uid=results[0][14]
+	db_pf_gid=results[0][15]
+	db_pf_dac=results[0][16]
 
-
+	print "*"*100
+	print "[+] DATABASE VALUES:"
+	print "  + CASO: " +str(db_id)
+	print "  + SO: "+str(db_so_id)
+	print "  + SO VER: " +str(db_so_version)
+	print "  + PNAME: " +db_p_name
+	print "  + PUID: " +str(db_p_uid)
+	print "  + PGID: " +str(db_p_gid)
+	print "  + TCP BANNER: "+db_p_tcp_banner
+	print "  + TCP PORTS: "+str(db_p_tcp_portcount)
+	print "  + UDP BANNER: "+str(db_p_udp_banner)
+	print "  + UDP PORTCOUNT: "+str(db_p_udp_portcount)
+	print "  + PARGS: "+db_p_args
+	print "  + PKG: "+db_p_package
+	print "  + PKG TYPE: "+str(db_p_package_type_id)
+	print "  + PFPATH: " +db_pf_path
+	print "  + PFUID: " +str(db_pf_uid)
+	print "  + PFGID: " +str(db_pf_gid)
+	print "  + PDAC: " +str(db_pf_dac)
 
 
 def SqlQuery():
