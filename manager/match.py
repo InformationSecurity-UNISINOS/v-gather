@@ -26,7 +26,7 @@ def MatchData():
 		db_case=DbGetCase(case_id)
 		while qlen >0:
 			qitem=GetQueue()
-			db_so_name=DbGetSoName(db_case['so_version'])
+			db_so_name=DbGetSoName(db_case['so_id'])
 			db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
 			
 
