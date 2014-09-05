@@ -76,9 +76,7 @@ def StartScan():
                         tloop+=1
 
 
-                        tem que refazer esse algoritmo...
-                        tem servicos (apache) que nao estao pegando o banner... nem portas nem nada..
-                        tem algum bug
+                        
                 except:
                     continue
 
