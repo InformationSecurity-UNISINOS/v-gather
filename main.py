@@ -67,7 +67,7 @@ def StartScan():
 
         
         p_udp_l = item.getDaemonUdp()
-        ubuf=ubanner=""
+        banner=""
         udp_pcount=0
         if p_udp_l is not "":
             uloop=0
@@ -87,8 +87,8 @@ def StartScan():
                     continue
 
         # soh aproveita o banner udp se o banner udp nao existir
-        if tbuf is not "":
-            tbanner=tbuf+":"+str(tloop)
+        if banner is not "":
+            banner=banner+":"+str(tcp_pcount)
 
         if ubuf is not "":
             ubanner=ubuf+":"+str(uloop)
@@ -111,7 +111,7 @@ def StartScan():
             #print "Fargs: "+p_args
             #print "Tbanner: "+tbanner
             #print "Ubanner: "+ubanner
-            SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tbanner,ubanner)
+            SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,banner,ubanner)
         else:
             print "[x] Manager offline"
         
