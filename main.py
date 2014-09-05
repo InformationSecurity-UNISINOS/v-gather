@@ -46,6 +46,7 @@ def StartScan():
         #SendArgs(server,domain,p_pid,p_args)
 
         p_tcp_l = item.getDaemonTcp()
+        print "DEBUG1: >>>>>>>>>>>>>>>>>>>>>>>>>>>>> p_tcp_l:" +p_tcp_l
         tbuf=tbanner=""
         tcp_ports=0
         if p_tcp_l is not "":
@@ -74,6 +75,10 @@ def StartScan():
                             tbuf="tcp:"+ip+":"+porta+":"+banner
                         tloop+=1
 
+
+                        tem que refazer esse algoritmo...
+                        tem servicos (apache) que nao estao pegando o banner... nem portas nem nada..
+                        tem algum bug
                 except:
                     continue
 
