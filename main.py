@@ -44,7 +44,7 @@ def StartScan():
         pf_gid = str(item.getFileGid())
         p_args = b64encode(item.getDaemonArgs())
 
-        p_tcp_l = item.getDaemonTcp()   # recebe tcp:0.0.0.0:80
+        p_tcp_l = item.getDaemonTcp()                   # recebe tcp:0.0.0.0:80
         tbuf=tbanner=""
         tcp_ports=0
         if p_tcp_l is not "" and p_tcp_l is not None:   # Se realmente recebeu uma tupla de porta aberta
@@ -57,10 +57,12 @@ def StartScan():
                     p_tcp_fp_l={}
                     p_tcp_fp_l = item.getDaemonTcpFp()
                     fp_item=p_tcp_fp_l.get(int(porta))
+                except:
+                    continue
+
+
 
         sys.exit(1)
-
-
         p_udp_l = item.getDaemonUdp()
         ubuf=ubanner=""
         udp_ports=0
