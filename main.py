@@ -54,42 +54,11 @@ def StartScan():
                     print svctcp.split(':')[0]
                     print svctcp.split(':')[1]
                     print svctcp.split(':')[3]
-
-
-        sys.exit(1)
-        tbuf=tbanner=""
-        tcp_ports=0
-        if p_tcp_l is not "":
-            tloop=0
-            for svctcp in p_tcp_l.split(','):
-                try:
-                    ip = svctcp.split(':')[0]
-                    porta = svctcp.split(':')[1]
-                    if porta == 80:
-                        print "DEBUG2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>PORTA 80"
                     p_tcp_fp_l={}
                     p_tcp_fp_l = item.getDaemonTcpFp()
                     fp_item=p_tcp_fp_l.get(int(porta))
-                    if fp_item is not '' and fp_item is not None:
-                        '''
-                            Se o servico tiver muitas portas,
-                            aproveitarei somente o banner da primeira, os demais 
-                            eu presumo que sao iguais.
-                            Porém eu nao saio do loop, e aproveito o 
-                            tloop pra contabilizar quantas portas abertas
-                            esse serviço tem.
-                        '''
-                        print "DEBUG3 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>fp_item: "+fp_item
-                        if tloop==1: 
-                            banner=b64encode(fp_item)
-                            print "DEBUG3 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>banner: "+banner
-                            tbuf="tcp:"+ip+":"+porta+":"+banner
-                        tloop+=1
 
-                        if pname == "apache2":
-                            sys.exit(1)
-                except:
-                    continue
+        sys.exit(1)
 
 
         p_udp_l = item.getDaemonUdp()
