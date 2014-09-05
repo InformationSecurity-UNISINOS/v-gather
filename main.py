@@ -43,11 +43,20 @@ def StartScan():
         pf_uid = str(item.getFileUid())
         pf_gid = str(item.getFileGid())
         p_args = b64encode(item.getDaemonArgs())
-        #SendArgs(server,domain,p_pid,p_args)
 
-        p_tcp_l = item.getDaemonTcp()
-        print "DEBUG1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>> p_tcp_l:" +p_tcp_l
+        p_tcp_l = item.getDaemonTcp()   # recebe tcp:0.0.0.0:80
+        tbuf=tbanner=""
+        tcp_ports=0
+        if p_tcp_l is not "" and p_tcp_l is not None:   # Se realmente recebeu uma tupla de porta aberta
+            print "essa é a tupla toda: " +svctcp
+            for svctcp in p_tcp_l.split(','):           # entao vamos tokenizar cada tupla separada por virgula (se tiver mais de1 porta aberta por processo)
+                try:
+                    print svctcp.split(':')[0]
+                    print svctcp.split(':')[1]
+                    print svctcp.split(':')[3]
 
+
+        sys.exit(1)
         tbuf=tbanner=""
         tcp_ports=0
         if p_tcp_l is not "":
@@ -111,23 +120,23 @@ def StartScan():
             ubanner=ubuf+":"+str(uloop)
 
         if PingManager()==1:
-            print "Server: "+server
-            print "Gw: "+domain
-            print "Distro: "+GetLinuxDist(DIST_NAME)
-            print "DistroVer: "+GetLinuxDist(DIST_VER)
-            print "Pid: "+str(p_pid)
-            print "PName: "+p_name
-            print "Puid: "+str(p_uid)
-            print "Pgid: "+str(p_gid)
-            print "Prmp: "+p_rpm
-            print "Pdpkg: "+p_dpkg
-            print "FPath: "+pf_path
-            print "FDac: "+str(pf_dac)
-            print "Fuid: "+str(pf_uid)
-            print "Fgid: "+str(pf_gid)
-            print "Fargs: "+p_args
-            print "Tbanner: "+tbanner
-            print "Ubanner: "+ubanner
+            #print "Server: "+server
+            #print "Gw: "+domain
+            #print "Distro: "+GetLinuxDist(DIST_NAME)
+            #print "DistroVer: "+GetLinuxDist(DIST_VER)
+            #print "Pid: "+str(p_pid)
+            #print "PName: "+p_name
+            #print "Puid: "+str(p_uid)
+            #print "Pgid: "+str(p_gid)
+            #print "Prmp: "+p_rpm
+            #print "Pdpkg: "+p_dpkg
+            #print "FPath: "+pf_path
+            #print "FDac: "+str(pf_dac)
+            #print "Fuid: "+str(pf_uid)
+            #print "Fgid: "+str(pf_gid)
+            #print "Fargs: "+p_args
+            #print "Tbanner: "+tbanner
+            #print "Ubanner: "+ubanner
             SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tbanner,ubanner)
         else:
             print "[x] Manager offline"
