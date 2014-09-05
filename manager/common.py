@@ -23,16 +23,16 @@ from base64 import *
 def ParseBanner(string):
 	banner=""
 	if len(string) > 1:
-		# tcp:0.0.0.0:8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
-		banner=b64decode(string.split(':')[3])
+		# 8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
+		banner=b64decode(string.split(':')[1])
 	return banner
 
 
 def ParsePortCount(string):
-	# tcp:0.0.0.0:8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
+	# 8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
 	pcount=0
 	if len(string) > 1:
-		pcount=string.split(':')[4]
+		pcount=string.split(':')[2]
 	return int(pcount)
 
 def ParseArgs(string):
