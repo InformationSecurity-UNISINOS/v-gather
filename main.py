@@ -102,6 +102,7 @@ def StartScan():
                 except:
                     continue
         tbuf="DEBUG"
+        tloop=2
         # soh aproveita o banner udp se o banner udp nao existir
         if tbuf is not "":
             tbanner=tbuf+":"+str(tloop)
