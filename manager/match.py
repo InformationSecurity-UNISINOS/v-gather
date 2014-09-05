@@ -55,22 +55,22 @@ def MatchData():
 			debug=1
 			if debug==1:
 				print "[+] RATIO"
-				print "  + SO NAME: " +str(so_name_ratio)
-				print "  + SO VER: " +str(so_version_ratio)
-				print "  + P NAME: " +str(p_name_ratio)
-				print "  + P UID: " +str(p_uid_ratio)
-				print "  + P GID: " +str(p_gid_ratio)
-				print "  + P ARGS: " +str(p_args_ratio)
-				print "  + TCP BANNER: " +str(p_tcp_banner_ratio)
-				print "  + TCP COUNT: " +str(p_tcp_portcount_ratio)
-				print "  + UDP BANNER: " +str(p_udp_banner_ratio)
-				print "  + UDP PORTCOUNT: " +str(p_udp_portcount_ratio)
+				print "  + SO NAME: " + qitem['distro'] + " ratio: "+str(so_name_ratio)
+				print "  + SO VER: " + qitem['distro_version']+ " ratio: "+str(so_version_ratio)
+				print "  + P NAME: " + qitem['p_name'] +" ratio: "+str(p_name_ratio)
+				print "  + P UID: " + qitem['p_uid']+" ratio: "+str(p_uid_ratio)
+				print "  + P GID: " + qitem['p_gid']+" ratio: "+str(p_gid_ratio)
+				print "  + P ARGS: " + qitem['p_args']+" ratio: "+str(p_args_ratio)
+				print "  + TCP BANNER: " +qitem['p_tcp_banner'] + " ratio: "+str(p_tcp_banner_ratio)
+				print "  + TCP COUNT: " + qitem['p_tcp_portcount']+" ratio: "+str(p_tcp_portcount_ratio)
+				print "  + UDP BANNER: " + qitem['p_udp_banner']+" ratio: "+str(p_udp_banner_ratio)
+				print "  + UDP PORTCOUNT: " + qitem['p_udp_portcount']+" ratio: "+str(p_udp_portcount_ratio)
 				print "  + PKG MGR: " +str(p_pkgmgr_ratio)
-				print "  + PKG: " +str(p_pkg_ratio)
-				print "  + FILE PATH: " +str(pf_path_ratio)
-				print "  + FILE UID: " +str(pf_uid_ratio)
-				print "  + FILE GID: " +str(pf_gid_ratio)
-				print "  + FILE DAC: " +str(pf_dac_ratio)
+				print "  + PKG: "  +str(p_pkg_ratio)
+				print "  + FILE PATH: " + qitem['pf_path']+" ratio: "+str(pf_path_ratio)
+				print "  + FILE UID: " +qitem['pf_uid']+ " ratio: "+str(pf_uid_ratio)
+				print "  + FILE GID: " + qitem['pf_gid']+" ratio: "+str(pf_gid_ratio)
+				print "  + FILE DAC: " + qitem['pf_dac']+" ratio: "+str(pf_dac_ratio)
 
 			
 
