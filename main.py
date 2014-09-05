@@ -45,7 +45,7 @@ def StartScan():
         p_args = b64encode(item.getDaemonArgs())
 
         p_tcp_l = item.getDaemonTcp()                   # recebe tcp:0.0.0.0:80
-        tbuf=tbanner=""
+        banner=""
         tcp_pcount=0
         if p_tcp_l is not "" and p_tcp_l is not None:   # Se realmente recebeu uma tupla de porta aberta
             for svctcp in p_tcp_l.split(','):           # entao vamos tokenizar cada tupla separada por virgula (se tiver mais de1 porta aberta por processo)
@@ -67,7 +67,7 @@ def StartScan():
 
         
         p_udp_l = item.getDaemonUdp()
-        banner=""
+        ubuf=ubanner=""
         udp_pcount=0
         if p_udp_l is not "":
             uloop=0
