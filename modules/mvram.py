@@ -128,10 +128,8 @@ def GetDaemons():
                         udpport=x.laddr[1]
                         if CheckIpv6(ipaddr) == True:
                             ipaddr="0.0.0.0"
-                        
                         if svc_udp_checked.has_key(udpport):
                             svc_ident=svc_udp_checked.get(udpport)
-                                
                         else:
                             svc_ident=CheckSvcFPrint(ipaddr,udpport,"UDP")
                             svc_udp_checked[udpport]=svc_ident

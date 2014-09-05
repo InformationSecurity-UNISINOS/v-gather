@@ -53,8 +53,6 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["p_udp_banner"]=ParseBanner(rcv_p_ubanner)
         ParamDict["p_udp_portcount"]=ParsePortCount(rcv_p_ubanner)
 
-        print "p_tcp_banner: "+rcv_p_tbanner
-
         AddQueue(ParamDict)
         MatchData()
         return True

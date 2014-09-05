@@ -52,7 +52,7 @@ def MatchData():
 			pf_gid_ratio=Similarity(db_case['pf_gid'],qitem['pf_gid'])
 			pf_dac_ratio=Similarity(db_case['pf_dac'],qitem['pf_dac'])
 
-			debug=0
+			debug=1
 			if debug==1:
 				print "[+] RATIO"
 				print "  + SO NAME: " +str(so_name_ratio)

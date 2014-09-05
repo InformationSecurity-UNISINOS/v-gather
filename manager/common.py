@@ -24,8 +24,7 @@ def ParseBanner(string):
 	banner=""
 	if len(string) > 1:
 		# 8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
-		print "ParseBanner"
-		debug=1
+		debug=0
 		if debug==1:
 			print "RCV Porta: " +string.split(':')[0]
 			print "RCV Banner: " +string.split(':')[1]
