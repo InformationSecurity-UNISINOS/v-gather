@@ -64,7 +64,7 @@ def StartScan():
             continue
 
 
-        sys.exit(1)
+        
         p_udp_l = item.getDaemonUdp()
         ubuf=ubanner=""
         udp_ports=0
