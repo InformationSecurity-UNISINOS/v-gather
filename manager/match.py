@@ -72,8 +72,6 @@ def MatchData():
 				print "  + FILE GID: " + str(qitem['pf_gid'])+" ratio: "+str(pf_gid_ratio)
 				print "  + FILE DAC: " + str(qitem['pf_dac'])+" ratio: "+str(pf_dac_ratio)
 
-			
-
 			qlen-=1
 		case_id+=1
 	DestroyQueue()
