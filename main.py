@@ -55,8 +55,8 @@ def StartScan():
                     p_tcp_fp_l={}
                     p_tcp_fp_l = item.getDaemonTcpFp()
                     fp_item=p_tcp_fp_l.get(int(porta))
-                    print "ip: " + ip + "porta: " + porta + "banner: " + fp_item 
-                    
+                    print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
+
                     banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
                     tcp_pcount+=1
                 except:

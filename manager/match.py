@@ -16,8 +16,6 @@ def MatchData():
 	total_cases=DbCountCases()
 	if total_cases == False:
 		return False
-
-	print "[>] MatchData->total_cases: %i" %total_cases
 	# ok, criar loop pra recuberar cada caso da base
 	case_id=1
 	qlen=LenQueue()
