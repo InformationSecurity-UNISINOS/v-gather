@@ -59,7 +59,8 @@ def StartScan():
                     fp_item=p_tcp_fp_l.get(int(porta))
                 except:
                     continue
-
+        else:
+            continue
 
 
         sys.exit(1)
