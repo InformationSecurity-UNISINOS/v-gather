@@ -45,41 +45,42 @@ def StartScan():
         p_args = b64encode(item.getDaemonArgs())
         #SendArgs(server,domain,p_pid,p_args)
 
-        p_tcp_l = item.getDaemonTcp()
-        print "DEBUG1: >>>>>>>>>>>>>>>>>>>>>>>>>>>>> p_tcp_l:" +p_tcp_l
-        tbuf=tbanner=""
-        tcp_ports=0
-        if p_tcp_l is not "":
-            tloop=0
-            for svctcp in p_tcp_l.split(','):
-                try:
-                    ip = svctcp.split(':')[0]
-                    porta = svctcp.split(':')[1]
-                    if porta == 80:
-                        print "DEBUG>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>PORTA 80"
-                    p_tcp_fp_l={}
-                    p_tcp_fp_l = item.getDaemonTcpFp()
-                    fp_item=p_tcp_fp_l.get(int(porta))
-                    if fp_item is not '' and fp_item is not None:
-                        '''
-                            Se o servico tiver muitas portas,
-                            aproveitarei somente o banner da primeira, os demais 
-                            eu presumo que sao iguais.
-                            Porém eu nao saio do loop, e aproveito o 
-                            tloop pra contabilizar quantas portas abertas
-                            esse serviço tem.
-                        '''
-                        if tloop==1: 
-                            banner=b64encode(fp_item)
-                            print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>banner: "+banner
-                            tbuf="tcp:"+ip+":"+porta+":"+banner
-                        tloop+=1
+        if p_name == "apache2":
+            p_tcp_l = item.getDaemonTcp()
+            print "DEBUG1: >>>>>>>>>>>>>>>>>>>>>>>>>>>>> p_tcp_l:" +p_tcp_l
+            tbuf=tbanner=""
+            tcp_ports=0
+            if p_tcp_l is not "":
+                tloop=0
+                for svctcp in p_tcp_l.split(','):
+                    try:
+                        ip = svctcp.split(':')[0]
+                        porta = svctcp.split(':')[1]
+                        if porta == 80:
+                            print "DEBUG>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>PORTA 80"
+                        p_tcp_fp_l={}
+                        p_tcp_fp_l = item.getDaemonTcpFp()
+                        fp_item=p_tcp_fp_l.get(int(porta))
+                        if fp_item is not '' and fp_item is not None:
+                            '''
+                                Se o servico tiver muitas portas,
+                                aproveitarei somente o banner da primeira, os demais 
+                                eu presumo que sao iguais.
+                                Porém eu nao saio do loop, e aproveito o 
+                                tloop pra contabilizar quantas portas abertas
+                                esse serviço tem.
+                            '''
+                            if tloop==1: 
+                                banner=b64encode(fp_item)
+                                print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>banner: "+banner
+                                tbuf="tcp:"+ip+":"+porta+":"+banner
+                            tloop+=1
 
 
-                        
-                except:
-                    continue
-
+                            
+                    except:
+                        continue
+        
 
         p_udp_l = item.getDaemonUdp()
         ubuf=ubanner=""
