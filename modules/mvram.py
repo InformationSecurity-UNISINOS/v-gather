@@ -147,7 +147,7 @@ def GetDaemons():
                             ipaddr="0.0.0.0"
                         # verifica se ja tem fingerprint desta porta
                         # se ja tiver registro, nao precisa scanear novamente
-                        if svc_tcp_checked.has_key(tcpport):
+                        if tcpport in svc_tcp_checked.keys(): 
                             svc_ident=svc_tcp_checked.get(tcpport)
                         else:
                             svc_ident=CheckSvcFPrint(ipaddr,tcpport,"TCP")
