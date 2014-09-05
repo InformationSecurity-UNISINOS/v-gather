@@ -70,6 +70,7 @@ def StartScan():
                             tloop pra contabilizar quantas portas abertas
                             esse serviço tem.
                         '''
+                        print "DEBUG3 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>fp_item: "+fp_item
                         if tloop==1: 
                             banner=b64encode(fp_item)
                             print "DEBUG3 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>banner: "+banner
