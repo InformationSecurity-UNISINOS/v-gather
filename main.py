@@ -48,9 +48,10 @@ def StartScan():
         tbuf=tbanner=""
         tcp_ports=0
         if p_tcp_l is not "" and p_tcp_l is not None:   # Se realmente recebeu uma tupla de porta aberta
-            print "essa é a tupla toda: " +svctcp
+            print "p_tcp_l: " +p_tcp_l
             for svctcp in p_tcp_l.split(','):           # entao vamos tokenizar cada tupla separada por virgula (se tiver mais de1 porta aberta por processo)
                 try:
+                    print "essa é a tupla toda: " +svctcp
                     print svctcp.split(':')[0]
                     print svctcp.split(':')[1]
                     print svctcp.split(':')[3]
