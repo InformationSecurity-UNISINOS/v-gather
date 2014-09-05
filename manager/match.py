@@ -54,28 +54,25 @@ def MatchData():
 			pf_gid_ratio=Similarity(db_case['pf_gid'],qitem['pf_gid'])
 			pf_dac_ratio=Similarity(db_case['pf_dac'],qitem['pf_dac'])
 
-			if qitem['p_name'] == 'apache2' or qitem['p_name'] == 'httpd':
-				print "*********************************************APACHE-start"
-				print "qitem['p_tcp_banner']: "+qitem['p_tcp_banner']
-			print "[+] RATIO"
-			print "  + SO NAME: " +str(so_name_ratio)
-			print "  + SO VER: " +str(so_version_ratio)
-			print "  + P NAME: " +str(p_name_ratio)
-			print "  + P UID: " +str(p_uid_ratio)
-			print "  + P GID: " +str(p_gid_ratio)
-			print "  + P ARGS: " +str(p_args_ratio)
-			print "  + TCP BANNER: " +str(p_tcp_banner_ratio)
-			print "  + TCP COUNT: " +str(p_tcp_portcount_ratio)
-			print "  + UDP BANNER: " +str(p_udp_banner_ratio)
-			print "  + UDP PORTCOUNT: " +str(p_udp_portcount_ratio)
-			print "  + PKG MGR: " +str(p_pkgmgr_ratio)
-			print "  + PKG: " +str(p_pkg_ratio)
-			print "  + FILE PATH: " +str(pf_path_ratio)
-			print "  + FILE UID: " +str(pf_uid_ratio)
-			print "  + FILE GID: " +str(pf_gid_ratio)
-			print "  + FILE DAC: " +str(pf_dac_ratio)
-			if qitem['p_name'] == 'apache2' or qitem['p_name'] == 'httpd':
-				print "*********************************************APACHE-end"
+			debug=0
+			if debug==1:
+				print "[+] RATIO"
+				print "  + SO NAME: " +str(so_name_ratio)
+				print "  + SO VER: " +str(so_version_ratio)
+				print "  + P NAME: " +str(p_name_ratio)
+				print "  + P UID: " +str(p_uid_ratio)
+				print "  + P GID: " +str(p_gid_ratio)
+				print "  + P ARGS: " +str(p_args_ratio)
+				print "  + TCP BANNER: " +str(p_tcp_banner_ratio)
+				print "  + TCP COUNT: " +str(p_tcp_portcount_ratio)
+				print "  + UDP BANNER: " +str(p_udp_banner_ratio)
+				print "  + UDP PORTCOUNT: " +str(p_udp_portcount_ratio)
+				print "  + PKG MGR: " +str(p_pkgmgr_ratio)
+				print "  + PKG: " +str(p_pkg_ratio)
+				print "  + FILE PATH: " +str(pf_path_ratio)
+				print "  + FILE UID: " +str(pf_uid_ratio)
+				print "  + FILE GID: " +str(pf_gid_ratio)
+				print "  + FILE DAC: " +str(pf_dac_ratio)
 
 			
 
