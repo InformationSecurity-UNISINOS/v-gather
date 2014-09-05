@@ -80,7 +80,7 @@ def StartScan():
                             
                     except:
                         continue
-        
+
 
         p_udp_l = item.getDaemonUdp()
         ubuf=ubanner=""
@@ -101,7 +101,7 @@ def StartScan():
                         uloop+=1
                 except:
                     continue
-
+        tbug="DEBUG"
         # soh aproveita o banner udp se o banner udp nao existir
         if tbuf is not "":
             tbanner=tbuf+":"+str(tloop)
