@@ -52,12 +52,14 @@ def StartScan():
             for svctcp in p_tcp_l.split(','):           # entao vamos tokenizar cada tupla separada por virgula (se tiver mais de1 porta aberta por processo)
                 try:
                     print "essa é a tupla toda: " +svctcp
-                    print svctcp.split(':')[0]
-                    print svctcp.split(':')[1]
-                    print svctcp.split(':')[3]
+                    ip=svctcp.split(':')[0]
+                    porta=svctcp.split(':')[1]
                     p_tcp_fp_l={}
                     p_tcp_fp_l = item.getDaemonTcpFp()
                     fp_item=p_tcp_fp_l.get(int(porta))
+                    print "ip: "+ip
+                    print "porta: "+porta
+                    print "banner: "+banner
                 except:
                     continue
         else:
