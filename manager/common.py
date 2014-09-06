@@ -43,9 +43,6 @@ def ParsePortCount(string):
 def ParseArgs(string):
 	return b64decode(string)
 
-#this flag is used to avoid concurrency by agents transmitting at the same time.
-# ok this is a bad solution, i must use multithread and queue but for not, thats it
-isready=True
 
 
 
