@@ -6,8 +6,8 @@ from cqueue import*
 
 def Similarity(string_a,string_b):
 	from difflib import SequenceMatcher,ratio
-    return round(SequenceMatcher(None, string_a,string_b).ratio(),2)
-    
+	return round(SequenceMatcher(None, string_a,string_b).ratio(),2)
+
 
 def MatchData():
 
