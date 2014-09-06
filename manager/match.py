@@ -75,6 +75,7 @@ def MatchData():
 			qlen-=1
 		case_id+=1
 	DestroyQueue()
+	isready=True
 
 
 

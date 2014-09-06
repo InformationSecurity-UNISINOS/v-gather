@@ -14,3 +14,9 @@ def PingManager():
     s = xmlrpclib.Server(remote_server)
     ret=s.ping()
     return ret
+
+def ServerReady():
+	remote_server="http://"+str(MANAGERADDR)+":"+str(PORTA)
+    s = xmlrpclib.Server(remote_server)
+    ret=s.ready()
+    return ret
