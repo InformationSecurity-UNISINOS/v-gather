@@ -109,7 +109,7 @@ def StartScan():
             #print "Tbanner: "+tbanner
             #print "Ubanner: "+ubanner
             while True:
-                if ServerReady() == True
+                if ServerReady() == True:
                     SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,banner,ubanner)
         else:
             print "[x] Manager offline"
