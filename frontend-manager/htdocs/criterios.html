@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <!-- start: Meta -->
+        <meta charset="utf-8">
+            <title>ARMOR | Gestão de Riscos</title>
+            <meta name="description" content="Armor Gestão de Riscos ISO 27005"></meta>
+            <meta name="author" content="Andrade Soto Information Security"></meta>
+            <!-- end: Meta -->
+            
+            <!-- start: Mobile Specific -->
+            <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+            <!-- end: Mobile Specific -->
+            
+            <!-- start: CSS -->
+            <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+                <link href="assets/css/style.css" rel="stylesheet">
+                    <link href="assets/css/retina.min.css" rel="stylesheet">
+                        <link href="assets/css/print.css" rel="stylesheet" type="text/css" media="print"/>
+                        <!-- end: CSS -->
+                        
+                        
+                        <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+                        <!--[if lt IE 9]>
+                         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                         <script src="assets/js/respond.min.js"></script>
+                         <![endif]-->
+                        <!-- start: Favicon and Touch Icons -->
+                        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+                            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+                                <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+                                    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
+                                        <link rel="shortcut icon" href="assets/ico/favicon.png">
+                                            <!-- end: Favicon and Touch Icons -->
+                                            
+                                            </head>
+    
+    <body>
+		<!-- start: Header -->
+        <header class="navbar">
+            <div class="container">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".sidebar-nav.nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a id="main-menu-toggle" class="hidden-xs open"><i class="fa fa-bars"></i></a>
+                <a class="navbar-brand col-md-2 col-sm-1 col-xs-2" href="index.html"><span>ARMOR</span></a>
+                <div id="search" class="col-sm-5 col-xs-8 col-lg-3">
+                    <select>
+                        <option>tudo</option>
+                        <option>vulnerabilidades</option>
+                        <option>riscos</option>
+                        <option>ameaças</option>
+                        <option>ativos</option>
+                        <option>pessoas</option>
+                        <option>ameaças</option>
+                        <option>documentos</option>
+                        <option>controles</option>
+                    </select>
+                    <input type="text" placeholder="Buscar" />
+                    <i class="fa fa-search"></i>
+                </div>
+                <!-- start: Header Menu -->
+                <div class="nav-no-collapse header-nav">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="dropdown hidden-xs">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="index.html#">
+                                <i class="fa fa-warning"></i>
+                                <span class="number">4</span>
+                            </a>
+                            <ul class="dropdown-menu notifications">
+                                <li class="dropdown-menu-title">
+                                    <span>Você tem 4 novas notificações</span>
+                                </li>
+                                
+                                <li>
+                                    <a href="index.html#">
+                                        <span class="icon red"><i class="fa fa-exclamation"></i></span>
+                                        <span class="message">Prazo de atividade expirou</span>
+                                        <span class="time">1 dia</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.html#">
+                                        <span class="icon grey"><i class="fa fa-comment-o"></i></span>
+                                        <span class="message">Novo comentário</span>
+                                        <!--
+                                         NOTA: É possível comentar, riscos, vulnerabilidades e controles.
+                                         Os envolvidos em cada item (dono, responsável, equipe de segurança, executores de atividades)
+                                         receberão um aviso sobre o novo comentário em seu item.
+                                         
+                                         -->
+                                        <span class="time">7 min</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.html#">
+                                        <span class="icon green"><i class="fa fa-check-square-o"></i></span>
+                                        <span class="message">Novo controle aplicado</span>
+                                        <!-- NOTA: Sistema multiusuário, onde quem especifica os controles para mitigar 1 determinado risco
+                                         não é a mesma pessoa (usuário) que os aplica. Quem aplica o controle visualiza sua atividade, prazos,
+                                         e poderá informar o andamento da implementação e inserir comentários.
+                                         
+                                         Estas informações vão ser visualizadas pelo responsável pelo RISCO e pela equipe de segurança.
+                                         -->
+                                        <span class="time">8 min</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.html#">
+                                        <span class="icon orange"><i class="fa fa-warning"></i></span>
+                                        <span class="message">Novo Risco</span>
+                                        <!-- NOTA: Quando um usuário é nomeado dono de um risco,
+                                         ele receberá uma mensagem de aviso em sua caixa de mensagens.
+                                         
+                                         -->
+                                        <span class="time">36 min</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-menu-sub-footer">
+                                    <a>Ver todas as notificações</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- start: Notifications Dropdown -->
+                        <li class="dropdown hidden-xs">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="index.html#">
+                                <i class="fa fa-tasks"></i>
+                                <span class="number">5</span>
+                            </a>
+                            <ul class="dropdown-menu tasks">
+                                <!-- 1 -->
+                                <li>
+                                    <span class="dropdown-menu-title">Você tem 5 atividades em andamento</span>
+                                </li>
+                                
+                                <!-- 2 -->
+                                <li>
+                                    <a href="index.html#">
+                                        <span class="header">
+                                            <span class="title">Implementar WAF</span>
+                                            <span class="percent"></span>
+                                        </span>
+                                        <div class="taskProgress progressSlim progressBlue">80</div>
+                                    </a>
+                                </li>
+                                
+                                <!-- 3 -->
+                                <li>
+                                    <a href="index.html#">
+                                        <span class="header">
+                                            <span class="title">Atualizar Apache</span>
+                                            <span class="percent"></span>
+                                        </span>
+                                        <div class="taskProgress progressSlim progressBlue">30</div>
+                                    </a>
+                                </li>
+                                
+                                <!-- 4 -->
+                                <li>
+                                    <a href="index.html#">
+                                        <span class="header">
+                                            <span class="title">Comunidades SNMP</span>
+                                            <span class="percent"></span>
+                                        </span>
+                                        <div class="taskProgress progressSlim progressBlue">90</div>
+                                    </a>
+                                </li>
+                                
+                                <!-- 5 -->
+                                <li>
+                                    <a href="index.html#">
+                                        <span class="header">
+                                            <span class="title">Desativar painel administrativo do Jboss</span>
+                                            <span class="percent"></span>
+                                        </span>
+                                        <div class="taskProgress progressSlim progressBlue">2</div>
+                                    </a>
+                                </li>
+                                
+                                <!-- 6 -->
+                                <li>
+                                    <a href="index.html#">
+                                        <span class="header">
+                                            <span class="title">Atualizar RedHat</span>
+                                            <span class="percent"></span>
+                                        </span>
+                                        <div class="taskProgress progressSlim progressRed">50</div>
+                                        <!-- NOTA: Vermelho quando tiver atividade atrazada -->
+                                    </a>
+                                </li>
+                                
+                                <!-- 7 -->
+                                <li>
+                                    <a class="dropdown-menu-sub-footer">Ver todas</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <!-- end: Notifications Dropdown -->
+                        
+                        <li>
+                            <a class="btn" href="index.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                        </li>
+                        
+                        <!-- start: User Dropdown -->
+                        <li class="dropdown">
+                            <a class="btn account dropdown-toggle" data-toggle="dropdown" href="index.html#">
+                                <div class="avatar"><img src="assets/img/avatar.jpg" alt="Avatar"></div>
+                                <div class="user">
+                                    <span class="hello">Bem vindo!</span>
+                                    <span class="name">José da Silva</span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#"><i class="fa fa-user"></i> Perfil</a></li>
+                                <li><a href="index.html#"><i class="fa fa-cog"></i> Configurações</a></li>
+                                <li><a href="index.html#"><i class="fa fa-envelope"></i> Mensagens</a></li>
+                                <li><a href="page-login.html"><i class="fa fa-off"></i> Sair</a></li>
+                            </ul>
+                        </li>
+                        <!-- end: User Dropdown -->
+                    </ul>
+                </div>
+                <!-- end: Header Menu -->
+                
+            </div>
+        </header>
+        <!-- end: Header -->
+        
+		<div class="container">
+            <div class="row">
+				
+                <!-- start: Main Menu -->
+                <div id="sidebar-left" class="col-lg-2 col-sm-1 ">
+                    
+                    <div class="sidebar-nav nav-collapse collapse navbar-collapse">
+                        <ul class="nav main-menu">
+                            <li><a href="index.html#"><i class="fa fa-bar-chart-o"></i><span class="hidden-sm text"> Dashboard</span></a></li>
+                            <li>
+                                <a class="dropmenu" href="index.html#"><i class="fa fa-archive"></i><span class="hidden-sm text"> Definições</span><span class="chevron closed"></span></a>
+                                <ul>
+                                    <li><a class="submenu" href="organizacao.html"><i class="fa fa-building-o"></i><span class="hidden-sm text"> Sobre a Organização</span></a></li>
+                                    <!-- NOTA:
+                                     Aqui o usuário fornecerá Objetivos, Motivações, Descrição geral sobre a organização, Missão, Visão e Valores.
+                                     -->
+                                    <li><a class="submenu" href="stackholders.html"><i class="fa fa-users"></i><span class="hidden-sm text"> Stackholders</span></a></li>
+                                    <li><a class="submenu" href="participantes.html"><i class="fa fa-users"></i><span class="hidden-sm text"> Participantes</span></a></li>
+                                    <li><a class="submenu" href="papeis.html"><i class="fa fa-tags"></i><span class="hidden-sm text"> Papéis</span></a></li>
+                                    <li><a class="submenu" href="escopo.html"><i class="fa fa-flag"></i><span class="hidden-sm text"> Escopo</span></a></li>
+                                    <li><a class="submenu" href="criterios.html"><i class="fa fa-bookmark-o"></i><span class="hidden-sm text"> Critérios</span></a></li>
+                                    <li><a class="submenu" href="documentos.html"><i class="fa fa-book"></i><span class="hidden-sm text"> Documentos</span></a></li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <a class="dropmenu" href="index.html#"><i class="fa fa-eye"></i><span class="hidden-sm text"> Identificação</span> <span class="chevron closed"></span></a>
+                                <ul>
+                                    <li><a class="submenu" href="componentes.html"><i class="fa fa-eye"></i><span class="hidden-sm text"> Componentes</span></a></li>
+                                    <li><a class="submenu" href="controlesexistentes.html"><i class="fa fa-eye"></i><span class="hidden-sm text"> Controles Existentes</span></a></li>
+                                    <li><a class="submenu" href="incidentesregistrados.html"><i class="fa fa-eye"></i><span class="hidden-sm text"> Incidentes</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropmenu" href="index.html#"><i class="fa fa-edit"></i><span class="hidden-sm text"> Análise de Riscos</span> <span class="chevron closed"></span></a>
+                                <ul>
+                                    <li><a class="submenu" href="probabilidade.html"><i class="fa fa-edit"></i><span class="hidden-sm text"> Probabilidade</span></a></li>
+                                    <li><a class="submenu" href="probabilidade.html"><i class="fa fa-edit"></i><span class="hidden-sm text"> Impacto</span></a></li>
+                                    <li><a class="submenu" href="niveldorisco.html"><i class="fa fa-edit"></i><span class="hidden-sm text"> Nível do Risco</span></a></li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <a class="dropmenu" href="index.html#"><i class="fa fa-list-alt"></i><span class="hidden-sm text"> Avaliação de Riscos</span> <span class="chevron closed"></span></a>
+                                <ul>
+                                    <li><a class="submenu" href="estrategiadecontrole.html"><i class="fa fa-chevron-right"></i><span class="hidden-sm text"> Estratégia</span></a></li>
+                                    <li><a class="submenu" href="justificativas.html"><i class="fa fa-chevron-right"></i><span class="hidden-sm text"> Justificativas</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropmenu" href="index.html#"><i class="fa  fa-dashboard"></i><span class="hidden-sm text"> Inteligencia</span> <span class="chevron closed"></span></a>
+                                <ul>
+                                    <li><a class="submenu" href="estrategiadecontrole.html"><i class="fa fa-chevron-right"></i><span class="hidden-sm text"> Indicadores</span></a></li>
+                                    <li><a class="submenu" href="justificativas.html"><i class="fa fa-chevron-right"></i><span class="hidden-sm text"> Tendências</span></a></li>
+                                    <li><a class="submenu" href="matrizderisco2.html"><i class="fa fa-edit"></i><span class="hidden-sm text"> Matriz</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="dropmenu" href="index.html#"><i class="fa fa-star"></i><span class="hidden-sm text"> Tratamento</span> <span class="chevron closed"></span></a>
+                                <ul>
+                                    <li><a class="submenu" href="index.html#"><i class="fa fa-star"></i><span class="hidden-sm text"> Controles Propostos</span></a></li>
+                                    <li><a class="submenu" href="index.html#"><i class="fa fa-star"></i><span class="hidden-sm text"> Estimativa de Custo</span></a></li>
+                                    <li><a class="submenu" href="index.html#"><i class="fa fa-star"></i><span class="hidden-sm text"> Atividades</span></a></li>
+                                    <li><a class="submenu" href="index.html#"><i class="fa fa-star"></i><span class="hidden-sm text"> Cronograma</span></a></li>
+                                </ul>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <a href="index.html#" id="main-menu-min" class="full visible-md visible-lg"><i class="fa fa-angle-double-left"></i></a>
+                </div>
+                <!-- end: Main Menu -->
+                
+                <!-- start: Content -->
+                <div id="content" class="col-lg-10 col-sm-11 ">
+                    
+                    
+                    <!--row 1-->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            
+                            <ol class="breadcrumb">
+                                <li><a href="index.html#">ARMOR</a></li>
+                                <li class="active" >Dashboard</li>
+                                <div class="form-group choose-date hidden-xs">
+                                    <div class="controls">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" class="form-control" id="daterange" value="09/09/2013 - 09/28/2013"></input>
+                                            <span class="input-group-addon"><i class="fa fa-chevron-down"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ol>
+                            
+                            
+                            <div class="col-lg-12 col-md-12"> <!-- Criterios de Impacto -->
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h2><i class="fa fa-bookmark-o"></i>
+                                            <font face="MankSans" size="5pt">Critérios de Impacto</font>
+                                        </h2>
+                                        <div class="box-icon">
+                                            <a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                                            <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                                        </div>
+                                    </div>
+                                    
+                                    <font face="MankSans" size="2pt">
+                                        <div class="box-content">
+                                            <table class="table table-bordered table-striped table-condensed" style="text-align:center;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align:center;">Nível Qualitativo</th>
+                                                        <th style="text-align:center;">Nível Quantitativo</th>
+                                                        <th style="text-align:center;">Confidencialidade</th>
+                                                        <th style="text-align:center;">Integridade</th>
+                                                        <th style="text-align:center;">Disponibilidade</th>
+                                                        <th style="text-align:center;">Financeiro</th>
+                                                        <th style="text-align:center;">Legaligade</th>
+                                                        <th style="text-align:center;">Imagem</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr align="center">
+                                                        <td><span class="label label-muitoalto" style="width:80px;display:block;">Muito Alto</span></td>
+                                                        <td>5</td>
+                                                        <td>
+                                                            Informações estratégicas e financeiras são expostas para atores externos à organização
+                                                        </td>
+                                                        <td>
+                                                            Informações estratégicas e financeiras incorretas ou perdidas, sem possibilidade de recuperação
+                                                        </td>
+                                                        <td>
+                                                            Mais de um processo de negócio pode parar completamente e o tempo de retorno é alto
+                                                        </td>
+                                                        <td>
+                                                            Perdas acima de 1 milhão de reais
+                                                        </td>
+                                                        <td>
+                                                            Inconformidade com norma ou regulamentação, pode descredenciar a organização da ralização de atividades ou haver multa elevada. Quebra contratual acarretando em perda de clientes ou fornecedores
+                                                        </td>
+                                                        <td>
+                                                            Perda de credibilidade em nível internacional, repercussão em larga escala como televisão, rádio e internet. Alcance projetado maior que 50 milhões de pessoas.
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center">
+                                                        <td><span class="label label-alto" style="width:80px;display:block;">Alto</span></td>
+                                                        <td>
+                                                            4
+                                                        </td>
+                                                        <td>
+                                                            Informações financeiras são expostas para atores externos à organização
+                                                        </td>
+                                                        <td>
+                                                            Informações estratégicas e financeiras incorretas ou perdidas. É possível recuperar, porém o tempo de indisponibilidade
+                                                            causa grande perda financeira.
+                                                        </td>
+                                                        <td>
+                                                            Um processo de negócio pode parar completamente e o tempo de retorno é alto
+                                                        </td>
+                                                        <td>
+                                                            Perdas entre 800 mil e 1 milhão de reais
+                                                        </td>
+                                                        <td>
+                                                            Inconformidade com norma ou regulamentação, pode acarretar em multa elevada. Quebra contratual acarretando em perda de clientes ou fornecedores
+                                                        </td>
+                                                        <td>
+                                                            Perda de credibilidade em nível nacional, repercussão em larga escala como televisão, rádio e internet. Alcance projetado menor que 50 milhões de pessoas.
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center">
+                                                        <td><span class="label label-medio" style="width:80px;display:block;">Médio</span></td>
+                                                        <td>
+                                                            3
+                                                        </td>
+                                                        <td>
+                                                            Informações estratégicas ou financeiras são expostas para atores internos
+                                                        </td>
+                                                        <td>
+                                                            Informações de processos de negócio incorretas ou perdidas. É possível recuperar, porém o tempo de indisponibilidade
+                                                            causa grande perda financeira
+                                                        </td>
+                                                        <td>
+                                                            Um processo de negócio pode parar momentaneamente, ou seja, o tempo de retorno é rápido
+                                                        </td>
+                                                        <td>
+                                                            Perdas entre 500 mil e 800 mil reais
+                                                        </td>
+                                                        <td>
+                                                            Quebra contratual acarretando em perda de clientes ou fornecedores
+                                                        </td>
+                                                        <td>
+                                                            Perda de credibilidade em nível nacional, repercussão em rádio e internet. Alcance projetado menor que 10 milhões de pessoas
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center">
+                                                        <td><span class="label label-baixo" style="width:80px;display:block;">Baixo</span></td>
+                                                        <td>2</td>
+                                                        <td>
+                                                            Informações comerciais são expostas para atores externos à organização
+                                                        </td>
+                                                        <td>
+                                                            Informações de processos de negócio incorretas ou perdidas. É possível recuperar sem grandes perdas financeiras
+                                                        </td>
+                                                        <td>
+                                                            Um processo de negócio pode sofrer um atrazo de até 30 minutos, nada para por completo
+                                                        </td>
+                                                        <td>
+                                                            Perdas entre 200 mil e 500 mil reais
+                                                        </td>
+                                                        <td>
+                                                            Quebra contratual acarretando em perda de fornecedores somente
+                                                        </td>
+                                                        <td>
+                                                            Perda de credibilidade em nível regional, repercussão em midias regionais somente
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center">
+                                                        <td><span class="label label-muitobaixo" style="width:80px;display:block;">Muito Baixo</span></td>
+                                                        <td>1</td>
+                                                        <td>
+                                                            Informações comerciais são expostas para atores internos
+                                                        </td>
+                                                        <td>
+                                                            Informações de processos de negócio incorretas. É possível recuperar sem grandes perdas financeiras ou atraso no processo
+                                                        </td>
+                                                        <td>
+                                                            Um processo de negócio pode sofrer um atraso menor que 10 minutos, nada para por completo
+                                                        </td>
+                                                        <td>
+                                                            Perdas abaixo de 200 mil reais
+                                                        </td>
+                                                        <td>
+                                                            Quebra contratual passiva de processo judicial leve
+                                                        </td>
+                                                        <td>
+                                                            Perda de credibilidade entre colaboradores da organização
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </font>
+                                </div>
+                            </div> <!-- /Criterios de Impacto -->
+                            <div class="col-lg-12 col-md-12"> <!-- Criterios de probabilidade -->
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h2><i class="fa fa-bookmark-o"></i>
+                                            <font face="MankSans" size="5pt">Critérios de Probabilidade</font>
+                                        </h2>
+                                        <div class="box-icon">
+                                            <a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                                            <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                                        </div>
+                                    </div>
+                                    
+                                    <font face="MankSans" size="2pt">
+                                        <div class="box-content">
+                                            <table class="table table-bordered table-striped table-condensed" style="text-align:center;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align:center;">Nível Qualitativo</th>
+                                                        <th style="text-align:center;">Nível Quantitativo</th>
+                                                        <th style="text-align:center;">Ocorrências</th>
+                                                        <th style="text-align:center;">Benchmarks Exernos</th>
+                                                        <th style="text-align:center;">Testemunhos</th>
+                                                        <th style="text-align:center;">Fatores Contribuintes</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><span class="label label-muitoalto" style="width:80px;display:block;">Muito Alto</span></td>
+                                                        <td>5</td>
+                                                        <td>Há registro de mais de 3 ocorrências no último período (1 ano)</td>
+                                                        <td>N/A</td>
+                                                        <td>É algo frequente</td>
+                                                        <td>N/A</td>
+                                                        <td>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-alto" style="width:80px;display:block;">Alto</span></td>
+                                                        <td>4</td>
+                                                        <td>Há registro de no mínimo 2 ocorrências no último período (1 ano)</td>
+                                                        <td>N/A</td>
+                                                        <td>Já ocorreu e é provável que ocorra novamente</td>
+                                                        <td>N/A</td>
+                   
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-medio" style="width:80px;display:block;">Médio</span></td>
+                                                        <td>3</td>
+                                                        <td>Há registro de 1 ocorrência no último período (1 ano)</td>
+                                                        <td>N/A</td>
+                                                        <td>Ocorre ocasionalmente. Não há uma regularidade de incidentes.</td>
+                                                        <td>N/A</td>
+                     
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-baixo" style="width:80px;display:block;">Baixo</span></td>
+                                                        <td>2</td>
+                                                        <td>Não há registro de ocorrências no último período (1 ano)</td>
+                                                        <td>N/A</td>
+                                                        <td>Aparentemente nunca ocorreu, porém a possibilidade de incidente é grande</td>
+                                                        <td>8</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-muitobaixo" style="width:80px;display:block;">Muito Baixo</span></td>
+                                                        <td>1</td>
+                                                        <td>Não há registro de ocorrências</td>
+                                                        <td>N/A</td>
+                                                        <td>Aparentemente nunca ocorreu e é pouco provável que ocorra</td>
+                                                        <td>N/A</td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </font>
+                                </div>
+                            </div> <!-- /Criterios de Probabilidade -->
+                            <div class="col-lg-12 col-md-12"> <!-- Criterios de Tratamento e Aceitação -->
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h2><i class="fa fa-bookmark-o"></i>
+                                            <font face="MankSans" size="5pt">Critérios de Aceitação de Riscos</font>
+                                        </h2>
+                                        <div class="box-icon">
+                                            <a href="index.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
+                                            <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                                        </div>
+                                    </div>
+                                    
+                                    <font face="MankSans" size="2pt">
+                                        <div class="box-content">
+                                            <table class="table table-bordered table-striped table-condensed" style="text-align:center;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align:center;"></th>
+                                                        <th style="text-align:center;">Aceitação</th>
+                                                        <th style="text-align:center;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Impacto Confidencialidade</td>
+                                                        <td align="center">
+                                                            <span class="label label-baixo" style="width:80px;display:block;">Baixo</span>
+                                                        </td>
+                                                        <td>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Impacto Integridade</td>
+                                                        <td align="center">
+                                                            <span class="label label-muitobaixo" style="width:80px;display:block;">Muito Baixo</span>
+                                                        </td>
+                                                        <td>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Impacto Disponibilidade</td>
+                                                        <td align="center">
+                                                            <span class="label label-baixo" style="width:80px;display:block;">Baixo</span>
+                                                        </td>
+                                                        <td>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Impacto Financeiro</td>
+                                                        <td align="center">
+                                                            <span class="label label-muitobaixo" style="width:80px;display:block;">Muito Baixo</span>
+                                                        </td>
+                                                        <td>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Impacto Legal</td>
+                                                        <td align="center">
+                                                            <span class="label label-baixo" style="width:80px;display:block;">Baixo</span>
+                                                        </td>
+                                                        <td>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Impacto Imagem</td>
+                                                        <td align="center">
+                                                            <span class="label label-muitobaixo" style="width:80px;display:block;">Muito Baixo</span>
+                                                        </td>
+                                                        <td>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Probabilidade</td>
+                                                        <td align="center">
+                                                            <span class="label label-muitobaixo" style="width:80px;display:block;">Muito Baixo</span>
+                                                        </td>
+                                                        <td>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Nível de Risco</td>
+                                                        <td align="center">
+                                                            <span class="label label-muitobaixo" style="width:80px;display:block;">Muito Baixo</span>
+                                                        </td>
+                                                        <td>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Custo de Controle</td>
+                                                        <td align="center">
+                                                            Maior ou igual ao valor de impacto financeiro do risco
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </font>
+                                </div>
+                            </div> <!-- Criterios de Tratamento e Aceitação -->
+                            
+
+                        </div> <!-- /div class col-sm-12 col-md-9 -->
+                    </div><!--/div class row -->
+
+                </div><!--/div content-->
+                <!-- end: Content -->
+                
+            </div><!--/row-->
+            
+        </div><!--/container-->
+        
+        
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Here settings can be configured...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+        <div class="clearfix"></div>
+        
+        <footer>
+            <p>
+			<span style="text-align:left;float:left">&copy; 2013 creativeLabs. <a href="http://bootstrapmaster.com">Admin Templates</a> by BootstrapMaster</span>
+			<span class="hidden-phone" style="text-align:right;float:right">Powered by: <a href="http://bootstrapmaster.com/demo/genius/" alt="Bootstrap Admin Templates">Genius Dashboard</a></span>
+            </p>
+            
+        </footer>
+		
+        
+        
+        <!-- start: JavaScript-->
+        <!--[if !IE]>-->
+        
+        <script src="assets/js/jquery-2.0.3.min.js"></script>
+        
+        <!--<![endif]-->
+        
+        <!--[if IE]>
+         
+         <script src="assets/js/jquery-1.10.2.min.js"></script>
+         
+         <![endif]-->
+        
+        <!--[if !IE]>-->
+        
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+            </script>
+        
+        <!--<![endif]-->
+        
+        <!--[if IE]>
+         
+         <script type="text/javascript">
+         window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+         </script>
+         
+         <![endif]-->
+        <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        
+        <!-- COLORIR MARCACAO DE ITENS DE TABELA DE ATIVOS,AMEACAS E VULNERABILIDADES -->
+        <script language="javascript" type="text/javascript"> <!-- colocar cor nas TD ao marcar ou desmarcar item -->
+            $(document).ready(function() {
+                              $(".tdClass").click(function(){
+                                                  if($(this).css("background-color") == "rgba(0, 0, 0, 0)"){
+                                                  $(this).css("background-color", "rgb(61, 170, 223)");
+                                                  } else {
+                                                  $(this).css("background-color", "rgba(0, 0, 0, 0)");
+                                                  }
+                                                  });
+                              })
+                              
+            </script>
+        <!-- page scripts -->
+        <script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+        <script src="assets/js/jquery.sparkline.min.js"></script>
+        <script src="assets/js/fullcalendar.min.js"></script>
+        <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="assets/js/excanvas.min.js"></script><![endif]-->
+        <script src="assets/js/jquery.flot.min.js"></script>
+        <script src="assets/js/jquery.flot.pie.min.js"></script>
+        <script src="assets/js/jquery.flot.stack.min.js"></script>
+        <script src="assets/js/jquery.flot.resize.min.js"></script>
+        <script src="assets/js/jquery.flot.time.min.js"></script>
+        <script src="assets/js/jquery.autosize.min.js"></script>
+        <script src="assets/js/jquery.placeholder.min.js"></script>
+        <script src="assets/js/moment.min.js"></script>
+        <script src="assets/js/daterangepicker.min.js"></script>
+        <script src="assets/js/jquery.easy-pie-chart.min.js"></script>
+        <script src="assets/js/jquery.dataTables.min.js"></script>
+        <script src="assets/js/dataTables.bootstrap.min.js"></script>
+        
+        
+        <script src="assets/js/jquery.knob.modified.min.js"></script>
+        <script src="assets/js/raphael.min.js"></script>
+        <script src="assets/js/justgage.1.0.1.min.js"></script>
+        
+        <!-- theme scripts -->
+        <script src="assets/js/custom.min.js"></script>
+        <script src="assets/js/core.min.js"></script>
+        
+        <!-- inline scripts related to this page -->
+        <script src="assets/js/pages/index.js"></script>
+        <script src="assets/js/pages/charts-flot.js"></script>
+        <script src="assets/js/pages/charts-other.js"></script>
+        
+        <!-- end: JavaScript-->
+        
+    </body>
+</html>
