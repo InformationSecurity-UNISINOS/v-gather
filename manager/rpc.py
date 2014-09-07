@@ -49,12 +49,9 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["pf_uid"]=rcv_pf_uid
         ParamDict["pf_gid"]=rcv_pf_gid
         ParamDict["p_tcp_banner"]=ParseBanner(rcv_p_tbanner)
-        ParamDict["p_tcp_portcount"]=ParsePortCount(rcv_p_tbanner)
         ParamDict["p_udp_banner"]=ParseBanner(rcv_p_ubanner)
-        ParamDict["p_udp_portcount"]=ParsePortCount(rcv_p_ubanner)
 
         print "p_tcp_banner: %s" %str(ParamDict["p_tcp_banner"])
-        print "p_tcp_portcount: %s" %str(ParamDict["p_tcp_portcount"])
 
         #AddQueue(ParamDict)
         #MatchData()
