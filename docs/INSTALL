@@ -1,0 +1,56 @@
+*
+*
+*
+*
+*
+*
+*
+
+INSTALL:
+
+Não é necessário instalar o vgather, entretanto, algumas bibliotecas python se fazem
+necessárias para que o mesmo funcione como planejado.
+Recomendamos que você instale tudo conforme a ordem abaixo:
+
+Instalar agente:
+1 - pacote de desenvolvimento python
+	yum install python-devel
+	apt-get install python-dev
+2 - utilitário para criação e distribuição de pacotes python
+	yum install python-setuptools
+	apt-get install python-setuptools
+3 - utilitário de instalação e gestão de bibliotecas python
+	git clone https://github.com/pypa/pip.git /usr/src/pip
+	cd /usr/src/pip
+	python setup.py install
+4 - Instalar nmap
+	yum install nmap
+	apt-get install nmap
+5 - instalar bibliotecas (agentes)
+	pip install psutil
+	pip install -U treedict
+	pip install -U python-nmap
+	pip install netifaces
+
+
+Instalar Manager:
+1 - pacote de desenvolvimento python
+	yum install python-devel
+	apt-get install python-dev
+2 - utilitário para criação e distribuição de pacotes python
+	yum install python-setuptools
+	apt-get install python-setuptools
+3 - utilitário de instalação e gestão de bibliotecas python
+	git clone https://github.com/pypa/pip.git /usr/src/pip
+	cd /usr/src/pip
+	python setup.py install
+
+4 - Instalar dependências e pacotes via apt ou yum
+	apt-get install mysql-server libmysqlclient-dev libmysqld-dev
+	yum install mysql-devel mysql-server
+
+7 - Instalar bibliotecas:
+	pip install MySQL-python
+	pip install fuzzywuzzy
+
+

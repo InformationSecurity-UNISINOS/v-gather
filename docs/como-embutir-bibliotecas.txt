@@ -1,0 +1,1 @@
+http://stackoverflow.com/questions/9059699/python-use-a-library-locally-instead-of-installing-it
