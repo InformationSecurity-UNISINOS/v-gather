@@ -51,7 +51,11 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["p_tcp_banner"]=ParseBanner(rcv_p_tbanner)
         ParamDict["p_udp_banner"]=ParseBanner(rcv_p_ubanner)
 
+
+        print "pid: %s" %str(ParamDict["p_pid"])
+        print "pname: %s" %ParamDict["p_name"]
         print "p_tcp_banner: %s" %str(ParamDict["p_tcp_banner"])
+        print "*"*50
 
         AddQueue(ParamDict)
         #MatchData()
