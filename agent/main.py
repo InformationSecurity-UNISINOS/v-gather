@@ -75,7 +75,7 @@ def StartScan():
                     fp_item=p_udp_fp_l.get(int(porta))
                     #print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
                     udp_banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
-                    udp_banner+=1
+                    udp_pcount+=1
                 except:
                     continue
         else:
@@ -107,7 +107,7 @@ def StartScan():
             tcp_banner=tcp_banner+":"+str(tcp_pcount)
 
         if udp_banner is not "":
-            udp_banner=udp_banner+":"+str(uloop)
+            udp_banner=udp_banner+":"+str(udp_pcount)
 
         if PingManager()==1:
             #print "Server: "+server
