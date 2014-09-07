@@ -59,8 +59,7 @@ def StartScan():
                     tcp_pcount+=1
                 except:
                     continue
-        else:
-            continue
+
 
         p_udp_l = item.getDaemonTcp()                   # recebe 0.0.0.0:80
         udp_banner=""
@@ -78,8 +77,6 @@ def StartScan():
                     udp_pcount+=1
                 except:
                     continue
-        else:
-            continue
  
 # jeito antigo:        
 #        p_udp_l = item.getDaemonUdp()
