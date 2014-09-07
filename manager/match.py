@@ -23,24 +23,63 @@ def MatchData():
 		db_case=DbGetCase(case_id)
 		while qlen >0:
 			qitem=GetQueue()
-
-
-agora tem que pegar os campos novos da base de dados, e os pesos
-
 			db_so_name=DbGetSoName(db_case['so_id'])
 			db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
 			
 
-			so_name_ratio=Similarity(db_so_name,qitem['distro'])	
-			so_version_ratio=Similarity(db_case['so_version'],qitem['distro_version'])	
-			p_name_ratio=Similarity(db_case['p_name'],qitem['p_name'])					
-			p_uid_ratio=Similarity(db_case['p_uid'],qitem['p_uid'])				
-			p_gid_ratio=Similarity(db_case['p_gid'],qitem['p_gid'])							 
-			p_args_ratio=Similarity(db_case['p_args'],qitem['p_args'])								
-			p_tcp_banner_ratio=Similarity(db_case['p_tcp_banner'],qitem['p_tcp_banner'])			
-			p_tcp_portcount_ratio=Similarity(db_case['p_tcp_portcount'],qitem['p_tcp_portcount'])	
-			p_udp_banner_ratio=Similarity(db_case['p_udp_banner'],qitem['p_udp_banner'])	
-			p_udp_portcount_ratio=Similarity(db_case['p_udp_portcount'],qitem['p_udp_portcount'])	
+			
+			'''
+			so_name_ratio = Similarity(db_so_name,qitem['distro'])
+			so_version_ratio = Similarity(db_case['so_version'],qitem['distro_version'])
+			p_name_ratio = Similarity(db_case['p_name'],qitem['p_name'])					
+			p_uid_ratio = Similarity(db_case['p_uid'],qitem['p_uid'])				
+			p_gid_ratio = Similarity(db_case['p_gid'],qitem['p_gid'])							 
+			p_args_ratio = Similarity(db_case['p_args'],qitem['p_args'])								
+			p_tcp_banner_ratio = Similarity(db_case['p_tcp_banner'],qitem['p_tcp_banner'])			
+			p_tcp_portcount_ratio = Similarity(db_case['p_tcp_portcount'],qitem['p_tcp_portcount'])	
+			p_udp_banner_ratio = Similarity(db_case['p_udp_banner'],qitem['p_udp_banner'])	
+			p_udp_portcount_ratio = Similarity(db_case['p_udp_portcount'],qitem['p_udp_portcount'])
+
+			db_case['case_id']
+			db_case['so_id_weight']
+			db_case['so_version']
+			db_case['so_version_weight']
+			db_case['process_name']
+			db_case['process_name_weight']
+			db_case['process_uid']
+			db_case['process_uid_weight']
+			db_case['process_gid']
+			db_case['process_gid_weight']
+			db_case['process_args']
+			db_case['process_args_weight']
+			db_case['process_tcp_banner']
+			db_case['process_tcp_banner_weight']
+			db_case['process_udp_banner']
+			db_case['rocess_udp_banner_weight']
+			db_case['process_tcp_portas']
+			db_case['process_tcp_portas_weight']
+			db_case['process_udp_portas']
+			db_case['process_udp_portas_weight']
+			db_case['package_name']
+			db_case['package_name_weight']
+			db_case['package_type_id']
+			db_case['package_type_id_weight']
+			db_case['process_binary']
+			db_case['process_binary_weight']
+			db_case['process_binary_dac']
+			db_case['process_binary_dac_weight']
+			db_case['process_binary_uid']
+			db_case['process_binary_uid_weight']
+			db_case['process_binary_gid']
+			db_case['process_binary_gid_weight']
+
+
+
+			
+
+				
+			
+				
 
 			if qitem['p_dpkg'] is not None and qitem['p_dpkg'] is not '':					
  				q_pkg_type="DPKG"	
@@ -54,8 +93,8 @@ agora tem que pegar os campos novos da base de dados, e os pesos
 			pf_uid_ratio=Similarity(db_case['pf_uid'],qitem['pf_uid'])
 			pf_gid_ratio=Similarity(db_case['pf_gid'],qitem['pf_gid'])
 			pf_dac_ratio=Similarity(db_case['pf_dac'],qitem['pf_dac'])
-
-			debug=1
+			'''
+			debug=0
 			if debug==1:
 				print "[+] RATIO"
 				print "  + SO NAME: " + qitem['distro'] + " ratio: "+str(so_name_ratio)
