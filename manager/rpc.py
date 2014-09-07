@@ -55,6 +55,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         print "pid: %s" %str(ParamDict["p_pid"])
         print "pname: %s" %ParamDict["p_name"]
         print "p_tcp_banner: %s" %str(ParamDict["p_tcp_banner"])
+        print "p_udp_banner: %s" %ParamDict["p_udp_banner"]
         print "*"*50
 
         AddQueue(ParamDict)
