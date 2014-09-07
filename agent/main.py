@@ -25,8 +25,11 @@ def StartScan():
     group=user=token=""
     
     for item in nlist:
+
         p_pid = item.getDaemonPid()
         p_name = item.getDaemon()
+        print "%s -> %s" %(str(p_pid),p_name)
+        
         p_uid = str(item.getDaemonUid())
         p_gid = str(item.getDaemonGid())
         p_rpm = item.getDaemonRpm()
@@ -43,7 +46,9 @@ def StartScan():
         pf_gid = str(item.getFileGid())
         p_args = b64encode(item.getDaemonArgs())
 
-        p_tcp_l = item.getDaemonTcp()                   # recebe tcp:0.0.0.0:80
+        print "%s -> %s" %(str(p_pid),p_name)
+
+        p_tcp_l = item.getDaemonTcp()                   # recebe 0.0.0.0:80
         tcp_banner=""
         tcp_pcount=0
         if p_tcp_l is not "" and p_tcp_l is not None:   # Se realmente recebeu uma tupla de porta aberta
@@ -54,7 +59,6 @@ def StartScan():
                     p_tcp_fp_l={}
                     p_tcp_fp_l = item.getDaemonTcpFp()
                     fp_item=p_tcp_fp_l.get(int(porta))
-                    #print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
                     tcp_banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
                     tcp_pcount+=1
                 except:
@@ -82,6 +86,8 @@ def StartScan():
         else:
             continue
 
+        print "%s -> %s" %(str(p_pid),p_name)
+
         # soh aproveita o banner udp se o banner udp nao existir
         if tcp_banner is not "":
             tcp_banner=tcp_banner+":"+str(tcp_pcount)
@@ -90,24 +96,7 @@ def StartScan():
             udp_banner=udp_banner+":"+str(udp_pcount)
 
         if PingManager()==1:
-            #print "Server: "+server
-            #print "Gw: "+domain
-            #print "Distro: "+GetLinuxDist(DIST_NAME)
-            #print "DistroVer: "+GetLinuxDist(DIST_VER)
-            #print "Pid: "+str(p_pid)
-            #print "PName: "+p_name
-            #print "Puid: "+str(p_uid)
-            #print "Pgid: "+str(p_gid)
-            #print "Prmp: "+p_rpm
-            #print "Pdpkg: "+p_dpkg
-            #print "FPath: "+pf_path
-            #print "FDac: "+str(pf_dac)
-            #print "Fuid: "+str(pf_uid)
-            #print "Fgid: "+str(pf_gid)
-            #print "Fargs: "+p_args
-            #print "Tbanner: "+tbanner
-            #print "Ubanner: "+ubanner
-            print "%s -> %s" %(str(p_pid),p_name)
+            
             SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
         else:
             print "[x] Manager offline"
