@@ -53,7 +53,7 @@ class XmlHandler(xmlrpc.XMLRPC):
 
         print "p_tcp_banner: %s" %str(ParamDict["p_tcp_banner"])
 
-        #AddQueue(ParamDict)
+        AddQueue(ParamDict)
         #MatchData()
         return True
     
