@@ -11,7 +11,6 @@ from modules.mvram import *
 from common import *
 from modules.sendserver import *
 from base64 import *
-from queue import *
 import getopt
 
 def usage():
