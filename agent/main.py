@@ -44,7 +44,7 @@ def StartScan():
         p_args = b64encode(item.getDaemonArgs())
 
         p_tcp_l = item.getDaemonTcp()                   # recebe tcp:0.0.0.0:80
-        banner=""
+        tcp_banner=""
         tcp_pcount=0
         if p_tcp_l is not "" and p_tcp_l is not None:   # Se realmente recebeu uma tupla de porta aberta
             for svctcp in p_tcp_l.split(','):           # entao vamos tokenizar cada tupla separada por virgula (se tiver mais de1 porta aberta por processo)
@@ -55,39 +55,39 @@ def StartScan():
                     p_tcp_fp_l = item.getDaemonTcpFp()
                     fp_item=p_tcp_fp_l.get(int(porta))
                     #print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
-                    banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
+                    tcp_banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
                     tcp_pcount+=1
                 except:
                     continue
         else:
             continue
-        
-        p_udp_l = item.getDaemonUdp()
-        ubuf=ubanner=""
+
+
+        p_udp_l = item.getDaemonUdp()                   # recebe udp:0.0.0.0:80
+        udp_banner=""
         udp_pcount=0
-        if p_udp_l is not "":
-            uloop=0
-            for svcudp in p_udp_l.split(','):
+        if p_udp_l is not "" and p_udp_l is not None:   # Se realmente recebeu uma tupla de porta aberta
+            for svcudp in p_udp_l.split(','):           # entao vamos tokenizar cada tupla separada por virgula (se tiver mais de1 porta aberta por processo)
                 try:
-                    ip = svcudp.split(':')[0]
-                    porta = svcudp.split(':')[1]
-                    p_tcp_fp_l={}
+                    ip=svcudp.split(':')[0]
+                    porta=svcudp.split(':')[1]
+                    p_udp_fp_l={}
                     p_udp_fp_l = item.getDaemonUdpFp()
                     fp_item=p_udp_fp_l.get(int(porta))
-                    if fp_item is not '' and fp_item is not None:
-                        if uloop==1:
-                            banner = b64encode(fp_item)
-                            ubuf="udp:"+ip+":"+porta+":"+banner
-                        uloop+=1
+                    #print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
+                    udp_banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
+                    udp_pcount+=1
                 except:
                     continue
+        else:
+            continue
 
         # soh aproveita o banner udp se o banner udp nao existir
-        if banner is not "":
-            banner=banner+":"+str(tcp_pcount)
+        if tcp_banner is not "":
+            tcp_banner=tcp_banner+":"+str(tcp_pcount)
 
-        if ubuf is not "":
-            ubanner=ubuf+":"+str(uloop)
+        if udp_banner is not "":
+            udp_banner=udp_banner+":"+str(tcp_pcount)
 
         if PingManager()==1:
             #print "Server: "+server
@@ -107,7 +107,7 @@ def StartScan():
             #print "Fargs: "+p_args
             #print "Tbanner: "+tbanner
             #print "Ubanner: "+ubanner
-            SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,banner,ubanner)
+            SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
         else:
             print "[x] Manager offline"
         
