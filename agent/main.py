@@ -70,7 +70,7 @@ def StartScan():
                     ip=svcudp.split(':')[0]
                     porta=svcudp.split(':')[1]
                     p_udp_fp_l={}
-                    p_udp_fp_l = item.getDaemonTcpFp()
+                    p_udp_fp_l = item.getDaemonUdpFp()
                     fp_item=p_udp_fp_l.get(int(porta))
                     #print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
                     udp_banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
