@@ -61,7 +61,7 @@ def StartScan():
                     continue
 
 
-        p_udp_l = item.getDaemonTcp()                   # recebe 0.0.0.0:80
+        p_udp_l = item.getDaemonUdp()                   # recebe 0.0.0.0:80
         udp_banner=""
         udp_pcount=0
         if p_udp_l is not "" and p_udp_l is not None:   # Se realmente recebeu uma tupla de porta aberta
