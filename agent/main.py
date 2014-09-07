@@ -106,8 +106,8 @@ def StartScan():
         if tcp_banner is not "":
             tcp_banner=tcp_banner+":"+str(tcp_pcount)
 
-        if ubuf is not "":
-            ubanner=ubuf+":"+str(uloop)
+        if udp_banner is not "":
+            udp_banner=udp_banner+":"+str(uloop)
 
         if PingManager()==1:
             #print "Server: "+server
@@ -127,7 +127,7 @@ def StartScan():
             #print "Fargs: "+p_args
             #print "Tbanner: "+tbanner
             #print "Ubanner: "+ubanner
-            SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,ubanner)
+            SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
         else:
             print "[x] Manager offline"
         
