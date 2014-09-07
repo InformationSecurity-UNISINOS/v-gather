@@ -57,8 +57,8 @@ class XmlHandler(xmlrpc.XMLRPC):
         print "p_tcp_portcount: %s" %str(ParamDict["p_tcp_portcount"])
 
 
-        AddQueue(ParamDict)
-        MatchData()
+        #AddQueue(ParamDict)
+        #MatchData()
         return True
     
     def xmlrpc_Fault(self):
