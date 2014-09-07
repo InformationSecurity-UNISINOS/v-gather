@@ -28,8 +28,6 @@ def StartScan():
 
         p_pid = item.getDaemonPid()
         p_name = item.getDaemon()
-        print "%s -> %s" %(str(p_pid),p_name)
-        
         p_uid = str(item.getDaemonUid())
         p_gid = str(item.getDaemonGid())
         p_rpm = item.getDaemonRpm()
@@ -45,8 +43,6 @@ def StartScan():
         pf_uid = str(item.getFileUid())
         pf_gid = str(item.getFileGid())
         p_args = b64encode(item.getDaemonArgs())
-
-        print "%s -> %s" %(str(p_pid),p_name)
 
         p_tcp_l = item.getDaemonTcp()                   # recebe 0.0.0.0:80
         tcp_banner=""
@@ -91,9 +87,11 @@ def StartScan():
         # soh aproveita o banner udp se o banner udp nao existir
         if tcp_banner is not "":
             tcp_banner=tcp_banner+":"+str(tcp_pcount)
+            print " -> tcp_banner"
 
         if udp_banner is not "":
             udp_banner=udp_banner+":"+str(udp_pcount)
+            print " -> udp_banner"
 
         if PingManager()==1:
             
