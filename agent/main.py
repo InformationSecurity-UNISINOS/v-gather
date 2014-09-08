@@ -60,7 +60,13 @@ def StartScan():
                 except:
                     continue
 
-
+        #===================================
+        print "*"*50
+        print "Pid: "+str(p_pid)
+        print "PName: "+p_name
+        print p_tcp_l
+        print p_tcp_fp_l
+        #===================================
         p_udp_l = item.getDaemonUdp()                   # recebe 0.0.0.0:80
         udp_banner=""
         udp_pcount=0
@@ -111,8 +117,7 @@ def StartScan():
             #print "Gw: "+domain
             #print "Distro: "+GetLinuxDist(DIST_NAME)
             #print "DistroVer: "+GetLinuxDist(DIST_VER)
-            print "Pid: "+str(p_pid)
-            print "PName: "+p_name
+            
             #print "Puid: "+str(p_uid)
             #print "Pgid: "+str(p_gid)
             #print "Prmp: "+p_rpm
