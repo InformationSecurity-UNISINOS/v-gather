@@ -19,10 +19,11 @@ def ParseBanner(string,pos):
 			buf=tok1+":"+banner
 			lista.append(buf)
 
-			print "DEBUG->ParseBanner: %s (%d)" %(str(lista[pos]),pos)
 		try:
+			print "DEBUG->ParseBanner OK: %s (%d)" %(str(lista[pos]),pos)
 			return len(lista),lista[pos]
 		except:
+			print "DEBUG->ParseBanner ERR: %s (%d)" %(str(lista[pos]),pos)
 			return len(lista),False
 
 
