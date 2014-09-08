@@ -79,13 +79,6 @@ def StartScan():
                 except:
                     continue
 
-        # soh aproveita o banner udp se o banner udp nao existir
-        #if tcp_banner is not "":
-        #    tcp_banner=tcp_banner+":"+str(tcp_pcount)
-
-        #if udp_banner is not "":
-        #    udp_banner=udp_banner+":"+str(udp_pcount)
-
         if PingManager()==1:
             SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
         else:

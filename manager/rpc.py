@@ -32,7 +32,7 @@ class XmlHandler(xmlrpc.XMLRPC):
     
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_distro,rcv_distro_version,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
         print "[+] Registrando Dados Gerais"
-
+        print "----"
         if rcv_p_tbanner is not "":
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
