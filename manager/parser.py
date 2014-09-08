@@ -15,12 +15,12 @@ def ParseBanner(string,pos):
 			else:
 				banner=tok2                  # or, just use it as is (empty)
 
-            buf=tok1+":"+banner
-            lista.append(buf)
-        try:
-        	return len(lista),lista[pos]
-        except:
-        	return len(lista),False
+			buf=tok1+":"+banner
+			lista.append(buf)
+		try:
+			return len(lista),lista[pos]
+		except:
+			return len(lista),False
 
 
 def ParsePortCount(string):
