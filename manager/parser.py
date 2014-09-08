@@ -18,6 +18,8 @@ def ParseBanner(string,pos):
 
 			buf=tok1+":"+banner
 			lista.append(buf)
+
+			print "DEBUG->ParseBanner: %s" %str(lista[pos])
 		try:
 			return len(lista),lista[pos]
 		except:
