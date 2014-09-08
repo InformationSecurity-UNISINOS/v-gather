@@ -65,7 +65,6 @@ def StartScan():
         print "Pid: "+str(p_pid)
         print "PName: "+p_name
         print p_tcp_l
-        print p_tcp_fp_l
         #===================================
         p_udp_l = item.getDaemonUdp()                   # recebe 0.0.0.0:80
         udp_banner=""
