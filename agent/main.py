@@ -80,6 +80,7 @@ def StartScan():
                     #print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
                     udp_banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
                     udp_pcount+=1
+                    
                 except:
                     continue
 

@@ -20,28 +20,7 @@ ARGS=300
 IOFILES=400
 
 
-from base64 import *
-def ParseBanner(string):
-	banner=""
-	if len(string) > 1:
-		# 8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
-		debug=0
-		if debug==1:
-			print "RCV Porta: " +string.split(':')[0]
-			print "RCV Banner: " +string.split(':')[1]
-		banner=b64decode(string.split(':')[1])
-	return banner
 
-
-def ParsePortCount(string):
-	# 8080:QXBhY2hlIFRvbWNhdC9Db3lvdGUgSlNQIGVuZ2luZQ==:2
-	pcount=0
-	if len(string) > 1:
-		pcount=string.split(':')[2]
-	return int(pcount)
-
-def ParseArgs(string):
-	return b64decode(string)
 
 
 

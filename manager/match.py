@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from common import *
 from base import *
+from parser import *
 from cqueue import*
 
 def Similarity(string_a,string_b):
