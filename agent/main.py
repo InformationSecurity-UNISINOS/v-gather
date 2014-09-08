@@ -60,12 +60,7 @@ def StartScan():
                 except:
                     continue
 
-        #===================================
-        print "*"*50
-        print "Pid: "+str(p_pid)
-        print "PName: "+p_name
-        print tcp_banner
-        #===================================
+
         p_udp_l = item.getDaemonUdp()                   # recebe 0.0.0.0:80
         udp_banner=""
         udp_pcount=0
@@ -85,29 +80,13 @@ def StartScan():
                     continue
 
         # soh aproveita o banner udp se o banner udp nao existir
-        if tcp_banner is not "":
-            tcp_banner=tcp_banner+":"+str(tcp_pcount)
+        #if tcp_banner is not "":
+        #    tcp_banner=tcp_banner+":"+str(tcp_pcount)
 
-        if udp_banner is not "":
-            udp_banner=udp_banner+":"+str(udp_pcount)
+        #if udp_banner is not "":
+        #    udp_banner=udp_banner+":"+str(udp_pcount)
 
         if PingManager()==1:
-            #print "Server: "+server
-            #print "Gw: "+domain
-            #print "Distro: "+GetLinuxDist(DIST_NAME)
-            #print "DistroVer: "+GetLinuxDist(DIST_VER)
-            
-            #print "Puid: "+str(p_uid)
-            #print "Pgid: "+str(p_gid)
-            #print "Prmp: "+p_rpm
-            #print "Pdpkg: "+p_dpkg
-            #print "FPath: "+pf_path
-            #print "FDac: "+str(pf_dac)
-            #print "Fuid: "+str(pf_uid)
-            #print "Fgid: "+str(pf_gid)
-            #print "Fargs: "+p_args
-            #print "Tbanner: "+tbanner
-            #print "Ubanner: "+ubanner
             SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
         else:
             print "[x] Manager offline"
