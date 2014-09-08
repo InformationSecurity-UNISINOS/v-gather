@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 from base64 import *
+
 def ParseBanner(string,pos):
 	import re
 	banner=""
@@ -17,13 +17,10 @@ def ParseBanner(string,pos):
 				banner=tok2                  				# or, just use it as is (empty)
 
 			buf=tok1+":"+banner
-			lista.append(buf)
 
 		try:
-			print "DEBUG->ParseBanner OK: %s (%d)" %(str(lista[pos]),pos)
 			return len(lista),lista[pos]
 		except:
-			print "DEBUG->ParseBanner ERR: %s (%d)" %(str(lista[pos]),pos)
 			return len(lista),False
 
 
