@@ -52,10 +52,10 @@ def StartScan():
                     ip=svctcp.split(':')[0]
                     porta=svctcp.split(':')[1]
                     p_tcp_fp_l={}
-                    p_tcp_fp_l = item.getDaemonTcpFp()
+                    p_tcp_fp_l=item.getDaemonTcpFp()
                     fp_item=p_tcp_fp_l.get(int(porta))
-                    #print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
-                    tcp_banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
+                    # print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
+                    tcp_banner=tcp_banner+porta+":"+b64encode(fp_item) + ":" # porta:banner em base64 
                     tcp_pcount+=1
                 except:
                     continue
@@ -64,7 +64,7 @@ def StartScan():
         print "*"*50
         print "Pid: "+str(p_pid)
         print "PName: "+p_name
-        print p_tcp_l
+        print tcp_banner
         #===================================
         p_udp_l = item.getDaemonUdp()                   # recebe 0.0.0.0:80
         udp_banner=""
@@ -82,27 +82,6 @@ def StartScan():
                     udp_pcount+=1
                 except:
                     continue
- 
-# jeito antigo:        
-#        p_udp_l = item.getDaemonUdp()
-#        ubuf=ubanner=""
-#        udp_pcount=0
-#        if p_udp_l is not "":
-#            uloop=0
-#            for svcudp in p_udp_l.split(','):
-#                try:
-#                    ip = svcudp.split(':')[0]
-#                    porta = svcudp.split(':')[1]
-#                    p_tcp_fp_l={}
-#                    p_udp_fp_l = item.getDaemonUdpFp()
-#                    fp_item=p_udp_fp_l.get(int(porta))
-#                    if fp_item is not '' and fp_item is not None:
-#                        if uloop==1:
-#                            banner = b64encode(fp_item)
-#                            ubuf="udp:"+ip+":"+porta+":"+banner
-#                        uloop+=1
-#                except:
-#                    continue
 
         # soh aproveita o banner udp se o banner udp nao existir
         if tcp_banner is not "":
