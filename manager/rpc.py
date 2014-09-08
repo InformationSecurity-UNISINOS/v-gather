@@ -81,7 +81,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                 ParamDict["pf_uid"]=rcv_pf_uid
                 ParamDict["pf_gid"]=rcv_pf_gid
                 ParamDict["p_tcp_banner"]=""
-                ParamDict["p_udp_banner"]=ParseBanner(rcv_p_ubanner)
+                ParamDict["p_udp_banner"]=ParseBanner(rcv_p_ubanner,port_pos)
                 AddQueue(ParamDict)
                 print "pos: "+str(port_pos)
                 print "pid: %s" %str(ParamDict["p_pid"])
