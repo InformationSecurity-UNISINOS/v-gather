@@ -109,7 +109,10 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["p_tcp_banner"]=""
             ParamDict["p_udp_banner"]=""
             AddQueue(ParamDict)
-            print "pos: "+str(port_pos)
+            try:
+                print "pos: "+str(port_pos)
+            except:
+                pass
             print "pid: %s" %str(ParamDict["p_pid"])
             print "pname: %s" %ParamDict["p_name"]
             print "p_tcp_banner: %s" %str(ParamDict["p_udp_banner"])
