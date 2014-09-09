@@ -11,7 +11,7 @@ def Similarity(string_a,string_b):
 
 
 def MatchData():
-
+	Debug=1
 	# quantos casos tem na base?
 	total_cases=DbCountCases()
 	if total_cases == False:
@@ -19,13 +19,24 @@ def MatchData():
 	# ok, criar loop pra recuberar cada caso da base
 	case_id=1
 	qlen=LenQueue()
-	while case_id <= total_cases:
-		db_case={}
-		db_case=DbGetCase(case_id)
-		while qlen >0:
-			qitem=GetQueue()
-			db_so_name=DbGetSoName(db_case['so_id'])
-			db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
+	if Debug==1:
+		while qlen>0:
+			pdict = GetQueue()
+			for key in pdict.iterkeys():
+    			val1, val2 = map(float, pdict[key])
+    			print "%s: %s" %(str(val1),str(val2))
+			qlen-=1
+	DestroyQueue()		#remover - debug
+	return 1			#remover - debug
+
+
+#	while case_id <= total_cases:
+#		db_case={}
+#		db_case=DbGetCase(case_id)
+#		while qlen >0:
+#			qitem=GetQueue()
+#			db_so_name=DbGetSoName(db_case['so_id'])
+#			db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
 
 
 
@@ -66,9 +77,9 @@ def MatchData():
 
 
 
-			qlen-=1
-		case_id+=1
-	DestroyQueue()
+#			qlen-=1
+#		case_id+=1
+#	DestroyQueue()
 
 
 
