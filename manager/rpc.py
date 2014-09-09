@@ -5,7 +5,7 @@ from cqueue import *
 from match import *
 from common import *
 from parser import *
-
+import re
 
 '''
  Recebe Registro de Agente
@@ -40,61 +40,72 @@ class XmlHandler(xmlrpc.XMLRPC):
         print "----" 
 
         if rcv_p_tbanner is not "":
+            
             print "rcv_p_tbanner is not blank"
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
-                ParamDict={}
-                ParamDict["agent"]=rcv_agent
-                ParamDict["gateway"]=rcv_domain
-                ParamDict["distro"]=rcv_distro
-                ParamDict["distro_version"]=rcv_distro_version
-                ParamDict["p_pid"]=rcv_p_pid
-                ParamDict["p_name"]=rcv_p_name
-                ParamDict["p_uid"]=rcv_p_uid
-                ParamDict["p_gid"]=rcv_p_gid
-                ParamDict["p_args"]=ParseArgs(rcv_p_args)
-                ParamDict["p_rpm"]=rcv_p_rpm
-                ParamDict["p_dpkg"]=rcv_p_dpkg
-                ParamDict["pf_path"]=rcv_pf_path
-                ParamDict["pf_dac"]=rcv_pf_dac
-                ParamDict["pf_uid"]=rcv_pf_uid
-                ParamDict["pf_gid"]=rcv_pf_gid
-                i,ParamDict["p_tcp_banner"]=ParseBanner(rcv_p_tbanner,port_pos)
-                ParamDict["p_udp_banner"]=""
-                AddQueue(ParamDict)
-                print "pos: "+str(port_pos)
-                print "pid: %s" %str(ParamDict["p_pid"])
-                print "pname: %s" %ParamDict["p_name"]
-                print "p_tcp_banner: %s" %str(ParamDict["p_tcp_banner"])
-                print "*"*50
+                tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]   #ainda em base64
+                if CheckKnownTcpPort(tbanner) == False:
+                    ParamDict={}
+                    ParamDict["p_tcp_banner"]=b64decode(tbanner)
+                    ParamDict["p_udp_banner"]=""
+                    ParamDict["agent"]=rcv_agent
+                    ParamDict["gateway"]=rcv_domain
+                    ParamDict["distro"]=rcv_distro
+                    ParamDict["distro_version"]=rcv_distro_version
+                    ParamDict["p_pid"]=rcv_p_pid
+                    ParamDict["p_name"]=rcv_p_name
+                    ParamDict["p_uid"]=rcv_p_uid
+                    ParamDict["p_gid"]=rcv_p_gid
+                    ParamDict["p_args"]=ParseArgs(rcv_p_args)
+                    ParamDict["p_rpm"]=rcv_p_rpm
+                    ParamDict["p_dpkg"]=rcv_p_dpkg
+                    ParamDict["pf_path"]=rcv_pf_path
+                    ParamDict["pf_dac"]=rcv_pf_dac
+                    ParamDict["pf_uid"]=rcv_pf_uid
+                    ParamDict["pf_gid"]=rcv_pf_gid
+
+                    AddQueue(ParamDict)
+                    print "pos: "+str(port_pos)
+                    print "pid: %s" %str(ParamDict["p_pid"])
+                    print "pname: %s" %ParamDict["p_name"]
+                    print "p_tcp_banner: %s" %str(ParamDict["p_tcp_banner"])
+                    print "*"*50
+                else: 
+                    pass # to be explicit on this case
+                
+                
         elif rcv_p_ubanner is not "":
             print "rcv_p_ubanner is not blank"
             udp_ports_total=ParseBanner(rcv_p_ubanner,0)[0]
             for port_pos in range(0,udp_ports_total):
-                ParamDict={}
-                ParamDict["agent"]=rcv_agent
-                ParamDict["gateway"]=rcv_domain
-                ParamDict["distro"]=rcv_distro
-                ParamDict["distro_version"]=rcv_distro_version
-                ParamDict["p_pid"]=rcv_p_pid
-                ParamDict["p_name"]=rcv_p_name
-                ParamDict["p_uid"]=rcv_p_uid
-                ParamDict["p_gid"]=rcv_p_gid
-                ParamDict["p_args"]=ParseArgs(rcv_p_args)
-                ParamDict["p_rpm"]=rcv_p_rpm
-                ParamDict["p_dpkg"]=rcv_p_dpkg
-                ParamDict["pf_path"]=rcv_pf_path
-                ParamDict["pf_dac"]=rcv_pf_dac
-                ParamDict["pf_uid"]=rcv_pf_uid
-                ParamDict["pf_gid"]=rcv_pf_gid
-                ParamDict["p_tcp_banner"]=""
-                i,ParamDict["p_udp_banner"]=ParseBanner(rcv_p_ubanner,port_pos)
-                AddQueue(ParamDict)
-                print "pos: "+str(port_pos)
-                print "pid: %s" %str(ParamDict["p_pid"])
-                print "pname: %s" %ParamDict["p_name"]
-                print "p_tcp_banner: %s" %str(ParamDict["p_udp_banner"])
-                print "*"*50
+                ubanner=ParseBanner(rcv_p_ubanner,port_pos)[1]   #ainda em base64
+                if CheckKnownUdpPort(ubanner) == False:
+                    ParamDict={}
+                    ParamDict["p_udp_banner"]=b64decode(ubanner)
+                    ParamDict["p_tcp_banner"]=""
+                    ParamDict["agent"]=rcv_agent
+                    ParamDict["gateway"]=rcv_domain
+                    ParamDict["distro"]=rcv_distro
+                    ParamDict["distro_version"]=rcv_distro_version
+                    ParamDict["p_pid"]=rcv_p_pid
+                    ParamDict["p_name"]=rcv_p_name
+                    ParamDict["p_uid"]=rcv_p_uid
+                    ParamDict["p_gid"]=rcv_p_gid
+                    ParamDict["p_args"]=ParseArgs(rcv_p_args)
+                    ParamDict["p_rpm"]=rcv_p_rpm
+                    ParamDict["p_dpkg"]=rcv_p_dpkg
+                    ParamDict["pf_path"]=rcv_pf_path
+                    ParamDict["pf_dac"]=rcv_pf_dac
+                    ParamDict["pf_uid"]=rcv_pf_uid
+                    ParamDict["pf_gid"]=rcv_pf_gid
+                    
+                    AddQueue(ParamDict)
+                    print "pos: "+str(port_pos)
+                    print "pid: %s" %str(ParamDict["p_pid"])
+                    print "pname: %s" %ParamDict["p_name"]
+                    print "p_tcp_banner: %s" %str(ParamDict["p_udp_banner"])
+                    print "*"*50
         else:
             print "rcv_p_ubanner and rcv_p_tbanner is blank"
             ParamDict={}
@@ -115,6 +126,7 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["pf_gid"]=rcv_pf_gid
             ParamDict["p_tcp_banner"]=""
             ParamDict["p_udp_banner"]=""
+            
             AddQueue(ParamDict)
             try:
                 print "pos: "+str(port_pos)

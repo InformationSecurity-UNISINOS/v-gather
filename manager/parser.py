@@ -3,25 +3,34 @@
 from base64 import *
 
 def ParseBanner(string,pos):
-	import re
+	
 	banner=""
 	if len(string) > 1:
 		lista=[]
 		size=len(string.split(':'))-1
 		for i in xrange(0,size,2):
-			tok1=string.split(':')[i]       				# port
-			tok2=string.split(':')[i+1]     				# banner/finger print
-			try:
-				banner=b64decode(tok2)  					# so decode it
-			except:
-				banner=tok2                  				# or, just use it as is (empty)
-
-			buf=tok1+":"+banner
-
+			banner=string.split(':')[i]+":"+string.split(':')[i+1]
+			lista.append(banner)
 		try:
 			return len(lista),lista[pos]
 		except:
 			return len(lista),False
+
+def CheckKnownTcpPort(string):
+	port=string.split(':')[0]
+	if any(port in s for s in tcp_ports_already_verirified):
+		return True	# ja foi verificado
+	else:
+		tcp_ports_already_verirified.append(port)
+		return False # ainda nao foi verificado
+
+def CheckKnownUdpPort(string):
+	port=string.split(':')[0]
+	if any(port in s for s in udp_ports_already_verirified):
+		return True	# ja foi verificado
+	else:
+		udp_ports_already_verirified.append(port)
+		return False  # ainda nao foi verificado
 
 
 def ParsePortCount(string):
