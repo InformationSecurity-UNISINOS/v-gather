@@ -126,6 +126,7 @@ class XmlHandler(xmlrpc.XMLRPC):
             print "p_udp_banner: %s" %str(ParamDict["p_udp_banner"])
             print "*"*50
 
+            print "#"*100
         #MatchData()
         return True
     
