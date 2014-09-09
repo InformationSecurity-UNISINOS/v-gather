@@ -11,7 +11,10 @@ def Similarity(string_a,string_b):
 
 
 def MatchData():
-	Debug=1
+	
+	print "MatchData"
+	print "*"*20
+
 	# quantos casos tem na base?
 	total_cases=DbCountCases()
 	if total_cases == False:
