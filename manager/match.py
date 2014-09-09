@@ -23,8 +23,8 @@ def MatchData():
 		while qlen>0:
 			pdict = GetQueue()
 			for key in pdict.iterkeys():
-    			val1, val2 = map(float, pdict[key])
-    			print "%s: %s" %(str(val1),str(val2))
+				val1, val2 = map(float, pdict[key])
+				print "%s: %s" %(str(val1),str(val2))
 			qlen-=1
 	DestroyQueue()		#remover - debug
 	return 1			#remover - debug
