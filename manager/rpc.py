@@ -47,7 +47,10 @@ class XmlHandler(xmlrpc.XMLRPC):
                 tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]   #ainda em base64
                 if CheckKnownTcpPort(tbanner) == False:
                     ParamDict={}
-                    ParamDict["p_tcp_banner"]=b64decode(tbanner)
+                    try:
+                        ParamDict["p_tcp_banner"]=b64decode(tbanner)
+                    except:
+                        ParamDict["p_tcp_banner"]=tbanner
                     ParamDict["p_udp_banner"]=""
                     ParamDict["agent"]=rcv_agent
                     ParamDict["gateway"]=rcv_domain
@@ -82,7 +85,10 @@ class XmlHandler(xmlrpc.XMLRPC):
                 ubanner=ParseBanner(rcv_p_ubanner,port_pos)[1]   #ainda em base64
                 if CheckKnownUdpPort(ubanner) == False:
                     ParamDict={}
-                    ParamDict["p_udp_banner"]=b64decode(ubanner)
+                    try:
+                        ParamDict["p_udp_banner"]=b64decode(ubanner)
+                    except:
+                        ParamDict["p_udp_banner"]=ubanner
                     ParamDict["p_tcp_banner"]=""
                     ParamDict["agent"]=rcv_agent
                     ParamDict["gateway"]=rcv_domain
@@ -126,7 +132,7 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["pf_gid"]=rcv_pf_gid
             ParamDict["p_tcp_banner"]=""
             ParamDict["p_udp_banner"]=""
-            
+
             AddQueue(ParamDict)
             try:
                 print "pos: "+str(port_pos)
