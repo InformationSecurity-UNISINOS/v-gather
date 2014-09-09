@@ -40,6 +40,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                 tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]   #ainda em base64
                 print "TBANNER: "+str(tbanner)
                 if CheckKnownTcpPort(tbanner) == False:
+                    print "\t CheckKnownTcpPort FALSE"
                     ParamDict={}
                     try:
                         ParamDict["p_tcp_banner"]=b64decode(tbanner)
@@ -64,6 +65,7 @@ class XmlHandler(xmlrpc.XMLRPC):
 
                     AddQueue(ParamDict)
                 else: 
+                    print "\t CheckKnownTcpPort TRUE"
                     pass # to be explicit on this case
 
         elif rcv_p_ubanner is not "":
@@ -72,6 +74,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                 ubanner=ParseBanner(rcv_p_ubanner,port_pos)[1]   #ainda em base64
                 print "UBANNER: "+str(ubanner)
                 if CheckKnownUdpPort(ubanner) == False:
+                    print "\t CheckKnownUdpPort FALSE"
                     ParamDict={}
                     try:
                         ParamDict["p_udp_banner"]=b64decode(ubanner)
@@ -95,6 +98,9 @@ class XmlHandler(xmlrpc.XMLRPC):
                     ParamDict["pf_gid"]=rcv_pf_gid
                     
                     AddQueue(ParamDict)
+                else:
+                    print "\t CheckKnownUdpPort TRUE"
+                    pass
         else:
             ParamDict={}
             ParamDict["agent"]=rcv_agent
