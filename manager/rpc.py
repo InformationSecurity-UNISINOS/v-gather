@@ -32,7 +32,7 @@ class XmlHandler(xmlrpc.XMLRPC):
     
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_distro,rcv_distro_version,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
         print "[+] Registrando Dados Gerais"
-        Debig=1
+        Debig=0
         if Debug==1:
             print "rcv_p_name: %s" %str(rcv_p_name)
 
