@@ -33,6 +33,10 @@ class XmlHandler(xmlrpc.XMLRPC):
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_distro,rcv_distro_version,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
         print "[+] Registrando Dados Gerais"
         print "----"
+        print "rcv_p_pid" + rcv_p_pid
+        print "rcv_p_name: " +rcv_p_name
+        print "----" 
+
         if rcv_p_tbanner is not "":
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
@@ -60,8 +64,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                 print "pname: %s" %ParamDict["p_name"]
                 print "p_tcp_banner: %s" %str(ParamDict["p_tcp_banner"])
                 print "*"*50
-
-        if rcv_p_ubanner is not "":
+        else if rcv_p_ubanner is not "":
             udp_ports_total=ParseBanner(rcv_p_ubanner,0)[0]
             for port_pos in range(0,udp_ports_total):
                 ParamDict={}
@@ -88,8 +91,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                 print "pname: %s" %ParamDict["p_name"]
                 print "p_tcp_banner: %s" %str(ParamDict["p_udp_banner"])
                 print "*"*50
-
-        if rcv_p_ubanner is "" and rcv_p_tbanner is "":
+        else:
             ParamDict={}
             ParamDict["agent"]=rcv_agent
             ParamDict["gateway"]=rcv_domain
