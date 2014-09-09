@@ -25,7 +25,7 @@ def MatchData():
 			for key in pdict.iterkeys():
 				valor = pdict[key]
 				print "%s \t %s" %(key,valor)
-				print "%s: %s" %(str(val1),str(val2))
+				print "%s: %s" %(str(key),str(valor))
 			qlen-=1
 	DestroyQueue()		#remover - debug
 	return 1			#remover - debug
