@@ -32,19 +32,13 @@ class XmlHandler(xmlrpc.XMLRPC):
     
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_distro,rcv_distro_version,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
         print "[+] Registrando Dados Gerais"
-        print "----"
-        print "rcv_p_pid" + str(rcv_p_pid)
-        print "rcv_p_name: " +rcv_p_name
-        print "rcv_p_tbanner/size: %s/%s" %(rcv_p_tbanner,len(rcv_p_tbanner))
-        print "rcv_p_ubanner/size: %s/%s" %(rcv_p_ubanner,len(rcv_p_ubanner))
-        print "----" 
+        print "rcv_p_name: %s" %str(rcv_p_name)
 
         if rcv_p_tbanner is not "":
-            
-            print "rcv_p_tbanner is not blank"
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
                 tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]   #ainda em base64
+                print "TBANNER: "+str(tbanner)
                 if CheckKnownTcpPort(tbanner) == False:
                     ParamDict={}
                     try:
@@ -69,20 +63,14 @@ class XmlHandler(xmlrpc.XMLRPC):
                     ParamDict["pf_gid"]=rcv_pf_gid
 
                     AddQueue(ParamDict)
-                    print "pos: "+str(port_pos)
-                    print "pid: %s" %str(ParamDict["p_pid"])
-                    print "pname: %s" %ParamDict["p_name"]
-                    print "p_tcp_banner: %s" %str(ParamDict["p_tcp_banner"])
-                    print "*"*50
                 else: 
                     pass # to be explicit on this case
-                
-                
+
         elif rcv_p_ubanner is not "":
-            print "rcv_p_ubanner is not blank"
             udp_ports_total=ParseBanner(rcv_p_ubanner,0)[0]
             for port_pos in range(0,udp_ports_total):
                 ubanner=ParseBanner(rcv_p_ubanner,port_pos)[1]   #ainda em base64
+                print "UBANNER: "+str(ubanner)
                 if CheckKnownUdpPort(ubanner) == False:
                     ParamDict={}
                     try:
@@ -107,13 +95,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                     ParamDict["pf_gid"]=rcv_pf_gid
                     
                     AddQueue(ParamDict)
-                    print "pos: "+str(port_pos)
-                    print "pid: %s" %str(ParamDict["p_pid"])
-                    print "pname: %s" %ParamDict["p_name"]
-                    print "p_tcp_banner: %s" %str(ParamDict["p_udp_banner"])
-                    print "*"*50
         else:
-            print "rcv_p_ubanner and rcv_p_tbanner is blank"
             ParamDict={}
             ParamDict["agent"]=rcv_agent
             ParamDict["gateway"]=rcv_domain
@@ -134,17 +116,9 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["p_udp_banner"]=""
 
             AddQueue(ParamDict)
-            try:
-                print "pos: "+str(port_pos)
-            except:
-                pass
-            print "pid: %s" %str(ParamDict["p_pid"])
-            print "pname: %s" %ParamDict["p_name"]
-            print "p_tcp_banner: %s" %str(ParamDict["p_tcp_banner"])
-            print "p_udp_banner: %s" %str(ParamDict["p_udp_banner"])
-            print "*"*50
+        
+        print "#"*100
 
-            print "#"*100
         #MatchData()
         return True
     
