@@ -48,44 +48,6 @@ def GetLinuxDist(opt):
         return platform.linux_distribution()[1]
 
 '''
-'' Captura o output de algum comando de sistema
-''
-'''
-#def CheckCmdOutput(cmd,arguments,argtok,verbose):
-#    args=[]
-#    alist=arguments.split(argtok)
-#    for a in alist:
-#        args.append(a)
-
-#    p = subprocess.Popen([cmd ] + args, stdout=subprocess.PIPE)
-#    out, err = p.communicate()
-#    return out
-
-'''
-'' Verifica processos em execução
-''
-'''
-#def CheckRunningProc(procname,verbose):
-#    ret=[]
-#    pids=psutil.pids()
-#    for pid in pids:
-#        p = psutil.Process(pid)
-#        cmdline=p.cmdline()
-#        if len(cmdline) < 2:
-#            cmdline=p.name()
-#
-#        if procname in cmdline:
-#            ret.append(cmdline)
-#        else:
-#            if any(procname in s for s in cmdline):
- #               ret.append(cmdline)
-#
-#    if len(ret)>0:
-#        return ret
-#    else:
-#        return None
-
-'''
 '' Verifica arquivos abertos por processos
 ''
 '''
