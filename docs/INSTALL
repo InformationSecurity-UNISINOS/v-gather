@@ -28,9 +28,7 @@ Instalar no CentOS e Debian:
 	Debian: apt-get install nmap
 5 - instalar bibliotecas (CentOS e Debian)
 	pip install psutil
-	pip install -U treedict
 	pip install -U python-nmap
-	pip install fuzzywuzzy
-	pip install python-magic
+	pip install python-Levenshtein
 	pip install netifaces
 

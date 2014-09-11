@@ -34,9 +34,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         print "[+] Registrando Dados Gerais"
         print "rcv_p_name: " + rcv_p_name
         ready=False
-        if len(rcv_distro)>0 and len(rcv_p_pid) > 0 and len(rcv_p_name) > 0:
-            ready=True
-        else:
+        if len(rcv_distro)==0 and len(rcv_p_name)==0:
             return False
 
         if rcv_p_tbanner is not "":
@@ -46,6 +44,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                 tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]   #ainda em base64
             
                 if CheckKnownTcpPort(tbanner) == False:
+                    ready=True
                     ParamDict={}
                     try:
                         ParamDict["p_tcp_banner"]=tbanner.split(':')[0]+":"+b64decode(tbanner.split(':')[1])
@@ -79,6 +78,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                 ubanner=ParseBanner(rcv_p_ubanner,port_pos)[1]   #ainda em base64
                 
                 if CheckKnownUdpPort(ubanner) == False:
+                    ready=True
                     ParamDict={}
                     try:
                         ParamDict["p_udp_banner"]=ubanner.split(':')[0]+":"+b64decode(ubanner.split(':')[1])
@@ -105,6 +105,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                     pass
         else:
             print ">>>>>>> nao tem porta nenhuma"
+            ready=True
             ParamDict={}
             ParamDict["agent"]=rcv_agent
             ParamDict["gateway"]=rcv_domain
