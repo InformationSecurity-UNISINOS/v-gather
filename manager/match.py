@@ -186,10 +186,10 @@ def MatchData():
 				print "DISTRO NAME: %s" +str(distro_ratio)
 				print "Peso: %s" +str(distro_weight)
 				print "Score: %s" +str(distro_score)
-				
+
 			qlen-=1				
 			print "*"*100
-		case_id+=
+		case_id+=1
 	DestroyQueue()		
 		return True
 
