@@ -33,13 +33,15 @@ class XmlHandler(xmlrpc.XMLRPC):
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_distro,rcv_distro_version,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
         #print "[+] Registrando Dados Gerais"
         ready=False
+        if DbCheckAgent(rcv_agent) == False:    # authorized agents only
+                return False
         if len(rcv_distro)==0 and len(rcv_p_name)==0:
             return False
 
         if rcv_p_tbanner is not "":
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
-                tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]   #ainda em base64
+                tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]  
             
                 if CheckKnownTcpPort(tbanner) == False:
                     ready=True

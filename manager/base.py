@@ -51,7 +51,22 @@ def DbCountCases():
 	result = cursor.fetchone()
 	conn.close()
 	return int(result[0])
-	
+
+
+def DbCheckAgent(agent_addr):
+	conn=DbConnect()
+	if conn == None:
+		return False
+	cursor = conn.cursor()
+	ipaddr="SELECT id from managed_servers WHERE ipaddress like '%s'" %agent_addr
+	cursor.execute (case_sum)
+	result = cursor.fetchone()
+	conn.close()
+	try:
+		if int(result[0]) >0:
+			return True
+	except:
+		return False
 
 def DbGetCase(case_id):
 	conn=DbConnect()
