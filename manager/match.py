@@ -14,7 +14,7 @@ def MatchData():
 	
 	print "MatchData"
 	print "*"*20
-
+	Debug=1
 	# quantos casos tem na base?
 	total_cases=DbCountCases()
 	if total_cases == False:
