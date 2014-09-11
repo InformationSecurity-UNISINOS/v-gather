@@ -189,45 +189,45 @@ if(login_check($mysqli) == false) {
 																$stmt->free_result();
 	                                                			 
 	                                                    		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "SO" .'</td>';
+	                                                        		echo '<td width="20%">'. "SO" .'</td>';
 	                                                        		echo '<td>'.  $soname .'</td>';
-	                                                        		echo '<td width="100px"> '.  round($so_id_weight,3) .'</td>';
+	                                                        		echo '<td width="20%"> '.  round($so_id_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "Versão SO" .'</td>';
+	                                                        		echo '<td width="20%">'. "Versão SO" .'</td>';
 	                                                        		echo '<td>'.  $so_version .'</td>';
-	                                                        		echo '<td width="100px">'.  round($so_version_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($so_version_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "Processo" .'</td>';
+	                                                        		echo '<td width="20%">'. "Processo" .'</td>';
 	                                                        		echo '<td>'.  $process_name .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_name_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_name_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "UID do Processo" .'</td>';
+	                                                        		echo '<td width="20%">'. "UID do Processo" .'</td>';
 	                                                        		echo '<td>'.  $process_uid .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_uid_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_uid_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "GID do Processo" .'</td>';
+	                                                        		echo '<td width="20%">'. "GID do Processo" .'</td>';
 	                                                        		echo '<td>'.  $process_gid .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_gid_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_gid_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "Argumentos do Processo" .'</td>';
+	                                                        		echo '<td width="20%">'. "Argumentos do Processo" .'</td>';
 	                                                        		echo '<td>'.  $process_args .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_args_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_args_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "Pacote do Processo" .'</td>';
+	                                                        		echo '<td width="20%">'. "Pacote do Processo" .'</td>';
 	                                                        		echo '<td>'.  $package_name .'</td>';
-	                                                        		echo '<td width="100px">'.  round($package_name_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($package_name_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		$stmt = $mysqli->prepare("select name from package_types where id = ?");
@@ -238,57 +238,57 @@ if(login_check($mysqli) == false) {
 																$stmt->free_result();
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "Gerenciador de Pacotes" .'</td>';
+	                                                        		echo '<td width="20%">'. "Gerenciador de Pacotes" .'</td>';
 	                                                        		echo '<td>'.  $pkg_mgr .'</td>';
-	                                                        		echo '<td width="100px">'. round($package_type_id_weight,3). '</td>';
+	                                                        		echo '<td width="20%">'. round($package_type_id_weight,3). '</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "Binário do Processo" .'</td>';
+	                                                        		echo '<td width="20%">'. "Binário do Processo" .'</td>';
 	                                                        		echo '<td>'.  $process_binary .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_binary_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_binary_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "UID do Binário do Processo" .'</td>';
+	                                                        		echo '<td width="20%">'. "UID do Binário do Processo" .'</td>';
 	                                                        		echo '<td>'.  $process_binary_uid .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_binary_uid_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_binary_uid_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "GID do Binário do Processo" .'</td>';
+	                                                        		echo '<td width="20%">'. "GID do Binário do Processo" .'</td>';
 	                                                        		echo '<td>'.  $process_binary_gid .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_binary_gid_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_binary_gid_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "DAC do Binário do Processo" .'</td>';
+	                                                        		echo '<td width="20%">'. "DAC do Binário do Processo" .'</td>';
 	                                                        		echo '<td>'.  $process_binary_dac .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_binary_dac_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_binary_dac_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "Banner de serviço TCP:" .'</td>';
+	                                                        		echo '<td width="20%">'. "Banner de serviço TCP:" .'</td>';
 	                                                        		echo '<td>'.  $process_tcp_banner .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_tcp_banner_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_tcp_banner_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "Quantidade de portas TCP usadas:" .'</td>';
+	                                                        		echo '<td width="20%">'. "Quantidade de portas TCP usadas:" .'</td>';
 	                                                        		echo '<td>'.  $process_tcp_portas .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_tcp_portas_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_tcp_portas_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "Banner de serviço UDP:" .'</td>';
+	                                                        		echo '<td width="20%">'. "Banner de serviço UDP:" .'</td>';
 	                                                        		echo '<td>'.  $process_udp_banner .'</td>';
-	                                                        		echo '<td width="100px"'.  round($process_udp_banner_weight,3) .'</td>';
+	                                                        		echo '<td width="20%"'.  round($process_udp_banner_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="100px">'. "Quantidade de portas UDP usadas:" .'</td>';
+	                                                        		echo '<td width="20%">'. "Quantidade de portas UDP usadas:" .'</td>';
 	                                                        		echo '<td>'.  $process_udp_portas .'</td>';
-	                                                        		echo '<td width="100px">'.  round($process_udp_portas_weight,3) .'</td>';
+	                                                        		echo '<td width="20%">'.  round($process_udp_portas_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 																	
 																$stmt=$mysqli->prepare("select solution,description from use_case_desc_solution where case_id = ?");
