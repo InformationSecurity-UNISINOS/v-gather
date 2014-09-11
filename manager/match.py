@@ -13,7 +13,7 @@ def Similarity(string_a,string_b):
 def MatchData():
 	
 	print "MatchData"
-	print "*"*20
+	
 	Debug=1
 	# quantos casos tem na base?
 	total_cases=DbCountCases()
@@ -27,8 +27,9 @@ def MatchData():
 			pdict = GetQueue()
 			for key in pdict.iterkeys():
 				valor = pdict[key]
-				print "%s \t %s" %(key,valor)
+				print "*"*20
 				print "%s: %s" %(str(key),str(valor))
+				print "*"*20
 			qlen-=1
 	DestroyQueue()		#remover - debug
 	return 1			#remover - debug
