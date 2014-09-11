@@ -25,7 +25,7 @@ def MatchData():
 			return False
 		db_so_name=DbGetSoName(db_case['so_id'])
 		db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
-		debug=False
+		debug=True
 
 		qlen=LenQueue()
 		while qlen>0:
