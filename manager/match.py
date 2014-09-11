@@ -24,13 +24,13 @@ def MatchData():
 	qlen=LenQueue()
 	if Debug==1:
 		while qlen>0:
+			print "*"*20
 			pdict = GetQueue()
 			for key in pdict.iterkeys():
 				valor = pdict[key]
-				print "*"*20
 				print "%s: %s" %(str(key),str(valor))
-				print "*"*20
 			qlen-=1
+			print "*"*20
 	DestroyQueue()		#remover - debug
 	return 1			#remover - debug
 
