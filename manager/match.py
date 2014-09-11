@@ -46,13 +46,13 @@ def MatchData():
 			p_pkgm_score = p_pkg_weight * p_pkg_ratio
 			if debug==True:
 				print "*"*100
-				print "Gerenciador de Pacotes: %s" +str(p_pkgm_ratio)
-				print "Peso: %s" +str(p_pkgm_weight)
-				print "Score: %s" +str(p_pkg_score)
+				print "Gerenciador de Pacotes: " +str(p_pkgm_ratio)
+				print "Peso: " +str(p_pkgm_weight)
+				print "Score: " +str(p_pkg_score)
 				print "*"*100
-				print "Pacote: %s" +str(p_pkg_ratio)
-				print "Peso: %s" +str(p_pkg_weight)
-				print "Score: %s" +str(p_pkg_score)
+				print "Pacote: " +str(p_pkg_ratio)
+				print "Peso: " +str(p_pkg_weight)
+				print "Score: " +str(p_pkg_score)
 				
 			#########################################################################
 			# PROCESS PROCESS NAME
@@ -62,9 +62,9 @@ def MatchData():
 			p_name_score = p_name_ratio * p_name_weight
 			if debug==True:
 				print "*"*100
-				print "Processo: %s" +str(p_name_ratio)
-				print "Peso: %s" +str(p_name_weight)
-				print "Score: %s" +str(p_name_score)
+				print "Processo: " +str(p_name_ratio)
+				print "Peso: " +str(p_name_weight)
+				print "Score: " +str(p_name_score)
 			#########################################################################
 			# PROCESS UID:
 			#########################################################################
@@ -73,9 +73,9 @@ def MatchData():
 	 		p_uid_score = p_uid_weight * p_uid_ratio
 	 		if debug==True:
 				print "*"*100
-				print "P UID: %s" +str(p_uid_ratio)
-				print "Peso: %s" +str(p_uid_weight)
-				print "Score: %s" +str(p_uid_score)
+				print "P UID: " +str(p_uid_ratio)
+				print "Peso: " +str(p_uid_weight)
+				print "Score: " +str(p_uid_score)
 			#########################################################################
 			# PROCESS GID:
 			#########################################################################
@@ -84,20 +84,20 @@ def MatchData():
 			p_gid_score = p_gid_ratio * p_gid_weight
 			if debug==True:
 				print "*"*100
-				print "P GID: %s" +str(p_gid_ratio)
-				print "Peso: %s" +str(p_gid_weight)
-				print "Score: %s" +str(p_gid_score)
+				print "P GID: " +str(p_gid_ratio)
+				print "Peso: " +str(p_gid_weight)
+				print "Score: " +str(p_gid_score)
 			#########################################################################
 			# PROCESS PROCESS ARGS
 			#########################################################################
 			p_args_ratio = Similarity( str(pdict['p_args']) , str(db_case['process_args']) )
-			p_args_weight = b_case['process_args_weight']
+			p_args_weight = db_case['process_args_weight']
 			p_args_score = p_args_ratio * p_args_weight
 			if debug==True:
 				print "*"*100
-				print "P ARGS: %s" +str(p_args_ratio)
-				print "Peso: %s" +str(p_args_weight)
-				print "Score: %s" +str(p_args_score)
+				print "P ARGS: " +str(p_args_ratio)
+				print "Peso: " +str(p_args_weight)
+				print "Score: " +str(p_args_score)
 			#########################################################################
 			# PROCESS TCP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
@@ -106,9 +106,9 @@ def MatchData():
 			p_tcp_banner_score = p_tcp_banner_ratio * p_tcp_banner_weight
 			if debug==True:
 				print "*"*100
-				print "P TCP BANNER: %s" +str(p_tcp_banner_ratio)
-				print "Peso: %s" +str(p_tcp_banner_weight)
-				print "Score: %s" +str(p_tcp_banner_score)
+				print "P TCP BANNER: " +str(p_tcp_banner_ratio)
+				print "Peso: " +str(p_tcp_banner_weight)
+				print "Score: " +str(p_tcp_banner_score)
 			#########################################################################
 			# PROCESS UDP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
@@ -117,9 +117,9 @@ def MatchData():
 			p_udp_banner_score = p_udp_banner_ratio * p_udp_banner_weight
 			if debug==True:
 				print "*"*100
-				print "P UDP BANNER: %s" +str(p_udp_banner_ratio)
-				print "Peso: %s" +str(p_udp_banner_weight)
-				print "Score: %s" +str(p_udp_banner_score)
+				print "P UDP BANNER: " +str(p_udp_banner_ratio)
+				print "Peso: " +str(p_udp_banner_weight)
+				print "Score: " +str(p_udp_banner_score)
 			#########################################################################
 			# PROCESS FILE PATH
 			#########################################################################
@@ -128,9 +128,9 @@ def MatchData():
 			pf_path_score = pf_path_ratio * pf_path_weight
 			if debug==True:
 				print "*"*100
-				print "PF PATH: %s" +str(pf_path_ratio)
-				print "Peso: %s" +str(pf_path_weight)
-				print "Score: %s" +str(pf_path_score)
+				print "PF PATH: " +str(pf_path_ratio)
+				print "Peso: " +str(pf_path_weight)
+				print "Score: " +str(pf_path_score)
 			#########################################################################
 			# PROCESS FILE UID OWNER
 			#########################################################################
@@ -139,9 +139,9 @@ def MatchData():
 			pf_uid_score = pf_uid_ratio * pf_uid_weight
 			if debug==True:
 				print "*"*100
-				print "PF UID: %s" +str(pf_uid_ratio)
-				print "Peso: %s" +str(pf_uid_weight)
-				print "Score: %s" +str(pf_uid_score)
+				print "PF UID: " +str(pf_uid_ratio)
+				print "Peso: " +str(pf_uid_weight)
+				print "Score: " +str(pf_uid_score)
 			#########################################################################
 			# PROCESS FILE GID OWNER
 			#########################################################################
@@ -150,9 +150,9 @@ def MatchData():
 			pf_gid_score = pf_gid_ratio * pf_gid_weight
 			if debug==True:
 				print "*"*100
-				print "PF GID: %s" +str(pf_gid_ratio)
-				print "Peso: %s" +str(pf_gid_weight)
-				print "Score: %s" +str(pf_gid_score)
+				print "PF GID: " +str(pf_gid_ratio)
+				print "Peso: " +str(pf_gid_weight)
+				print "Score: " +str(pf_gid_score)
 			#########################################################################
 			# PROCESS FILE DAC
 			#########################################################################
@@ -161,9 +161,9 @@ def MatchData():
 			pf_dac_score = pf_dac_ratio * pf_dac_weight
 			if debug==True:
 				print "*"*100
-				print "PF DAC: %s" +str(pf_dac_ratio)
-				print "Peso: %s" +str(pf_dac_weight)
-				print "Score: %s" +str(pf_dac_score)
+				print "PF DAC: " +str(pf_dac_ratio)
+				print "Peso: " +str(pf_dac_weight)
+				print "Score: " +str(pf_dac_score)
 			#########################################################################
 			# PROCESS DISTRO VERSION
 			#########################################################################
@@ -172,9 +172,9 @@ def MatchData():
 			distro_version_score = distro_version_ratio * distro_version_weight
 			if debug==True:
 				print "*"*100
-				print "DISTRO VERSION: %s" +str(distro_version_ratio)
-				print "Peso: %s" +str(distro_version_weight)
-				print "Score: %s" +str(distro_version_score)
+				print "DISTRO VERSION: " +str(distro_version_ratio)
+				print "Peso: " +str(distro_version_weight)
+				print "Score: " +str(distro_version_score)
 			#########################################################################
 			# PROCESS DISTRO NAME
 			#########################################################################
@@ -183,9 +183,9 @@ def MatchData():
  			distro_score = distro_ratio * distro_weight
 			if debug==True:
 				print "*"*100
-				print "DISTRO NAME: %s" +str(distro_ratio)
-				print "Peso: %s" +str(distro_weight)
-				print "Score: %s" +str(distro_score)
+				print "DISTRO NAME: " +str(distro_ratio)
+				print "Peso: " +str(distro_weight)
+				print "Score: " +str(distro_score)
 
 			qlen-=1				
 			print "*"*100
