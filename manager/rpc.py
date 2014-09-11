@@ -125,7 +125,7 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["p_udp_banner"]=""
             AddQueue(ParamDict)
 
-        if ready==True
+        if ready==True:
             MatchData()
         return True
     
