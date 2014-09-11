@@ -111,8 +111,7 @@ def StartScan(Dry):
         else:
             print "[x] Manager offline"
 
-        print "[+] Sent: %d itens" %sent_count
-
+    print "[+] Sent: %d itens" %sent_count
     return 0
         
 
