@@ -126,6 +126,7 @@ def main():
                 print '[+] Manager Offline'
         if opcao == "-d":
             Dry=True
+            StartScan()
         if opcao == "-h":
             usage()
         if opcao == "-a":
