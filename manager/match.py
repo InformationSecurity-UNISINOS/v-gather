@@ -6,9 +6,6 @@ from parser import *
 from cqueue import * 
 
 def Similarity(string_a,string_b):
-	#from difflib import SequenceMatcher
-	#.quick_ratio()
-	#return round(SequenceMatcher(None, string_a,string_b).ratio(),2)
 	import Levenshtein
 	return round(Levenshtein.ratio(string_a,string_b),2)
 
