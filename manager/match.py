@@ -192,7 +192,9 @@ def MatchData():
 			print "DB_PNAME: "+str( db_case['process_name'])
 			print "FINAL SCORE: " +str(final_score)
 			qlen-=1				
-			print "*"*100
+			print "*"*200
+			print ""
+			print ""
 		case_id+=1
 	DestroyQueue()		
 	return True
