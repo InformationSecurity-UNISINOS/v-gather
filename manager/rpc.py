@@ -21,11 +21,6 @@ import re
 '''
 
 class XmlHandler(xmlrpc.XMLRPC):
-    def xmlrpc_register(self,address,domain,code):
-        agent = code
-        agent_address = address
-        agent_domain = domain
-        return True
     
     def xmlrpc_ping(self):
         return 1
