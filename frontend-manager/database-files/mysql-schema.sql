@@ -24,6 +24,8 @@ CREATE TABLE `managed_servers` (
   `ipaddress` varchar(15) DEFAULT NULL,
   `hostname` varchar(255) DEFAULT NULL,
   `agent_version` varchar(10) DEFAULT NULL,
+  `created` TIMESTAMP NOT NULL,
+  `updated` TIMESTAMP NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ----------------------------
