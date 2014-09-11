@@ -46,7 +46,7 @@ def StartScan(Dry):
 
         if Dry==True:
             print "GNU/LINUX DIST: " +str(GetLinuxDist(DIST_NAME))
-            print "DIST VERSION: " +str(etLinuxDist(DIST_VER))
+            print "DIST VERSION: " +str(GetLinuxDist(DIST_VER))
             print "PROCESS PID: " +str(p_pid)
             print "PROCESS NAME: " +str(p_name)
             print "PROCESS UID: " +str(p_uid)
@@ -99,7 +99,7 @@ def StartScan(Dry):
                 except:
                     continue
         
-            
+
         if Dry==False:
             return 0
 
