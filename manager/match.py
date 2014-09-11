@@ -21,7 +21,8 @@ def MatchData():
 	while case_id <= total_cases:
 		db_case={}
 		db_case=DbGetCase(case_id)
-		if db_case
+		if db_case is 0 or db_case is False:
+			return False
 		db_so_name=DbGetSoName(db_case['so_id'])
 		db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
 		debug=True
