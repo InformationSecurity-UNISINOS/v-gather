@@ -189,54 +189,32 @@ if(login_check($mysqli) == false) {
 
 												<tr>
 													<td>
-														Banner (TCP)<br>
+														Porta/Finterprint (TCP)<br>
 														<font color="#b8b8b8">
-															<i>O banner deve ser capturado através do nmap (-sV)</i>
+															<i>O fingerprint deve ser capturado através do nmap (-sV)<br>Se o serviço for executado em várias portas, crie um caso pra cada porta.</i>
 			                                    		</font>
 													</td>
 													<td>
-														<input placeholder="Exemplos: Apache httpd"class="form-control focused" id="p_tcp_banner" name="p_tcp_banner" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_tcp_banner" name="p_tcp_banner" type="text" autocomplete="disabled" required>
 													</td>
 													<td>
 														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_tcp_banner_weight" name="p_tcp_banner_weight" type="text" required>
 													</td>
 												</tr>
-												<tr>
-													<td>
-														Portas (TCP) do Serviço
-													</td>
-													<td>
-														<input placeholder="Exemplos: 80,443,8080"class="form-control focused" id="p_tcp_portas" name="p_tcp_portas" type="text" autocomplete="disabled" required>
-													</td>
-													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_tcp_portas_weight" name="p_tcp_portas_weight" type="text" required>
-													</td>
-												</tr>
+		
 
 												<tr>
 													<td>
-														Banner (UDP)<br>
+														Porta/Finterprint (UDP)<br>
 														<font color="#b8b8b8">
-															<i>O banner deve ser capturado através do nmap (-sUV)</i>
+															<i>O fingerprint deve ser capturado através do nmap (-sUV)</i>
 			                                    		</font>
 													</td>
 													<td>
-														<input placeholder="Exemplos: 80,443,8080"class="form-control focused" id="p_udp_banner" name="p_udp_banner" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_udp_banner" name="p_udp_banner" type="text" autocomplete="disabled" required>
 													</td>
 													<td>
 														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_udp_banner_weight" name="p_udp_banner_weight" type="text" required>
-													</td>
-												</tr>
-
-												<tr>
-													<td>
-														Portas (UDP) do Serviço
-													</td>
-													<td>
-														<input placeholder="Exemplos: 80,443,8080"class="form-control focused" id="p_udp_portas" name="p_udp_portas" type="text" autocomplete="disabled" required>
-													</td>
-													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_udp_portas_weight" name="p_udp_portas_weight" type="text" required>
 													</td>
 												</tr>
 

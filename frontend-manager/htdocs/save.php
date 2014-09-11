@@ -79,29 +79,6 @@ if (isset($_POST['p_udp_banner_weight'])) {
   $p_udp_banner_weight=$_POST['p_udp_banner_weight'];
 }
 //============================================================================================================
-if (isset($_POST['p_tcp_portas'])) {
-  $p_tcp_portas=$_POST['p_tcp_portas'];
-}
-if (isset($_POST['p_tcp_portas_weight'])) {
-  $p_tcp_portas_weight=$_POST['p_tcp_portas_weight'];
-}
-//============================================================================================================
-/*
-if (isset($_POST['p_udp_portas'])) {
-  if (!empty($_POST['p_udp_portas'])) {
-    $line=explode(',',$_POST['udp_portas']);
-    $p_udp_portcount=count($line);
-  } else {
-    $p_udp_portcount=0;
-  }
-}*/
-if (isset($_POST['p_udp_portas'])) {
-  $p_udp_portas=$_POST['p_udp_portas'];
-}
-if (isset($_POST['p_udp_portas_weight'])) {
-  $p_udp_portas_weight=$_POST['p_udp_portas_weight'];
-}
-//============================================================================================================
 if (isset($_POST['p_package'])) {
   $p_package=$_POST['p_package'];
 }
