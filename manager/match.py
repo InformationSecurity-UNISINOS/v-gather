@@ -33,6 +33,7 @@ def MatchData():
 		debug=False
 
 		qlen=LenQueue()
+		print "QLEN: "+str(qlen)
 		while qlen>0:
 			print "*"*20
 			pdict = GetQueue()
