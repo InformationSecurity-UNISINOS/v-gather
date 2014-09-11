@@ -114,7 +114,7 @@ def DbGetCase(case_id):
 	db_case['process_tcp_banner']=results[0][13]
 	db_case['process_tcp_banner_weight']=results[0][14]
 	db_case['process_udp_banner']=results[0][15]
-	db_case['rocess_udp_banner_weight']=results[0][16]
+	db_case['process_udp_banner_weight']=results[0][16]
 	db_case['process_tcp_portas']=results[0][17]
 	db_case['process_tcp_portas_weight']=results[0][18]
 	db_case['process_udp_portas']=results[0][19]
