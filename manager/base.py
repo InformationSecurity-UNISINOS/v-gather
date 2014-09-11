@@ -59,7 +59,7 @@ def DbCheckAgent(agent_addr):
 		return False
 	cursor = conn.cursor()
 	ipaddr="SELECT id from managed_servers WHERE ipaddress like '%s'" %agent_addr
-	cursor.execute (case_sum)
+	cursor.execute (ipaddr)
 	result = cursor.fetchone()
 	conn.close()
 	try:
