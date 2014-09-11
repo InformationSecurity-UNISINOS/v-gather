@@ -20,7 +20,7 @@ def usage():
     print "\t-d\tModo dry-run (Roda local, exibe, mas nao submete ao manager)"
     print "\t-h\tMostrar este help"
 
-def StartScan():
+def StartScan(Dry):
     domain,server=GetHostNetwork()
     GetDaemons()
     group=user=token=""
@@ -98,7 +98,7 @@ def StartScan():
             print "*"*50
             return 0 
 
-        if PingManager()==1:
+        if PingManager()==1 and Dry==False:
             SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
         else:
             print "[x] Manager offline"
@@ -126,11 +126,12 @@ def main():
                 print '[+] Manager Offline'
         if opcao == "-d":
             Dry=True
-            StartScan()
+            StartScan(Dry)
         if opcao == "-h":
             usage()
         if opcao == "-a":
-            StartScan()
+            NoDry=False
+            StartScan(NoDry)
         
 
 

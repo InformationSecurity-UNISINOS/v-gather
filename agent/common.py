@@ -139,9 +139,7 @@ class FileInfo(object):
 
         def __str__(self):
                 return "%s %s %s" % (self.uname, self.gname, self.file)
-
-
-Dry=False
+                
 nlist=[]
 #portas ja scaneadas: 
 svc_udp_checked={}
