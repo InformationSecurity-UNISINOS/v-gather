@@ -141,7 +141,7 @@ class FileInfo(object):
                 return "%s %s %s" % (self.uname, self.gname, self.file)
 
 
-
+Dry=False
 nlist=[]
 #portas ja scaneadas: 
 svc_udp_checked={}

@@ -17,6 +17,7 @@ def usage():
     print "%s <opcao> " %(sys.argv[0])
     print "\t-t\tTestar comunicação com o manager"
     print "\t-a\tAnalisar ambiente"
+    print "\t-d\tModo dry-run (Roda local, exibe, mas nao submete ao manager)"
     print "\t-h\tMostrar este help"
 
 def StartScan():
@@ -78,12 +79,31 @@ def StartScan():
                     
                 except:
                     continue
+        if Dry==True:
+            print "GNU/LINUX DIST: " +str(GetLinuxDist(DIST_NAME))
+            print "DIST VERSION: " +str(etLinuxDist(DIST_VER))
+            print "PROCESS PID: " +str(p_pid)
+            print "PROCESS NAME: " +str(p_name)
+            print "PROCESS UID: " +str(p_uid)
+            print "PROCESS GID: " +str(p_gid)
+            print "PROCESS RPM: " +str(p_rpm)
+            print "PROCESS DPKG: " +str(p_dpkg)
+            print "PROCESS ARGS: " +str(p_args)
+            print "PROCESS FILE PATH: " +str(pf_path)
+            print "PROCESS FILE UID: " +str(pf_uid)
+            print "PROCESS FILE GID: " +str(pf_gid)
+            print "PROCESS FILE DAC: " +str(pf_dac)
+            print "PROCESS TCP FINGERPRINT: " +str(tcp_banner)
+            print "PROCESS TCP FINGERPRINT: " +str(udp_banner)
+            print "*"*50
+            return 0 
 
         if PingManager()==1:
-            
             SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
         else:
             print "[x] Manager offline"
+            return 1
+        return 0
         
 
 def main():
@@ -92,7 +112,7 @@ def main():
         usage()
         sys.exit(1)
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "ath")
+        opts, args = getopt.getopt(sys.argv[1:], "atdh")
     except getopt.GetoptError as err:
         print str(err)
         usage()
@@ -104,6 +124,8 @@ def main():
                 print "[+] Manager Online"
             else:
                 print '[+] Manager Offline'
+        if opcao == "-d":
+            Dry=True
         if opcao == "-h":
             usage()
         if opcao == "-a":
