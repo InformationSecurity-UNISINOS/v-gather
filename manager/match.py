@@ -191,7 +191,7 @@ def MatchData():
 			print "*"*100
 		case_id+=1
 	DestroyQueue()		
-		return True
+	return True
 
 
 
