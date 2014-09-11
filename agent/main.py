@@ -24,6 +24,7 @@ def StartScan(Dry):
     domain,server=GetHostNetwork()
     GetDaemons()
     group=user=token=""
+    sent_count=0
     
     for item in nlist:
 
