@@ -36,7 +36,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         ready=False
         if len(rcv_distro)>0 and len(rcv_p_pid) > 0 and len(rcv_p_name) > 0:
             ready=True
-        else
+        else:
             return False
 
         if rcv_p_tbanner is not "":
