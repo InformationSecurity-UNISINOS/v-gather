@@ -44,6 +44,21 @@ def StartScan(Dry):
         pf_gid = str(item.getFileGid())
         p_args = b64encode(item.getDaemonArgs())
 
+        if Dry==True:
+            print "GNU/LINUX DIST: " +str(GetLinuxDist(DIST_NAME))
+            print "DIST VERSION: " +str(etLinuxDist(DIST_VER))
+            print "PROCESS PID: " +str(p_pid)
+            print "PROCESS NAME: " +str(p_name)
+            print "PROCESS UID: " +str(p_uid)
+            print "PROCESS GID: " +str(p_gid)
+            print "PROCESS RPM: " +str(p_rpm)
+            print "PROCESS DPKG: " +str(p_dpkg)
+            print "PROCESS ARGS: " +str(p_args)
+            print "PROCESS FILE PATH: " +str(pf_path)
+            print "PROCESS FILE UID: " +str(pf_uid)
+            print "PROCESS FILE GID: " +str(pf_gid)
+            print "PROCESS FILE DAC: " +str(pf_dac)
+
         p_tcp_l = item.getDaemonTcp()                   # recebe 0.0.0.0:80
         tcp_banner=""
         tcp_pcount=0
@@ -56,6 +71,8 @@ def StartScan(Dry):
                     p_tcp_fp_l=item.getDaemonTcpFp()
                     fp_item=p_tcp_fp_l.get(int(porta))
                     # print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
+                    if Dry==True:
+                         print "PROCESS TCP FINGERPRINT: " +str(porta)+":"+str(fp_item)
                     tcp_banner=tcp_banner+porta+":"+b64encode(fp_item) + ":" # porta:banner em base64 
                     tcp_pcount+=1
                 except:
@@ -74,29 +91,17 @@ def StartScan(Dry):
                     p_udp_fp_l = item.getDaemonUdpFp()
                     fp_item=p_udp_fp_l.get(int(porta))
                     #print "ip: " + ip + " porta: " + porta + " banner: " + fp_item 
+                    if Dry==True:
+                         print "PROCESS UDP FINGERPRINT: " +str(porta)+":"+str(fp_item)
                     udp_banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
                     udp_pcount+=1
                     
                 except:
                     continue
-        if Dry==True:
-            print "GNU/LINUX DIST: " +str(GetLinuxDist(DIST_NAME))
-            print "DIST VERSION: " +str(etLinuxDist(DIST_VER))
-            print "PROCESS PID: " +str(p_pid)
-            print "PROCESS NAME: " +str(p_name)
-            print "PROCESS UID: " +str(p_uid)
-            print "PROCESS GID: " +str(p_gid)
-            print "PROCESS RPM: " +str(p_rpm)
-            print "PROCESS DPKG: " +str(p_dpkg)
-            print "PROCESS ARGS: " +str(p_args)
-            print "PROCESS FILE PATH: " +str(pf_path)
-            print "PROCESS FILE UID: " +str(pf_uid)
-            print "PROCESS FILE GID: " +str(pf_gid)
-            print "PROCESS FILE DAC: " +str(pf_dac)
-            print "PROCESS TCP FINGERPRINT: " +str(tcp_banner)
-            print "PROCESS TCP FINGERPRINT: " +str(udp_banner)
-            print "*"*50
-            return 0 
+        
+            
+        if Dry==False:
+            return 0
 
         if PingManager()==1 and Dry==False:
             SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
