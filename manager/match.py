@@ -68,7 +68,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS UID:
 			#########################################################################
-	 		p_uid_ratio = Similarity( pdict['p_uid'] , db_case['process_uid'] )
+	 		p_uid_ratio = Similarity( str(pdict['p_uid']) , str(db_case['process_uid']) )
 	 		p_uid_weight = db_case['process_uid_weight']
 	 		p_uid_score = p_uid_weight * p_uid_ratio
 	 		if debug==True:
@@ -79,7 +79,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS GID:
 			#########################################################################
-			p_gid_ratio = Similarity( pdict['p_gid'] , db_case['process_gid'] )
+			p_gid_ratio = Similarity( str(pdict['p_gid']) , str(db_case['process_gid']) )
 			p_gid_weight = db_case['process_gid_weight']
 			p_gid_score = p_gid_ratio * p_gid_weight
 			if debug==True:
@@ -90,7 +90,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS PROCESS ARGS
 			#########################################################################
-			p_args_ratio = Similarity( pdict['p_args'] , db_case['process_args'] )
+			p_args_ratio = Similarity( str(pdict['p_args']) , str(db_case['process_args']) )
 			p_args_weight = b_case['process_args_weight']
 			p_args_score = p_args_ratio * p_args_weight
 			if debug==True:
@@ -134,7 +134,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS FILE UID OWNER
 			#########################################################################
-			pf_uid_ratio = Similarity( pdict['pf_uid'] , db_case['process_binary_uid'] )
+			pf_uid_ratio = Similarity( str(pdict['pf_uid']) , str(db_case['process_binary_uid']) )
 			pf_uid_weight = db_case['process_binary_uid_weight']
 			pf_uid_score = pf_uid_ratio * pf_uid_weight
 			if debug==True:
@@ -145,7 +145,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS FILE GID OWNER
 			#########################################################################
-			pf_gid_ratio = Similarity( pdict['pf_gid'] , db_case['process_binary_gid'] )
+			pf_gid_ratio = Similarity( str(pdict['pf_gid']) , str(db_case['process_binary_gid']) )
 			pf_gid_weight = db_case['process_binary_gid_weight']
 			pf_gid_score = pf_gid_ratio * pf_gid_weight
 			if debug==True:
@@ -156,7 +156,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS FILE DAC
 			#########################################################################
-			pf_dac_ratio = Similarity( pdict['pf_dac'] ,  db_case['process_binary_dac'] )
+			pf_dac_ratio = Similarity( str(pdict['pf_dac']) ,  str(db_case['process_binary_dac']) )
 			pf_dac_weight = db_case['process_binary_dac_weight']
 			pf_dac_score = pf_dac_ratio * pf_dac_weight
 			if debug==True:
@@ -167,7 +167,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS DISTRO VERSION
 			#########################################################################
-			distro_version_ratio = Similarity( pdict['distro_version'] ,  db_case['so_version'] )
+			distro_version_ratio = Similarity( str(pdict['distro_version']) ,  str(db_case['so_version']) )
 			distro_version_weight = db_case['so_version_weight']
 			distro_version_score = distro_version_ratio * distro_version_weight
 			if debug==True:
@@ -178,7 +178,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS DISTRO NAME
 			#########################################################################
-			distro_ratio = Similarity( pdict['distro'] , db_so_name )
+			distro_ratio = Similarity( str(pdict['distro']) , str(db_so_name) )
 			distro_weight = db_case['so_id_weight']
  			distro_score = distro_ratio * distro_weight
 			if debug==True:
