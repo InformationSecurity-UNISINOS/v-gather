@@ -27,7 +27,6 @@ def StartScan(Dry):
     sent_count=0
     
     for item in nlist:
-
         p_pid = item.getDaemonPid()
         p_name = item.getDaemon()
         p_uid = str(item.getDaemonUid())
@@ -111,9 +110,10 @@ def StartScan(Dry):
             SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
         else:
             print "[x] Manager offline"
-            
+
         print "[+] Sent: %d itens" %sent_count
-        return 0
+
+    return 0
         
 
 def main():
@@ -135,13 +135,11 @@ def main():
             else:
                 print '[+] Manager Offline'
         if opcao == "-d":
-            Dry=True
-            StartScan(Dry)
+            StartScan(True)
         if opcao == "-h":
             usage()
         if opcao == "-a":
-            NoDry=False
-            StartScan(NoDry)
+            StartScan(False)
         
 
 
