@@ -4,7 +4,12 @@ from common import *
 from base import *
 from parser import *
 from cqueue import * 
-
+'''
+Similaridade:
+Case-based reasoning is a methodology not a technology - I. Watson
+AI-CBR, University of Salford, Salford M5 4WT, UK
+Received 1 December 1998; accepted 17 March 1999
+'''
 def Similarity(string_a,string_b):
 	import Levenshtein
 	return round(Levenshtein.ratio(string_a,string_b),2)
@@ -25,7 +30,7 @@ def MatchData():
 			return False
 		db_so_name=DbGetSoName(db_case['so_id'])
 		db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
-		debug=True
+		debug=False
 
 		qlen=LenQueue()
 		while qlen>0:
