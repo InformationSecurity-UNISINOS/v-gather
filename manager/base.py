@@ -76,7 +76,7 @@ def DbGetCase(case_id):
 		# nao existem casos na base
 		return 0 
 	cursor = conn.cursor()
-	query="id,\
+	query="SELECT id,\
 	so_id, so_id_weight, \
 	so_version, so_version_weight,\
 	process_name, process_name_weight,\
