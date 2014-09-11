@@ -53,7 +53,7 @@ def StartScan(Dry):
             print "PROCESS GID: " +str(p_gid)
             print "PROCESS RPM: " +str(p_rpm)
             print "PROCESS DPKG: " +str(p_dpkg)
-            print "PROCESS ARGS: " +str(p_args)
+            print "PROCESS ARGS: " +str(item.getDaemonArgs())
             print "PROCESS FILE PATH: " +str(pf_path)
             print "PROCESS FILE UID: " +str(pf_uid)
             print "PROCESS FILE GID: " +str(pf_gid)
@@ -101,6 +101,7 @@ def StartScan(Dry):
         
 
         if Dry==True:
+            print "*"*100
             continue
 
         if PingManager()==1:
