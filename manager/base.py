@@ -72,7 +72,7 @@ def DbGetCase(case_id):
 	conn=DbConnect()
 	if conn == None:
 		return False
-	if DbCountCases == 0:
+	if DbCountCases() == 0:
 		# nao existem casos na base
 		return 0 
 	cursor = conn.cursor()
