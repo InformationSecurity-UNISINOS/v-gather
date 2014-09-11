@@ -32,15 +32,13 @@ class XmlHandler(xmlrpc.XMLRPC):
     
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_distro,rcv_distro_version,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
         print "[+] Registrando Dados Gerais"
-        Debug=0å
         print "rcv_p_name: " + rcv_p_name
         if rcv_p_tbanner is not "":
             print ">>>>>>> nao tem porta tcp"
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
                 tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]   #ainda em base64
-                if Debug==1:
-                    print "TBANNER: "+str(tbanner)
+            
                 if CheckKnownTcpPort(tbanner) == False:
                     ParamDict={}
                     try:
@@ -73,8 +71,7 @@ class XmlHandler(xmlrpc.XMLRPC):
             udp_ports_total=ParseBanner(rcv_p_ubanner,0)[0]
             for port_pos in range(0,udp_ports_total):
                 ubanner=ParseBanner(rcv_p_ubanner,port_pos)[1]   #ainda em base64
-                if Debug==1:
-                    print "UBANNER: "+str(ubanner)
+                
                 if CheckKnownUdpPort(ubanner) == False:
                     ParamDict={}
                     try:
@@ -123,8 +120,6 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["p_udp_banner"]=""
 
             AddQueue(ParamDict)
-        if Debug==1:
-            print "#"*100
 
         MatchData()
         return True
