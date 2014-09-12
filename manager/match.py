@@ -21,6 +21,7 @@ def MatchData():
 
 	total_cases=DbCountCases()
 	if total_cases == False:
+		print "  + Não existem casos na base. Cadastre-os primeiramente."
 		return False
 	case_id=1
 	while case_id <= total_cases:
