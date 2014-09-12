@@ -136,8 +136,6 @@ if(login_check($mysqli) == false) {
 			                                                process_args, process_args_weight,
 			                                                process_tcp_banner, process_tcp_banner_weight,
 			                                                process_udp_banner, process_udp_banner_weight,
-			                                                process_tcp_portas, process_tcp_portas_weight,
-			                                                process_udp_portas, process_udp_portas_weight, 
 			                                                package_name, package_name_weight,
 			                                                package_type_id, package_type_id_weight,
 			                                                process_binary, process_binary_weight,
@@ -157,8 +155,6 @@ if(login_check($mysqli) == false) {
 																			$process_args, $process_args_weight,
 																			$process_tcp_banner,$process_tcp_banner_weight,
 																			$process_udp_banner,$process_udp_banner_weight,
-																			$process_tcp_portas,$process_tcp_portas_weight,
-																			$process_udp_portas,$process_udp_portas_weight,
 																			$package_name, $package_name_weight,
 																			$package_type_id, $package_type_id_weight,
 																			$process_binary, $process_binary_weight,
@@ -272,25 +268,12 @@ if(login_check($mysqli) == false) {
 	                                                        		echo '<td>'.  $process_tcp_banner .'</td>';
 	                                                        		echo '<td width="20%">'.  round($process_tcp_banner_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Quantidade de portas TCP usadas:" .'</td>';
-	                                                        		echo '<td>'.  $process_tcp_portas .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_tcp_portas_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
+																echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Banner de serviço UDP:" .'</td>';
 	                                                        		echo '<td>'.  $process_udp_banner .'</td>';
 	                                                        		echo '<td width="20%"'.  round($process_udp_banner_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Quantidade de portas UDP usadas:" .'</td>';
-	                                                        		echo '<td>'.  $process_udp_portas .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_udp_portas_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-																	
+	                                                   	 		
 																$stmt=$mysqli->prepare("select solution,description from use_case_desc_solution where case_id = ?");
 																$stmt->bind_param('i', $case_id);
 														        $stmt->execute();
