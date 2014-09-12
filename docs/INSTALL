@@ -16,16 +16,23 @@ Instalar no CentOS e Debian:
 1 - pacote de desenvolvimento python
 	CentOS: yum install python-devel
 	Debian: apt-get install python-dev
+
 2 - utilitário para criação e distribuição de pacotes python
-	CentOS:yum install python-setuptools
+	CentOS: yum install python-setuptools
 	Debian: apt-get install python-setuptools
+
 3 - utilitário de instalação e gestão de bibliotecas python (CentOS e Debian)
 	git clone https://github.com/pypa/pip.git /usr/src/pip
 	cd /usr/src/pip
 	python setup.py install
+
 4 - Instalar nmap
-	CentOS:yum install nmap
+	CentOS: yum install nmap
 	Debian: apt-get install nmap
+
+5 - Para o manager, instalar a biblioteca de desenvolvimento do mysql client
+	CentOS: yum install mysql-devel 
+	Debian: apt-get install libmysqlclient-dev
 5 - instalar bibliotecas (CentOS e Debian)
 	pip install psutil
 	pip install -U python-nmap
