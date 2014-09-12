@@ -15,8 +15,8 @@ class XmlHandler(xmlrpc.XMLRPC):
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_distro,rcv_distro_version,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
         #print "[+] Registrando Dados Gerais"
         ready=False
-        if DbCheckAgent(rcv_agent) == False:    # authorized agents only
-                return False
+        #if DbCheckAgent(rcv_agent) == False:    # authorized agents only
+        #        return False
         if len(rcv_distro)==0 and len(rcv_p_name)==0:
             return False
 
