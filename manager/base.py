@@ -6,7 +6,7 @@ from common import *
 
 def DbConnect():
 	try:
-		ret=MySQLdb.connect(host=sqlhost, user=sqluser, passwd=sqlpass, db=sqldb)
+		ret=MySQLdb.connect(host=sqlhost, port=3306, user=sqluser, passwd=sqlpass, db=sqldb)
 	except:
 		ret=None
 	return ret
