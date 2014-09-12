@@ -7,7 +7,7 @@ BUFSIZE=200000
 PORT_BIND=3339
 
 # this should reflect your MySQL server config:
-sqlhost="10.211.55.11" 
+sqlhost="10.211.55.12" 
 sqluser="vmgr"
 sqlpass="teste"
 sqldb="vgather"
