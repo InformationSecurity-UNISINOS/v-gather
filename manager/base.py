@@ -55,8 +55,6 @@ def DbGetCase(case_id):
 	process_args, process_args_weight,\
 	process_tcp_banner, process_tcp_banner_weight,\
 	process_udp_banner, process_udp_banner_weight,\
-	process_tcp_portas, process_tcp_portas_weight,\
-	process_udp_portas, process_udp_portas_weight, \
 	package_name, package_name_weight,\
 	package_type_id, package_type_id_weight,\
 	process_binary, process_binary_weight,\
@@ -85,22 +83,18 @@ def DbGetCase(case_id):
 	db_case['process_tcp_banner_weight']=results[0][14]
 	db_case['process_udp_banner']=results[0][15]
 	db_case['process_udp_banner_weight']=results[0][16]
-	db_case['process_tcp_portas']=results[0][17]
-	db_case['process_tcp_portas_weight']=results[0][18]
-	db_case['process_udp_portas']=results[0][19]
-	db_case['process_udp_portas_weight']=results[0][20]
-	db_case['package_name']=results[0][21]
-	db_case['package_name_weight']=results[0][22]
-	db_case['package_type_id']=results[0][23]
-	db_case['package_type_id_weight']=results[0][24]
-	db_case['process_binary']=results[0][25]
-	db_case['process_binary_weight']=results[0][26]
-	db_case['process_binary_dac']=results[0][27]
-	db_case['process_binary_dac_weight']=results[0][28]
-	db_case['process_binary_uid']=results[0][29]
-	db_case['process_binary_uid_weight']=results[0][30]
-	db_case['process_binary_gid']=results[0][31]
-	db_case['process_binary_gid_weight']=results[0][32]
+	db_case['package_name']=results[0][17]
+	db_case['package_name_weight']=results[0][18]
+	db_case['package_type_id']=results[0][19]
+	db_case['package_type_id_weight']=results[0][20]
+	db_case['process_binary']=results[0][21]
+	db_case['process_binary_weight']=results[0][22]
+	db_case['process_binary_dac']=results[0][23]
+	db_case['process_binary_dac_weight']=results[0][24]
+	db_case['process_binary_uid']=results[0][25]
+	db_case['process_binary_uid_weight']=results[0][26]
+	db_case['process_binary_gid']=results[0][27]
+	db_case['process_binary_gid_weight']=results[0][28]
 	conn.close()
 	return db_case
 	
