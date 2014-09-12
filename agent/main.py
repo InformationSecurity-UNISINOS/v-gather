@@ -139,6 +139,7 @@ def main():
         if opcao == "-h":
             usage()
         if opcao == "-a":
+            print argumento
             StartScan(False,argumento)
         
 
