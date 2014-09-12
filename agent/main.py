@@ -14,13 +14,13 @@ from base64 import *
 import getopt
 
 def usage():
-    print "%s <opcao> " %(sys.argv[0])
+    print "%s <opcao>" %(sys.argv[0])
     print "\t-t\tTestar comunicação com o manager"
-    print "\t-a\tAnalisar ambiente"
+    print "\t-a\tAnalisar ambiente <endereço ip do manager>"
     print "\t-d\tModo dry-run (Roda local, exibe, mas nao submete ao manager)"
     print "\t-h\tMostrar este help"
 
-def StartScan(Dry):
+def StartScan(Dry,manageraddr):
     domain,server=GetHostNetwork()
     GetDaemons()
     group=user=token=""
@@ -105,9 +105,9 @@ def StartScan(Dry):
             print "*"*100
             continue
 
-        if PingManager()==1:
+        if PingManager(manageraddr)==1:
             sent_count+=1
-            SendData(server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
+            SendData(manageraddr,server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
         else:
             print "[x] Manager offline"
 
@@ -135,11 +135,11 @@ def main():
             else:
                 print '[+] Manager Offline'
         if opcao == "-d":
-            StartScan(True)
+            StartScan(True,args)
         if opcao == "-h":
             usage()
         if opcao == "-a":
-            StartScan(False)
+            StartScan(False,args)
         
 
 

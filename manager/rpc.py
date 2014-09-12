@@ -7,19 +7,6 @@ from common import *
 from parser import *
 import re
 
-'''
- Recebe Registro de Agente
- Toda comunicação é conferida através da confirmação do agente
- Requisições de todos os agentes entram para uma queue
- Essa queue é processada e registrada vinculada ao endereço ip do agente (profile por servidor)
- 
- Agent: É o endereço IP do agente remoto, para identificar de qual servidor veio a request.
- Domain: Para registrar de qual empresa veio a request, para agrupar todos os IPS pertinentes.
- p_pid: vai identificar qual é o processo, dentro do servidor em questão, a qual cada item se refere
- 
-
-'''
-
 class XmlHandler(xmlrpc.XMLRPC):
     
     def xmlrpc_ping(self):
