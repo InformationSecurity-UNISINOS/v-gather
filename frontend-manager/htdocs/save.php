@@ -155,28 +155,12 @@ $stmt=$mysqli->prepare("INSERT INTO use_cases(date,status,
                                                 process_binary_dac, process_binary_dac_weight,
                                                 process_binary_uid, process_binary_uid_weight,
                                                 process_binary_gid, process_binary_gid_weight)
-	                                           VALUES(CURRENT_TIMESTAMP,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?,
-                                              ?,?)");
+	                                           VALUES(CURRENT_TIMESTAMP,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 if ($stmt === FALSE) {
-    die ("Mysql Error: " . $mysqli->error);
+    die ("Mysql Error 1: " . $mysqli->error);
 }
 $status=1;
-$stmt->bind_param('iisssssisisssssssssssssisssisisis', $status,
+$stmt->bind_param('iisssssisisssssssssisssisisis', $status,
                       $so_id, $so_weight,
                       $so_ver, $so_ver_weight,
                       $p_name, $p_name_weight,
@@ -185,8 +169,6 @@ $stmt->bind_param('iisssssisisssssssssssssisssisisis', $status,
                       $p_args, $p_args_weight,
                       $p_tcp_banner, $p_tcp_banner_weight,
                       $p_udp_banner, $p_udp_banner_weight,
-                      $p_tcp_portas, $p_tcp_portas_weight,
-                      $p_udp_portas, $p_udp_portas_weight, 
                       $p_package, $p_package_weight,
                       $p_package_type_id, $p_package_type_id_weight,
                       $p_file, $p_file_weight,
@@ -205,7 +187,7 @@ $stmt->free_result();
 
 $stmt=$mysqli->prepare("INSERT INTO use_case_desc_solution(case_id,description,solution) VALUES (?,?,?)");
 if ($stmt === FALSE) {
-    die ("Mysql Error: " . $mysqli->error);
+    die ("Mysql Error 2: " . $mysqli->error);
 }
 $stmt->bind_param('iss',$ultimo_caso,$p_descr,$p_solution);
 $stmt->execute();
