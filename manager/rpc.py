@@ -106,8 +106,11 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["p_udp_banner"]=""
             AddQueue(ParamDict)
 
-        if ready==True:
-            MatchData()
+        #if ready==True:
+        #    MatchData()
+        return True
+    def xmlrpc_match():
+        MatchData()
         return True
     
     def xmlrpc_Fault(self):

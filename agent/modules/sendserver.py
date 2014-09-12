@@ -15,8 +15,8 @@ def PingManager(manageraddr):
     ret=s.ping()
     return ret
 
-def ServerReady(manageraddr):
+def SendMatchCmd(manageraddr):
     remote_server="http://"+str(manageraddr)+":"+str(PORTA)
     s = xmlrpclib.Server(remote_server)
-    ret=s.ready()
+    ret=s.match()
     return ret
