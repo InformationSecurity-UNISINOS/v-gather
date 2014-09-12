@@ -31,4 +31,5 @@ Instalar no CentOS e Debian:
 	pip install -U python-nmap
 	pip install python-Levenshtein
 	pip install netifaces
+	pip install MySQL-python (for the manager server only)
 
