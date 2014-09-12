@@ -1,0 +1,34 @@
+*
+*
+*
+*
+*
+*
+*
+
+INSTALL:
+
+Não é necessário instalar o vgather, entretanto, algumas bibliotecas python se fazem
+necessárias para que o mesmo funcione como planejado.
+Recomendamos que você instale tudo conforme a ordem abaixo:
+
+Instalar no CentOS e Debian:
+1 - pacote de desenvolvimento python
+	CentOS: yum install python-devel
+	Debian: apt-get install python-dev
+2 - utilitário para criação e distribuição de pacotes python
+	CentOS:yum install python-setuptools
+	Debian: apt-get install python-setuptools
+3 - utilitário de instalação e gestão de bibliotecas python (CentOS e Debian)
+	git clone https://github.com/pypa/pip.git /usr/src/pip
+	cd /usr/src/pip
+	python setup.py install
+4 - Instalar nmap
+	CentOS:yum install nmap
+	Debian: apt-get install nmap
+5 - instalar bibliotecas (CentOS e Debian)
+	pip install psutil
+	pip install -U python-nmap
+	pip install python-Levenshtein
+	pip install netifaces
+
