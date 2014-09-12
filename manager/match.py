@@ -193,10 +193,7 @@ def MatchData():
 				print "Score: " +str(distro_score)
 
 			final_score=distro_score +  distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_score + p_pkgm_score + p_pkg_score
-			print "AG_PNAME: "+str(pdict['p_name'])
-			print "CASE_ID: " +str(case_id)
-			print "DB_PNAME: "+str( db_case['process_name'])
-			print "FINAL SCORE: " +str(final_score)
+			print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
 			qlen-=1				
 			print "*"*50
 			print ""
