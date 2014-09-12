@@ -122,7 +122,7 @@ def main():
         usage()
         sys.exit(1)
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "atdh")
+        opts, args = getopt.getopt(sys.argv[1:], "a:tdh")
     except getopt.GetoptError as err:
         print str(err)
         usage()
