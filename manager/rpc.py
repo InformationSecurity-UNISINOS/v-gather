@@ -109,7 +109,7 @@ class XmlHandler(xmlrpc.XMLRPC):
         #if ready==True:
         #    MatchData()
         return True
-    def xmlrpc_match():
+    def xmlrpc_match(self):
         MatchData()
         return True
     
