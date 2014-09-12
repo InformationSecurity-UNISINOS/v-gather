@@ -111,7 +111,7 @@ def StartScan(Dry,manageraddr):
             print "[x] Manager offline"
 
     print "[+] Sent: %d itens" %sent_count
-    if set_count >0:
+    if sent_count >0:
         SendMatchCmd()
     return 0
         
