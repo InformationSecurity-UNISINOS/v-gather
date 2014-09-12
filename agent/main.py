@@ -112,7 +112,7 @@ def StartScan(Dry,manageraddr):
 
     print "[+] Sent: %d itens" %sent_count
     if sent_count >0:
-        SendMatchCmd()
+        SendMatchCmd(manageraddr)
     return 0
         
 
