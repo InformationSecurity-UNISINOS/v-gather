@@ -230,15 +230,15 @@ if(login_check($mysqli) == false) {
 					<h2>Activity Feed <a class="fa fa-repeat"></a></h2>
 					
 					<ul id="filter">
-						<li><a class="green" href="index.html#" data-option-value="task">Tasks</a></li>
-						<li><a class="red" href="index.html#" data-option-value="comment">Comments</a></li>
-						<li><a class="blue" href="index.html#" data-option-value="message">Messages</a></li>
-						<li><a href="index.html#" data-option-value="all">All</a></li>
+						<li><a class="green" href="index.html#" data-option-value="task">Casos</a></li>
+						<li><a class="red" href="index.html#" data-option-value="comment">Vulnerabilidades</a></li>
+						<li><a class="blue" href="index.html#" data-option-value="message">Gerência</a></li>
+						<li><a href="index.html#" data-option-value="all">Todos</a></li>
 					</ul>
 					
 					<ul id="timeline">
-						
 						<li class="task">
+
 							<i class="fa fa-check-square green"></i>
 							<div class="title">New website - A/B Tests</div>
 							<div class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
