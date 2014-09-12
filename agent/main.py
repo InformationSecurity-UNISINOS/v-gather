@@ -135,11 +135,11 @@ def main():
             else:
                 print '[+] Manager Offline'
         if opcao == "-d":
-            StartScan(True,args)
+            StartScan(True,argumento)
         if opcao == "-h":
             usage()
         if opcao == "-a":
-            StartScan(False,args)
+            StartScan(False,argumento)
         
 
 
