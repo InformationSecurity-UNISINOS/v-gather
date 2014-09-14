@@ -265,13 +265,13 @@ if(login_check($mysqli) == false) {
 								echo '</li>';
 							}
 
-							$stmt=$mysqli->prepare("select id,ipaddress,created from managed_servers order by id desc LIMIT 1");
+							$stmt=$mysqli->prepare("select id,ipaddress,hostname,created from managed_servers order by id desc LIMIT 1");
 							if ($stmt === FALSE) {
             					printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
             					die ("Mysql Error: " . $mysqli->error);
         					}
 							$stmt->execute();
-							$stmt->bind_result($last_a_id,$last_a_ip,$last_a_created);
+							$stmt->bind_result($last_a_id,$last_a_ip,$last_a_hostname,$last_a_created);
 							$stmt->fetch();
 							$stmt->free_result();
 							if (!is_null($last_a_id)) {
