@@ -82,6 +82,28 @@
 								</div>
 								<div class="box-content">
 									<table class="table table-striped">
+										<?php
+											if ( isset($_POST['new_ag_hostname']) && isset($_POST['new_ag_ipaddr']) ) {
+												include_once 'includes/db_connect.php';
+												include_once 'includes/functions.php';
+												$stmt=$mysqli->prepare("INSERT INTO managed_servers (ipaddress,hostname,created,updated)
+		                                           VALUES(?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)");
+												if ($stmt === FALSE) {
+											    	die ("Mysql Error 1: " . $mysqli->error);
+												}
+												$stmt->bind_param('ss', $status,
+	                     
+												$stmt->execute();
+												$stmt->free_result(); 
+
+												$stmt=$mysqli->prepare("select id from use_cases ORDER BY id DESC LIMIT 1");
+												$stmt->execute();
+												$stmt->bind_result($ultimo_caso);
+												$stmt->fetch();
+												$stmt->free_result();
+											}
+										?>
+										<form action="endpoints.php" method="POST" role="form" class="form-horizontal">
 			                            <tr>
 											<td>
 												Hostname:
@@ -89,21 +111,19 @@
 											<td>
 												<input class="form-control focused" id="new_ag_hostname" name="new_ag_hostname" type="text" autocomplete="disabled" required>
 											</td>
-											<td width="30%">
-												<div class="form-actions">
-										  			<button type="submit" class="btn btn-primary">Salvar</button>
-												</div>
-											<td>
-										</tr>
-										<tr>
 											<td>
 												Endereço IP:
 											</td>
 											<td>
 												<input class="form-control focused" id="new_ag_ipaddr" name="new_ag_ipaddr" type="text" autocomplete="disabled" required>
 											</td>
-											<td width="30%"></td>
+											<td width="30%">
+												<div class="form-actions">
+										  			<button type="submit" class="btn btn-primary">Salvar</button>
+												</div>
+											<td>
 										</tr>
+										</form>
 									</table>
 								</div>
 							</div> 
