@@ -145,9 +145,8 @@
 												if ($nro_servers) {
 													for ($i = 1; $i <= $nro_servers; $i++) {
 														$stmt = $mysqli->prepare("SELECT ipaddress,hostname,created,updated FROM managed_servers");
-														$stmt->bind_param('ssss', $ag_ipaddr,$ag_hostname,$ag_ctime,$ag_mtime);
 												        $stmt->execute();
-														$stmt->bind_result($case_id,$date,);
+														$stmt->bind_result($ag_ipaddr,$ag_hostname,$ag_ctime,$ag_mtime);
 														$stmt->fetch();
 														$stmt->free_result(); 
 
