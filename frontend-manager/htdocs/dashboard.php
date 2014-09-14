@@ -249,7 +249,7 @@ if(login_check($mysqli) == false) {
 							$stmt->bind_result($last_case,$last_pname,$last_package,$data);
 							$stmt->fetch();
 							$stmt->free_result();
-							if (!is_null($last_case)) {
+							if (!is_null($last_case) && !is_null($last_pname)) {
 								echo '<li class="task">';
 									echo '<i class="fa fa-check-square green"></i>';
 									echo '<div class="title"> Último caso:  '. $last_case .'</div>';
@@ -274,7 +274,7 @@ if(login_check($mysqli) == false) {
 							$stmt->bind_result($last_a_id,$last_a_ip,$last_a_hostname,$last_a_created);
 							$stmt->fetch();
 							$stmt->free_result();
-							if (!is_null($last_a_id)) {
+							if (!is_null($last_a_id) && !is_null($last_a_ip))  {
 								echo '<li class="message">';
 									echo '<i class="fa fa-eye blue"></i>';
 									echo '<div class="title"> Agente Adicionado</div>';
