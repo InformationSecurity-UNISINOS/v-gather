@@ -5,7 +5,7 @@ include_once 'includes/functions.php';
 sec_session_start(); 
 if(login_check($mysqli) == false) {
 
-        die('You are not authorized to access this page, please login.');
+        header('Location: index.php');
 }
 ?>
 

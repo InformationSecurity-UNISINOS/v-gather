@@ -1,15 +1,15 @@
 <html>
 <body>
-
-
 <?php
 include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
 
 sec_session_start(); 
 if(login_check($mysqli) == false) {
-	die('Você precisa se autenticar para acessar esta página.');
+
+        header('Location: index.php');
 }
+
 
 if (isset($_POST['so'])) {
 	if ($_POST['so'] == "debian") {
