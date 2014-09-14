@@ -252,7 +252,7 @@ if(login_check($mysqli) == false) {
 
 							echo '<li class="task">';
 								echo '<i class="fa fa-check-square green"></i>';
-								echo '<div class="title"> Caso '. $last_case .'</div>';
+								echo '<div class="title"> Último caso:  '. $last_case .'</div>';
 								echo '<div class="desc">Novo caso para o processo ' . $last_pname;
 								if (is_null($last_package)) {
 									echo '</div>';
