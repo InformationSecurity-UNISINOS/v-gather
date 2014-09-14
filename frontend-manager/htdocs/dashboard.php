@@ -237,16 +237,33 @@ if(login_check($mysqli) == false) {
 					</ul>
 					
 					<ul id="timeline">
-						<li class="task">
+						<?php
+							include_once 'includes/db_connect.php';
+							include_once 'includes/functions.php';
+							$stmt=$mysqli->prepare("select id,process_name,package_name,date from use_cases ORDER BY id DESC LIMIT 1");
+							if ($stmt === FALSE) {
+            					printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
+            					die ("Mysql Error: " . $mysqli->error);
+        					}
+							$stmt->execute();
+							$stmt->bind_result($last_case,$last_pname,$last_package,$data);
+							$stmt->fetch();
+							$stmt->free_result();
 
-							<i class="fa fa-check-square green"></i>
-							<div class="title">New website - A/B Tests</div>
-							<div class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-							<span class="date">3 seconds ago</span>
-							<span class="separator">•</span>
-							<span class="name">Megan Abbott</span>
-						</li>
-						
+							echo '<li class="task">';
+								echo '<i class="fa fa-check-square green"></i>';
+								echo '<div class="title"> Caso '. $last_case .'</div>';
+								echo '<div class="desc">Novo caso para o processo ' . $last_pname;
+								if is_null($last_package) {
+									echo '</div>';
+								} else {
+									echo ' instalado através do pacote versionado '. $last_package .'</div>';
+								}
+								echo '<span class="date">Em</span>';
+								echo '<span class="separator">•</span>';
+								echo '<span class="name">'.$data.'</span>';
+							echo '</li>';
+						?>
 						<li class="comment">
 							<i class="fa fa-comments red"></i>
 							<div class="title">Sales increase</div>
