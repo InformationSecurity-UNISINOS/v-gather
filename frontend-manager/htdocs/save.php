@@ -192,7 +192,7 @@ if ($stmt === FALSE) {
 $stmt->bind_param('iss',$ultimo_caso,$p_descr,$p_solution);
 $stmt->execute();
 $stmt->free_result(); 
-
+$stmt->close();
 header('Location: dashboard.php?register=sucesso');
 
 ?>
