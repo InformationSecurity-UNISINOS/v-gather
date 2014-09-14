@@ -91,7 +91,7 @@
 												if ($stmt === FALSE) {
 											    	die ("Mysql Error 1: " . $mysqli->error);
 												}
-												$stmt->bind_param('ss',$new_ag_ipaddr,$new_ag_hostname);
+												$stmt->bind_param('ss',$_POST['new_ag_hostname'],$_POST['new_ag_ipaddr']);
 												$stmt->execute();
 												$stmt->free_result(); 
 
