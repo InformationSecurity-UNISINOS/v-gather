@@ -254,7 +254,7 @@ if(login_check($mysqli) == false) {
 								echo '<i class="fa fa-check-square green"></i>';
 								echo '<div class="title"> Caso '. $last_case .'</div>';
 								echo '<div class="desc">Novo caso para o processo ' . $last_pname;
-								if is_null($last_package) {
+								if (is_null($last_package)) {
 									echo '</div>';
 								} else {
 									echo ' instalado através do pacote versionado '. $last_package .'</div>';
