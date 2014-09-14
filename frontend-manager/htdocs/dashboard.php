@@ -249,29 +249,49 @@ if(login_check($mysqli) == false) {
 							$stmt->bind_result($last_case,$last_pname,$last_package,$data);
 							$stmt->fetch();
 							$stmt->free_result();
+							if (!is_null($last_case)) {
+								echo '<li class="task">';
+									echo '<i class="fa fa-check-square green"></i>';
+									echo '<div class="title"> Último caso:  '. $last_case .'</div>';
+									echo '<div class="desc">Novo caso para o processo ' . $last_pname;
+									if (is_null($last_package)) {
+										echo '</div>';
+									} else {
+										echo ' instalado através do pacote versionado '. $last_package .'</div>';
+									}
+									echo '<span class="date">Em</span>';
+									echo '<span class="separator">•</span>';
+									echo '<span class="name">'.$data.'</span>';
+								echo '</li>';
+							}
 
-							echo '<li class="task">';
-								echo '<i class="fa fa-check-square green"></i>';
-								echo '<div class="title"> Último caso:  '. $last_case .'</div>';
-								echo '<div class="desc">Novo caso para o processo ' . $last_pname;
-								if (is_null($last_package)) {
-									echo '</div>';
-								} else {
-									echo ' instalado através do pacote versionado '. $last_package .'</div>';
-								}
-								echo '<span class="date">Em</span>';
-								echo '<span class="separator">•</span>';
-								echo '<span class="name">'.$data.'</span>';
-							echo '</li>';
+							$stmt=$mysqli->prepare("select id,ipaddress,created from managed_servers order by id desc LIMIT 1");
+							if ($stmt === FALSE) {
+            					printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
+            					die ("Mysql Error: " . $mysqli->error);
+        					}
+							$stmt->execute();
+							$stmt->bind_result($last_a_id,$last_a_ip,$last_a_created);
+							$stmt->fetch();
+							$stmt->free_result();
+							if (!is_null($last_a_id)) {
+								echo '<li class="message">';
+									echo '<i class="fa fa-eye blue"></i>';
+									echo '<div class="title"> Agente Adicionado</div>';
+									echo '<div class="desc">Novo agente registrado para o servidor de endereço IP ' . $last_pname;
+									if (is_null($last_a_hostname)) {
+										echo '</div>';
+									} else {
+										echo ' e hostname '. $last_a_hostname .'</div>';
+									}
+									echo '<span class="date">Em</span>';
+									echo '<span class="separator">•</span>';
+									echo '<span class="name">'.$last_a_created.'</span>';
+								echo '</li>';
+							}
+
 						?>
-						<li class="comment">
-							<i class="fa fa-comments red"></i>
-							<div class="title">Sales increase</div>
-							<div class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </div>
-							<span class="date">15 minutes ago</span>
-							<span class="separator">•</span>
-							<span class="name">Ashley Tan</span>
-						</li>
+						
 	
 					</ul>
 					<a href="index.html#" id="load-more">•••</a>		
