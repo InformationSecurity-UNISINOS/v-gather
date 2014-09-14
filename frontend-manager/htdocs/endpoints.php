@@ -91,10 +91,9 @@
 												if ($stmt === FALSE) {
 											    	die ("Mysql Error 1: " . $mysqli->error);
 												}
-												$stmt->bind_param('ss',$_POST['new_ag_hostname'],$_POST['new_ag_ipaddr']);
+												$stmt->bind_param('ss',$_POST['new_ag_ipaddr'],$_POST['new_ag_hostname']);
 												$stmt->execute();
 												$stmt->free_result(); 
-
 											}
 										?>
 										<form action="endpoints.php" method="POST" role="form" class="form-horizontal">
@@ -179,13 +178,13 @@
 																echo '<span class="label label-success">Ativo</span>';
 															echo '</td>';
 															echo '<td>';
-																echo '<a class="btn btn-success" href="table.html#">';
+																echo '<a class="btn btn-success" href="#">';
 																	echo '<i class="fa fa-search-plus "></i> ';
 																echo '</a>';
-																echo '<a class="btn btn-info" href="table.html#">';
+																echo '<a class="btn btn-info" href="#">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
-																echo '<a class="btn btn-danger" href="table.html#">';
+																echo '<a class="btn btn-danger" href="#">';
 																	echo '<i class="fa fa-trash-o "></i>';
 																echo '</a>';
 															echo '</td>';
