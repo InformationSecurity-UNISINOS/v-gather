@@ -219,6 +219,7 @@ if(login_check($mysqli) == false) {
 								</a>	
 							</div>
 						</div><!--/col-->
+						
 
 					</div><!--/row-->
 
