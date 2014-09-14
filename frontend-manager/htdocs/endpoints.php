@@ -76,11 +76,11 @@
 			<!-- end: Main Menu -->
 						
 			<!-- start: Content -->
-			<div id="content" class="col-lg-10 col-sm-11 sidebar-minified">
+			<div id="content" class="col-lg-10 col-sm-11 ">
 			
 			
 			<div class="row">		
-				<div class="col-lg-12">
+				<div class="col-sm-12 col-md-9">
 					<div class="box">
 						<div class="box-header" data-original-title>
 							<h2><i class="fa fa-user"></i><span class="break"></span>Members</h2>
