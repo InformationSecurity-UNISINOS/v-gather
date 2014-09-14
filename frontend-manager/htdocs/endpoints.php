@@ -89,6 +89,11 @@
 											<td>
 												<input class="form-control focused" id="new_ag_hostname" name="new_ag_hostname" type="text" autocomplete="disabled" required>
 											</td>
+											<td width="30%">
+												<div class="form-actions">
+										  			<button type="submit" class="btn btn-primary">Salvar</button>
+												</div>
+											<td>
 										</tr>
 										<tr>
 											<td>
@@ -97,6 +102,7 @@
 											<td>
 												<input class="form-control focused" id="new_ag_ipaddr" name="new_ag_ipaddr" type="text" autocomplete="disabled" required>
 											</td>
+											<td width="30%"></td>
 										</tr>
 									</table>
 								</div>
