@@ -91,16 +91,10 @@
 												if ($stmt === FALSE) {
 											    	die ("Mysql Error 1: " . $mysqli->error);
 												}
-												$stmt->bind_param('ss', $status,
-	                     
+												$stmt->bind_param('ss',$new_ag_ipaddr,$new_ag_hostname);
 												$stmt->execute();
 												$stmt->free_result(); 
 
-												$stmt=$mysqli->prepare("select id from use_cases ORDER BY id DESC LIMIT 1");
-												$stmt->execute();
-												$stmt->bind_result($ultimo_caso);
-												$stmt->fetch();
-												$stmt->free_result();
 											}
 										?>
 										<form action="endpoints.php" method="POST" role="form" class="form-horizontal">
