@@ -117,7 +117,7 @@
 								-->
 								</div>
 								<div class="box-content">
-									<table class="table table-striped table-bordered bootstrap-datatable datatable">
+									<table class="table table-striped table-bordered">
 							  			<thead>
 										  <tr>
 											  <th>Hostname</th>
@@ -173,7 +173,7 @@
 													}
 												} else {
 													echo '<tr>';
-													echo '<td colspan="5">';
+													echo '<td colspan="6">';
 													echo 'Até o momento, não existem endpoints registrados.';
 													echo '</td>';
 													echo '</tr>';
