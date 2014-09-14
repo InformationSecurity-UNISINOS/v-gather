@@ -80,7 +80,7 @@
 			
 			
 			<div class="row">		
-				<div class="col-sm-12 col-md-9">
+				<div class="col-sm-12 col-md-12">
 					<div class="box">
 						<div class="box-header" data-original-title>
 							<h2><i class="fa fa-user"></i><span class="break"></span>Members</h2>
