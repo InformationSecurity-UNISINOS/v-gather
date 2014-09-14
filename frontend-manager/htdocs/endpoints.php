@@ -78,44 +78,109 @@
 						<div class="col-sm-12 col-md-12">
 							<div class="box">
 								<div class="box-header" data-original-title>
-									<h2><i class="fa fa-user"></i><span class="break"></span>Members</h2>
+									<h2><i class="fa fa-user"></i><span class="break"></span>Adicionar Endpoint</h2>
+								</div>
+								<div class="box-content">
+									<table class="table table-striped">
+			                            <tr>
+											<td>
+												Hostname:
+											</td>
+											<td>
+												<input class="form-control focused" id="new_ag_hostname" name="new_ag_hostname" type="text" autocomplete="disabled" required>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												Endereço IP:
+											</td>
+											<td>
+												<input class="form-control focused" id="new_ag_ipaddr" name="new_ag_ipaddr" type="text" autocomplete="disabled" required>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div> 
+						</div> <!-- col -->
+					</div> <!-- row -->
+					<div class="row">		
+						<div class="col-sm-12 col-md-12">
+							<div class="box">
+								<div class="box-header" data-original-title>
+									<h2><i class="fa fa-user"></i><span class="break"></span>Endpoints</h2>
+								<!--
 									<div class="box-icon">
 										<a href="table.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
 										<a href="table.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
 										<a href="table.html#" class="btn-close"><i class="fa fa-times"></i></a>
 									</div>
+								-->
 								</div>
 								<div class="box-content">
 									<table class="table table-striped table-bordered bootstrap-datatable datatable">
 							  			<thead>
 										  <tr>
-											  <th>Username</th>
-											  <th>Date registered</th>
-											  <th>Role</th>
+											  <th>Hostname</th>
+											  <th>Endereço IP</th>
+											  <th>Criado em</th>
+											  <th>Atualizado em</th>
 											  <th>Status</th>
-											  <th>Actions</th>
+											  <th>Ações</th>
 										  </tr>
 										</thead>   
 										<tbody>
-											<tr>
-												<td>Anton Phunihel</td>
-												<td>2012/01/01</td>
-												<td>Member</td>
-												<td>
-													<span class="label label-success">Active</span>
-												</td>
-												<td>
-													<a class="btn btn-success" href="table.html#">
-														<i class="fa fa-search-plus "></i>  
-													</a>
-													<a class="btn btn-info" href="table.html#">
-														<i class="fa fa-edit "></i>  
-													</a>
-													<a class="btn btn-danger" href="table.html#">
-														<i class="fa fa-trash-o "></i> 
-													</a>
-												</td>
-											</tr>
+											<?php
+												include_once 'includes/db_connect.php';
+												include_once 'includes/functions.php';
+												$stmt=$mysqli->prepare("SELECT COUNT(id) FROM managed_servers");
+												if ($stmt === FALSE) {
+            												printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
+            												die ("Mysql Error: " . $mysqli->error);
+        										}
+												$stmt->execute();
+												$stmt->bind_result($nro_servers);
+												$stmt->fetch();
+												$stmt->free_result(); 
+
+												if ($nro_servers) {
+													for ($i = 1; $i <= $nro_servers; $i++) {
+														$stmt = $mysqli->prepare("SELECT ipaddress,hostname,created,updated FROM managed_servers");
+														$stmt->bind_param('ssss', $ag_ipaddr,$ag_hostname,$ag_ctime,$ag_mtime);
+												        $stmt->execute();
+														$stmt->bind_result($case_id,$date,);
+														$stmt->fetch();
+														$stmt->free_result(); 
+
+														echo '<tr>';
+															echo '<td>'.$ag_hostname.'</td>';
+															echo '<td>'.$ag_ipaddr.'</td>';
+															echo '<td>'.$ag_ctime.'</td>';
+															echo '<td>'.$ag_mtime.'</td>';
+															echo '<td>';
+																echo '<span class="label label-success">Ativo</span>';
+															echo '</td>';
+															echo '<td>';
+																echo '<a class="btn btn-success" href="table.html#">';
+																	echo '<i class="fa fa-search-plus "></i> ';
+																echo '</a>';
+																echo '<a class="btn btn-info" href="table.html#">';
+																	echo '<i class="fa fa-edit "></i>';
+																echo '</a>';
+																echo '<a class="btn btn-danger" href="table.html#">';
+																	echo '<i class="fa fa-trash-o "></i>';
+																echo '</a>';
+															echo '</td>';
+														echo '</tr>';
+													}
+												} else {
+													echo '<tr>';
+													echo '<td colspan="5">';
+													echo 'Até o momento, não existem endpoints registrados.';
+													echo '</td>';
+													echo '</tr>';
+												}
+											?>
+											
 										</tbody>
 							  		</table>            
 								</div>
