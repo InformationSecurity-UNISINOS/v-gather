@@ -89,35 +89,12 @@ if(login_check($mysqli) == false) {
 						<div class="col-sm-12 col-md-12">
 							<div class="box">
 								<div class="box-header" data-original-title>
-									<h2><i class="fa fa-user"></i><span class="break"></span>Adicionar Endpoint</h2>
+									<h2><i class="fa fa-eye"></i><span class="break"></span>Adicionar Endpoint</h2>
 								</div>
 								<div class="box-content">
 									<table class="table table-striped">
-										<?php
-											include_once 'includes/db_connect.php';
-											include_once 'includes/functions.php';
-											if ( isset($_POST['new_ag_hostname']) && isset($_POST['new_ag_ipaddr']) ) {
-												$new_ag_ipaddr=$_POST['new_ag_ipaddr'];
-												$new_ag_hostname=$_POST['new_ag_hostname'];
-												include_once 'includes/db_connect.php';
-												include_once 'includes/functions.php';
-												$stmt=$mysqli->prepare("INSERT INTO managed_servers (ipaddress,hostname,created,updated)
-		                                           VALUES(?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)");
-												if ($stmt === FALSE) {
-											    	die ("Mysql Error 1: " . $mysqli->error);
-												}
-												$stmt->bind_param('ss',$new_ag_ipaddr,$new_ag_hostname);
-												$stmt->execute();
-												$stmt->free_result();
-												$stmt->close();
-												unset($new_ag_hostname);
-												unset($new_ag_ipaddr);
-												unset($_POST['new_ag_ipaddr']);
-												unset($_POST['new_ag_hostname']);
-												header('Location: endpoints.php');
-											}
-										?>
-										<form action="endpoints.php" method="POST" role="form" class="form-horizontal">
+
+										<form action="save-endpoint.php" method="POST" role="form" class="form-horizontal">
 			                            <tr>
 											<td>
 												Hostname:
