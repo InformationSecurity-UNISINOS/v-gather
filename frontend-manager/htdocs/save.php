@@ -3,6 +3,7 @@
 <?php
 include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
+include_once 'inclides/xss_clean.php';
 
 sec_session_start(); 
 if(login_check($mysqli) == false) {
@@ -25,65 +26,65 @@ if (isset($_POST['so_weight'])) {
 //============================================================================================================
 
 if (isset($_POST['so_ver'])) {
-    $so_ver=$_POST['so_ver'];
+    $so_ver=xss_clean($_POST['so_ver']);
 }
 if (isset($_POST['so_ver_weight'])) {
-  $so_ver_weight=$_POST['so_ver_weight'];
+  $so_ver_weight=xss_clean($_POST['so_ver_weight']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_name'])) {
-	$p_name=$_POST['p_name'];
+	$p_name=xss_clean($_POST['p_name']);
 }
 if (isset($_POST['p_name_weight'])) {
-  $p_name_weight=$_POST['p_name_weight'];
+  $p_name_weight=xss_clean($_POST['p_name_weight']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_uid'])) {
-	$p_uid=$_POST['p_uid'];
+	$p_uid=xss_clean($_POST['p_uid']);
 }
 if (isset($_POST['p_uid_weight'])) {
-  $p_uid_weight=$_POST['p_uid_weight'];
+  $p_uid_weight=xss_clean($_POST['p_uid_weight']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_gid'])) {
-	$p_gid=$_POST['p_gid'];
+	$p_gid=xss_clean($_POST['p_gid']);
 }
 if (isset($_POST['p_gid_weight'])) {
-  $p_gid_weight=$_POST['p_gid_weight'];
+  $p_gid_weight=xss_clean($_POST['p_gid_weight']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_args'])) {
-	$p_args=$_POST['p_args'];
+	$p_args=xss_clean($_POST['p_args']);
 }
 if (isset($_POST['p_args_weight'])) {
-  $p_args_weight=$_POST['p_args_weight'];
+  $p_args_weight=xss_clean($_POST['p_args_weight']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_tcp_banner'])) {
-  $p_tcp_banner=$_POST['p_tcp_banner'];
+  $p_tcp_banner=xss_clean($_POST['p_tcp_banner']);
 }
 if (isset($_POST['p_tcp_banner_weight'])) {
-  $p_tcp_banner_weight=$_POST['p_tcp_banner_weight'];
+  $p_tcp_banner_weight=xss_clean($_POST['p_tcp_banner_weight']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_udp_banner'])) {
-  $p_udp_banner=$_POST['p_udp_banner'];
+  $p_udp_banner=xss_clean($_POST['p_udp_banner']);
 }
 if (isset($_POST['p_udp_banner_weight'])) {
-  $p_udp_banner_weight=$_POST['p_udp_banner_weight'];
+  $p_udp_banner_weight=xss_clean($_POST['p_udp_banner_weight']);
 }
 //============================================================================================================
 if (isset($_POST['p_package'])) {
-  $p_package=$_POST['p_package'];
+  $p_package=xss_clean($_POST['p_package']);
 }
 if (isset($_POST['p_package_weight'])) {
-  $p_package_weight=$_POST['p_package_weight'];
+  $p_package_weight=xss_clean($_POST['p_package_weight']);
 }
 //============================================================================================================
 
@@ -96,45 +97,45 @@ if (isset($_POST['p_package_type_id'])) {
   }
 }
 if (isset($_POST['p_package_type_id_weight'])) {
-  $p_package_type_id_weight=$_POST['p_package_type_id_weight'];
+  $p_package_type_id_weight=xss_clean($_POST['p_package_type_id_weight']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_file'])) {
-  $p_file=$_POST['p_file'];
+  $p_file=xss_clean($_POST['p_file']);
 }
 if (isset($_POST['p_file_weight'])) {
-  $p_file_weight=$_POST['p_file_weight'];
+  $p_file_weight=xss_clean($_POST['p_file_weight']);
 }
 //============================================================================================================
 
 if (isset($_POST['pf_dac'])) {
-  $pf_dac=$_POST['pf_dac'];
+  $pf_dac=xss_clean($_POST['pf_dac']);
 }
 if (isset($_POST['pf_dac_weight'])) {
-  $pf_dac_weight=$_POST['pf_dac_weight'];
+  $pf_dac_weight=xss_clean($_POST['pf_dac_weight']);
 }
 //============================================================================================================
 if (isset($_POST['pf_uid'])) {
-  $pf_uid=$_POST['pf_uid'];
+  $pf_uid=xss_clean($_POST['pf_uid']);
 }
 if (isset($_POST['pf_uid_weight'])) {
-  $pf_uid_weight=$_POST['pf_uid_weight'];
+  $pf_uid_weight=xss_clean($_POST['pf_uid_weight']);
 }
 //============================================================================================================
 if (isset($_POST['pf_gid'])) {
-  $pf_gid=$_POST['pf_gid'];
+  $pf_gid=xss_clean($_POST['pf_gid']);
 }
 if (isset($_POST['pf_gid_weight'])) {
-  $pf_gid_weight=$_POST['pf_gid_weight'];
+  $pf_gid_weight=xss_clean($_POST['pf_gid_weight']);
 }
 //============================================================================================================
 if (isset($_POST['p_descr'])) {
-  $p_descr=$_POST['p_descr'];
+  $p_descr=xss_clean($_POST['p_descr']);
 }
 //============================================================================================================
 if (isset($_POST['p_solution'])) {
-  $p_solution=$_POST['p_solution'];
+  $p_solution=xss_clean($_POST['p_solution']);
 }
 //============================================================================================================
 
