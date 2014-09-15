@@ -228,16 +228,13 @@ if(login_check($mysqli) == false) {
 				</div><!--/col-->
 				
 				<div class="col-md-3 visible-md visible-lg" id="feed">
-					
 					<h2>Activity Feed <a class="fa fa-repeat"></a></h2>
-					
 					<ul id="filter">
 						<li><a class="green" href="index.html#" data-option-value="task">Casos</a></li>
 						<li><a class="red" href="index.html#" data-option-value="comment">Vulnerabilidades</a></li>
 						<li><a class="blue" href="index.html#" data-option-value="message">Gerência</a></li>
 						<li><a href="index.html#" data-option-value="all">Todos</a></li>
 					</ul>
-					
 					<ul id="timeline">
 						<?php
 							include_once 'includes/db_connect.php';
@@ -293,12 +290,8 @@ if(login_check($mysqli) == false) {
 							}
 
 						?>
-						
-	
 					</ul>
 					<a href="index.html#" id="load-more">•••</a>		
-						
-					
 				</div><!--/col-->	
 				
 			</div><!--/row-->	
