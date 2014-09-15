@@ -165,7 +165,17 @@ if(login_check($mysqli) == false) {
 	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="3"><font color="#FFFFFF">CASO ' . $case_id . '</font></th>';	                                                					if ($origem == 1) {
 	                                                					
 	                                                			echo '</tr>';
-	                                                			
+	                                                			echo '<tr>';
+	                                                			if ($origem == 1) { 
+	                                                				echo '<th style="text-align:center;">Registrado em</th>';
+	                                                        		echo '<th style="text-align:center;">'. $date .'</th>';
+	                                                        		echo '<th style="text-align:center;"></th>';
+	                                                        	} else {
+	                                                        		echo '<th style="text-align:center;">Aprendido em</th>';
+	                                                        		echo '<th style="text-align:center;">'. $date .'</th>';
+	                                                        		echo '<th style="text-align:center;"></th>';
+	                                                        	}
+	                                                			echo '</tr>';
 	                                                    		echo '<tr>';
 	                                                        		echo '<th style="text-align:center;" width="100px">Itens</th>';
 	                                                        		echo '<th style="text-align:center;">Valores</th>';
