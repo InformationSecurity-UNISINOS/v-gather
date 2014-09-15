@@ -300,7 +300,9 @@ if(login_check($mysqli) == false) {
 	                                               			echo '</tbody>';
 	                                            		echo '</table>';
 	                                            	}//for
-											    } 
+											    }  } else {
+											    	echo "Nenhum caso registrado.";
+											    }
 	                                            
                                             ?>
                                         </div>
