@@ -220,7 +220,66 @@ if(login_check($mysqli) == false) {
 								</a>	
 							</div>
 						</div><!--/col-->
+						
+						<div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
+							<div class="smallstat box">
+								<div class="boxchart-overlay blue">
+									<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
+								</div>	
+								<span class="title">Casos Registrados</span>
+								<span class="value">
+									<?php
+											include_once 'includes/db_connect.php';
+											include_once 'includes/functions.php';
 
+											$stmt=$mysqli->prepare("SELECT COUNT(id) FROM use_cases WHERE origem=1");
+												if ($stmt === FALSE) {
+	            									die ("Mysql Error: " . $mysqli->error);
+        										}
+											$stmt->execute();
+											$stmt->bind_result($registrados);
+											$stmt->fetch();
+											$stmt->free_result();
+
+											echo $registrados;
+									?>
+								</span>
+								<a href="#" class="more">
+									<span>View More</span>
+									<i class="fa fa-chevron-right"></i>
+								</a>	
+							</div>
+						</div><!--/col-->
+
+						<div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
+							<div class="smallstat box">
+								<div class="boxchart-overlay blue">
+									<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
+								</div>	
+								<span class="title">Casos Aprendidos</span>
+								<span class="value">
+									<?php
+											include_once 'includes/db_connect.php';
+											include_once 'includes/functions.php';
+
+											$stmt=$mysqli->prepare("SELECT COUNT(id) FROM use_cases WHERE origem=2");
+												if ($stmt === FALSE) {
+	            									die ("Mysql Error: " . $mysqli->error);
+        										}
+											$stmt->execute();
+											$stmt->bind_result($aprendidos);
+											$stmt->fetch();
+											$stmt->free_result();
+
+											echo $aprendidos;
+									?>
+								</span>
+								<a href="#" class="more">
+									<span>View More</span>
+									<i class="fa fa-chevron-right"></i>
+								</a>	
+							</div>
+						</div><!--/col-->
 
 					</div><!--/row-->
 
