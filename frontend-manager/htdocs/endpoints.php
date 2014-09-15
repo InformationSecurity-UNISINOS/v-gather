@@ -94,6 +94,8 @@ if(login_check($mysqli) == false) {
 								<div class="box-content">
 									<table class="table table-striped">
 										<?php
+											include_once 'includes/db_connect.php';
+											include_once 'includes/functions.php';
 											if ( isset($_POST['new_ag_hostname']) && isset($_POST['new_ag_ipaddr']) ) {
 												$new_ag_ipaddr=$_POST['new_ag_ipaddr'];
 												$new_ag_hostname=$_POST['new_ag_hostname'];
@@ -108,9 +110,11 @@ if(login_check($mysqli) == false) {
 												$stmt->execute();
 												$stmt->free_result();
 												$stmt->close();
-												$new_ag_hostname="";
-												$new_ag_ipaddr="";
-
+												unset($new_ag_hostname);
+												unset($new_ag_ipaddr);
+												unset($_POST['new_ag_ipaddr']);
+												unset($_POST['new_ag_hostname']);
+												header('Location: endpoints.php');
 											}
 										?>
 										<form action="endpoints.php" method="POST" role="form" class="form-horizontal">
