@@ -88,7 +88,7 @@ if(login_check($mysqli) == false) {
 					<div class="row">		
 						<ol class="breadcrumb">
 					  		<li><a href="#">V-Gather</a></li>
-					  		<li class="active" >Dashboard</li>
+					  		<li class="active" >Endpoints</li>
 						</ol>
 
 						<div class="col-sm-12 col-md-12">
@@ -129,7 +129,7 @@ if(login_check($mysqli) == false) {
 						<div class="col-sm-12 col-md-12">
 							<div class="box">
 								<div class="box-header" data-original-title>
-									<h2><i class="fa fa-user"></i><span class="break"></span>Endpoints</h2>
+									<h2><i class="fa fa-user"></i><span class="break"></span>Servidores Gerenciados</h2>
 								<!--
 									<div class="box-icon">
 										<a href="table.html#" class="btn-setting"><i class="fa fa-wrench"></i></a>
