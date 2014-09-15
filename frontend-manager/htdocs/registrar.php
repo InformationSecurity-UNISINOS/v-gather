@@ -84,11 +84,15 @@ if(login_check($mysqli) == false) {
 			<!-- start: Content -->
 				<div id="content" class="col-lg-10 col-sm-11 ">
 					<div class="row"> <!-- INICIO PRIMEIRA LINHA-->
+						<ol class="breadcrumb">
+					  		<li><a href="#">V-Gather</a></li>
+					  		<li class="active" >Registro de Caso</li>
+						</ol>
 		                <div class="col-lg-12 col-md-12">
 		                    <div class="box">
 		                        <div class="box-header">
 		                            <h2><i class="fa fa-bookmark-o"></i>
-		                                <font face="MankSans" size="5pt">Registro de Caso</font>
+		                                <font face="MankSans" size="5pt">Novo Caso</font>
 		                            </h2>
 		                        </div>
 		                        <div class="box-content">

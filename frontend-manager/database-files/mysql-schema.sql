@@ -23,7 +23,6 @@ CREATE TABLE `managed_servers` (
   `id` int(11)  NOT NULL AUTO_INCREMENT,
   `ipaddress` varchar(15) DEFAULT NULL,
   `hostname` varchar(255) DEFAULT NULL,
-  `agent_version` varchar(10) DEFAULT NULL,
   `created` TIMESTAMP NOT NULL,
   `updated` TIMESTAMP NOT NULL,
   PRIMARY KEY (`id`)
@@ -92,6 +91,7 @@ CREATE TABLE `use_cases` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` TIMESTAMP NOT NULL,
   `status` int NOT NULL,
+  `origem` int NOT NULL,
   `so_id` int(11) DEFAULT NULL,
   `so_id_weight` FLOAT(3,2) DEFAULT NULL,
   `so_version` varchar(30) DEFAULT NULL,

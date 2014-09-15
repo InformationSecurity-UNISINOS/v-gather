@@ -86,6 +86,11 @@ if(login_check($mysqli) == false) {
 				<!-- start: Content -->
 				<div id="content" class="col-lg-10 col-sm-11 ">
 					<div class="row">		
+						<ol class="breadcrumb">
+					  		<li><a href="#">V-Gather</a></li>
+					  		<li class="active" >Dashboard</li>
+						</ol>
+
 						<div class="col-sm-12 col-md-12">
 							<div class="box">
 								<div class="box-header" data-original-title>
