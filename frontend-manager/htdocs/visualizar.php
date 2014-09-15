@@ -107,14 +107,9 @@ if(login_check($mysqli) == false) {
                                     
                                     <font face="MankSans" size="2pt">
                                         <div class="box-content">
-
-
-
                                         	<?php
                                         		include_once 'includes/db_connect.php';
 												include_once 'includes/functions.php';
-
-
 												$stmt=$mysqli->prepare("SELECT COUNT(id) FROM use_cases");
 												if ($stmt === FALSE) {
             												printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
@@ -170,18 +165,7 @@ if(login_check($mysqli) == false) {
 	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="3"><font color="#FFFFFF">CASO ' . $case_id . '</font></th>';	                                                					if ($origem == 1) {
 	                                                					
 	                                                			echo '</tr>';
-	                                                			echo '<tr>';
-	                                                			if ($origem == 1) { 
-	                                                				echo '<th style="text-align:center;">Registrado em</th>';
-	                                                        		echo '<th style="text-align:center;">'. $date .'</th>';
-	                                                        		echo '<th style="text-align:center;"></th>';
-	                                                        	} else {
-	                                                        		echo '<th style="text-align:center;">Aprendido em</th>';
-	                                                        		echo '<th style="text-align:center;">'. $date .'</th>';
-	                                                        		echo '<th style="text-align:center;"></th>';
-	                                                        	}
-
-	                                                			echo '</tr>';
+	                                                			
 	                                                    		echo '<tr>';
 	                                                        		echo '<th style="text-align:center;" width="100px">Itens</th>';
 	                                                        		echo '<th style="text-align:center;">Valores</th>';
@@ -303,17 +287,14 @@ if(login_check($mysqli) == false) {
 	                                                        		echo '<td>'. "Solução do Caso" .'</td>';
 	                                                        		echo '<td colspan="2">'. $solucao .'</td>';
 	                                                   	 		echo '</tr>';
-	                                                    	
 	                                               			echo '</tbody>';
 	                                            		echo '</table>';
 	                                            	}//for
-
 											    } else {
 											    	echo "Nenhum caso registrado.";
 											    }
 	                                            
                                             ?>
-
                                         </div>
                                     </font>
                                 </div>
