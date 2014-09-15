@@ -179,7 +179,6 @@ if(login_check($mysqli) == false) {
 	                                                        		echo '<th style="text-align:center;">Aprendido em</th>';
 	                                                        		echo '<th style="text-align:center;">'. $date .'</th>';
 	                                                        		echo '<th style="text-align:center;"></th>';
-
 	                                                        	}
 
 	                                                			echo '</tr>';
@@ -307,7 +306,7 @@ if(login_check($mysqli) == false) {
 	                                                    	
 	                                               			echo '</tbody>';
 	                                            		echo '</table>';
-	                                            	}
+	                                            	}//for
 
 											    } else {
 											    	echo "Nenhum caso registrado.";
