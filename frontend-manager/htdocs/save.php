@@ -141,7 +141,7 @@ if (isset($_POST['p_solution'])) {
 
 
 // Atualizar tabela use_cases
-$stmt=$mysqli->prepare("INSERT INTO use_cases(date,status,
+$stmt=$mysqli->prepare("INSERT INTO use_cases(date,status,origem,
                                                 so_id, so_id_weight,
                                                 so_version, so_version_weight,
                                                 process_name, process_name_weight,
@@ -156,12 +156,13 @@ $stmt=$mysqli->prepare("INSERT INTO use_cases(date,status,
                                                 process_binary_dac, process_binary_dac_weight,
                                                 process_binary_uid, process_binary_uid_weight,
                                                 process_binary_gid, process_binary_gid_weight)
-	                                           VALUES(CURRENT_TIMESTAMP,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	                                           VALUES(CURRENT_TIMESTAMP,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 if ($stmt === FALSE) {
     die ("Mysql Error 1: " . $mysqli->error);
 }
 $status=1;
-$stmt->bind_param('iisssssisisssssssssisssisisis', $status,
+$origem=1;
+$stmt->bind_param('iiisssssisisssssssssisssisisis', $status, $origem,
                       $so_id, $so_weight,
                       $so_ver, $so_ver_weight,
                       $p_name, $p_name_weight,

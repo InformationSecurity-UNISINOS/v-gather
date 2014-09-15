@@ -127,7 +127,7 @@ if(login_check($mysqli) == false) {
 
 												if ($nro_casos) {
 													for ($i = 1; $i <= $nro_casos; $i++) {
-														$stmt = $mysqli->prepare("SELECT id,date,
+														$stmt = $mysqli->prepare("SELECT id,date, origem,
 			                                                so_id, so_id_weight,
 			                                                so_version, so_version_weight,
 			                                                process_name, process_name_weight,
@@ -146,7 +146,7 @@ if(login_check($mysqli) == false) {
 														$stmt->bind_param('i', $i);
 														
 												        $stmt->execute();
-														$stmt->bind_result($case_id,$date,
+														$stmt->bind_result($case_id,$date,$origem,
 												        					$so_id, $so_id_weight,
 												        					$so_version, $so_version_weight,
 																			$process_name, $process_name_weight,
@@ -167,7 +167,21 @@ if(login_check($mysqli) == false) {
 														echo '<table class="table table-bordered table-striped table-condensed" style="text-align:center;">';
 	                                                		echo '<thead>';
 	                                                			echo '<tr>';
-	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="3"><font color="#FFFFFF">CASO ' . $case_id . '</font></th>';
+	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="3"><font color="#FFFFFF">CASO ' . $case_id . '</font></th>';	                                                					if ($origem == 1) {
+	                                                					
+	                                                			echo '</tr>';
+	                                                			echo '<tr>';
+	                                                			if ($origem == 1) { 
+	                                                				echo '<th style="text-align:center;">Registrado em</th>';
+	                                                        		echo '<th style="text-align:center;">'. $date .'</th>';
+	                                                        		echo '<th style="text-align:center;"></th>';
+	                                                        	} else {
+	                                                        		echo '<th style="text-align:center;">Aprendido em</th>';
+	                                                        		echo '<th style="text-align:center;">'. $date .'</th>';
+	                                                        		echo '<th style="text-align:center;"></th>';
+
+	                                                        	}
+
 	                                                			echo '</tr>';
 	                                                    		echo '<tr>';
 	                                                        		echo '<th style="text-align:center;" width="100px">Itens</th>';
