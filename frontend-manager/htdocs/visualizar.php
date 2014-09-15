@@ -289,20 +289,18 @@ if(login_check($mysqli) == false) {
 																$stmt->free_result();
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td>'. "Descrição do Caso" .'</td>';
+	                                                        		echo '<td>Descrição do Caso</td>';
 	                                                        		echo '<td colspan="2">'. $descricao .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td>'. "Solução do Caso" .'</td>';
+	                                                        		echo '<td>Solução do Caso</td>';
 	                                                        		echo '<td colspan="2">'. $solucao .'</td>';
 	                                                   	 		echo '</tr>';
 	                                               			echo '</tbody>';
 	                                            		echo '</table>';
 	                                            	}//for
-											    } else {
-											    	echo "Nenhum caso registrado.";
-											    }
+											    } 
 	                                            
                                             ?>
                                         </div>
