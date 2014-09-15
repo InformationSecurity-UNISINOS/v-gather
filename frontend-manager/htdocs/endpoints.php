@@ -104,7 +104,7 @@ if(login_check($mysqli) == false) {
 												if ($stmt === FALSE) {
 											    	die ("Mysql Error 1: " . $mysqli->error);
 												}
-												$stmt->bind_param('ss',$new_ag_hostname,$new_ag_hostname);
+												$stmt->bind_param('ss',$new_ag_ipaddr,$new_ag_hostname);
 												$stmt->execute();
 												$stmt->free_result();
 												$stmt->close();
