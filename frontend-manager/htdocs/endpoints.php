@@ -95,7 +95,7 @@ if(login_check($mysqli) == false) {
 									<table class="table table-striped">
 										<?php
 											if ( isset($_POST['new_ag_hostname']) && isset($_POST['new_ag_ipaddr']) ) {
-												$new_ag_hostname=$_POST['new_ag_ipaddr'];
+												$new_ag_ipaddr=$_POST['new_ag_ipaddr'];
 												$new_ag_hostname=$_POST['new_ag_hostname'];
 												include_once 'includes/db_connect.php';
 												include_once 'includes/functions.php';
@@ -108,6 +108,9 @@ if(login_check($mysqli) == false) {
 												$stmt->execute();
 												$stmt->free_result();
 												$stmt->close();
+												$new_ag_hostname="";
+												$new_ag_ipaddr="";
+
 											}
 										?>
 										<form action="endpoints.php" method="POST" role="form" class="form-horizontal">

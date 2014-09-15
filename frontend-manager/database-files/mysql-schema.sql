@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `managed_servers`;
 CREATE TABLE `managed_servers` (
-  `id` int(11) NOT NULL,
+  `id` int(11)  NOT NULL AUTO_INCREMENT,
   `ipaddress` varchar(15) DEFAULT NULL,
   `hostname` varchar(255) DEFAULT NULL,
   `agent_version` varchar(10) DEFAULT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE `managed_servers` (
 -- ----------------------------
 DROP TABLE IF EXISTS `status_types`;
 CREATE TABLE `status_types` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -46,15 +46,15 @@ CREATE TABLE `status_types` (
 -- Records of status_types
 -- ----------------------------
 
-INSERT INTO status_types VALUES (1,"caso");
-INSERT INTO status_types VALUES (2,"possível caso");
+INSERT INTO status_types VALUES (1,"Caso");
+INSERT INTO status_types VALUES (2,"Candidato");
 
 -- ----------------------------
 -- Table structure for package_types
 -- ----------------------------
 DROP TABLE IF EXISTS `package_types`;
 CREATE TABLE `package_types` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -71,7 +71,7 @@ INSERT INTO package_types (id,name) VALUES (2,"RPM");
 -- ----------------------------
 DROP TABLE IF EXISTS `sos`;
 CREATE TABLE `sos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

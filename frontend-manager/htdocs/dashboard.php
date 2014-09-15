@@ -280,7 +280,7 @@ if(login_check($mysqli) == false) {
 								echo '<li class="message">';
 									echo '<i class="fa fa-eye blue"></i>';
 									echo '<div class="title"> Agente Adicionado</div>';
-									echo '<div class="desc">Novo agente registrado para o servidor de endereço IP ' . $last_pname;
+									echo '<div class="desc">Novo agente registrado para o servidor de endereço IP ' . $last_a_ip;
 									if (is_null($last_a_hostname)) {
 										echo '</div>';
 									} else {
