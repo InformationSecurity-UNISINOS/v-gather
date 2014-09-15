@@ -162,8 +162,8 @@ if(login_check($mysqli) == false) {
 														echo '<table class="table table-bordered table-striped table-condensed" style="text-align:center;">';
 	                                                		echo '<thead>';
 	                                                			echo '<tr>';
-	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="3"><font color="#FFFFFF">CASO ' . $case_id . '</font></th>';	                                                					if ($origem == 1) {
-	                                                					
+	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="3"><font color="#FFFFFF">CASO ' . $case_id . '</font></th>';	                                                					
+
 	                                                			echo '</tr>';
 	                                                			echo '<tr>';
 	                                                			if ($origem == 1) { 
@@ -300,7 +300,7 @@ if(login_check($mysqli) == false) {
 	                                               			echo '</tbody>';
 	                                            		echo '</table>';
 	                                            	}//for
-											    }  } else {
+											    } else {
 											    	echo "Nenhum caso registrado.";
 											    }
 	                                            
