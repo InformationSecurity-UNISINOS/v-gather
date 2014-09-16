@@ -138,8 +138,8 @@ CREATE TABLE `use_cases` (
   PRIMARY KEY (`id`),
   KEY `so_id` (`so_id`),
   KEY `package_type_id` (`package_type_id`),
-  CONSTRAINT `use_cases_ibfk_2` FOREIGN KEY (`package_type_id`) REFERENCES `package_types` (`id`),
-  CONSTRAINT `use_cases_ibfk_1` FOREIGN KEY (`so_id`) REFERENCES `sos` (`id`)
+  CONSTRAINT `use_cases_ibfk_2` FOREIGN KEY (`package_type_id`) REFERENCES `package_types` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `use_cases_ibfk_1` FOREIGN KEY (`so_id`) REFERENCES `sos` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
