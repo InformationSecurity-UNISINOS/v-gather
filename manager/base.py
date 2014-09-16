@@ -139,19 +139,27 @@ def DbGetSoName(so_id):
 
 
 
-def SqlInsert():
-	conn = MySQLdb.connect (host = sqlhost, user = sqluser, passwd = sqlpass, db = sqldb)
-	cursor = conn.cursor()
-	sql = "INSERT INTO EMPLOYEE(FIRST_NAME,LAST_NAME, AGE, SEX, INCOME) \
-       VALUES ('%s', '%s', '%d', '%c', '%d' )" % \
-       ('Mac', 'Mohan', 20, 'M', 2000)
-	try:
-		cursor.execute(sql)
-   		conn.commit()
-	except:
-   		# Rollback in case there is any error
-   		conn.rollback()
-   	conn.close ()
+def DbSimCases():
+	clen=candidates.LenQueue()
+	while clen > 0:
+		proc=candidates.GetQueue()
+		for key, value in proc.iteritems():
+			print "%s: %s" %(key,value)
+			print "*"*50
+		clen-=1
+	candidates.DestroyQueue()
+	#conn = MySQLdb.connect (host = sqlhost, user = sqluser, passwd = sqlpass, db = sqldb)
+	#cursor = conn.cursor()
+	#sql = "INSERT INTO EMPLOYEE(FIRST_NAME,LAST_NAME, AGE, SEX, INCOME) \
+    #   VALUES ('%s', '%s', '%d', '%c', '%d' )" % \
+    #   ('Mac', 'Mohan', 20, 'M', 2000)
+	#try:
+#		cursor.execute(sql)
+ #  		conn.commit()
+#	except:
+ #  		# Rollback in case there is any error
+  # 		conn.rollback()
+   #	conn.close ()
 
 
 
