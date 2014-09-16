@@ -34,6 +34,21 @@ CREATE TABLE `managed_servers` (
 -- ----------------------------
 -- Table structure for status_types
 -- ----------------------------
+DROP TABLE IF EXISTS `case_match`;
+CREATE TABLE `case_match` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` int(11) NOT NULL DEFAULT 6,
+  `desc` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- ----------------------------
+-- Records of status_types
+-- ----------------------------
+
+
+-- ----------------------------
+-- Table structure for status_types
+-- ----------------------------
 DROP TABLE IF EXISTS `status_types`;
 CREATE TABLE `status_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
