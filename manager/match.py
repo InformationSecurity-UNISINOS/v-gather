@@ -24,6 +24,8 @@ def MatchData():
 		print "  + Não existem casos na base. Cadastre-os primeiramente."
 		return False
 	case_id=1
+	sim_point=DbSimilarPoint()
+
 	while case_id <= total_cases:
 		db_case={}
 		db_case=DbGetCase(case_id)
@@ -31,7 +33,7 @@ def MatchData():
 			return False
 		db_so_name=DbGetSoName(db_case['so_id'])
 		db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
-		debug=False
+		debug=True
 
 		qlen=LenQueue()
 		while qlen>0:
@@ -191,6 +193,7 @@ def MatchData():
 				print "DISTRO NAME: " +str(distro_ratio)
 				print "Peso: " +str(distro_weight)
 				print "Score: " +str(distro_score)
+
 
 			final_score=distro_score +  distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_score + p_pkgm_score + p_pkg_score
 			print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
