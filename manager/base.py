@@ -22,6 +22,17 @@ def DbCountCases():
 	conn.close()
 	return int(result[0])
 
+def DbSimilarPoint():
+	conn=DbConnect()
+	if conn == None:
+		return False
+	cursor = conn.cursor()
+	decpoint="SELECT value FROM case_match"
+	cursor.execute (decpoint)
+	result = cursor.fetchone()
+	conn.close()
+	return int(result[0])
+
 
 def DbCheckAgent(agent_addr):
 	conn=DbConnect()
