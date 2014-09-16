@@ -1,6 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
- 
+#
+#
+# A organização dos casos funciona no esquema
+# 2.5.1.1 Memória linear com busca serial (dumbo)
+#
+# A adaptação da solução será baseada em crítica.
+# O usuário vai observar a solução e fazer a adaptação manualmente, caso seja necessário.
+# Caso não seja necessário, a adaptação nula é adotada (apenas aplica como está)
+#
+#
+#
+#
+
+
 import MySQLdb
 from common import *
 from cqueue import *
@@ -143,10 +156,28 @@ def DbGetSoName(so_id):
 def DbSimCases():
 	clen=candidates.LenQueue()
 	while clen > 0:
-		proc=candidates.GetQueue()
-		for key, value in proc.iteritems():
-			print "%s: %s" %(key,value)
-			print "*"*50
+		print "#"*50
+		print "#"*50
+		pdict=candidates.GetQueue()
+		print "Distro Ver/ SCORE: %s / %s" %(pdict['distro'],pdict['distro_score'])
+		print "Distro Ver/ SCORE: %s / %s" %(pdict['distro_version'],pdict['distro_version_score'])
+		print "Processo / SCORE: %s / %s" %(pdict['p_name'], pdict['p_name_score'])
+		print "UID / SCORE: %s / %s" %(pdict['p_uid'], pdict['p_uid_score'])
+		print "GID / SCORE: %s / %s" %(pdict['p_gid'], pdict['p_gid_score'])
+		print "ARGS / SCORE: %s / %s " %(pdict['p_args'],pdict['p_args_score'])
+		print "TCP / SCORE: %s / %s" %(pdict['p_tcp_banner'],pdict['p_tcp_banner_score'])
+		print "UDP / SCORE: %s / %s" %(pdict['p_udp_banner'],pdict['p_udp_banner_score'])
+		if pdict['p_dpkg']:
+			print "PACOTE / SCORE: %s / %s" %(pdict['p_dpkg'],pdict['p_pkg_score'])
+			print "GERENCIADOR PACOTE / SCORE: %s / %s" %("DPKG",pdict['p_pkgmgr_score'])
+		else:
+			print "PACOTE / SCORE: %s / %s" %(pdict['p_rpm'],pdict['p_pkg_score'])
+			print "GERENCIADOR PACOTE / SCORE: %s / %s" %("RPM",pdict['p_pkgmgr_score'])
+		print "FPATH / SCORE:  %s / %s" %(pdict['pf_path'],pdict['pf_path_score'])
+		print "FUID / SCORE: %s / %s" %(pdict['pf_uid'],pdict['pf_uid_score'])
+		print "FGID / SCORE: %s / %s" %(pdict['pf_gid'],pdict['pf_gid_score'])
+		print "FDAC / SCORE: %s / %s" %(pdict['pf_dac'],pdict['pf_dac_score'])
+		print "===FINAL: %s" %pdict['score']
 		clen-=1
 	candidates.DestroyQueue()
 	#conn = MySQLdb.connect (host = sqlhost, user = sqluser, passwd = sqlpass, db = sqldb)
