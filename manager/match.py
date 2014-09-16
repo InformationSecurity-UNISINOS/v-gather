@@ -25,6 +25,8 @@ def MatchData():
 		return False
 	case_id=1
 	sim_point=DbSimilarPoint()
+	if sim_point == None:
+		return False
 
 	while case_id <= total_cases:
 		db_case={}
