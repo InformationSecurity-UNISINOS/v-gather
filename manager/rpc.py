@@ -14,10 +14,6 @@ class XmlHandler(xmlrpc.XMLRPC):
     
     def xmlrpc_general(self,rcv_agent,rcv_domain,rcv_distro,rcv_distro_version,rcv_p_pid,rcv_p_name,rcv_p_uid,rcv_p_gid,rcv_p_rpm,rcv_p_dpkg,rcv_pf_path,rcv_pf_dac,rcv_pf_uid,rcv_pf_gid,rcv_p_args,rcv_p_tbanner,rcv_p_ubanner):
         #print "[+] Registrando Dados Gerais"
-        client_ipaddr=self.request.getClientIP()
-        ready=False
-        if DbCheckAgent(client_ipaddr) == False:    # authorized agents only
-                return False
         if len(rcv_distro)==0 and len(rcv_p_name)==0:
             return False
 
@@ -27,7 +23,6 @@ class XmlHandler(xmlrpc.XMLRPC):
                 tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]  
             
                 if CheckKnownTcpPort(tbanner) == False:
-                    ready=True
                     ParamDict={}
                     try:
                         ParamDict["p_tcp_banner"]=tbanner.split(':')[0]+":"+b64decode(tbanner.split(':')[1])
@@ -60,7 +55,6 @@ class XmlHandler(xmlrpc.XMLRPC):
                 ubanner=ParseBanner(rcv_p_ubanner,port_pos)[1]   #ainda em base64
                 
                 if CheckKnownUdpPort(ubanner) == False:
-                    ready=True
                     ParamDict={}
                     try:
                         ParamDict["p_udp_banner"]=ubanner.split(':')[0]+":"+b64decode(ubanner.split(':')[1])
@@ -86,7 +80,6 @@ class XmlHandler(xmlrpc.XMLRPC):
                 else:
                     pass
         else:
-            ready=True
             ParamDict={}
             ParamDict["agent"]=rcv_agent
             ParamDict["gateway"]=rcv_domain
@@ -107,8 +100,6 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["p_udp_banner"]=""
             AddQueue(ParamDict)
 
-        #if ready==True:
-        #    MatchData()
         return True
     def xmlrpc_match(self):
         MatchData()
