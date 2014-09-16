@@ -129,7 +129,7 @@ if(login_check($mysqli) == false) {
 														 </label>
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_weight" name="so_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_weight" name="so_weight" type="text" >
 													</td>
 												</tr>
 												<tr>
@@ -137,10 +137,10 @@ if(login_check($mysqli) == false) {
 														Versão da Distribuição GNU/Linux
 													</td>
 													<td>
-														<input placeholder="Exemplo: 7.4" class="form-control focused" id="so_ver" name="so_ver" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplo: 7.4" class="form-control focused" id="so_ver" name="so_ver" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_ver_weight" name="so_ver_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_ver_weight" name="so_ver_weight" type="text" >
 													</td>
 												</tr>
 												<tr>
@@ -148,10 +148,10 @@ if(login_check($mysqli) == false) {
 														Nome do Processo
 													</td>
 													<td>
-														<input placeholder="Exemplos: apache2, mysqld, ntpd, cron" class="form-control focused" id="p_name" name="p_name" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplos: apache2, mysqld, ntpd, cron" class="form-control focused" id="p_name" name="p_name" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_name_weight" name="p_name_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_name_weight" name="p_name_weight" type="text" >
 													</td>
 												</tr>
 
@@ -160,10 +160,10 @@ if(login_check($mysqli) == false) {
 														UID do processo
 													</td>
 													<td>
-														<input placeholder="Exemplos: 33, 0, 80"class="form-control focused" id="p_uid" name="p_uid" type="number" autocomplete="disabled" required>
+														<input placeholder="Exemplos: 33, 0, 80"class="form-control focused" id="p_uid" name="p_uid" type="number" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_uid_weight" name="p_uid_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_uid_weight" name="p_uid_weight" type="text" >
 													</td>
 												</tr>
 
@@ -172,10 +172,10 @@ if(login_check($mysqli) == false) {
 														GID do processo
 													</td>
 													<td>
-														<input placeholder="Exemplos: 33, 0, 80"class="form-control focused" id="p_gid" name="p_gid" type="number" autocomplete="disabled" required>
+														<input placeholder="Exemplos: 33, 0, 80"class="form-control focused" id="p_gid" name="p_gid" type="number" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_gid_weight" name="p_gid_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_gid_weight" name="p_gid_weight" type="text" >
 													</td>
 												</tr>
 
@@ -184,10 +184,10 @@ if(login_check($mysqli) == false) {
 														Argumentos do processo
 													</td>
 													<td>
-														<input placeholder="Exemplos: -k start --config=/etc/config/config.conf"class="form-control focused" id="p_args" name="p_args" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplos: -k start --config=/etc/config/config.conf"class="form-control focused" id="p_args" name="p_args" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_args_weight" name="p_args_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_args_weight" name="p_args_weight" type="text" >
 													</td>
 												</tr>
 
@@ -199,10 +199,10 @@ if(login_check($mysqli) == false) {
 			                                    		</font>
 													</td>
 													<td>
-														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_tcp_banner" name="p_tcp_banner" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_tcp_banner" name="p_tcp_banner" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_tcp_banner_weight" name="p_tcp_banner_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_tcp_banner_weight" name="p_tcp_banner_weight" type="text" >
 													</td>
 												</tr>
 		
@@ -215,10 +215,10 @@ if(login_check($mysqli) == false) {
 			                                    		</font>
 													</td>
 													<td>
-														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_udp_banner" name="p_udp_banner" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_udp_banner" name="p_udp_banner" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_udp_banner_weight" name="p_udp_banner_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_udp_banner_weight" name="p_udp_banner_weight" type="text" >
 													</td>
 												</tr>
 
@@ -227,10 +227,10 @@ if(login_check($mysqli) == false) {
 														Arquivo executável do processo
 													</td>
 													<td>
-														<input placeholder="Exemplo: /usr/lib/apache2/mpm-prefork/apache2"class="form-control focused" id="p_file" name="p_file" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplo: /usr/lib/apache2/mpm-prefork/apache2"class="form-control focused" id="p_file" name="p_file" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_file_weight" name="p_file_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_file_weight" name="p_file_weight" type="text" >
 													</td>
 												</tr>
 
@@ -239,10 +239,10 @@ if(login_check($mysqli) == false) {
 														Pacote a qual pertence o processo
 													</td>
 													<td>
-														<input placeholder="Exemplo: apache2-2.2.22"class="form-control focused" id="p_package" name="p_package" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplo: apache2-2.2.22"class="form-control focused" id="p_package" name="p_package" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_package_weight" name="p_package_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_package_weight" name="p_package_weight" type="text" >
 													</td>
 												</tr>
 												<tr>
@@ -258,7 +258,7 @@ if(login_check($mysqli) == false) {
 														 </label>
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_package_type_id_weight" name="p_package_type_id_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_package_type_id_weight" name="p_package_type_id_weight" type="text" >
 													</td>
 												</tr>
 
@@ -267,10 +267,10 @@ if(login_check($mysqli) == false) {
 														Esquema de permissões DAC do arquivo executável do processo
 													</td>
 													<td>
-														<input placeholder="Exemplo: 755, 740"class="form-control focused" id="pf_dac" name="pf_dac" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplo: 755, 740"class="form-control focused" id="pf_dac" name="pf_dac" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_dac_weight" name="pf_dac_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_dac_weight" name="pf_dac_weight" type="text" >
 													</td>
 												</tr>
 
@@ -279,10 +279,10 @@ if(login_check($mysqli) == false) {
 														UID do arquivo executável do processo
 													</td>
 													<td>
-														<input placeholder="Exemplo: 0"class="form-control focused" id="pf_uid" name="pf_uid" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplo: 0"class="form-control focused" id="pf_uid" name="pf_uid" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_uid_weight" name="pf_uid_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_uid_weight" name="pf_uid_weight" type="text" >
 													</td>
 												</tr>
 												<tr>
@@ -290,10 +290,10 @@ if(login_check($mysqli) == false) {
 														GID do arquivo executável do processo
 													</td>
 													<td>
-														<input placeholder="Exemplo: 0"class="form-control focused" id="pf_gid" name="pf_gid" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplo: 0"class="form-control focused" id="pf_gid" name="pf_gid" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_gid_weight" name="pf_gid_weight" type="text" required>
+														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_gid_weight" name="pf_gid_weight" type="text" >
 													</td>
 												</tr>
 
@@ -302,7 +302,7 @@ if(login_check($mysqli) == false) {
 														Descrição da vulnerabilidade
 													</td>
 													<td colspan="2">
-														<textarea id="p_descr" name="p_descr" rows="3" style="width:100%" autocomplete="disabled" required></textarea>
+														<textarea id="p_descr" name="p_descr" rows="3" style="width:100%" autocomplete="disabled" ></textarea>
 													</td>
 												</tr>
 
@@ -311,7 +311,7 @@ if(login_check($mysqli) == false) {
 														Solução para vulnerabilidade
 													</td>
 													<td colspan="2">
-														<textarea id="p_solution" name="p_solution" rows="3" style="width:100%" autocomplete="disabled" required></textarea>
+														<textarea id="p_solution" name="p_solution" rows="3" style="width:100%" autocomplete="disabled" ></textarea>
 													</td>
 												</tr>
 												<tr>
