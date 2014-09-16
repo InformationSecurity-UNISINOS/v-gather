@@ -223,7 +223,7 @@ if(login_check($mysqli) == false) {
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Argumentos do Processo" .'</td>';
-	                                                        		echo '<td>'.  htmlentities($process_args .'</td>';
+	                                                        		echo '<td>'.  htmlentities($process_args) .'</td>';
 	                                                        		echo '<td width="20%">'.  htmlentities(round($process_args_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
