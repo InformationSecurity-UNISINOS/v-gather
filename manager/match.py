@@ -45,15 +45,17 @@ def MatchData():
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
 			if pdict['p_dpkg']:
-				p_pkgm_ratio = Similarity( pdict['p_dpkg'] , db_pkg_mgr )
+				p_pkgm_ratio = Similarity( "dpkg" , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pdict['p_dpkg'] , db_case['package_name'] )
+			
 			if pdict['p_rpm']:
-				p_pkgm_ratio = Similarity( pdict['p_rpm'] , db_pkg_mgr )
+				p_pkgm_ratio = Similarity( "rpm" , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pdict['p_rpm'] , db_case['package_name'] )
+
 			p_pkg_weight = db_case['package_name_weight']
 			p_pkg_score = p_pkg_ratio * p_pkg_weight
 			p_pkgm_weight = db_case['package_type_id_weight']
-			p_pkgm_score = p_pkg_weight * p_pkg_ratio
+			p_pkgm_score = p_pkgm_weight * p_pkgm_ratio
 			pdict['p_pkgmgr_score']=p_pkgm_score
 			pdict['p_pkg_score']=p_pkg_score
 
