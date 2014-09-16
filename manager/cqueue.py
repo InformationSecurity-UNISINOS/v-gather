@@ -1,23 +1,30 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
  
-from collections import deque
-pqueue = deque()
+class Fila(object):
+        def __init__(self):
+                from collections import deque
+                self.pqueue = deque()
 
-def DestroyQueue():
-	while LenQueue() >0:
-		pqueue.popleft()
+        def DestroyQueue(self):
+                while LenQueue() >0:
+                        self.pqueue.popleft()
+                return True
 
-def GetQueue():
-	 item=pqueue.popleft()
-	 AddQueue(item)
-	 return item
+        def GetQueue(self):
+                item=self.pqueue.popleft()
+                self.AddQueue(item)
+                return item
 
-def AddQueue(dict={}):
-	pqueue.append(dict)
+        def AddQueue(self,dict={}):
+                self.pqueue.append(dict)
+                return True
 
-def LenQueue():
-	return len(pqueue)
+        def LenQueue(self):
+                return len(self.pqueue)
+
+recvdata=Fila()
+candidates=Fila()
 
 
 

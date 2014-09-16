@@ -35,9 +35,9 @@ def MatchData():
 		db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
 		debug=True
 
-		qlen=LenQueue()
+		qlen=recvdata.LenQueue()
 		while qlen>0:
-			pdict = GetQueue()
+			pdict = recvdata.GetQueue()
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
@@ -202,7 +202,7 @@ def MatchData():
 			print ""
 			print ""
 		case_id+=1
-	DestroyQueue()		
+	recvdata.DestroyQueue()
 	return True
 
 

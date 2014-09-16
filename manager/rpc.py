@@ -45,7 +45,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                     ParamDict["pf_uid"]=rcv_pf_uid
                     ParamDict["pf_gid"]=rcv_pf_gid
                     
-                    AddQueue(ParamDict)
+                    recvdata.AddQueue(ParamDict)
                 else: 
                     pass # to be explicit on this case
 
@@ -76,7 +76,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                     ParamDict["pf_dac"]=rcv_pf_dac
                     ParamDict["pf_uid"]=rcv_pf_uid
                     ParamDict["pf_gid"]=rcv_pf_gid
-                    AddQueue(ParamDict)
+                    recvdata.AddQueue(ParamDict)
                 else:
                     pass
         else:
@@ -98,7 +98,7 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["pf_gid"]=rcv_pf_gid
             ParamDict["p_tcp_banner"]=""
             ParamDict["p_udp_banner"]=""
-            AddQueue(ParamDict)
+            recvdata.AddQueue(ParamDict)
 
         return True
     def xmlrpc_match(self):
