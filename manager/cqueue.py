@@ -7,7 +7,7 @@ class Fila(object):
                 self.pqueue = deque()
 
         def DestroyQueue(self):
-                while LenQueue() >0:
+                while self.LenQueue() >0:
                         self.pqueue.popleft()
                 return True
 
