@@ -3,6 +3,7 @@
  
 import MySQLdb
 from common import *
+from cqueue import *
 
 def DbConnect():
 	try:
