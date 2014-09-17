@@ -33,13 +33,13 @@ def StartScan(Dry,manageraddr):
         p_gid = str(item.getDaemonGid())
         p_rpm = item.getDaemonRpm()
         if p_rpm == None:
-            p_rpm="nada"
+            p_rpm=""
         p_dpkg = item.getDaemonDpkg()
         if p_dpkg == None:
-            p_dpkg="nada"
+            p_dpkg=""
         pf_path = item.getFilePath()
         if pf_path == None:
-            pf_path="nada"
+            pf_path=""
         pf_dac = str(item.getFileDac())
         pf_uid = str(item.getFileUid())
         pf_gid = str(item.getFileGid())
