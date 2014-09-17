@@ -46,12 +46,12 @@ def MatchData():
 			p_pkgmgr_weight=p_pkgmgr_ratio=0
 
 			if pdict['p_dpkg']:
-				p_pkgmgr_ratio = Similarity( "dpkg" , db_pkg_mgr )
+				p_pkgmgr_ratio = Similarity( "DPKG" , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pdict['p_dpkg'] , db_case['package_name'] )
 			
 
 			if pdict['p_rpm']:
-				p_pkgmgr_ratio = Similarity( "rpm" , db_pkg_mgr )
+				p_pkgmgr_ratio = Similarity( "RPM" , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pdict['p_rpm'] , db_case['package_name'] )
 			
 
@@ -222,12 +222,13 @@ def MatchData():
 				print "Score: " +str(distro_score)
 
 			final_score=distro_score +  distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_score + p_pkgmgr_score + p_pkg_score
-			print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
+			if debug==True:
+				print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
+				print "*"*50
 			qlen-=1				
-			print "*"*50
-			print ""
-			print ""
+
 			if final_score > sim_point:
+					pdict['case_id_related']=case_id
 					pdict['score']=final_score
 					candidates.AddQueue(pdict)
 		case_id+=1
