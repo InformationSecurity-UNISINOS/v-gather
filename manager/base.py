@@ -169,7 +169,7 @@ def DbSimCases():
 		print "UDP / SCORE: %s / %s" %(pdict['p_udp_banner'],pdict['p_udp_banner_score'])
 		if pdict['p_dpkg']:
 			print "PACOTE / SCORE: %s / %s" %(pdict['p_dpkg'],pdict['p_pkg_score'])
-			print "GERENCIADOR PACOTE / SCORE: %s / %s" %("DPKG",pdict['p_pkgmgr_score'])
+			print "PKGMGR / SCORE: %s / %s" %("DPKG",pdict['p_pkgmgr_score'])
 		else:
 			print "PACOTE / SCORE: %s / %s" %(pdict['p_rpm'],pdict['p_pkg_score'])
 			print "GERENCIADOR PACOTE / SCORE: %s / %s" %("RPM",pdict['p_pkgmgr_score'])

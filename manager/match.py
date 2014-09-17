@@ -20,7 +20,6 @@ def MatchData():
 	print "[+] MatchData"
 	debug=False
 
-
 	total_cases=DbCountCases()
 	if total_cases == False:
 		print "  + Não existem casos na base. Cadastre-os primeiramente."
@@ -45,24 +44,30 @@ def MatchData():
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
 			if pdict['p_dpkg']:
-				p_pkgm_ratio = Similarity( "dpkg" , db_pkg_mgr )
+				p_pkgmgr_ratio = Similarity( "dpkg" , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pdict['p_dpkg'] , db_case['package_name'] )
 			
-			if pdict['p_rpm']:
-				p_pkgm_ratio = Similarity( "rpm" , db_pkg_mgr )
-				p_pkg_ratio = Similarity( pdict['p_rpm'] , db_case['package_name'] )
 
+			if pdict['p_rpm']:
+				p_pkgmgr_ratio = Similarity( "rpm" , db_pkg_mgr )
+				p_pkg_ratio = Similarity( pdict['p_rpm'] , db_case['package_name'] )
+			
+
+			print "db_pkg_mgr: " +str(db_pkg_mgr)
+			print "p_pkgmgr_ratio: " +str(p_pkgmgr_ratio)
+			print "p_pkgmgr_weight" +str(p_pkgmgr_weight)
+			
 			p_pkg_weight = db_case['package_name_weight']
 			p_pkg_score = p_pkg_ratio * p_pkg_weight
-			p_pkgm_weight = db_case['package_type_id_weight']
-			p_pkgm_score = p_pkgm_weight * p_pkgm_ratio
-			pdict['p_pkgmgr_score']=p_pkgm_score
+			p_pkgmgr_weight = db_case['package_type_id_weight']
+			p_pkgmgr_score = p_pkgmgr_weight * p_pkgmgr_ratio
+			pdict['p_pkgmgr_score']=p_pkgmgr_score
 			pdict['p_pkg_score']=p_pkg_score
 
 			if debug==True:
 				print "*"*50
-				print "Gerenciador de Pacotes: " +str(p_pkgm_ratio)
-				print "Peso: " +str(p_pkgm_weight)
+				print "Gerenciador de Pacotes: " +str(p_pkgmgr_ratio)
+				print "Peso: " +str(p_pkgmgr_weight)
 				print "Score: " +str(p_pkg_score)
 				print "*"*50
 				print "Pacote: " +str(p_pkg_ratio)
@@ -214,7 +219,7 @@ def MatchData():
 				print "Peso: " +str(distro_weight)
 				print "Score: " +str(distro_score)
 
-			final_score=distro_score +  distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_score + p_pkgm_score + p_pkg_score
+			final_score=distro_score +  distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_score + p_pkgmgr_score + p_pkg_score
 			print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
 			qlen-=1				
 			print "*"*50
