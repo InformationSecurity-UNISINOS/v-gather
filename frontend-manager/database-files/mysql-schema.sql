@@ -107,6 +107,7 @@ CREATE TABLE `use_cases` (
   `date` TIMESTAMP NOT NULL,
   `status` int NOT NULL,
   `origem` int NOT NULL,
+  `case_id_related` int, 
   `so_id` int(11) DEFAULT NULL,
   `so_id_weight` FLOAT(3,2) DEFAULT NULL,
   `so_version` varchar(30) DEFAULT NULL,
