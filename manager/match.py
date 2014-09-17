@@ -9,14 +9,14 @@ Similaridade:
 Case-based reasoning is a methodology not a technology - I. Watson
 AI-CBR, University of Salford, Salford M5 4WT, UK
 Received 1 December 1998; accepted 17 March 1999
+
+- Similarities are usually normalised to fall within a range of zero to one
 '''
 def Similarity(string_a,string_b):
 	import Levenshtein
 	return round(Levenshtein.ratio(string_a,string_b),2)
 
-
 def MatchData():
-	
 	print "[+] MatchData"
 	debug=False
 
@@ -43,7 +43,7 @@ def MatchData():
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
-			p_pkgmgr_weight=db_pkg_mgr=p_pkgmgr_ratio=0
+			p_pkgmgr_weight=p_pkgmgr_ratio=0
 
 			if pdict['p_dpkg']:
 				p_pkgmgr_ratio = Similarity( "dpkg" , db_pkg_mgr )
