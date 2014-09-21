@@ -240,15 +240,9 @@ def DbSimCases():
 								str(pdict['pf_uid']), str(pdict['pf_uid_weight']), str(pdict['pf_uid_score']),
 								str(pdict['pf_gid']), str(pdict['pf_gid_weight']), str(pdict['pf_gid_score']),
 								str(pdict['pf_dac']), str(pdict['pf_dac_weight']), str(pdict['pf_dac_score']),
-								str(pdict['score'])
-							 )
-		
-		try:
-			cursor.execute(query)
-			conn.commit()
-		except:
-			# Rollback em caso de erro
-			conn.rollback()
+								str(pdict['score']) )
+		cursor.execute(query)
+		conn.commit()
 		conn.close ()
 		clen-=1
 
