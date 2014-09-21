@@ -178,22 +178,79 @@ def DbSimCases():
 		print "FGID / SCORE: %s / %s" %(pdict['pf_gid'],pdict['pf_gid_score'])
 		print "FDAC / SCORE: %s / %s" %(pdict['pf_dac'],pdict['pf_dac_score'])
 		print "===FINAL: %s" %pdict['score']
+		
+		conn=DbConnect()
+		if conn == None:
+			return False
+		cursor = conn.cursor()
+		if pdict['distro'] == "Debian":
+			so_id=1
+		else: 
+			so_id=2
+		if pdict['p_dpkg']:
+			package_name=pdict['p_dpkg']
+			package_manager=1
+		else:
+			package_name=pdict['p_rpm']
+			package_manager=2
+
+		query = "INSERT INTO use_cases (so_id, so_id_weight, so_id_score, \
+										so_version, so_version_weight, so_version_score, \
+										process_name, process_name_weight, process_name_score, \
+										process_uid, process_uid_weight, process_uid_score, \
+										process_gid, process_gid_weight, process_gid_score, \
+										process_args, process_args_weight, process_args_score, \
+										process_tcp_banner, process_tcp_banner_weight, process_tcp_banner_score, \
+										process_udp_banner, process_udp_banner_weight, process_udp_banner_score, \
+										package_name, package_name_weight, package_name_score, \
+										package_type_id, package_type_id_weight, package_type_id_score, \
+										process_binary, process_binary_weight, process_binary_score, \
+										process_binary_uid, process_binary_uid_weight, process_binary_uid_score, \
+										process_binary_gid, process_binary_gid_weight, process_binary_gid_score, \
+										process_binary_dac, process_binary_dac_weight, process_binary_dac_score, \
+										candidate_final_score) \
+					VALUES (%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s,%s,%s, \
+							%s " 
+							% ( str(so_id), str(pdict['so_id_weight']), str(pdict['distro_score']),
+								str(pdict['distro_version']), str(pdict['distro_version_weight']), str(pdict['distro_version_score']),
+								str(pdict['p_name']),str(pdict['p_name_weight']), str(pdict['p_name_score']),
+								str(pdict['p_uid']), str(pdict['p_uid_weight']), str(pdict['p_uid_score']),
+								str(pdict['p_gid']), str(pdict['p_gid_weight']), str(pdict['p_gid_score']),
+								str(pdict['p_args']),str(pdict['p_args_weight']), str(pdict['p_args_score']),
+								str(pdict['p_tcp_banner']), str(pdict['p_tcp_banner_weight']), str(pdict['p_tcp_banner_score']),
+								str(pdict['p_udp_banner']), str(pdict['p_udp_banner_weight']), str(pdict['p_udp_banner_score']),
+								str(package_name), str(pdict['p_pkg_weight']), str(pdict['p_pkg_score']),
+								str(package_manager), str(pdict['p_pkgmgr_weight']), str(pdict['p_pkgmgr_score']),
+								str(pdict['pf_path']), str(pdict['pf_path_weight']), str(pdict['pf_path_score']),
+								str(pdict['pf_uid']), str(pdict['pf_uid_weight']), str(pdict['pf_uid_score']),
+								str(pdict['pf_gid']), str(pdict['pf_gid_weight']), str(pdict['pf_gid_score']),
+								str(pdict['pf_dac']), str(pdict['pf_dac_weight']), str(pdict['pf_dac_score']),
+								str(pdict['score'])
+							 )
+		
+		try:
+			cursor.execute(query)
+			conn.commit()
+		except:
+			# Rollback em caso de erro
+			conn.rollback()
+		conn.close ()
 		clen-=1
+	
 	candidates.DestroyQueue()
-	#conn = MySQLdb.connect (host = sqlhost, user = sqluser, passwd = sqlpass, db = sqldb)
-	#cursor = conn.cursor()
-	#sql = "INSERT INTO EMPLOYEE(FIRST_NAME,LAST_NAME, AGE, SEX, INCOME) \
-    #   VALUES ('%s', '%s', '%d', '%c', '%d' )" % \
-    #   ('Mac', 'Mohan', 20, 'M', 2000)
-	#try:
-#		cursor.execute(sql)
- #  		conn.commit()
-#	except:
- #  		# Rollback in case there is any error
-  # 		conn.rollback()
-   #	conn.close ()
-
-
 
 
 
