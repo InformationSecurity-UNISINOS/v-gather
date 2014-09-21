@@ -59,7 +59,6 @@ CREATE TABLE `status_types` (
 -- ----------------------------
 -- Records of status_types
 -- ----------------------------
-
 INSERT INTO status_types VALUES (1,"Caso");
 INSERT INTO status_types VALUES (2,"Candidato");
 
@@ -112,30 +111,44 @@ CREATE TABLE `use_cases` (
   `so_id_weight` FLOAT(3,2) DEFAULT NULL,
   `so_version` varchar(30) DEFAULT NULL,
   `so_version_weight` FLOAT(3,2) DEFAULT NULL,
+  `so_version_score` FLOAT(3,2) DEFAULT NULL,
   `process_name` varchar(50) DEFAULT NULL,
   `process_name_weight` FLOAT(3,2) DEFAULT NULL,
+  `process_name_score` FLOAT(3,2) DEFAULT NULL,
   `process_uid` int DEFAULT NULL,
   `process_uid_weight` FLOAT(3,2) DEFAULT NULL,
+  `process_uid_score` FLOAT(3,2) DEFAULT NULL,
   `process_gid` int DEFAULT NULL,
   `process_gid_weight` FLOAT(3,2) DEFAULT NULL,
+  `process_gid_score` FLOAT(3,2) DEFAULT NULL,
   `process_args` varchar(50000) DEFAULT NULL,
   `process_args_weight` FLOAT(3,2) DEFAULT NULL,
+  `process_args_score` FLOAT(3,2) DEFAULT NULL,
   `process_tcp_banner` varchar(50000) DEFAULT NULL,
   `process_tcp_banner_weight` FLOAT(3,2) DEFAULT NULL,
+  `process_tcp_banner_score` FLOAT(3,2) DEFAULT NULL,
   `process_udp_banner` varchar(50000) DEFAULT NULL,
   `process_udp_banner_weight` FLOAT(3,2) DEFAULT NULL,
+  `process_udp_banner_score` FLOAT(3,2) DEFAULT NULL,
   `package_name` varchar(120) DEFAULT NULL,
   `package_name_weight` FLOAT(3,2) DEFAULT NULL,
+  `package_name_score` FLOAT(3,2) DEFAULT NULL,
   `package_type_id` int(11) DEFAULT NULL,
   `package_type_id_weight` FLOAT(3,2) DEFAULT NULL,
+  `package_type_id_score` FLOAT(3,2) DEFAULT NULL,
   `process_binary` varchar(300) DEFAULT NULL,
   `process_binary_weight` FLOAT(3,2) DEFAULT NULL,
+  `process_binary_score` FLOAT(3,2) DEFAULT NULL,
   `process_binary_uid` int DEFAULT NULL,
   `process_binary_uid_weight` FLOAT(3,2) DEFAULT NULL,
+  `process_binary_uid_score` FLOAT(3,2) DEFAULT NULL,
   `process_binary_gid` int DEFAULT NULL,
   `process_binary_gid_weight` FLOAT(3,2) DEFAULT NULL,
+  `process_binary_gid_score` FLOAT(3,2) DEFAULT NULL,
   `process_binary_dac` int DEFAULT NULL,
   `process_binary_dac_weight` FLOAT(3,2) DEFAULT NULL,
+  `process_binary_dac_score` FLOAT(3,2) DEFAULT NULL,
+  `candidate_final_score` FLOAT(3,2) DEFAULT NULL;
   PRIMARY KEY (`id`),
   KEY `so_id` (`so_id`),
   KEY `package_type_id` (`package_type_id`),
