@@ -109,6 +109,7 @@ CREATE TABLE `use_cases` (
   `case_id_related` int, 
   `so_id` int(11) DEFAULT NULL,
   `so_id_weight` FLOAT(3,2) DEFAULT NULL,
+  `so_id_score` FLOAT(3,2) DEFAULT NULL,
   `so_version` varchar(30) DEFAULT NULL,
   `so_version_weight` FLOAT(3,2) DEFAULT NULL,
   `so_version_score` FLOAT(3,2) DEFAULT NULL,
