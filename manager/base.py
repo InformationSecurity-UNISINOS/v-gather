@@ -194,7 +194,8 @@ def DbSimCases():
 			package_name=pdict['p_rpm']
 			package_manager=2
 
-		query = "INSERT INTO use_cases (so_id, so_id_weight, so_id_score, \
+		query = "INSERT INTO use_cases ( status, origem, case_id_related, \
+										so_id, so_id_weight, so_id_score, \
 										so_version, so_version_weight, so_version_score, \
 										process_name, process_name_weight, process_name_score, \
 										process_uid, process_uid_weight, process_uid_score, \
@@ -223,8 +224,10 @@ def DbSimCases():
 							%s,%s,%s, \
 							%s,%s,%s, \
 							%s,%s,%s, \
+							%s,%s,%s, \
 							%s " 
-							% ( str(so_id), str(pdict['so_id_weight']), str(pdict['distro_score']),
+							% ( 2, 2, str(pdict['case_id_related']), 
+								str(so_id), str(pdict['so_id_weight']), str(pdict['distro_score']),
 								str(pdict['distro_version']), str(pdict['distro_version_weight']), str(pdict['distro_version_score']),
 								str(pdict['p_name']),str(pdict['p_name_weight']), str(pdict['p_name_score']),
 								str(pdict['p_uid']), str(pdict['p_uid_weight']), str(pdict['p_uid_score']),
@@ -249,7 +252,7 @@ def DbSimCases():
 			conn.rollback()
 		conn.close ()
 		clen-=1
-	
+
 	candidates.DestroyQueue()
 
 
