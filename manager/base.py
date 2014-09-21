@@ -226,7 +226,7 @@ def DbSimCases():
 							%s,%s,%s, \
 							%s,%s,%s, \
 							%s )" % ( 2, 2, str(pdict['case_id_related']), 
-								str(so_id), str(pdict['so_id_weight']), str(pdict['distro_score']),
+								str(so_id), str(pdict['distro_weight']), str(pdict['distro_score']),
 								str(pdict['distro_version']), str(pdict['distro_version_weight']), str(pdict['distro_version_score']),
 								str(pdict['p_name']),str(pdict['p_name_weight']), str(pdict['p_name_score']),
 								str(pdict['p_uid']), str(pdict['p_uid_weight']), str(pdict['p_uid_score']),
