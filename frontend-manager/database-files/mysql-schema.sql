@@ -63,6 +63,22 @@ INSERT INTO status_types VALUES (1,"Caso");
 INSERT INTO status_types VALUES (2,"Candidato");
 
 -- ----------------------------
+-- Table structure for status_types
+-- ----------------------------
+DROP TABLE IF EXISTS `origem_types`;
+CREATE TABLE `origem_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of status_types
+-- ----------------------------
+INSERT INTO origem_types VALUES (1,"Registrado");
+INSERT INTO origem_types VALUES (2,"Aprendido");
+
+-- ----------------------------
 -- Table structure for package_types
 -- ----------------------------
 DROP TABLE IF EXISTS `package_types`;
