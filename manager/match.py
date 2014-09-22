@@ -251,7 +251,7 @@ def MatchData():
 					teste=candidates.GetQueue()
 					print "ANTES: %s\t%s" %(str(pdict['p_name']) , str(pdict['p_name_score']) )
 					print "DEPOIS: %s\t%s" %(str(teste['p_name']) , str(teste['p_name_score']) )
-					teste.DestroyQueue()
+					candidates.DestroyQueue()
 		case_id+=1
 	#recvdata.DestroyQueue()
 	#DbSimCases()
