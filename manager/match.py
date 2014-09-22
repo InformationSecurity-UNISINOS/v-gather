@@ -18,7 +18,7 @@ def Similarity(string_a,string_b):
 
 def MatchData():
 	print "[+] MatchData"
-	debug=True
+	debug=False
 
 	total_cases=DbCountCases()
 	if total_cases == False:
@@ -247,7 +247,9 @@ def MatchData():
 					teste=candidates.GetQueue()
 					#print "ANTES: %s\t%s" %(str(pdict['p_name']) , str(pdict['p_name_score']) )
 					#print "DEPOIS: %s\t%s" %(str(teste['p_name']) , str(teste['p_name_score']) )
+					print "*"*20
 					print teste
+					print "*"*20
 					pdict.clear()
 		case_id+=1
 	#recvdata.DestroyQueue()
