@@ -159,6 +159,16 @@ def DbSimCases():
 		print "#"*50
 		print "#"*50
 		pdict=candidates.GetQueue()
+		if pdict['distro'] == "Debian":
+			so_id=1
+		else: 
+			so_id=2
+		if pdict['p_dpkg']:
+			package_name=pdict['p_dpkg']
+			package_manager=1
+		else:
+			package_name=pdict['p_rpm']
+			package_manager=2
 		#print "Distro Ver/ SCORE: %s / %s" %(pdict['distro'],pdict['distro_score'])
 		#print "Distro Ver/ SCORE: %s / %s" %(pdict['distro_version'],pdict['distro_version_score'])
 		#print "Processo / SCORE: %s / %s" %(pdict['p_name'], pdict['p_name_score'])
@@ -180,7 +190,7 @@ def DbSimCases():
 		#print "===FINAL: %s" %pdict['score']
 		
 		print "status, origem, case_id_related: %d,%d,%d" %(2,2,pdict['case_id_related'])
-		print "so_id, so_id_weight, so_id_score:  %s,%s,%s" %(str(pdict['distro']),str(pdict['distro_weight']),str(pdict['distro_score']))
+		print "so_id, so_id_weight, so_id_score:  %s,%s,%s" %(str(so_id),str(pdict['distro_weight']),str(pdict['distro_score']))
 		print "so_version, so_version_weight, so_version_score: %s,%s,%s" %( str(pdict['distro_version']), pdict['distro_version_weight'],pdict['distro_version_score'] )
 		print "process_name, process_name_weight, process_name_score: %s,%s,%s " %(str(pdict['p_name']),str(pdict['p_name_weight']), str(pdict['p_name_score']))
 		print "process_uid, process_uid_weight, process_uid_score: %s,%s,%s " %(str(pdict['p_uid']), str(pdict['p_uid_weight']), str(pdict['p_uid_score']))
@@ -200,16 +210,7 @@ def DbSimCases():
 		if conn == None:
 			return False
 		cursor = conn.cursor()
-		if pdict['distro'] == "Debian":
-			so_id=1
-		else: 
-			so_id=2
-		if pdict['p_dpkg']:
-			package_name=pdict['p_dpkg']
-			package_manager=1
-		else:
-			package_name=pdict['p_rpm']
-			package_manager=2
+
 
 		query = "INSERT INTO use_cases ( status, origem, case_id_related, \
 										so_id, so_id_weight, so_id_score, \
