@@ -258,8 +258,23 @@ def MatchData():
 					candidates.AddQueue(pdict)
 		case_id+=1
 	recvdata.DestroyQueue()
-	DbSimCases()
+	#DbSimCases()
+	teste()
 	return True
+
+def teste():
+	clen=candidates.LenQueue()
+	while clen > 0:
+		pd={}
+		pd=candidates.GetQueue()
+		print "PNAME: %s" %pd['p_name']
+		print "SCORE: %s" %pd['p_name_score']
+		print "*"*50
+		clen-=1
+	candidates.DestroyQueue()
+
+
+
 
 
 
