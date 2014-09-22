@@ -47,22 +47,26 @@ def MatchData():
 			#########################################################################
 			p_pkgmgr_ratio=p_pkg_ratio=0
 			manager=pacote="N/A"
-
-
-			if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
-				manager="DPKG"
-				pacote=pdict['p_dpkg']
-				dpkg=True
-			else:
+			try: 
+				if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
+					manager="DPKG"
+					pacote=pdict['p_dpkg']
+					dpkg=True
+				else:
+					dpkg=False
+			except KeyError:
 				dpkg=False
 
-			if str(pdict['p_rpm']) != "nada" and str(pdict['p_rpm']) != "":
-				manager="RPM"
-				pacote=pdict['p_rpm']
-				rpm=True
-			else:
+			try:
+				if str(pdict['p_rpm']) != "nada" and str(pdict['p_rpm']) != "":
+					manager="RPM"
+					pacote=pdict['p_rpm']
+					rpm=True
+				else:
+					rpm=False
+			except KeyError:
 				rpm=False
-
+				
 			if rpm == True or dpkg == True:
 				p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pacote , db_case['package_name'] )
@@ -257,7 +261,7 @@ def MatchData():
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
 					DbSimCases(pdict)
-					candidates.AddQueue(pdict)
+					#candidates.AddQueue(pdict)
 		case_id+=1
 	recvdata.DestroyQueue()
 	#DbSimCases()
