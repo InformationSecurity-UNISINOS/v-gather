@@ -48,7 +48,7 @@ def MatchData():
 			p_pkgmgr_ratio=p_pkg_ratio=0
 			manager=pacote="N/A"
 
-			if pdict['p_dpkg'] or pdict['p_rpm']:
+			if len(pdict['p_dpkg'])>0 or len(pdict['p_rpm']) >0:
 				if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
 					manager="DPKG"
 					pacote=pdict['p_dpkg']
