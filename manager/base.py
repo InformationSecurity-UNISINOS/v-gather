@@ -156,7 +156,6 @@ def DbGetSoName(so_id):
 def DbSimCases():
 	clen=candidates.LenQueue()
 
-
 	while clen > 0:
 		pdict2=candidates.GetQueue()
 		if pdict2['distro'] == "Debian":
@@ -175,7 +174,7 @@ def DbSimCases():
 		print "PNAME: %s" %str(pdict2['p_name'])
 		print "SCORE: %s" %str(pdict2['p_name_score'])
 		print "*"*50
-		print pdict2
+	
 
 		return 0
 
