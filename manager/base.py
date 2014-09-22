@@ -156,8 +156,6 @@ def DbGetSoName(so_id):
 def DbSimCases():
 	clen=candidates.LenQueue()
 	while clen > 0:
-		print "#"*50
-		print "#"*50
 		pdict=candidates.GetQueue()
 		if pdict['distro'] == "Debian":
 			so_id=1
@@ -169,26 +167,10 @@ def DbSimCases():
 		else:
 			package_name=pdict['p_rpm']
 			package_manager=2
-		#print "Distro Ver/ SCORE: %s / %s" %(pdict['distro'],pdict['distro_score'])
-		#print "Distro Ver/ SCORE: %s / %s" %(pdict['distro_version'],pdict['distro_version_score'])
-		#print "Processo / SCORE: %s / %s" %(pdict['p_name'], pdict['p_name_score'])
-		#print "UID / SCORE: %s / %s" %(pdict['p_uid'], pdict['p_uid_score'])
-		#print "GID / SCORE: %s / %s" %(pdict['p_gid'], pdict['p_gid_score'])
-		#print "ARGS / SCORE: %s / %s " %(pdict['p_args'],pdict['p_args_score'])
-		#print "TCP / SCORE: %s / %s" %(pdict['p_tcp_banner'],pdict['p_tcp_banner_score'])
-		#print "UDP / SCORE: %s / %s" %(pdict['p_udp_banner'],pdict['p_udp_banner_score'])
-		#if pdict['p_dpkg']:
-		#	print "PACOTE / SCORE: %s / %s" %(pdict['p_dpkg'],pdict['p_pkg_score'])
-		#	print "PKGMGR / SCORE: %s / %s" %("DPKG",pdict['p_pkgmgr_score'])
-		#else:
-		#	print "PACOTE / SCORE: %s / %s" %(pdict['p_rpm'],pdict['p_pkg_score'])
-		#	print "GERENCIADOR PACOTE / SCORE: %s / %s" %("RPM",pdict['p_pkgmgr_score'])
-		#print "FPATH / SCORE:  %s / %s" %(pdict['pf_path'],pdict['pf_path_score'])
-		#print "FUID / SCORE: %s / %s" %(pdict['pf_uid'],pdict['pf_uid_score'])
-		#print "FGID / SCORE: %s / %s" %(pdict['pf_gid'],pdict['pf_gid_score'])
-		#print "FDAC / SCORE: %s / %s" %(pdict['pf_dac'],pdict['pf_dac_score'])
-		#print "===FINAL: %s" %pdict['score']
-		
+
+		print "*"*50
+		print "PNAME SCORE: %s" %str(pdict['p_name_score'])
+		print "---"
 		print "status, origem, case_id_related: %d,%d,%d" %(2,2,pdict['case_id_related'])
 		print "so_id, so_id_weight, so_id_score:  %s,%s,%s" %(str(so_id),str(pdict['distro_weight']),str(pdict['distro_score']))
 		print "so_version, so_version_weight, so_version_score: %s,%s,%s" %( str(pdict['distro_version']), pdict['distro_version_weight'],pdict['distro_version_score'] )
@@ -205,6 +187,7 @@ def DbSimCases():
 		print "process_binary_gid, process_binary_gid_weight, process_binary_gid_score: %s,%s,%s " %( str(pdict['pf_gid']), str(pdict['pf_gid_weight']), str(pdict['pf_gid_score']) )
 		print "process_binary_dac, process_binary_dac_weight, process_binary_dac_score: %s,%s,%s " %( str(pdict['pf_dac']), str(pdict['pf_dac_weight']), str(pdict['pf_dac_score']) )
 		print "candidate_final_score: %s " %( str(pdict['score'])  )
+		print "*"*50
 
 		conn=DbConnect()
 		if conn == None:
