@@ -48,7 +48,7 @@ def MatchData():
 			p_pkgmgr_ratio=p_pkg_ratio=0
 			manager=pacote="N/A"
 
-			if len(pdict['p_dpkg'])>0 or len(pdict['p_rpm']) >0:
+			if len(str(pdict['p_dpkg']))>0 or len(str(pdict['p_rpm'])) >0:
 				if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
 					manager="DPKG"
 					pacote=pdict['p_dpkg']
@@ -245,11 +245,11 @@ def MatchData():
 			if final_score > sim_point:
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
-					#DbSimCases(pdict)
+					DbSimCases(pdict)
 					candidates.AddQueue(pdict)
 		case_id+=1
 	recvdata.DestroyQueue()
-	DbSimCases()
+	#DbSimCases()
 	return True
 
 
