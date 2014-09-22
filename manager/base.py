@@ -216,6 +216,7 @@ def DbSimCases():
 		print "process_binary_dac_score: %s" %str(pdict2['pf_dac_score'])
 		print "candidate_final_score: %s" %str(pdict2['score'])
 		print "*"*50
+		clen-=1
 		continue
 
 		conn=DbConnect()
