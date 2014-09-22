@@ -50,12 +50,12 @@ def MatchData():
 			print "pdpkg: %s" %pdict['p_dpkg']
 			print "prpm: %s" %pdict['p_rpm']
 
-			if pdict['p_dpkg'] == "DPKG":
+			if pdict['p_dpkg'] is not "nada":
 				print "SIMILAR: DPKG / %s" %db_pkg_mgr
 				p_pkgmgr_ratio = Similarity( "DPKG" , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pdict['p_dpkg'] , db_case['package_name'] )
 		
-			if pdict['p_rpm'] == "RPM":
+			if pdict['p_rpm'] is not "nada":
 				print "SIMILAR: RPM / %s" %db_pkg_mgr
 				p_pkgmgr_ratio = Similarity( "RPM" , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pdict['p_rpm'] , db_case['package_name'] )
