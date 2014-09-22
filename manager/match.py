@@ -248,9 +248,11 @@ def MatchData():
 					#print "ANTES: %s\t%s" %(str(pdict['p_name']) , str(pdict['p_name_score']) )
 					#print "DEPOIS: %s\t%s" %(str(teste['p_name']) , str(teste['p_name_score']) )
 					print "*"*20
+					print pdict
+					print "*"*20
 					print teste
 					print "*"*20
-					pdict.clear()
+					pdict=""
 		case_id+=1
 	#recvdata.DestroyQueue()
 	#DbSimCases()
