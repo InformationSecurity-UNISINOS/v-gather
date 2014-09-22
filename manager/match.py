@@ -242,8 +242,7 @@ def MatchData():
 
 			if final_score > sim_point:
 					print "*"*50	
-					print "PNAME: "+str(pdict['p_name'])
-					print "Score: " +str(pdict['p_name_score'])
+					print pdict
 
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
