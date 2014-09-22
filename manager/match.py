@@ -41,9 +41,6 @@ def MatchData():
 		while qlen>0:
 			pdict = {}
 			pdict = recvdata.GetQueue()
-			print pdict
-			qlen-=1
-			continue
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
@@ -257,11 +254,11 @@ def MatchData():
 			if final_score > sim_point:
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
-					DbSimCases(pdict)
-					#candidates.AddQueue(pdict)
+					#DbSimCases(pdict)
+					candidates.AddQueue(pdict)
 		case_id+=1
 	recvdata.DestroyQueue()
-	#DbSimCases()
+	DbSimCases()
 	return True
 
 
