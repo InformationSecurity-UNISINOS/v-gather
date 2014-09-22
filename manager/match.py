@@ -85,14 +85,11 @@ def MatchData():
 			p_name_score = p_name_ratio * p_name_weight
 			pdict['p_name_weight']=p_name_weight
 			pdict['p_name_score']=p_name_score
-			debug=True
 			if debug==True:
 				print "*"*50
-				print "PNAME: "+str(pdict['p_name'])
-				print "Ratio: " +str(p_name_ratio)
-				print "Weight: " +str(p_name_weight)
+				print "PName: " +str(p_name_ratio)
+				print "Peso: " +str(p_name_weight)
 				print "Score: " +str(p_name_score)
-			debug=False
 			#########################################################################
 			# PROCESS UID:
 			#########################################################################
@@ -244,6 +241,10 @@ def MatchData():
 			qlen-=1				
 
 			if final_score > sim_point:
+					print "*"*50	
+					print "PNAME: "+str(pdict['p_name']
+					print "Score: " +str(pdict['p_name_score']
+
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
 					candidates.AddQueue(pdict)
