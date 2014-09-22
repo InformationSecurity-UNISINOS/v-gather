@@ -39,9 +39,12 @@ def MatchData():
 
 		qlen=recvdata.LenQueue()
 		while qlen>0:
-			#pdict = {}
-			#pdict.clear()
+			pdict = {}
+			pdict.clear()
 			pdict = recvdata.GetQueue()
+			print pdict
+			qlen-=1
+			continue
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
