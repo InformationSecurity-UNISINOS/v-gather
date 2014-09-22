@@ -52,12 +52,16 @@ def MatchData():
 			if str(pdict['p_dpkg']) != "nada":
 				manager="DPKG"
 				pacote=pdict['p_dpkg']
-				print "= DPKG"
+				print "É UM DPKG"
+			else:
+				print "NÃO É UM DPKG"
 
 			if str(pdict['p_rpm']) != "nada":
 				manager="RPM"
 				pacote=pdict['p_rpm']
-				print "= RPM"
+				print "É UM RPM"
+			else:
+				print "NÃO É UM RPM"
 				
 
 			print "SIMILAR MANAGER: %s / %s" %(manager,db_pkg_mgr)
