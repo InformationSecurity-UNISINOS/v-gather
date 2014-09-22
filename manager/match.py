@@ -44,8 +44,11 @@ def MatchData():
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
 			p_pkgmgr_ratio=p_pkg_ratio=0
+			
 			print "*****************"
 			print "PNAME: %s" %pdict['p_name']
+			print "pdpkg: %s" %pdict['p_dpkg']
+			print "prpm: %s" %pdict['p_rpm']
 
 			if pdict['p_dpkg'] == "DPKG":
 				print "SIMILAR: DPKG / %s" %db_pkg_mgr
@@ -65,6 +68,7 @@ def MatchData():
 			pdict['p_pkgmgr_score']=p_pkgmgr_score
 			pdict['p_pkg_weight']=p_pkg_weight
 			pdict['p_pkg_score']=p_pkg_score
+
 
 			print "p_pkgmgr_weight: " +str(p_pkgmgr_weight)
 			print "p_pkgmgr_ratio: " +str(p_pkgmgr_ratio)
