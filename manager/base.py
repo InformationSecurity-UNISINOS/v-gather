@@ -173,7 +173,6 @@ def DbSimCases():
 
 		
 		print "*"*50
-		print "---"
 		print "case_id_related: %d" %pdict2['case_id_related']
 		print "so_id: %s" %str(so_id)
 		print "so_id_weight: %s" %str(pdict2['distro_weight'])
