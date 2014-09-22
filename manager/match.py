@@ -246,9 +246,7 @@ def MatchData():
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
 					#DbSimCases(pdict)
-
 					candidates.AddQueue(pdict)
-
 		case_id+=1
 	recvdata.DestroyQueue()
 	DbSimCases()
