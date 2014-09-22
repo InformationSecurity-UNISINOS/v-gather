@@ -241,15 +241,15 @@ def MatchData():
 			qlen-=1				
 
 			if final_score > sim_point:
-					print "*"*50	
-					print pdict
-
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
 					candidates.AddQueue(pdict)
+					teste=candidates.GetQueue()
+					print "ANTES: %s" %str(pdict2['p_name_score']) 
+					print "DEPOIS: %s" %str(teste['p_name_score']) 
 		case_id+=1
-	recvdata.DestroyQueue()
-	DbSimCases()
+	#recvdata.DestroyQueue()
+	#DbSimCases()
 	return True
 
 
