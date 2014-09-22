@@ -252,11 +252,13 @@ def MatchData():
 			qlen-=1				
 
 			if final_score > sim_point:
+					pd={}
+					pd=pdict
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
 					pdict['p_name_score']="3.0"
 					#DbSimCases(pdict)
-					candidates.AddQueue(pdict)
+					candidates.AddQueue(pd)
 		case_id+=1
 	recvdata.DestroyQueue()
 	#DbSimCases()
