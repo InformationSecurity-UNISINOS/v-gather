@@ -48,15 +48,22 @@ def MatchData():
 			p_pkgmgr_ratio=p_pkg_ratio=0
 			manager=pacote="N/A"
 
-			if len(str(pdict['p_dpkg']))>0 or len(str(pdict['p_rpm'])) >0:
-				if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
-					manager="DPKG"
-					pacote=pdict['p_dpkg']
 
-				if str(pdict['p_rpm']) != "nada" and str(pdict['p_rpm']) != "":
-					manager="RPM"
-					pacote=pdict['p_rpm']
-			
+			if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
+				manager="DPKG"
+				pacote=pdict['p_dpkg']
+				dpkg=True
+			else:
+				dpkg=False
+
+			if str(pdict['p_rpm']) != "nada" and str(pdict['p_rpm']) != "":
+				manager="RPM"
+				pacote=pdict['p_rpm']
+				rpm=True
+			else:
+				rpm=False
+
+			if rpm == True or dpkg == True:
 				p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pacote , db_case['package_name'] )
 			
@@ -64,10 +71,14 @@ def MatchData():
 				p_pkg_score = p_pkg_ratio * p_pkg_weight
 				p_pkgmgr_weight = db_case['package_type_id_weight']
 				p_pkgmgr_score = p_pkgmgr_weight * p_pkgmgr_ratio
-				pdict['p_pkgmgr_weight']=str(p_pkgmgr_weight)
-				pdict['p_pkgmgr_score']=str(p_pkgmgr_score)
-				pdict['p_pkg_weight']=str(p_pkg_weight)
-				pdict['p_pkg_score']=str(p_pkg_score)
+			else:
+				p_pkgmgr_score=p_pkgmgr_weight=p_pkg_score=p_pkg_weight=0
+
+			pdict['p_pkgmgr_weight']=str(p_pkgmgr_weight)
+			pdict['p_pkgmgr_score']=str(p_pkgmgr_score)
+			pdict['p_pkg_weight']=str(p_pkg_weight)
+			pdict['p_pkg_score']=str(p_pkg_score)
+
 
 			if debug==True:
 				print "*"*50
