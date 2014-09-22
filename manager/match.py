@@ -49,12 +49,12 @@ def MatchData():
 			print "==> dpkg: %s" %pdict['p_dpkg']
 			print "==> rpm: %s" %pdict['p_rpm']
 
-			if str(pdict['p_dpkg']) is not "nada":
+			if str(pdict['p_dpkg']) != "nada":
 				manager="DPKG"
 				pacote=pdict['p_dpkg']
 				print "= DPKG"
 
-			if str(pdict['p_rpm']) is not "nada":
+			if str(pdict['p_rpm']) != "nada":
 				manager="RPM"
 				pacote=pdict['p_rpm']
 				print "= RPM"
