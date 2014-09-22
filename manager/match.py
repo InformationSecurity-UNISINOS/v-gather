@@ -249,7 +249,7 @@ def MatchData():
 					candidates.AddQueue(pdict)
 		case_id+=1
 	recvdata.DestroyQueue()
-	DbSimCases()
+
 	return True
 
 

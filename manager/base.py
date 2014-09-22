@@ -171,33 +171,55 @@ def DbSimCases():
 			package_name=pdict2['p_rpm']
 			package_manager=2
 
-		print "*" * 50
-		print "QLEN: %s" %str(clen)
-		print "PNAME: %s" %str(pdict2['p_name'])
-		print "SCORE: %s" %str(pdict2['p_name_score'])
 		
 		print "*"*50
-
-		continue
-
 		print "---"
-		print "status, origem, case_id_related: %d,%d,%d" %(2,2,pdict2['case_id_related'])
-		print "so_id, so_id_weight, so_id_score:  %s,%s,%s" %(str(so_id),str(pdict2['distro_weight']),str(pdict2['distro_score']))
-		print "so_version, so_version_weight, so_version_score: %s,%s,%s" %( str(pdict2['distro_version']), pdict2['distro_version_weight'],pdict2['distro_version_score'] )
-		print "process_name, process_name_weight, process_name_score: %s,%s,%s " %(str(pdict2['p_name']),str(pdict2['p_name_weight']), str(pdict2['p_name_score']))
-		print "process_uid, process_uid_weight, process_uid_score: %s,%s,%s " %(str(pdict2['p_uid']), str(pdict2['p_uid_weight']), str(pdict2['p_uid_score']))
-		print "process_gid, process_gid_weight, process_gid_score: %s,%s,%s " %( str(pdict2['p_gid']), str(pdict2['p_gid_weight']), str(pdict2['p_gid_score']) )
-		print "process_args, process_args_weight, process_args_score: %s,%s,%s " %( str(pdict2['p_args']),str(pdict2['p_args_weight']), str(pdict2['p_args_score']) )
-		print "process_tcp_banner, process_tcp_banner_weight, process_tcp_banner_score: %s,%s,%s " %( str(pdict2['p_tcp_banner']), str(pdict2['p_tcp_banner_weight']), str(pdict2['p_tcp_banner_score']) )
-		print "process_udp_banner, process_udp_banner_weight, process_udp_banner_score: %s,%s,%s " %( str(pdict2['p_udp_banner']), str(pdict2['p_udp_banner_weight']), str(pdict2['p_udp_banner_score']) )
-		print "package_name, package_name_weight, package_name_score: %s,%s,%s " %( str(package_name), str(pdict2['p_pkg_weight']), str(pdict2['p_pkg_score']) )
-		print "package_type_id, package_type_id_weight, package_type_id_score: %s,%s,%s " %( str(package_manager), str(pdict2['p_pkgmgr_weight']), str(pdict2['p_pkgmgr_score']) )
-		print "process_binary, process_binary_weight, process_binary_score: %s,%s,%s " %( str(pdict2['pf_path']), str(pdict2['pf_path_weight']), str(pdict2['pf_path_score']) )
-		print "process_binary_uid, process_binary_uid_weight, process_binary_uid_score: %s,%s,%s " %( str(pdict2['pf_uid']), str(pdict2['pf_uid_weight']), str(pdict2['pf_uid_score']) )
-		print "process_binary_gid, process_binary_gid_weight, process_binary_gid_score: %s,%s,%s " %( str(pdict2['pf_gid']), str(pdict2['pf_gid_weight']), str(pdict2['pf_gid_score']) )
-		print "process_binary_dac, process_binary_dac_weight, process_binary_dac_score: %s,%s,%s " %( str(pdict2['pf_dac']), str(pdict2['pf_dac_weight']), str(pdict2['pf_dac_score']) )
-		print "candidate_final_score: %s " %( str(pdict2['score'])  )
+		print "case_id_related: %d" %pdict2['case_id_related']
+		print "so_id: %s" %str(so_id)
+		print "so_id_weight: %s" %str(pdict2['distro_weight'])
+		print "so_id_score: %s" %str(pdict2['distro_score'])
+		print "so_version: %s" %str(pdict2['distro_version'])
+		print "so_version_weight: %s" %str(pdict2['distro_version_weight'])
+		print "so_version_score: %s" %str(pdict2['distro_version_score'])
+		print "process_name: %s" %str(pdict2['p_name'])
+		print "process_name_weight: %s" %str(pdict2['p_name_weight'])
+		print "process_name_score: %s" %str(pdict2['p_name_score'])
+		print "process_uid: %s" %str(pdict2['p_uid'])
+		print "process_uid_weight: %s" %str(pdict2['p_uid_weight'])
+		print "process_uid_score: %s " %str(pdict2['p_uid_score'])
+		print "process_gid: %s" %str(pdict2['p_gid'])
+		print "process_gid_weight: %s" %str(pdict2['p_gid_weight'])
+		print "process_gid_score: %s " %str(pdict2['p_gid_score'])
+		print "process_args: %s" %str(pdict2['p_args'])
+		print "process_args_weight: %s" %str(pdict2['p_args_weight'])
+		print "process_args_score: %s " %str(pdict2['p_args_score'])
+		print "process_tcp_banner: %s" %str(pdict2['p_tcp_banner'])
+		print "process_tcp_banner_weight: %s" %str(pdict2['p_tcp_banner_weight'])
+		print "process_tcp_banner_score: %s " %str(pdict2['p_tcp_banner_score'])
+		print "process_udp_banner: %s"  %str(pdict2['p_udp_banner'])
+		print "process_udp_banner_weight: %s" %str(pdict2['p_udp_banner_weight'])
+		print "process_udp_banner_score: %s " %str(pdict2['p_udp_banner_score'])
+		print "package_name: %s" %str(package_name)
+		print "package_name_weight: %s" %str(pdict2['p_pkg_weight'])
+		print "package_name_score: %s" %str(pdict2['p_pkg_score'])
+		print "package_type_id: %s" %str(package_manager)
+		print "package_type_id_weight: %s" %str(pdict2['p_pkgmgr_weight'])
+		print "package_type_id_score: %s" %str(pdict2['p_pkgmgr_score'])
+		print "process_binary: %s" %str(pdict2['pf_path'])
+		print "process_binary_weight: %s" %str(pdict2['pf_path_weight'])
+		print "process_binary_score: %s" %str(pdict2['pf_path_score'])
+		print "process_binary_uid: %s" %str(pdict2['pf_uid'])
+		print "process_binary_uid_weight: %s" %str(pdict2['pf_uid_weight'])
+		print "process_binary_uid_score: %s" %str(pdict2['pf_uid_score']
+		print "process_binary_gid: %s" %str(pdict2['pf_gid'])
+		print "process_binary_gid_weight: %s" %str(pdict2['pf_gid_weight'])
+		print "process_binary_gid_score: %s" %str(pdict2['pf_gid_score'])
+		print "process_binary_dac: %s" %str(pdict2['pf_dac'])
+		print "process_binary_dac_weight: %s" %str(pdict2['pf_dac_weight'])
+		print "process_binary_dac_score: %s" %str(pdict2['pf_dac_score'])
+		print "candidate_final_score: %s" %str(pdict2['score'])
 		print "*"*50
+		continue
 
 		conn=DbConnect()
 		if conn == None:
