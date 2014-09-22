@@ -39,34 +39,29 @@ def MatchData():
 
 		qlen=recvdata.LenQueue()
 		while qlen>0:
-			pdict = {}
-			pdict.clear()
+			#pdict = {}
+			#pdict.clear()
 			pdict = recvdata.GetQueue()
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
 			p_pkgmgr_ratio=p_pkg_ratio=0
 			manager=pacote="N/A"
-			try: 
-				if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
-					manager="DPKG"
-					pacote=pdict['p_dpkg']
-					dpkg=True
-				else:
-					dpkg=False
-			except KeyError:
+
+			if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
+				manager="DPKG"
+				pacote=pdict['p_dpkg']
+				dpkg=True
+			else:
 				dpkg=False
 
-			try:
-				if str(pdict['p_rpm']) != "nada" and str(pdict['p_rpm']) != "":
-					manager="RPM"
-					pacote=pdict['p_rpm']
-					rpm=True
-				else:
-					rpm=False
-			except KeyError:
+			if str(pdict['p_rpm']) != "nada" and str(pdict['p_rpm']) != "":
+				manager="RPM"
+				pacote=pdict['p_rpm']
+				rpm=True
+			else:
 				rpm=False
-				
+
 			if rpm == True or dpkg == True:
 				p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pacote , db_case['package_name'] )
