@@ -18,7 +18,7 @@ def Similarity(string_a,string_b):
 
 def MatchData():
 	print "[+] MatchData"
-	debug=False
+	debug=True
 
 	total_cases=DbCountCases()
 	if total_cases == False:
