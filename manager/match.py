@@ -43,15 +43,15 @@ def MatchData():
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
-			p_pkgmgr_ratio=p_pkg_ratio=0
+			p_pkgmgr_ratio=p_pkg_ratio=manager=0
 			
 			print "*****************"
 
-			if pdict['p_dpkg'] is "nada":
+			if pdict['p_dpkg'] is "nada" or pdict['p_dpkg'] is "":
 				manager="RPM"
 				pacote=pdict['p_rpm']
 
-			if pdict['p_rpm'] is "nada":
+			if pdict['p_rpm'] is "nada" or pdict['p_rpm'] is "":
 				manager="DPKG"
 				pacote=pdict['p_dpkg']
 
