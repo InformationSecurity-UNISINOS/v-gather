@@ -43,44 +43,35 @@ def MatchData():
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
-			p_pkgmgr_ratio=p_pkg_ratio=manager=0
+			p_pkgmgr_ratio=p_pkg_ratio=0
+			manager=pacote="N/A"
+
+			if pdict['p_dpkg'] or pdict['p_rpm']:
+				if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
+					manager="DPKG"
+					pacote=pdict['p_dpkg']
+
+				if str(pdict['p_rpm']) != "nada" and str(pdict['p_rpm']) != "":
+					manager="RPM"
+					pacote=pdict['p_rpm']
 			
-			print "*****************"
-			print "==> dpkg: %s" %pdict['p_dpkg']
-			print "==> rpm: %s" %pdict['p_rpm']
-
-			if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
-				manager="DPKG"
-				pacote=pdict['p_dpkg']
-				print "É UM DPKG"
-			else:
-				print "NÃO É UM DPKG"
-
-			if str(pdict['p_rpm']) != "nada" and str(pdict['p_rpm']) != "":
-				manager="RPM"
-				pacote=pdict['p_rpm']
-				print "É UM RPM"
-			else:
-				print "NÃO É UM RPM"
-				
-
-			print "SIMILAR MANAGER: %s / %s" %(manager,db_pkg_mgr)
-			p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
-			p_pkg_ratio = Similarity( pacote , db_case['package_name'] )
-		
-			p_pkg_weight = db_case['package_name_weight']
-			p_pkg_score = p_pkg_ratio * p_pkg_weight
-			p_pkgmgr_weight = db_case['package_type_id_weight']
-			p_pkgmgr_score = p_pkgmgr_weight * p_pkgmgr_ratio
-			pdict['p_pkgmgr_weight']=p_pkgmgr_weight
-			pdict['p_pkgmgr_score']=p_pkgmgr_score
-			pdict['p_pkg_weight']=p_pkg_weight
-			pdict['p_pkg_score']=p_pkg_score
+				print "SIMILAR MANAGER: %s / %s" %(manager,db_pkg_mgr)
+				p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
+				p_pkg_ratio = Similarity( pacote , db_case['package_name'] )
+			
+				p_pkg_weight = db_case['package_name_weight']
+				p_pkg_score = p_pkg_ratio * p_pkg_weight
+				p_pkgmgr_weight = db_case['package_type_id_weight']
+				p_pkgmgr_score = p_pkgmgr_weight * p_pkgmgr_ratio
+				pdict['p_pkgmgr_weight']=p_pkgmgr_weight
+				pdict['p_pkgmgr_score']=p_pkgmgr_score
+				pdict['p_pkg_weight']=p_pkg_weight
+				pdict['p_pkg_score']=p_pkg_score
 
 
-			print "p_pkgmgr_weight: " +str(p_pkgmgr_weight)
-			print "p_pkgmgr_ratio: " +str(p_pkgmgr_ratio)
-			print "*****************"
+				print "p_pkgmgr_weight: " +str(p_pkgmgr_weight)
+				print "p_pkgmgr_ratio: " +str(p_pkgmgr_ratio)
+				print "*****************"
 
 			if debug==True:
 				print "*"*50
