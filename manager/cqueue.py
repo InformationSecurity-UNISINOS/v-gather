@@ -16,8 +16,9 @@ class Fila(object):
                 self.AddQueue(item)
                 return item
 
-        def AddQueue(self,dict={}):
-                self.pqueue.append(dict)
+        def AddQueue(self,tdict={}):
+                self.pqueue.append(tdict)
+                tdict.clear()
                 return True
 
         def LenQueue(self):
