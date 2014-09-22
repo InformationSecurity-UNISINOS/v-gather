@@ -55,7 +55,6 @@ def MatchData():
 					manager="RPM"
 					pacote=pdict['p_rpm']
 			
-				print "SIMILAR MANAGER: %s / %s" %(manager,db_pkg_mgr)
 				p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pacote , db_case['package_name'] )
 			
@@ -67,11 +66,6 @@ def MatchData():
 				pdict['p_pkgmgr_score']=p_pkgmgr_score
 				pdict['p_pkg_weight']=p_pkg_weight
 				pdict['p_pkg_score']=p_pkg_score
-
-
-				print "p_pkgmgr_weight: " +str(p_pkgmgr_weight)
-				print "p_pkgmgr_ratio: " +str(p_pkgmgr_ratio)
-				print "*****************"
 
 			if debug==True:
 				print "*"*50
@@ -91,11 +85,13 @@ def MatchData():
 			p_name_score = p_name_ratio * p_name_weight
 			pdict['p_name_weight']=p_name_weight
 			pdict['p_name_score']=p_name_score
+			debug=True
 			if debug==True:
 				print "*"*50
 				print "Processo: " +str(p_name_ratio)
 				print "Peso: " +str(p_name_weight)
 				print "Score: " +str(p_name_score)
+			debug=False
 			#########################################################################
 			# PROCESS UID:
 			#########################################################################
