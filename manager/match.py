@@ -245,7 +245,7 @@ def MatchData():
 					pdict['score']=final_score
 					candidates.AddQueue(pdict)
 					teste=candidates.GetQueue()
-					print "ANTES: %s" %str(pdict2['p_name_score']) 
+					print "ANTES: %s" %str(pdict['p_name_score']) 
 					print "DEPOIS: %s" %str(teste['p_name_score']) 
 		case_id+=1
 	#recvdata.DestroyQueue()
