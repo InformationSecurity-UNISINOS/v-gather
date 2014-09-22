@@ -227,7 +227,7 @@ def MatchData():
 			distro_weight = db_case['so_id_weight']
  			distro_score = distro_ratio * distro_weight
  			pdict['distro_weight']=str(distro_weight)
- 			pdict['distro_score']=str(istro_score)
+ 			pdict['distro_score']=str(distro_score)
 			if debug==True:
 				print "*"*50
 				print "DISTRO NAME: " +str(distro_ratio)
