@@ -46,20 +46,19 @@ def MatchData():
 			p_pkgmgr_ratio=p_pkg_ratio=0
 			
 			print "*****************"
-			print "PNAME: %s" %pdict['p_name']
-			print "pdpkg: %s" %pdict['p_dpkg']
-			print "prpm: %s" %pdict['p_rpm']
 
-			if pdict['p_dpkg'] is not "nada":
-				print "SIMILAR: DPKG / %s" %db_pkg_mgr
-				p_pkgmgr_ratio = Similarity( "DPKG" , db_pkg_mgr )
-				p_pkg_ratio = Similarity( pdict['p_dpkg'] , db_case['package_name'] )
+			if pdict['p_dpkg'] is "nada":
+				manager="RPM"
+				pacote=pdict['p_rpm']
+
+			if pdict['p_rpm'] is "nada":
+				manager="DPKG"
+				pacote=pdict['p_dpkg']
+
+			print "SIMILAR MANAGER: %s / %s" %(manager,db_pkg_mgr)
+			p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
+			p_pkg_ratio = Similarity( pacote , db_case['package_name'] )
 		
-			if pdict['p_rpm'] is not "nada":
-				print "SIMILAR: RPM / %s" %db_pkg_mgr
-				p_pkgmgr_ratio = Similarity( "RPM" , db_pkg_mgr )
-				p_pkg_ratio = Similarity( pdict['p_rpm'] , db_case['package_name'] )
-			
 			p_pkg_weight = db_case['package_name_weight']
 			p_pkg_score = p_pkg_ratio * p_pkg_weight
 			p_pkgmgr_weight = db_case['package_type_id_weight']
