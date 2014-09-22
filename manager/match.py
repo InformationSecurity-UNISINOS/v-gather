@@ -49,16 +49,17 @@ def MatchData():
 			print "==> dpkg: %s" %pdict['p_dpkg']
 			print "==> rpm: %s" %pdict['p_rpm']
 
-			if pdict['p_dpkg'] is "nada" or pdict['p_dpkg'] is "":
-				manager="RPM"
-				pacote=pdict['p_rpm']
-				print "= RPM"
-
-			if pdict['p_rpm'] is "nada" or pdict['p_rpm'] is "":
+			if pdict['p_dpkg'] is not "nada":
 				manager="DPKG"
 				pacote=pdict['p_dpkg']
 				print "= DPKG"
+
+			if pdict['p_rpm'] is not "nada":
+				manager="RPM"
+				pacote=pdict['p_rpm']
+				print "= RPM"
 				
+
 			print "SIMILAR MANAGER: %s / %s" %(manager,db_pkg_mgr)
 			p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
 			p_pkg_ratio = Similarity( pacote , db_case['package_name'] )
