@@ -172,13 +172,13 @@ def DbSimCases():
 			package_manager=2
 
 		print "*" * 50
-		#print "QLEN: %s" %str(clen)
-		#print "PNAME: %s" %str(pdict2['p_name'])
-		#print "SCORE: %s" %str(pdict2['p_name_score'])
-		print pdict2
+		print "QLEN: %s" %str(clen)
+		print "PNAME: %s" %str(pdict2['p_name'])
+		print "SCORE: %s" %str(pdict2['p_name_score'])
+		
 		print "*"*50
 
-		return 0
+		continue
 
 		print "---"
 		print "status, origem, case_id_related: %d,%d,%d" %(2,2,pdict2['case_id_related'])
