@@ -88,8 +88,9 @@ def MatchData():
 			debug=True
 			if debug==True:
 				print "*"*50
-				print "Processo: " +str(p_name_ratio)
-				print "Peso: " +str(p_name_weight)
+				print "PNAME: "+str(pdict['p_name'])
+				print "Ratio: " +str(p_name_ratio)
+				print "Weight: " +str(p_name_weight)
 				print "Score: " +str(p_name_score)
 			debug=False
 			#########################################################################
