@@ -155,6 +155,8 @@ def DbGetSoName(so_id):
 
 def DbSimCases():
 	clen=candidates.LenQueue()
+
+
 	while clen > 0:
 		pdict2=candidates.GetQueue()
 		if pdict2['distro'] == "Debian":
@@ -168,9 +170,15 @@ def DbSimCases():
 			package_name=pdict2['p_rpm']
 			package_manager=2
 
-		print "*"*50	
-		print "PNAME: "+str(pdict2['p_name'])
-		print "Score: " +str(pdict2['p_name_score'])
+		print "*" * 50
+		print "QLEN: %s" %str(clen)
+		print "PNAME: %s" %str(pdict2['p_name'])
+		print "SCORE: %s" %str(pdict2['p_name_score'])
+		print "*"*50
+		print pdict2
+
+		return 0
+
 		print "---"
 		print "status, origem, case_id_related: %d,%d,%d" %(2,2,pdict2['case_id_related'])
 		print "so_id, so_id_weight, so_id_score:  %s,%s,%s" %(str(so_id),str(pdict2['distro_weight']),str(pdict2['distro_score']))
