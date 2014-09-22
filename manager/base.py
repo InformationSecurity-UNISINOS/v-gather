@@ -194,7 +194,7 @@ def DbSimCases():
 		print "process_binary_uid, process_binary_uid_weight, process_binary_uid_score: %s,%s,%s " %( str(pdict['pf_uid']), str(pdict['pf_uid_weight']), str(pdict['pf_uid_score']) )
 		print "process_binary_gid, process_binary_gid_weight, process_binary_gid_score: %s,%s,%s " %( str(pdict['pf_gid']), str(pdict['pf_gid_weight']), str(pdict['pf_gid_score']) )
 		print "process_binary_dac, process_binary_dac_weight, process_binary_dac_score: %s,%s,%s " %( str(pdict['pf_dac']), str(pdict['pf_dac_weight']), str(pdict['pf_dac_score']) )
-		print "candidate_final_score: %s,%s,%s " %( str(pdict['score'])  )
+		print "candidate_final_score: %s " %( str(pdict['score'])  )
 
 		conn=DbConnect()
 		if conn == None:
