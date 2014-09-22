@@ -210,7 +210,7 @@ def DbSimCases():
 		print "process_binary_score: %s" %str(pdict2['pf_path_score'])
 		print "process_binary_uid: %s" %str(pdict2['pf_uid'])
 		print "process_binary_uid_weight: %s" %str(pdict2['pf_uid_weight'])
-		print "process_binary_uid_score: %s" %str(pdict2['pf_uid_score']
+		print "process_binary_uid_score: %s" %str(pdict2['pf_uid_score'])
 		print "process_binary_gid: %s" %str(pdict2['pf_gid'])
 		print "process_binary_gid_weight: %s" %str(pdict2['pf_gid_weight'])
 		print "process_binary_gid_score: %s" %str(pdict2['pf_gid_score'])
