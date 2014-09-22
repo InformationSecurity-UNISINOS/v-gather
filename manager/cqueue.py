@@ -18,7 +18,6 @@ class Fila(object):
 
         def AddQueue(self,tdict={}):
                 self.pqueue.append(tdict)
-                tdict.clear()
                 return True
 
         def LenQueue(self):
