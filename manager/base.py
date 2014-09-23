@@ -189,6 +189,7 @@ def DbSimCases():
 		for k,v in pdict2.items():
 			if v == "" or len(str(v)) == 0:
 				pdict2[k]=None
+
 			print "%s: %s" %(k,v)
 		print "*"*50
 		
@@ -198,6 +199,11 @@ def DbSimCases():
 		if conn == None:
 			return False
 		cursor = conn.cursor()
+
+		query = "INSERT INTO use_cases (status, origem, case_id_related) VALUES (%s,%s,%s)"
+		#cursor.execute(query)
+		# UPDATE users SET uid=7100 WHERE uid=7001"
+		#query = "UPDATE use_cases SET so_id=%s, so_id_weight=%s, so_id_score %s "
 
 		query = "INSERT INTO use_cases ( status, origem, case_id_related, \
 										so_id, so_id_weight, so_id_score, \
@@ -214,7 +220,8 @@ def DbSimCases():
 										process_binary_uid, process_binary_uid_weight, process_binary_uid_score, \
 										process_binary_gid, process_binary_gid_weight, process_binary_gid_score, \
 										process_binary_dac, process_binary_dac_weight, process_binary_dac_score, \
-										candidate_final_score) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s" )" % ( 2, 2, str(pdict2['case_id_related']),str(so_id), str(pdict2['distro_weight']), str(pdict2['distro_score']), str(pdict2['distro_version']), str(pdict2['distro_version_weight']), str(pdict2['distro_version_score']), str(pdict2['p_name']),str(pdict2['p_name_weight']), str(pdict2['p_name_score']), str(pdict2['p_uid']), str(pdict2['p_uid_weight']), str(pdict2['p_uid_score']), str(pdict2['p_gid']), str(pdict2['p_gid_weight']), str(pdict2['p_gid_score']), str(pdict2['p_args']),str(pdict2['p_args_weight']), str(pdict2['p_args_score']), str(pdict2['p_tcp_banner']), str(pdict2['p_tcp_banner_weight']), str(pdict2['p_tcp_banner_score']), str(pdict2['p_udp_banner']), str(pdict2['p_udp_banner_weight']), str(pdict2['p_udp_banner_score']), str(package_name), str(pdict2['p_pkg_weight']), str(pdict2['p_pkg_score']), str(package_manager), str(pdict2['p_pkgmgr_weight']), str(pdict2['p_pkgmgr_score']), str(pdict2['pf_path']), str(pdict2['pf_path_weight']), str(pdict2['pf_path_score']), str(pdict2['pf_uid']), str(pdict2['pf_uid_weight']), str(pdict2['pf_uid_score']), str(pdict2['pf_gid']), str(pdict2['pf_gid_weight']), str(pdict2['pf_gid_score']), str(pdict2['pf_dac']), str(pdict2['pf_dac_weight']), str(pdict2['pf_dac_score']), str(pdict2['score']) )
+										candidate_final_score) VALUES ( '%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s' )" % ( 2, 2, str(pdict2['case_id_related']),str(so_id), str(pdict2['distro_weight']), str(pdict2['distro_score']), str(pdict2['distro_version']), str(pdict2['distro_version_weight']), str(pdict2['distro_version_score']), str(pdict2['p_name']),str(pdict2['p_name_weight']), str(pdict2['p_name_score']), str(pdict2['p_uid']), str(pdict2['p_uid_weight']), str(pdict2['p_uid_score']), str(pdict2['p_gid']), str(pdict2['p_gid_weight']), str(pdict2['p_gid_score']), str(pdict2['p_args']),str(pdict2['p_args_weight']), str(pdict2['p_args_score']), str(pdict2['p_tcp_banner']), str(pdict2['p_tcp_banner_weight']), str(pdict2['p_tcp_banner_score']), str(pdict2['p_udp_banner']), str(pdict2['p_udp_banner_weight']), str(pdict2['p_udp_banner_score']), str(package_name), str(pdict2['p_pkg_weight']), str(pdict2['p_pkg_score']), str(package_manager), str(pdict2['p_pkgmgr_weight']), str(pdict2['p_pkgmgr_score']), str(pdict2['pf_path']), str(pdict2['pf_path_weight']), str(pdict2['pf_path_score']), str(pdict2['pf_uid']), str(pdict2['pf_uid_weight']), str(pdict2['pf_uid_score']), str(pdict2['pf_gid']), str(pdict2['pf_gid_weight']), str(pdict2['pf_gid_score']), str(pdict2['pf_dac']), str(pdict2['pf_dac_weight']), str(pdict2['pf_dac_score']), str(pdict2['score']) )
+		
 		cursor.execute(query)
 		conn.commit()
 		conn.close ()
