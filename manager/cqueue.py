@@ -30,7 +30,7 @@ candidates=Fila()
 
 from collections import deque
 def DestroyQueue(q):
-        while LenQueue() >0:
+        while LenQueue(q) >0:
                 q.popleft()
 
 def GetQueue(q):
