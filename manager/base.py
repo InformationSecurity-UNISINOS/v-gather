@@ -187,7 +187,7 @@ def DbSimCases():
 
 		print "*"*50
 		for k,v in pdict2.items():
-			if v == "" or len(v) == 0:
+			if v == "" or len(str(v)) == 0:
 				pdict2[k]=None
 			print "%s: %s" %(k,v)
 		print "*"*50
