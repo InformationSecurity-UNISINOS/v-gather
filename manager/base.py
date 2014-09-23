@@ -227,7 +227,7 @@ def DbSimCases():
 		conn.close ()
 		clen-=1
 
-	candidates.DestroyQueue()
+	DestroyQueue(can_queue)
 
 
 
