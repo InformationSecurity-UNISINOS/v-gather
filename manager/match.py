@@ -101,7 +101,7 @@ def MatchData():
 				print "*"*50
 				print "PName: " +str(p_name_ratio)
 				print "Peso: " +str(p_name_weight)
-				print "Score: " +str(p_name_sc)
+				print "Score: " +str(p_name_score)
 			#########################################################################
 			# PROCESS UID:
 			#########################################################################
@@ -246,7 +246,7 @@ def MatchData():
 				print "Peso: " +str(distro_weight)
 				print "Score: " +str(distro_score)
 
-			final_score=distro_score + distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_sc + p_pkgmgr_score + p_pkg_score
+			final_score=distro_score + distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_score + p_pkgmgr_score + p_pkg_score
 			if debug==True:
 				print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
 				print "*"*50
@@ -257,6 +257,8 @@ def MatchData():
 					pdict['score']=final_score
 					
 					#DbSimCases(pdict)
+					import pdb
+					pdb.set_trace()
 					candidates.AddQueue(pdict)
 		case_id+=1
 	recvdata.DestroyQueue()
