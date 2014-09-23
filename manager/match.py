@@ -251,19 +251,18 @@ def MatchData():
 			if debug==True:
 				print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
 				print "*"*50
-			qlen-=1				
-
+			
 			if final_score > sim_point:
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
 					#DbSimCases(pdict)
 					#candidates.AddQueue(pdict)
 					AddQueue(can_queue,pdict)
-
+			qlen-=1	
 		case_id+=1
 	#recvdata.DestroyQueue()
 	DestroyQueue(rcv_queue)
-	#DbSimCases()
+	DbSimCases()
 	return True
 
 
