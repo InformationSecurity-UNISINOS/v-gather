@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
- 
+from collections import deque
+
 class Fila(object):
+
         def __init__(self):
                 from collections import deque
                 self.pqueue = deque()
@@ -26,6 +28,25 @@ class Fila(object):
 recvdata=Fila()
 candidates=Fila()
 
+from collections import deque
+def DestroyQueue(q):
+        while LenQueue() >0:
+                q.popleft()
+
+def GetQueue(q):
+        item=q.popleft()
+        AddQueue(item)
+        return item
+
+def AddQueue(q,dict={}):
+        q.append(dict)
+
+def LenQueue(q):
+        return len(q)
+
+
+rcv_queue= deque()
+can_queue= deque()
 
 
                 

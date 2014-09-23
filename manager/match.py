@@ -37,11 +37,12 @@ def MatchData():
 		db_so_name=DbGetSoName(db_case['so_id'])
 		db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
 
-		qlen=recvdata.LenQueue()
+		#qlen=recvdata.LenQueue()
+		qlen=LenQueue(rcv_queue)
 		while qlen>0:
 			pdict = {}
-			pdict = recvdata.GetQueue()
-
+			#pdict = recvdata.GetQueue()
+			pdict = GetQueue(rcv_queue)
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
@@ -96,7 +97,7 @@ def MatchData():
 			p_name_weight = db_case['process_name_weight']
 			p_name_score = p_name_ratio * p_name_weight
 			pdict['p_name_weight']=str(p_name_weight)
-			pdict['p_name_sc']=str(p_name_score)
+			pdict['p_name_score']=str(p_name_score)
 			if debug==True:
 				print "*"*50
 				print "PName: " +str(p_name_ratio)
@@ -257,11 +258,12 @@ def MatchData():
 					pdict['score']=final_score
 					
 					#DbSimCases(pdict)
-					import pdb
-					pdb.set_trace()
-					candidates.AddQueue(pdict)
+					#candidates.AddQueue(pdict)
+					AddQueue(can_queue,pdict)
+
 		case_id+=1
-	recvdata.DestroyQueue()
+	#recvdata.DestroyQueue()
+	DestroyQueue(rcv_queue)
 	#DbSimCases()
 	return True
 
