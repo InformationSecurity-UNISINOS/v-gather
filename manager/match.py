@@ -256,7 +256,6 @@ def MatchData():
 			if final_score > sim_point:
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
-					
 					#DbSimCases(pdict)
 					#candidates.AddQueue(pdict)
 					AddQueue(can_queue,pdict)

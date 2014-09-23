@@ -35,11 +35,11 @@ def DestroyQueue(q):
 
 def GetQueue(q):
         item=q.popleft()
-        AddQueue(item)
+        AddQueue(q,item)
         return item
 
-def AddQueue(q,dict={}):
-        q.append(dict)
+def AddQueue(q,tdict={}):
+        q.append(tdict)
 
 def LenQueue(q):
         return len(q)
