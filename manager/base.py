@@ -253,22 +253,7 @@ def DbSimCases():
 										process_binary_dac, process_binary_dac_weight, process_binary_dac_score, \
 										candidate_final_score) \
 					VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s )" 
-								% ( 2, 2, str(pdict2['case_id_related']), 
-								str(so_id), str(pdict2['distro_weight']), str(pdict2['distro_score']),
-								str(pdict2['distro_version']), str(pdict2['distro_version_weight']), str(pdict2['distro_version_score']),
-								str(pdict2['p_name']),str(pdict2['p_name_weight']), str(pdict2['p_name_score']),
-								str(pdict2['p_uid']), str(pdict2['p_uid_weight']), str(pdict2['p_uid_score']),
-								str(pdict2['p_gid']), str(pdict2['p_gid_weight']), str(pdict2['p_gid_score']),
-								str(pdict2['p_args']),str(pdict2['p_args_weight']), str(pdict2['p_args_score']),
-								str(pdict2['p_tcp_banner']), str(pdict2['p_tcp_banner_weight']), str(pdict2['p_tcp_banner_score']),
-								str(pdict2['p_udp_banner']), str(pdict2['p_udp_banner_weight']), str(pdict2['p_udp_banner_score']),
-								str(package_name), str(pdict2['p_pkg_weight']), str(pdict2['p_pkg_score']),
-								str(package_manager), str(pdict2['p_pkgmgr_weight']), str(pdict2['p_pkgmgr_score']),
-								str(pdict2['pf_path']), str(pdict2['pf_path_weight']), str(pdict2['pf_path_score']),
-								str(pdict2['pf_uid']), str(pdict2['pf_uid_weight']), str(pdict2['pf_uid_score']),
-								str(pdict2['pf_gid']), str(pdict2['pf_gid_weight']), str(pdict2['pf_gid_score']),
-								str(pdict2['pf_dac']), str(pdict2['pf_dac_weight']), str(pdict2['pf_dac_score']),
-								str(pdict2['score']) )
+								% ( 2, 2, str(pdict2['case_id_related']),str(so_id), str(pdict2['distro_weight']), str(pdict2['distro_score']), str(pdict2['distro_version']), str(pdict2['distro_version_weight']), str(pdict2['distro_version_score']), str(pdict2['p_name']),str(pdict2['p_name_weight']), str(pdict2['p_name_score']), str(pdict2['p_uid']), str(pdict2['p_uid_weight']), str(pdict2['p_uid_score']), str(pdict2['p_gid']), str(pdict2['p_gid_weight']), str(pdict2['p_gid_score']), str(pdict2['p_args']),str(pdict2['p_args_weight']), str(pdict2['p_args_score']), str(pdict2['p_tcp_banner']), str(pdict2['p_tcp_banner_weight']), str(pdict2['p_tcp_banner_score']), str(pdict2['p_udp_banner']), str(pdict2['p_udp_banner_weight']), str(pdict2['p_udp_banner_score']), str(package_name), str(pdict2['p_pkg_weight']), str(pdict2['p_pkg_score']), str(package_manager), str(pdict2['p_pkgmgr_weight']), str(pdict2['p_pkgmgr_score']), str(pdict2['pf_path']), str(pdict2['pf_path_weight']), str(pdict2['pf_path_score']), str(pdict2['pf_uid']), str(pdict2['pf_uid_weight']), str(pdict2['pf_uid_score']), str(pdict2['pf_gid']), str(pdict2['pf_gid_weight']), str(pdict2['pf_gid_score']), str(pdict2['pf_dac']), str(pdict2['pf_dac_weight']), str(pdict2['pf_dac_score']), str(pdict2['score']) )
 		cursor.execute(query)
 		conn.commit()
 		conn.close ()
