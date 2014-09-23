@@ -150,8 +150,19 @@ def DbGetSoName(so_id):
 	results = cursor.fetchone()
 	conn.close()
 	return results[0]
-
-
+#
+# Eu havia criado uma classe de fila
+# pra instanciar filas como objetos.
+# O problema é que quando eu alimentava os valores da 
+# fila filtrada (a ser inserida na base),
+# os valores float nos scores eram totalmente modificados.
+# valor que deveria ser 3.0, estava como 0.45.
+# nao consegui resolver esse problema, nao encontrei a causa raíz.
+# fiquei um dia inteiro em cima desse problema e nada.
+# pra evitar perder tanto tempo, mudei a abordagem
+# ao invés de usar uma queue de dados pra inserir na base
+# mandei inserir diretamente, sem queue.
+# vai diminuir a performance, mas ...
 def DbSimCases():
 	clen=candidates.LenQueue()
 
@@ -180,7 +191,7 @@ def DbSimCases():
 		print "so_version_score: %s" %str(pdict2['distro_version_score'])
 		print "process_name: %s" %str(pdict2['p_name'])
 		print "process_name_weight: %s" %str(pdict2['p_name_weight'])
-		print "process_name_score: %s" %str(pdict2['p_name_score'])
+		print "process_name_score: %s" %str(pdict2['p_name_sc'])
 		print "process_uid: %s" %str(pdict2['p_uid'])
 		print "process_uid_weight: %s" %str(pdict2['p_uid_weight'])
 		print "process_uid_score: %s " %str(pdict2['p_uid_score'])
@@ -258,7 +269,7 @@ def DbSimCases():
 							%s )" % ( 2, 2, str(pdict2['case_id_related']), 
 								str(so_id), str(pdict2['distro_weight']), str(pdict2['distro_score']),
 								str(pdict2['distro_version']), str(pdict2['distro_version_weight']), str(pdict2['distro_version_score']),
-								str(pdict2['p_name']),str(pdict2['p_name_weight']), str(pdict2['p_name_score']),
+								str(pdict2['p_name']),str(pdict2['p_name_weight']), str(pdict2['p_name_sc']),
 								str(pdict2['p_uid']), str(pdict2['p_uid_weight']), str(pdict2['p_uid_score']),
 								str(pdict2['p_gid']), str(pdict2['p_gid_weight']), str(pdict2['p_gid_score']),
 								str(pdict2['p_args']),str(pdict2['p_args_weight']), str(pdict2['p_args_score']),

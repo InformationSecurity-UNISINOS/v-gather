@@ -41,6 +41,7 @@ def MatchData():
 		while qlen>0:
 			pdict = {}
 			pdict = recvdata.GetQueue()
+
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
@@ -95,12 +96,12 @@ def MatchData():
 			p_name_weight = db_case['process_name_weight']
 			p_name_score = p_name_ratio * p_name_weight
 			pdict['p_name_weight']=str(p_name_weight)
-			pdict['p_name_score']=str(p_name_score)
+			pdict['p_name_sc']=str(p_name_score)
 			if debug==True:
 				print "*"*50
 				print "PName: " +str(p_name_ratio)
 				print "Peso: " +str(p_name_weight)
-				print "Score: " +str(p_name_score)
+				print "Score: " +str(p_name_sc)
 			#########################################################################
 			# PROCESS UID:
 			#########################################################################
@@ -245,36 +246,24 @@ def MatchData():
 				print "Peso: " +str(distro_weight)
 				print "Score: " +str(distro_score)
 
-			final_score=distro_score + distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_score + p_pkgmgr_score + p_pkg_score
+			final_score=distro_score + distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_sc + p_pkgmgr_score + p_pkg_score
 			if debug==True:
 				print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
 				print "*"*50
 			qlen-=1				
 
 			if final_score > sim_point:
-					pd={}
-					pd=pdict
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
-					pdict['p_name_score']="3.0"
+					
 					#DbSimCases(pdict)
-					candidates.AddQueue(pd)
+					candidates.AddQueue(pdict)
 		case_id+=1
 	recvdata.DestroyQueue()
 	#DbSimCases()
-	teste()
 	return True
 
-def teste():
-	clen=candidates.LenQueue()
-	while clen > 0:
-		pd={}
-		pd=candidates.GetQueue()
-		print "PNAME: %s" %pd['p_name']
-		print "SCORE: %s" %pd['p_name_score']
-		print "*"*50
-		clen-=1
-	candidates.DestroyQueue()
+
 
 
 
