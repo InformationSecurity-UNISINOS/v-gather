@@ -230,7 +230,6 @@ def DbSimCases():
 		print "candidate_final_score: %s" %str(pdict2['score'])
 		print "*"*50
 		clen-=1
-		continue
 
 		conn=DbConnect()
 		if conn == None:

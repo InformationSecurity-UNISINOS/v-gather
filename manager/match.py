@@ -37,11 +37,9 @@ def MatchData():
 		db_so_name=DbGetSoName(db_case['so_id'])
 		db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
 
-		#qlen=recvdata.LenQueue()
 		qlen=LenQueue(rcv_queue)
 		while qlen>0:
 			pdict = {}
-			#pdict = recvdata.GetQueue()
 			pdict = GetQueue(rcv_queue)
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
@@ -255,8 +253,6 @@ def MatchData():
 			if final_score > sim_point:
 					pdict['case_id_related']=case_id
 					pdict['score']=final_score
-					#DbSimCases(pdict)
-					#candidates.AddQueue(pdict)
 					AddQueue(can_queue,pdict)
 			qlen-=1	
 		case_id+=1
