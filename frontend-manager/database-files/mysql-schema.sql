@@ -44,11 +44,11 @@ CREATE TABLE `weight_settings` (
 -- ----------------------------
 -- Records of weight_settings
 -- ----------------------------
-INSERT INTO weight_settings (weight,descr) VALUES (0,"Não relevante (desabilitado)");
-INSERT INTO weight_settings (weight,descr) VALUES (1.0,"Exato - Muito relevante, grau de similaridade total");
+INSERT INTO weight_settings (weight,descr) VALUES (1.0,"Exato - Característica Essencial");
 INSERT INTO weight_settings (weight,descr) VALUES (0.7,"Alto - Muito relevante, muito similar");
 INSERT INTO weight_settings (weight,descr) VALUES (0.5,"Médio - Relevante, similaridade intermediária");
 INSERT INTO weight_settings (weight,descr) VALUES (0.3,"Baixo - Não muito relevante, grau de similaridade pode ser baixo");
+INSERT INTO weight_settings (weight,descr) VALUES (0,"Desabilitado - ");
 
 -- ----------------------------
 -- Table structure for status_types
