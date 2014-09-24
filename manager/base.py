@@ -30,7 +30,7 @@ def DbCountCases():
 	if conn == None:
 		return False
 	cursor = conn.cursor()
-	case_sum="SELECT COUNT(id) from use_cases"
+	case_sum="SELECT COUNT(id) from use_cases WHERE status=1"
 	cursor.execute (case_sum)
 	result = cursor.fetchone()
 	conn.close()
@@ -86,7 +86,7 @@ def DbGetCase(case_id):
 	process_binary_dac, process_binary_dac_weight,\
 	process_binary_uid, process_binary_uid_weight,\
 	process_binary_gid, process_binary_gid_weight\
-	from use_cases where id=%i" %case_id 
+	from use_cases where id=%i and status=1" %case_id 
 
 	cursor.execute(query)
 	results = cursor.fetchall()
@@ -194,17 +194,20 @@ def DbSimCases():
 		print "*"*50
 		
 		clen-=1
+		#
+		#
+		# Dumbo - 5.5.4 Aprendizado - página 107
+		# Após o caso ser solucionado, ele é encerrado podendo ou não ser aprendido pelo sistema.
+		# Um caso é aprendido quando ele representa uma experiência nova, uma experiência para a qual
+		# o sistema não foi capaz de propor uma solução adequada — seja porque o sistema propôs uma solução
+		# que precisou ser adaptada, seja porque não propôs a melhor solução para a situação. Nesses casos,
+		# a experiência obtida com o processo deve ser retida no sistema através de um novo caso.
+		#
 
 		conn=DbConnect()
 		if conn == None:
 			return False
 		cursor = conn.cursor()
-
-		query = "INSERT INTO use_cases (status, origem, case_id_related) VALUES (%s,%s,%s)"
-		#cursor.execute(query)
-		# UPDATE users SET uid=7100 WHERE uid=7001"
-		#query = "UPDATE use_cases SET so_id=%s, so_id_weight=%s, so_id_score %s "
-
 		query = "INSERT INTO use_cases ( status, origem, case_id_related, \
 										so_id, so_id_weight, so_id_score, \
 										so_version, so_version_weight, so_version_score, \
