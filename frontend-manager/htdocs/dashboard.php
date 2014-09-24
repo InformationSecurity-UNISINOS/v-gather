@@ -78,6 +78,7 @@ if(login_check($mysqli) == false) {
 						<li><a href="vulnerabilidades.php"><i class="fa fa-warning"></i><span class="hidden-sm text"> Vulnerabilidades</span></a></li>
 						<li><a href="endpoints.php"><i class="fa fa-eye"></i><span class="hidden-sm text"> Endpoints</span></a></li>
 						<li><a href="novousuario.php"><i class="fa fa-user"></i><span class="hidden-sm text"> Usuários</span></a></li>
+						<li><a href="novousuario.php"><i class="fa fa-wrench"></i><span class="hidden-sm text"> Configurações</span></a></li>
 					</ul>
 				</div>
 				<a href="#" id="main-menu-min" class="full visible-md visible-lg"><i class="fa fa-angle-double-left"></i></a>
@@ -170,7 +171,7 @@ if(login_check($mysqli) == false) {
 											include_once 'includes/db_connect.php';
 											include_once 'includes/functions.php';
 
-											$stmt=$mysqli->prepare("SELECT COUNT(id) FROM use_cases WHERE so_id=1");
+											$stmt=$mysqli->prepare("SELECT COUNT(id) FROM use_cases WHERE so_id=1 and ");
 												if ($stmt === FALSE) {
             												printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
             												die ("Mysql Error: " . $mysqli->error);
