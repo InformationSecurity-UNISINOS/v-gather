@@ -134,9 +134,7 @@ if(login_check($mysqli) == false) {
 															<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_weight" name="so_weight" type="text" >
 														-->
 														<label class="checkbox inline">
-															<input type="checkbox" id="inlineCheckbox2" value="option2"> Exato
-														 </label>
-														 <label class="checkbox inline">
+															<input type="checkbox" id="inlineCheckbox2" value="option2" checked> Exato
 															<input type="checkbox" id="inlineCheckbox2" value="option2"> Alto
 														 </label>
 														 <label class="checkbox inline">
