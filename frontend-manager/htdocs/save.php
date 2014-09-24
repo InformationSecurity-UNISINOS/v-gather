@@ -13,9 +13,8 @@ if(login_check($mysqli) == false) {
 }
 
 function GetWeight($descr) {
-  include_once 'includes/db_connect.php';
-  include_once 'includes/functions.php';
-  
+  include 'includes/db_connect.php';
+
   if ( $descr == "exato" ) {
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%exato'%");
     $stmt->execute();
@@ -60,8 +59,6 @@ function GetWeight($descr) {
   return $value;
 }
 # Recuperar métricas do banco para os pesos
-
-
 
 
 if (isset($_POST['so'])) {
