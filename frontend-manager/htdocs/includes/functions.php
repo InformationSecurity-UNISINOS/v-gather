@@ -11,7 +11,7 @@ function GetWeight($mysqli, $descr) {
 
   if ( $descr == "exato" ) {
     $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE \'%exato\'%");
-    printf("exato: %s\n", $$mysqli->error); 
+    printf("exato: %s\n", $mysqli->error); 
     $stmt->execute();
     $stmt->bind_result($peso_exato);
     $stmt->fetch();
@@ -20,7 +20,7 @@ function GetWeight($mysqli, $descr) {
   }
   if ( $descr == "alto" ) {
     $stmt=$mysqli->prepare('SELECT weight from weight_settings WHERE descr LIKE \"%alto%\";');
-    printf("alto: %s\n", $$mysqli->error); 
+    printf("alto: %s\n", $mysqli->error); 
     $stmt->execute();
     $stmt->bind_result($peso_alto);
     $stmt->fetch();
@@ -29,7 +29,7 @@ function GetWeight($mysqli, $descr) {
   }
   if ( $descr == "medio" ) {
     $stmt=$mysqli->prepare('SELECT weight from weight_settings WHERE descr LIKE \"%médio%\"');
-    printf("medio: %s\n", $$mysqli->error); 
+    printf("medio: %s\n", $mysqli->error); 
     $stmt->execute();
     $stmt->bind_result($peso_medio);
     $stmt->fetch();
@@ -38,7 +38,7 @@ function GetWeight($mysqli, $descr) {
   }
   if ( $descr == "baixo" ) {
     $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%baixo%'");
-    printf("baixo: %s\n", $$mysqli->error); 
+    printf("baixo: %s\n", $mysqli->error); 
     $stmt->execute();
     $stmt->bind_result($peso_baixo);
     $stmt->fetch();
@@ -47,7 +47,7 @@ function GetWeight($mysqli, $descr) {
   }
   if ( $descr == "desabilitado" ) {
     $stmt=$mysqli->prepare('SELECT weight from weight_settings WHERE descr LIKE \"%desabilitado%\"');
-    printf("desabilitado: %s\n", $$mysqli->error); 
+    printf("desabilitado: %s\n", $mysqli->error); 
     $stmt->execute();
     $stmt->bind_result($peso_desabilitado);
     $stmt->fetch();
