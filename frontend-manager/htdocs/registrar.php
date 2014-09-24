@@ -133,23 +133,21 @@ if(login_check($mysqli) == false) {
 														<!-- 
 															<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_weight" name="so_weight" type="text" >
 														-->
-														<div class="controls row">
-															<div class="col-md-1 col-sm-2 col-xs-3">
-																<label class="switch">
-															      <input type="checkbox" class="switch-input">
-															      <span class="switch-label" data-on="On" data-off="Off"></span>
-															      <span class="switch-handle"></span>
-															    </label>
-															</div>
-															<div class="col-md-1 col-sm-2 col-xs-3">
-																<label class="switch switch-primary">
-															      <input type="checkbox" class="switch-input" checked>
-															      <span class="switch-label" data-on="On" data-off="Off"></span>
-															      <span class="switch-handle"></span>
-															    </label>
-															</div>
-														</div>
-
+														<label class="checkbox inline">
+															<input type="checkbox" id="inlineCheckbox2" value="option2"> Exato
+														 </label>
+														 <label class="checkbox inline">
+															<input type="checkbox" id="inlineCheckbox2" value="option2"> Alto
+														 </label>
+														 <label class="checkbox inline">
+															<input type="checkbox" id="inlineCheckbox2" value="option2"> Médio
+														 </label>
+														 <label class="checkbox inline">
+															<input type="checkbox" id="inlineCheckbox2" value="option2"> Baixo
+														 </label>
+														 <label class="checkbox inline">
+															<input type="checkbox" id="inlineCheckbox2" value="option2"> Desabilitado
+														 </label>
 													</td>
 												</tr>
 												<tr>
