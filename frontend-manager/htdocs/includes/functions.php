@@ -8,7 +8,8 @@ require_once 'xss_clean.php';
 *
 */
 function GetWeight($mysqli, $descr) {
-
+  vardump($mysqli);
+  
   if ( $descr == "exato" ) {
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%exato'%");
     $stmt->execute();
