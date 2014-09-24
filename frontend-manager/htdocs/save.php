@@ -3,7 +3,7 @@
 <?php
 include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
-include_once 'inclides/xss_clean.php';
+include_once 'includes/xss_clean.php';
 
 
 sec_session_start(); 
