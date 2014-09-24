@@ -10,7 +10,7 @@ if(login_check($mysqli) == false) {
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
 	
 	<!-- start: Meta -->

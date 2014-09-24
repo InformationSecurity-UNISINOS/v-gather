@@ -5,11 +5,60 @@ include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
 include_once 'inclides/xss_clean.php';
 
+
 sec_session_start(); 
 if(login_check($mysqli) == false) {
 
         header('Location: index.php');
 }
+function GetWeight($descr) {
+  if ( $descr == "exato" ) {
+    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%exato'%");
+    $stmt->execute();
+    $stmt->bind_result($peso_exato);
+    $stmt->fetch();
+    $stmt->free_result();
+    $value=$peso_exato;
+  }
+  if ( $descr == "alto" ) {
+    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%alto%'");
+    $stmt->execute();
+    $stmt->bind_result($peso_alto);
+    $stmt->fetch();
+    $stmt->free_result();
+    $value=$peso_alto;
+  }
+  if ( $descr == "medio" ) {
+    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%médio%'");
+    $stmt->execute();
+    $stmt->bind_result($peso_medio);
+    $stmt->fetch();
+    $stmt->free_result();
+    $value=$peso_medio;
+  }
+  if ( $descr == "baixo" ) {
+    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%baixo%'");
+    $stmt->execute();
+    $stmt->bind_result($peso_baixo);
+    $stmt->fetch();
+    $stmt->free_result();
+    $value=$peso_baixo;
+  }
+
+  if ( $descr == "desabilitado" ) {
+    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%desabilitado%'");
+    $stmt->execute();
+    $stmt->bind_result($peso_desabilitado);
+    $stmt->fetch();
+    $stmt->free_result();
+    $value=$peso_desabilitado;
+  }
+
+ return $value
+}
+# Recuperar métricas do banco para os pesos
+
+
 
 
 if (isset($_POST['so'])) {
@@ -20,71 +69,74 @@ if (isset($_POST['so'])) {
     $so_id=2;
   }
 }
-if (isset($_POST['so_weight'])) {
-  $so_weight=$_POST['so_weight'];
+
+if (isset($_POST['so_peso'])) {
+  $so_weight=GetWeight($_POST['so_peso']);
+
 }
 //============================================================================================================
 
 if (isset($_POST['so_ver'])) {
     $so_ver=xss_clean($_POST['so_ver']);
 }
-if (isset($_POST['so_ver_weight'])) {
-  $so_ver_weight=xss_clean($_POST['so_ver_weight']);
+if (isset($_POST['so_ver_peso'])) {
+
+  $so_ver_weight=GetWeight($_POST['so_ver_peso']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_name'])) {
 	$p_name=xss_clean($_POST['p_name']);
 }
-if (isset($_POST['p_name_weight'])) {
-  $p_name_weight=xss_clean($_POST['p_name_weight']);
+if (isset($_POST['p_name_peso'])) {
+  $p_name_weight=GetWeight($_POST['p_name_peso']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_uid'])) {
 	$p_uid=xss_clean($_POST['p_uid']);
 }
-if (isset($_POST['p_uid_weight'])) {
-  $p_uid_weight=xss_clean($_POST['p_uid_weight']);
+if (isset($_POST['p_uid_peso'])) {
+  $p_uid_weight=GetWeight($_POST['p_uid_peso']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_gid'])) {
 	$p_gid=xss_clean($_POST['p_gid']);
 }
-if (isset($_POST['p_gid_weight'])) {
-  $p_gid_weight=xss_clean($_POST['p_gid_weight']);
+if (isset($_POST['p_gid_peso'])) {
+  $p_gid_weight=GetWeight($_POST['p_gid_peso']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_args'])) {
 	$p_args=xss_clean($_POST['p_args']);
 }
-if (isset($_POST['p_args_weight'])) {
-  $p_args_weight=xss_clean($_POST['p_args_weight']);
+if (isset($_POST['p_args_peso'])) {
+  $p_args_weight=GetWeight($_POST['p_args_peso']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_tcp_banner'])) {
-  $p_tcp_banner=xss_clean($_POST['p_tcp_banner']);
+  $p_tcp_banner=GetWeight($_POST['p_tcp_banner']);
 }
-if (isset($_POST['p_tcp_banner_weight'])) {
-  $p_tcp_banner_weight=xss_clean($_POST['p_tcp_banner_weight']);
+if (isset($_POST['p_tcp_banner_peso'])) {
+  $p_tcp_banner_weight=GetWeight($_POST['p_tcp_banner_peso']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_udp_banner'])) {
-  $p_udp_banner=xss_clean($_POST['p_udp_banner']);
+  $p_udp_banner=GetWeight($_POST['p_udp_banner']);
 }
-if (isset($_POST['p_udp_banner_weight'])) {
-  $p_udp_banner_weight=xss_clean($_POST['p_udp_banner_weight']);
+if (isset($_POST['p_udp_banner_peso'])) {
+  $p_udp_banner_weight=GetWeight($_POST['p_udp_banner_peso']);
 }
 //============================================================================================================
 if (isset($_POST['p_package'])) {
-  $p_package=xss_clean($_POST['p_package']);
+  $p_package=GetWeight($_POST['p_package']);
 }
-if (isset($_POST['p_package_weight'])) {
-  $p_package_weight=xss_clean($_POST['p_package_weight']);
+if (isset($_POST['p_package_peso'])) {
+  $p_package_weight=GetWeight($_POST['p_package_peso']);
 }
 //============================================================================================================
 
@@ -96,38 +148,38 @@ if (isset($_POST['p_package_type_id'])) {
     $p_package_type_id=2;
   }
 }
-if (isset($_POST['p_package_type_id_weight'])) {
-  $p_package_type_id_weight=xss_clean($_POST['p_package_type_id_weight']);
+if (isset($_POST['p_package_type_id_peso'])) {
+  $p_package_type_id_weight=GetWeight($_POST['p_package_type_id_peso']);
 }
 //============================================================================================================
 
 if (isset($_POST['p_file'])) {
   $p_file=xss_clean($_POST['p_file']);
 }
-if (isset($_POST['p_file_weight'])) {
-  $p_file_weight=xss_clean($_POST['p_file_weight']);
+if (isset($_POST['p_file_peso'])) {
+  $p_file_weight=GetWeight($_POST['p_file_peso']);
 }
 //============================================================================================================
 
 if (isset($_POST['pf_dac'])) {
   $pf_dac=xss_clean($_POST['pf_dac']);
 }
-if (isset($_POST['pf_dac_weight'])) {
-  $pf_dac_weight=xss_clean($_POST['pf_dac_weight']);
+if (isset($_POST['pf_dac_peso'])) {
+  $pf_dac_weight=GetWeight($_POST['pf_dac_peso']);
 }
 //============================================================================================================
 if (isset($_POST['pf_uid'])) {
   $pf_uid=xss_clean($_POST['pf_uid']);
 }
-if (isset($_POST['pf_uid_weight'])) {
-  $pf_uid_weight=xss_clean($_POST['pf_uid_weight']);
+if (isset($_POST['pf_uid_peso'])) {
+  $pf_uid_weight=GetWeight($_POST['pf_uid_peso']);
 }
 //============================================================================================================
 if (isset($_POST['pf_gid'])) {
   $pf_gid=xss_clean($_POST['pf_gid']);
 }
-if (isset($_POST['pf_gid_weight'])) {
-  $pf_gid_weight=xss_clean($_POST['pf_gid_weight']);
+if (isset($_POST['pf_gid_peso'])) {
+  $pf_gid_weight=GetWeight($_POST['pf_gid_peso']);
 }
 //============================================================================================================
 if (isset($_POST['p_descr'])) {
@@ -162,7 +214,7 @@ if ($stmt === FALSE) {
 }
 $status=1;
 $origem=1;
-$stmt->bind_param('iiisssssisisssssssssisssisisis', $status, $origem,
+$stmt->bind_param('ssssssssssssssssssssssssssssss', $status, $origem,
                       $so_id, $so_weight,
                       $so_ver, $so_ver_weight,
                       $p_name, $p_name_weight,
