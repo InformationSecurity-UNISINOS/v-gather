@@ -11,61 +11,7 @@ if(login_check($mysqli) == false) {
 
         header('Location: index.php');
 }
-function GetWeight($descr) {
-  if ( $descr == "exato" ) {
-    include_once 'includes/db_connect.php';
-    include_once 'includes/functions.php';
-    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%exato'%");
-    $stmt->execute();
-    $stmt->bind_result($peso_exato);
-    $stmt->fetch();
-    $stmt->free_result();
-    $value=$peso_exato;
-  }
-  if ( $descr == "alto" ) {
-    include_once 'includes/db_connect.php';
-    include_once 'includes/functions.php';
-    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%alto%'");
-    $stmt->execute();
-    $stmt->bind_result($peso_alto);
-    $stmt->fetch();
-    $stmt->free_result();
-    $value=$peso_alto;
-  }
-  if ( $descr == "medio" ) {
-    include_once 'includes/db_connect.php';
-    include_once 'includes/functions.php';
-    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%médio%'");
-    $stmt->execute();
-    $stmt->bind_result($peso_medio);
-    $stmt->fetch();
-    $stmt->free_result();
-    $value=$peso_medio;
-  }
-  if ( $descr == "baixo" ) {
-    include_once 'includes/db_connect.php';
-    include_once 'includes/functions.php';
-    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%baixo%'");
-    $stmt->execute();
-    $stmt->bind_result($peso_baixo);
-    $stmt->fetch();
-    $stmt->free_result();
-    $value=$peso_baixo;
-  }
-  if ( $descr == "desabilitado" ) {
-    include_once 'includes/db_connect.php';
-    include_once 'includes/functions.php';
-    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%desabilitado%'");
-    $stmt->execute();
-    $stmt->bind_result($peso_desabilitado);
-    $stmt->fetch();
-    $stmt->free_result();
-    $value=$peso_desabilitado;
-  }
 
-  return $value;
-}
-# Recuperar métricas do banco para os pesos
 
 
 
