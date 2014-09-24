@@ -159,19 +159,19 @@ if(login_check($mysqli) == false) {
 													</td>
 													<td>
 														<label class="radio-inline">
-														    <input type="radio" name="so_peso" id="so_ver_peso" value="exato" checked> Exato
+														    <input type="radio" name="so_ver_peso" id="so_ver_peso" value="exato" checked> Exato
 														 </label>
 														<label class="radio-inline">
-														   	<input type="radio" name="so_peso" id="so_ver_peso" value="alto"> Alto
+														   	<input type="radio" name="so_ver_peso" id="so_ver_peso" value="alto"> Alto
 														</label>
 														<label class="radio-inline">
-														   	<input type="radio" name="so_peso" id="so_ver_peso" value="medio"> Médio
+														   	<input type="radio" name="so_ver_peso" id="so_ver_peso" value="medio"> Médio
 														</label>
 														<label class="radio-inline">
-														   	<input type="radio" name="so_peso" id="so_ver_peso" value="baixo"> Baixo
+														   	<input type="radio" name="so_ver_peso" id="so_ver_peso" value="baixo"> Baixo
 														</label>
 														<label class="radio-inline">
-														   	<input type="radio" name="so_peso" id="so_ver_peso" value="desabilitado"> Desabilitado
+														   	<input type="radio" name="so_ver_peso" id="so_ver_peso" value="desabilitado"> Desabilitado
 														</label>
 													</td>
 												</tr>
@@ -184,19 +184,19 @@ if(login_check($mysqli) == false) {
 													</td>
 													<td>
 														<label class="radio-inline">
-														    <input type="radio" name="so_peso" id="p_name_peso" value="exato" checked> Exato
+														    <input type="radio" name="p_name_peso" id="p_name_peso" value="exato" checked> Exato
 														 </label>
 														<label class="radio-inline">
-														   	<input type="radio" name="so_peso" id="p_name_peso" value="alto"> Alto
+														   	<input type="radio" name="p_name_peso" id="p_name_peso" value="alto"> Alto
 														</label>
 														<label class="radio-inline">
-														   	<input type="radio" name="so_peso" id="p_name_peso" value="medio"> Médio
+														   	<input type="radio" name="p_name_peso" id="p_name_peso" value="medio"> Médio
 														</label>
 														<label class="radio-inline">
-														   	<input type="radio" name="so_peso" id="p_name_peso" value="baixo"> Baixo
+														   	<input type="radio" name="p_name_peso" id="p_name_peso" value="baixo"> Baixo
 														</label>
 														<label class="radio-inline">
-														   	<input type="radio" name="so_peso" id="p_name_peso" value="desabilitado"> Desabilitado
+														   	<input type="radio" name="p_name_peso" id="p_name_peso" value="desabilitado"> Desabilitado
 														</label>
 													</td>
 												</tr>
@@ -210,7 +210,7 @@ if(login_check($mysqli) == false) {
 													</td>
 													<td>
 														<label class="radio-inline">
-														    <input type="radio" name="p_uid_peso" id="pp_uid_peso" value="exato" checked> Exato
+														    <input type="radio" name="p_uid_peso" id="p_uid_peso" value="exato" checked> Exato
 														 </label>
 														<label class="radio-inline">
 														   	<input type="radio" name="p_uido_peso" id="p_uid_peso" value="alto"> Alto
@@ -236,7 +236,7 @@ if(login_check($mysqli) == false) {
 													</td>
 													<td>
 														<label class="radio-inline">
-														    <input type="radio" name="p_gid_peso" id="pp_uid_peso" value="exato" checked> Exato
+														    <input type="radio" name="p_gid_peso" id="p_gid_peso" value="exato" checked> Exato
 														 </label>
 														<label class="radio-inline">
 														   	<input type="radio" name="p_gid_peso" id="p_uid_peso" value="alto"> Alto
@@ -290,7 +290,21 @@ if(login_check($mysqli) == false) {
 														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_tcp_banner" name="p_tcp_banner" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_tcp_banner_weight" name="p_tcp_banner_weight" type="text" >
+														<label class="radio-inline">
+														    <input type="radio" name="p_tcp_banner_peso" id="p_tcp_banner_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_tcp_banner_peso" id="p_tcp_banner_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_tcp_banner_peso" id="p_tcp_banner_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_tcp_banner_peso" id="p_tcp_banner_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_tcp_banner_peso" id="p_tcp_banner_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 		
@@ -306,7 +320,21 @@ if(login_check($mysqli) == false) {
 														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_udp_banner" name="p_udp_banner" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_udp_banner_weight" name="p_udp_banner_weight" type="text" >
+														<label class="radio-inline">
+														    <input type="radio" name="p_udp_banner_peso" id="p_udp_banner_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_udp_banner_peso" id="p_udp_banner_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_udp_banner_peso" id="p_udp_banner_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_udp_banner_peso" id="p_udp_banner_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_udp_banner_peso" id="p_udp_banner_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 
@@ -318,7 +346,22 @@ if(login_check($mysqli) == false) {
 														<input placeholder="Exemplo: /usr/lib/apache2/mpm-prefork/apache2"class="form-control focused" id="p_file" name="p_file" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_file_weight" name="p_file_weight" type="text" >
+														<label class="radio-inline">
+														    <input type="radio" name="p_file_peso" id="p_file_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_file_peso" id="p_file_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_file_peso" id="p_file_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_file_peso" id="p_file_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_file_peso" id="p_file_peso" value="desabilitado"> Desabilitado
+														</label>
+													
 													</td>
 												</tr>
 
@@ -330,7 +373,21 @@ if(login_check($mysqli) == false) {
 														<input placeholder="Exemplo: apache2-2.2.22"class="form-control focused" id="p_package" name="p_package" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_package_weight" name="p_package_weight" type="text" >
+														<label class="radio-inline">
+														    <input type="radio" name="p_package_peso" id="p_package_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_peso" id="p_package_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_peso" id="p_package_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_peso" id="p_package_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_peso" id="p_package_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 												<tr>
@@ -346,7 +403,22 @@ if(login_check($mysqli) == false) {
 														 </label>
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_package_type_id_weight" name="p_package_type_id_weight" type="text" >
+														<label class="radio-inline">
+														    <input type="radio" name="p_package_type_id_peso" id="p_package_type_id_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_type_id_peso" id="p_package_type_id_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_type_id_peso" id="p_package_type_id_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_type_id_peso" id="p_package_type_id_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_type_id_peso" id="p_package_type_id_peso" value="desabilitado"> Desabilitado
+														</label>
+													
 													</td>
 												</tr>
 
@@ -358,7 +430,22 @@ if(login_check($mysqli) == false) {
 														<input placeholder="Exemplo: 755, 740"class="form-control focused" id="pf_dac" name="pf_dac" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_dac_weight" name="pf_dac_weight" type="text" >
+														<label class="radio-inline">
+														    <input type="radio" name="pf_dac_peso" id="pf_dac_peso" value="exato" checked> Exato
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_dac_peso" id="pf_dac_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_dac_peso" id="pf_dac_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_dac_peso" id="pf_dac_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_dac_peso" id="pf_dac_peso" value="desabilitado"> Desabilitado
+														</label>
+													
 													</td>
 												</tr>
 
@@ -370,7 +457,21 @@ if(login_check($mysqli) == false) {
 														<input placeholder="Exemplo: 0"class="form-control focused" id="pf_uid" name="pf_uid" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_uid_weight" name="pf_uid_weight" type="text" >
+														<label class="radio-inline">
+														    <input type="radio" name="pf_uid_peso" id="pf_uid_peso" value="exato" checked> Exato
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_uid_peso" id="pf_uid_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_uid_peso" id="pf_uid_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_uid_peso" id="pf_uid_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_uid_peso" id="pf_uid_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 												<tr>
@@ -381,7 +482,21 @@ if(login_check($mysqli) == false) {
 														<input placeholder="Exemplo: 0"class="form-control focused" id="pf_gid" name="pf_gid" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_gid_weight" name="pf_gid_weight" type="text" >
+														<label class="radio-inline">
+														    <input type="radio" name="pf_gid_peso" id="pf_gid_peso" value="exato" checked> Exato
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_gid_peso" id="pf_gid_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_gid_peso" id="pf_gid_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_gid_peso" id="pf_gid_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="pf_gid_peso" id="pf_gid_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 
