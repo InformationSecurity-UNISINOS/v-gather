@@ -113,12 +113,12 @@ if(login_check($mysqli) == false) {
 		                            	<table class="table table-striped">
 		                            		<thead>
 		                            			<tr>
-		                            				<td>Categoria</td><td>Itens</td><td>Relevância</td>
+		                            				<td width="30%">Categoria</td><td>Itens</td><td>Relevância</td>
 		                            			</tr>
 		                            		</thead>
 		                            		<tbody>
 												<tr>
-													<td>
+													<td width="30%">
 														Distribuição GNU/Linux
 													</td>
 													<td>
@@ -151,7 +151,7 @@ if(login_check($mysqli) == false) {
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td width="30%">
 														Versão da Distribuição GNU/Linux
 													</td>
 													<td>
@@ -162,7 +162,7 @@ if(login_check($mysqli) == false) {
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td width="30%">
 														Nome do Processo
 													</td>
 													<td>
