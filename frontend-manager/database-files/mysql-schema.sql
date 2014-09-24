@@ -165,7 +165,7 @@ CREATE TABLE `use_cases` (
   `process_binary_dac` int DEFAULT NULL,
   `process_binary_dac_weight` FLOAT(3,2) DEFAULT NULL,
   `process_binary_dac_score` FLOAT(3,2) DEFAULT NULL,
-  `candidate_final_score` FLOAT(3,2) DEFAULT NULL;
+  `candidate_final_score` FLOAT(3,2),
   PRIMARY KEY (`id`),
   KEY `so_id` (`so_id`),
   KEY `package_type_id` (`package_type_id`),
