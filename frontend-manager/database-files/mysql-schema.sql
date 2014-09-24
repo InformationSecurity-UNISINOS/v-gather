@@ -32,19 +32,38 @@ CREATE TABLE `managed_servers` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for weight_settings
+-- ----------------------------
+DROP TABLE IF EXISTS `weight_settings`;
+CREATE TABLE `weight_settings` (
+  `id` int(11)  NOT NULL AUTO_INCREMENT,
+  `weight` FLOAT(3,2),
+  `descr` varchar(255),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- ----------------------------
+-- Records of weight_settings
+-- ----------------------------
+INSERT INTO weight_settings (weight,descr) VALUES (0,"Não relevante (desabilitado)");
+INSERT INTO weight_settings (weight,descr) VALUES (1.0,"Exato - Muito relevante, grau de similaridade total");
+INSERT INTO weight_settings (weight,descr) VALUES (0.7,"Alto - Muito relevante, muito similar");
+INSERT INTO weight_settings (weight,descr) VALUES (0.5,"Médio - Relevante, similaridade intermediária");
+INSERT INTO weight_settings (weight,descr) VALUES (0.3,"Baixo - Não muito relevante, grau de similaridade pode ser baixo");
+
+-- ----------------------------
 -- Table structure for status_types
 -- ----------------------------
 DROP TABLE IF EXISTS `case_match`;
 CREATE TABLE `case_match` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `value` int(11) NOT NULL DEFAULT 6,
-  `desc` varchar(255) DEFAULT NULL,
+  `value` int(11) NOT NULL,
+  `descr` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of status_types
 -- ----------------------------
-
+INSERT INTO case_match (value,descr) VALUES (6,"Valor padrão utilizado no sistema DUMBO");
 
 -- ----------------------------
 -- Table structure for status_types
