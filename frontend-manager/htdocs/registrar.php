@@ -133,19 +133,21 @@ if(login_check($mysqli) == false) {
 														<!-- 
 															<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_weight" name="so_weight" type="text" >
 														-->
-														<label class="checkbox inline">
-															<input type="checkbox" id="inlineCheckbox2" value="option2" checked> Exato
-															<input type="checkbox" id="inlineCheckbox2" value="option2"> Alto
+														<label class="radio-inline">
+														    <input type="radio" name="so_peso" id="so_peso" value="exato" checked> Exato
 														 </label>
-														 <label class="checkbox inline">
-															<input type="checkbox" id="inlineCheckbox2" value="option2"> Médio
-														 </label>
-														 <label class="checkbox inline">
-															<input type="checkbox" id="inlineCheckbox2" value="option2"> Baixo
-														 </label>
-														 <label class="checkbox inline">
-															<input type="checkbox" id="inlineCheckbox2" value="option2"> Desabilitado
-														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_peso" id="so_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_peso" id="so_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_peso" id="so_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_peso" id="so_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 												<tr>
