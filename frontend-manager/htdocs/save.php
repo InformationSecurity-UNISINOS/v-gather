@@ -13,6 +13,8 @@ if(login_check($mysqli) == false) {
 }
 function GetWeight($descr) {
   if ( $descr == "exato" ) {
+    include_once 'includes/db_connect.php';
+    include_once 'includes/functions.php';
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%exato'%");
     $stmt->execute();
     $stmt->bind_result($peso_exato);
@@ -21,6 +23,8 @@ function GetWeight($descr) {
     $value=$peso_exato;
   }
   if ( $descr == "alto" ) {
+    include_once 'includes/db_connect.php';
+    include_once 'includes/functions.php';
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%alto%'");
     $stmt->execute();
     $stmt->bind_result($peso_alto);
@@ -29,6 +33,8 @@ function GetWeight($descr) {
     $value=$peso_alto;
   }
   if ( $descr == "medio" ) {
+    include_once 'includes/db_connect.php';
+    include_once 'includes/functions.php';
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%médio%'");
     $stmt->execute();
     $stmt->bind_result($peso_medio);
@@ -37,6 +43,8 @@ function GetWeight($descr) {
     $value=$peso_medio;
   }
   if ( $descr == "baixo" ) {
+    include_once 'includes/db_connect.php';
+    include_once 'includes/functions.php';
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%baixo%'");
     $stmt->execute();
     $stmt->bind_result($peso_baixo);
@@ -45,6 +53,8 @@ function GetWeight($descr) {
     $value=$peso_baixo;
   }
   if ( $descr == "desabilitado" ) {
+    include_once 'includes/db_connect.php';
+    include_once 'includes/functions.php';
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%desabilitado%'");
     $stmt->execute();
     $stmt->bind_result($peso_desabilitado);
