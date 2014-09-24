@@ -10,7 +10,7 @@ require_once 'xss_clean.php';
 function GetWeight($mysqli, $descr) {
 
   if ( $descr == "exato" ) {
-    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%exato'%");
+    $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE \'%exato\'%");
     
     $stmt->execute();
     $stmt->bind_result($peso_exato);
@@ -19,7 +19,7 @@ function GetWeight($mysqli, $descr) {
     $value=$peso_exato;
   }
   if ( $descr == "alto" ) {
-    $stmt=$mysqli->prepare('select weight from weight_settings WHERE descr LIKE "%alto%";');
+    $stmt=$mysqli->prepare('SELECT weight from weight_settings WHERE descr LIKE \"%alto%\";');
     
     $stmt->execute();
     $stmt->bind_result($peso_alto);
@@ -28,7 +28,7 @@ function GetWeight($mysqli, $descr) {
     $value=$peso_alto;
   }
   if ( $descr == "medio" ) {
-    $stmt=$mysqli->prepare('select weight from weight_settings WHERE descr LIKE "%médio%"');
+    $stmt=$mysqli->prepare('SELECT weight from weight_settings WHERE descr LIKE \"%médio%\"');
     
     $stmt->execute();
     $stmt->bind_result($peso_medio);
@@ -37,7 +37,7 @@ function GetWeight($mysqli, $descr) {
     $value=$peso_medio;
   }
   if ( $descr == "baixo" ) {
-    $stmt=$mysqli->prepare('select weight from weight_settings WHERE descr LIKE "%baixo%"');
+    $stmt=$mysqli->prepare('SELECT weight from weight_settings WHERE descr LIKE \"%baixo%\"');
     
     $stmt->execute();
     $stmt->bind_result($peso_baixo);
@@ -46,7 +46,7 @@ function GetWeight($mysqli, $descr) {
     $value=$peso_baixo;
   }
   if ( $descr == "desabilitado" ) {
-    $stmt=$mysqli->prepare('select weight from weight_settings WHERE descr LIKE "%desabilitado%"');
+    $stmt=$mysqli->prepare('SELECT weight from weight_settings WHERE descr LIKE \"%desabilitado%\"');
     
     $stmt->execute();
     $stmt->bind_result($peso_desabilitado);
