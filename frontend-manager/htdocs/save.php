@@ -12,7 +12,10 @@ if(login_check($mysqli) == false) {
         header('Location: index.php');
 }
 
-function GetWeight($mysqli,$descr) {
+function GetWeight($descr) {
+  include_once 'includes/db_connect.php';
+  include_once 'includes/functions.php';
+  
   if ( $descr == "exato" ) {
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%exato'%");
     $stmt->execute();
@@ -71,7 +74,7 @@ if (isset($_POST['so'])) {
 }
 
 if (isset($_POST['so_peso'])) {
-  $so_weight=GetWeight($mysqli,$_POST['so_peso']);
+  $so_weight=GetWeight($_POST['so_peso']);
 
 }
 //============================================================================================================
@@ -81,7 +84,7 @@ if (isset($_POST['so_ver'])) {
 }
 if (isset($_POST['so_ver_peso'])) {
 
-  $so_ver_weight=GetWeight($mysqli,$_POST['so_ver_peso']);
+  $so_ver_weight=GetWeight($_POST['so_ver_peso']);
 }
 //============================================================================================================
 
@@ -89,7 +92,7 @@ if (isset($_POST['p_name'])) {
 	$p_name=xss_clean($_POST['p_name']);
 }
 if (isset($_POST['p_name_peso'])) {
-  $p_name_weight=GetWeight($mysqli,$_POST['p_name_peso']);
+  $p_name_weight=GetWeight($_POST['p_name_peso']);
 }
 //============================================================================================================
 
@@ -97,7 +100,7 @@ if (isset($_POST['p_uid'])) {
 	$p_uid=xss_clean($_POST['p_uid']);
 }
 if (isset($_POST['p_uid_peso'])) {
-  $p_uid_weight=GetWeight($mysqli,$_POST['p_uid_peso']);
+  $p_uid_weight=GetWeight($_POST['p_uid_peso']);
 }
 //============================================================================================================
 
@@ -105,7 +108,7 @@ if (isset($_POST['p_gid'])) {
 	$p_gid=xss_clean($_POST['p_gid']);
 }
 if (isset($_POST['p_gid_peso'])) {
-  $p_gid_weight=GetWeight($mysqli,$_POST['p_gid_peso']);
+  $p_gid_weight=GetWeight($_POST['p_gid_peso']);
 }
 //============================================================================================================
 
@@ -113,7 +116,7 @@ if (isset($_POST['p_args'])) {
 	$p_args=xss_clean($_POST['p_args']);
 }
 if (isset($_POST['p_args_peso'])) {
-  $p_args_weight=GetWeight($mysqli,$_POST['p_args_peso']);
+  $p_args_weight=GetWeight($_POST['p_args_peso']);
 }
 //============================================================================================================
 
@@ -121,7 +124,7 @@ if (isset($_POST['p_tcp_banner'])) {
   $p_tcp_banner=xss_clean($_POST['p_tcp_banner']);
 }
 if (isset($_POST['p_tcp_banner_peso'])) {
-  $p_tcp_banner_weight=GetWeight($mysqli,$_POST['p_tcp_banner_peso']);
+  $p_tcp_banner_weight=GetWeight($_POST['p_tcp_banner_peso']);
 }
 //============================================================================================================
 
@@ -129,14 +132,14 @@ if (isset($_POST['p_udp_banner'])) {
   $p_udp_banner=xss_clean($_POST['p_udp_banner']);
 }
 if (isset($_POST['p_udp_banner_peso'])) {
-  $p_udp_banner_weight=GetWeight($mysqli,$_POST['p_udp_banner_peso']);
+  $p_udp_banner_weight=GetWeight($_POST['p_udp_banner_peso']);
 }
 //============================================================================================================
 if (isset($_POST['p_package'])) {
   $p_package=xss_clean($_POST['p_package']);
 }
 if (isset($_POST['p_package_peso'])) {
-  $p_package_weight=GetWeight($mysqli,$_POST['p_package_peso']);
+  $p_package_weight=GetWeight($_POST['p_package_peso']);
 }
 //============================================================================================================
 
@@ -149,7 +152,7 @@ if (isset($_POST['p_package_type_id'])) {
   }
 }
 if (isset($_POST['p_package_type_id_peso'])) {
-  $p_package_type_id_weight=GetWeight($mysqli,$_POST['p_package_type_id_peso']);
+  $p_package_type_id_weight=GetWeight($_POST['p_package_type_id_peso']);
 }
 //============================================================================================================
 
@@ -157,7 +160,7 @@ if (isset($_POST['p_file'])) {
   $p_file=xss_clean($_POST['p_file']);
 }
 if (isset($_POST['p_file_peso'])) {
-  $p_file_weight=GetWeight($mysqli,$_POST['p_file_peso']);
+  $p_file_weight=GetWeight($_POST['p_file_peso']);
 }
 //============================================================================================================
 
@@ -165,21 +168,21 @@ if (isset($_POST['pf_dac'])) {
   $pf_dac=xss_clean($_POST['pf_dac']);
 }
 if (isset($_POST['pf_dac_peso'])) {
-  $pf_dac_weight=GetWeight($mysqli,$_POST['pf_dac_peso']);
+  $pf_dac_weight=GetWeight($_POST['pf_dac_peso']);
 }
 //============================================================================================================
 if (isset($_POST['pf_uid'])) {
   $pf_uid=xss_clean($_POST['pf_uid']);
 }
 if (isset($_POST['pf_uid_peso'])) {
-  $pf_uid_weight=GetWeight($mysqli,$_POST['pf_uid_peso']);
+  $pf_uid_weight=GetWeight($_POST['pf_uid_peso']);
 }
 //============================================================================================================
 if (isset($_POST['pf_gid'])) {
   $pf_gid=xss_clean($_POST['pf_gid']);
 }
 if (isset($_POST['pf_gid_peso'])) {
-  $pf_gid_weight=GetWeight($mysqli,$_POST['pf_gid_peso']);
+  $pf_gid_weight=GetWeight($_POST['pf_gid_peso']);
 }
 //============================================================================================================
 if (isset($_POST['p_descr'])) {
