@@ -10,6 +10,7 @@ sec_session_start();
 if(login_check($mysqli) == false) {
 
         header('Location: index.php');
+        die();
 }
 
 function GetWeight($descr) {
