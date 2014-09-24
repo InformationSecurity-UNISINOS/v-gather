@@ -3,7 +3,9 @@
 from common import *
 from base import *
 from parser import *
-from cqueue import * 
+from cqueue import *
+from decimal import *
+
 '''
 Similaridade:
 Case-based reasoning is a methodology not a technology - I. Watson
@@ -252,7 +254,7 @@ def MatchData():
 
 			if final_score > sim_point:
 					pdict['case_id_related']=case_id
-					pdict['score']=final_score
+					pdict['score']=str(final_score)
 					AddQueue(can_queue,pdict)
 			qlen-=1	
 		case_id+=1
