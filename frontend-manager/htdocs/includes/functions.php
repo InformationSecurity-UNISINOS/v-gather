@@ -8,10 +8,10 @@ require_once 'xss_clean.php';
 *
 */
 function GetWeight($mysqli, $descr) {
-  var_dump($mysqli);
 
   if ( $descr == "exato" ) {
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%exato'%");
+    printf("Prepare failed: %s\n", $mysqli->error); 
     $stmt->execute();
     $stmt->bind_result($peso_exato);
     $stmt->fetch();
@@ -20,6 +20,7 @@ function GetWeight($mysqli, $descr) {
   }
   if ( $descr == "alto" ) {
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%alto%'");
+    printf("Prepare failed: %s\n", $mysqli->error); 
     $stmt->execute();
     $stmt->bind_result($peso_alto);
     $stmt->fetch();
@@ -28,6 +29,7 @@ function GetWeight($mysqli, $descr) {
   }
   if ( $descr == "medio" ) {
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%médio%'");
+    printf("Prepare failed: %s\n", $mysqli->error); 
     $stmt->execute();
     $stmt->bind_result($peso_medio);
     $stmt->fetch();
@@ -36,6 +38,7 @@ function GetWeight($mysqli, $descr) {
   }
   if ( $descr == "baixo" ) {
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%baixo%'");
+    printf("Prepare failed: %s\n", $mysqli->error); 
     $stmt->execute();
     $stmt->bind_result($peso_baixo);
     $stmt->fetch();
@@ -44,6 +47,7 @@ function GetWeight($mysqli, $descr) {
   }
   if ( $descr == "desabilitado" ) {
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%desabilitado%'");
+    printf("Prepare failed: %s\n", $mysqli->error); 
     $stmt->execute();
     $stmt->bind_result($peso_desabilitado);
     $stmt->fetch();
