@@ -44,7 +44,6 @@ function GetWeight($descr) {
     $stmt->free_result();
     $value=$peso_baixo;
   }
-
   if ( $descr == "desabilitado" ) {
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%desabilitado%'");
     $stmt->execute();
@@ -54,7 +53,7 @@ function GetWeight($descr) {
     $value=$peso_desabilitado;
   }
 
- return $value
+  return $value;
 }
 # Recuperar métricas do banco para os pesos
 
