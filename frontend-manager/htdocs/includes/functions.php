@@ -11,7 +11,7 @@ function GetWeight($mysqli, $descr) {
 
   if ( $descr == "exato" ) {
     $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%exato'%");
-    printf("Prepare failed: %s\n", $mysqli->error); 
+    
     $stmt->execute();
     $stmt->bind_result($peso_exato);
     $stmt->fetch();
@@ -19,8 +19,8 @@ function GetWeight($mysqli, $descr) {
     $value=$peso_exato;
   }
   if ( $descr == "alto" ) {
-    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%alto%'");
-    printf("Prepare failed: %s\n", $mysqli->error); 
+    $stmt=$mysqli->prepare('select weight from weight_settings WHERE descr LIKE "%alto%";');
+    
     $stmt->execute();
     $stmt->bind_result($peso_alto);
     $stmt->fetch();
@@ -28,8 +28,8 @@ function GetWeight($mysqli, $descr) {
     $value=$peso_alto;
   }
   if ( $descr == "medio" ) {
-    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%médio%'");
-    printf("Prepare failed: %s\n", $mysqli->error); 
+    $stmt=$mysqli->prepare('select weight from weight_settings WHERE descr LIKE "%médio%"');
+    
     $stmt->execute();
     $stmt->bind_result($peso_medio);
     $stmt->fetch();
@@ -37,8 +37,8 @@ function GetWeight($mysqli, $descr) {
     $value=$peso_medio;
   }
   if ( $descr == "baixo" ) {
-    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%baixo%'");
-    printf("Prepare failed: %s\n", $mysqli->error); 
+    $stmt=$mysqli->prepare('select weight from weight_settings WHERE descr LIKE "%baixo%"');
+    
     $stmt->execute();
     $stmt->bind_result($peso_baixo);
     $stmt->fetch();
@@ -46,8 +46,8 @@ function GetWeight($mysqli, $descr) {
     $value=$peso_baixo;
   }
   if ( $descr == "desabilitado" ) {
-    $stmt=$mysqli->prepare("select weight from weight_settings WHERE descr LIKE '%desabilitado%'");
-    printf("Prepare failed: %s\n", $mysqli->error); 
+    $stmt=$mysqli->prepare('select weight from weight_settings WHERE descr LIKE "%desabilitado%"');
+    
     $stmt->execute();
     $stmt->bind_result($peso_desabilitado);
     $stmt->fetch();
