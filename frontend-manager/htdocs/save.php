@@ -13,7 +13,7 @@ if(login_check($mysqli) == false) {
         die();
 }
 
-function GetWeight($mysqli,$$descr) {
+function GetWeight($mysqli,$descr) {
   include 'includes/db_connect.php';
 
   if ( $descr == "exato" ) {
