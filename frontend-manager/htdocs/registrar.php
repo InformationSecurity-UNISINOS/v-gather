@@ -130,7 +130,26 @@ if(login_check($mysqli) == false) {
 														 </label>
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_weight" name="so_weight" type="text" >
+														<!-- 
+															<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_weight" name="so_weight" type="text" >
+														-->
+														<div class="controls row">
+															<div class="col-md-1 col-sm-2 col-xs-3">
+																<label class="switch">
+															      <input type="checkbox" class="switch-input">
+															      <span class="switch-label" data-on="On" data-off="Off"></span>
+															      <span class="switch-handle"></span>
+															    </label>
+															</div>
+															<div class="col-md-1 col-sm-2 col-xs-3">
+																<label class="switch switch-primary">
+															      <input type="checkbox" class="switch-input" checked>
+															      <span class="switch-label" data-on="On" data-off="Off"></span>
+															      <span class="switch-handle"></span>
+															    </label>
+															</div>
+														</div>
+
 													</td>
 												</tr>
 												<tr>
