@@ -144,6 +144,7 @@ if (isset($_POST['p_solution'])) {
 }
 //============================================================================================================
 
+echo "1";
 
 // Atualizar tabela use_cases
 $stmt=$mysqli->prepare("INSERT INTO use_cases(date,status,origem,
