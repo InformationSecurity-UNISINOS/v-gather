@@ -19,7 +19,8 @@ echo "Baixo: " . GetWeight($mysqli,"baixo") . "<br>";
 
 
 
-die()
+die();
+
 if (isset($_POST['so'])) {
 	if ($_POST['so'] == "debian") {
     $so_id=1;
