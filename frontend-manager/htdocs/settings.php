@@ -45,8 +45,16 @@ if(login_check($mysqli) == false) {
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
-	<!-- end: Favicon and Touch Icons -->	
-		
+	<!-- end: Favicon and Touch Icons -->
+	<script>	
+		$(document).ready(function(){
+	    	$(".launch-modal").click(function(){
+				$("#edicao").modal({
+					alert('Editando')
+				});
+			});
+	    });
+	</script>
 </head>
 
 <body>
@@ -135,10 +143,7 @@ if(login_check($mysqli) == false) {
 															echo '<td>'.$peso.'</td>';
 															echo '<td>'.$descricao.'</td>';
 															echo '<td>';
-																echo '<a class="btn btn-success" href="#">';
-																	echo '<i class="fa fa-search-plus "></i> ';
-																echo '</a>';
-																echo '<a class="btn btn-info" href="#">';
+																echo '<a class="btn btn-info" href="#edicao">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
 																echo '<a class="btn btn-danger" href="#">';
@@ -204,10 +209,7 @@ if(login_check($mysqli) == false) {
 															echo '<td>'.$corte.'</td>';
 															echo '<td>'.$descricao.'</td>';
 															echo '<td>';
-																echo '<a class="btn btn-success" href="#">';
-																	echo '<i class="fa fa-search-plus "></i> ';
-																echo '</a>';
-																echo '<a class="btn btn-info" href="#">';
+																echo '<a class="btn btn-info" href="#edicao">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
 																echo '<a class="btn btn-danger" href="#">';
@@ -231,7 +233,27 @@ if(login_check($mysqli) == false) {
 				<!-- end: Content -->
 			</div><!--/row-->		
 		</div><!--/container-->
-		<div class="clearfix"></div>
+		<div class="modal fade" id="edicao">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Editar Item</h4>
+				</div>
+				<div class="modal-body">
+					
+					</p> MODAL DE EDICAO </p>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary">Salvar</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<div class="clearfix"></div>
 	<footer>
 		<p>
 			<span style="text-align:left;float:left">V-GATHER</span>
