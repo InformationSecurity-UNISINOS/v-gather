@@ -48,8 +48,8 @@ if(login_check($mysqli) == false) {
 	<!-- end: Favicon and Touch Icons -->
 	<script>
 		$('#edicao').on('show.bs.modal', function (e) {
-		    var item = $(e.relatedTarget).attr('data-id');
-		    $(this).find('.itemid').text(item);
+		    var myRoomNumber = $(e.relatedTarget).attr('data-id');
+		    $(this).find('.roomNumber').text(myRoomNumber);
 		});
 
 
@@ -241,9 +241,7 @@ if(login_check($mysqli) == false) {
 				</div>
 				<div class="modal-body">
 
-					</p> MODAL DE EDICAO do item: 
-						<span id="itemid">AAA</span>
-					</p>
+					<p>Your room number is: <span class="roomNumber"></span>.</p> 
 
 
 				</div>
