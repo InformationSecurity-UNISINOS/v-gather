@@ -17,20 +17,20 @@ class XmlHandler(xmlrpc.XMLRPC):
         if len(rcv_distro)==0 and len(rcv_p_name)==0:
             return False
 
-        ParamDict["p_tcp_banner"]=""
-        ParamDict["p_udp_banner"]=""
+       
 
         if rcv_p_tbanner != "" and len(str(rcv_p_tbanner)) >1:
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
                 tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]  
-            
+                
                 if CheckKnownTcpPort(tbanner) == False:
                     ParamDict={}
                     try:
                         ParamDict["p_tcp_banner"]=tbanner.split(':')[0]+":"+b64decode(tbanner.split(':')[1])
                     except:
                         ParamDict["p_tcp_banner"]=tbanner
+                    ParamDict["p_udp_banner"]=""
                     ParamDict["agent"]=rcv_agent
                     ParamDict["gateway"]=rcv_domain
                     ParamDict["distro"]=rcv_distro
@@ -62,6 +62,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                         ParamDict["p_udp_banner"]=ubanner.split(':')[0]+":"+b64decode(ubanner.split(':')[1])
                     except:
                         ParamDict["p_udp_banner"]=ubanner
+                    ParamDict["p_tcp_banner"]=""
                     ParamDict["agent"]=rcv_agent
                     ParamDict["gateway"]=rcv_domain
                     ParamDict["distro"]=rcv_distro
