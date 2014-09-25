@@ -200,7 +200,7 @@ if(login_check($mysqli) == false) {
 															echo '<td>'.$corte.'</td>';
 															echo '<td>'.$descricao.'</td>';
 															echo '<td>';
-																echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="edicao btn btn-info" href="editar.php?id='. $i .'">';
+																echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="edicao btn btn-info" href="#edicao">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
 																echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
@@ -224,19 +224,26 @@ if(login_check($mysqli) == false) {
 				<!-- end: Content -->
 			</div><!--/row-->		
 		</div><!--/container-->
-		<!-- Janela Modal -->
-    <div class="modal fade" id="edicao" tabindex="-1" role="dialog" aria-labelledby="edicaoLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-    
-                <div class="modal-body"><div class="te"></div></div>
-    
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
+		<div class="modal fade" id="edicao">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Editar Item</h4>
+				</div>
+				<div class="modal-body">
+					<?php 
+						echo "MODAL VAZIO!!!";
+					?>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
 	
 	<div class="clearfix"></div>
 	<footer>
