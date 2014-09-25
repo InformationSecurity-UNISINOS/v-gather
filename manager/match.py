@@ -224,8 +224,6 @@ def MatchData():
 			#########################################################################
 			distro_version_ratio = Similarity( str(pdict['distro_version']) ,  str(db_case['so_version']) )
 			distro_version_weight = db_case['so_version_weight']
-			print "ratio: " +str(distro_version_ratio) + " type: " +str(type(distro_version_ratio))
-			print "weight: " +str(distro_version_weight) + " type: " +str(type(distro_version_weight))
 			distro_version_score = distro_version_ratio * distro_version_weight
 			pdict['distro_version_weight']=str(distro_version_weight)
 			pdict['distro_version_score']=str(distro_version_score)

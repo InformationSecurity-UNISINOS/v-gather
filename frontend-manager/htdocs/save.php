@@ -13,14 +13,6 @@ if(login_check($mysqli) == false) {
         die();
 }
 
-echo "Exato: " . GetWeight($mysqli,"exato") . "<br>";
-echo "Médio: " . GetWeight($mysqli,"medio") . "<br>";
-echo "Baixo: " . GetWeight($mysqli,"baixo") . "<br>";
-
-
-
-die();
-
 if (isset($_POST['so'])) {
 	if ($_POST['so'] == "debian") {
     $so_id=1;
