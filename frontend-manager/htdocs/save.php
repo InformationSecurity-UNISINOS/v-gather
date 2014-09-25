@@ -13,7 +13,13 @@ if(login_check($mysqli) == false) {
         die();
 }
 
+echo "Exato: " . GetWeight($mysqli,"Exato") . "<br>";
+echo "Médio: " . GetWeight($mysqli,"Médio") . "<br>";
+echo "Baixo: " . GetWeight($mysqli,"Baixo") . "<br>";
 
+
+
+die()
 if (isset($_POST['so'])) {
 	if ($_POST['so'] == "debian") {
     $so_id=1;
@@ -25,7 +31,6 @@ if (isset($_POST['so'])) {
 
 if (isset($_POST['so_peso'])) {
   $so_weight=GetWeight($mysqli,$_POST['so_peso']);
-  echo "$so_weight: " . $so_weight . "<br>";
 }
 //============================================================================================================
 
@@ -34,7 +39,7 @@ if (isset($_POST['so_ver'])) {
 }
 if (isset($_POST['so_ver_peso'])) {
   $so_ver_weight=GetWeight($mysqli,$_POST['so_ver_peso']);
-  echo "$so_ver_weight: " . $so_ver_weight . "<br>";
+
 }
 //============================================================================================================
 
@@ -43,7 +48,7 @@ if (isset($_POST['p_name'])) {
 }
 if (isset($_POST['p_name_peso'])) {
   $p_name_weight=GetWeight($mysqli,$_POST['p_name_peso']);
-  echo "$p_name_weight: " . $p_name_weight . "<br>";
+ 
 }
 //============================================================================================================
 
@@ -145,7 +150,6 @@ if (isset($_POST['p_solution'])) {
   $p_solution=xss_clean($_POST['p_solution']);
 }
 //============================================================================================================
-die();
 // Atualizar tabela use_cases
 $stmt=$mysqli->prepare("INSERT INTO use_cases(date,status,origem,
                                                 so_id, so_id_weight,
