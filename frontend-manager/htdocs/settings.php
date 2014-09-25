@@ -233,7 +233,7 @@ if(login_check($mysqli) == false) {
 				</div>
 				<div class="modal-body">
 					<?php 
-						echo "MODAL VAZIO!!!";
+						echo "MODAL VAZIO!<br>Vai ter que editar direto no banco!!!!";
 					?>
 				</div>
 				<div class="modal-footer">
