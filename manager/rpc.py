@@ -50,7 +50,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                 else: 
                     pass # to be explicit on this case
 
-        elif rcv_p_ubanner is not "":
+        if rcv_p_ubanner is not "":
             udp_ports_total=ParseBanner(rcv_p_ubanner,0)[0]
             for port_pos in range(0,udp_ports_total):
                 ubanner=ParseBanner(rcv_p_ubanner,port_pos)[1]   #ainda em base64
@@ -81,7 +81,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                     AddQueue(rcv_queue,ParamDict)
                 else:
                     pass
-        else:
+        if rcv_p_ubanner == "" and rcv_p_tbanner == "":
             ParamDict={}
             ParamDict["agent"]=rcv_agent
             ParamDict["gateway"]=rcv_domain
