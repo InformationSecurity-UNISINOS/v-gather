@@ -46,7 +46,7 @@ if(login_check($mysqli) == false) {
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->
-	<script>
+	<script type="text/javascript">
 		$(document).on("click", ".edicao", function (e) {
 			e.preventDefault();
 			var _self = $(this);
@@ -243,9 +243,7 @@ if(login_check($mysqli) == false) {
 				<div class="modal-body">
 
 					</p> MODAL DE EDICAO do item: 
-					<script>
-						document.write($('[rel="#edicao"]').attr('data-id'));
-					</script>
+					<input type="text" name="item" id="item" value="opa" />
 
 					</p>
 
