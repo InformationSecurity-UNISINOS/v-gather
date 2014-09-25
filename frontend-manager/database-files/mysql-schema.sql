@@ -221,6 +221,7 @@ CREATE TABLE `use_case_desc_solution` (
 -- ----------------------------
 -- Table structure for mgr_users
 -- ----------------------------
+DROP TABLE IF EXISTS `mgr_users`;
 CREATE TABLE `mgr_users` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `username` VARCHAR(30) NOT NULL,
@@ -236,6 +237,7 @@ CREATE TABLE `mgr_users` (
 -- ----------------------------
 -- Table structure for mgr_login_attempts
 -- ----------------------------
+DROP TABLE IF EXISTS `mgr_login_attempts`;
 CREATE TABLE `mgr_login_attempts` (
     `user_id` INT(11) NOT NULL,
     `time` VARCHAR(30) NOT NULL
