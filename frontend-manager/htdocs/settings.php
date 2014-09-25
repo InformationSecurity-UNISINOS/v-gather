@@ -224,7 +224,19 @@ if(login_check($mysqli) == false) {
 				<!-- end: Content -->
 			</div><!--/row-->		
 		</div><!--/container-->
-		
+		<!-- Janela Modal -->
+    <div class="modal fade" id="edicao" tabindex="-1" role="dialog" aria-labelledby="edicaoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+    
+                <div class="modal-body"><div class="te"></div></div>
+    
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 	
 	<div class="clearfix"></div>
 	<footer>
