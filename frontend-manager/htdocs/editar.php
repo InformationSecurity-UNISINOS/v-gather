@@ -58,7 +58,7 @@ if(login_check($mysqli) == false) {
 				</div>
 				<div class="modal-body">
 					<?php 
-						echo "MODAL ID: " . $_POST['id'] . "<br>";
+						echo "MODAL ID: " . $_GET['id'] . "<br>";
 					?>
 				</div>
 				<div class="modal-footer">
