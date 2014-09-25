@@ -236,10 +236,7 @@ if(login_check($mysqli) == false) {
 
 					</p> MODAL DE EDICAO do item: 
 					<script>
-						$(document).on("click", ".open_modal", function () {
-						var item = $(this).data('id');
-						document.write(item);
-						});
+						document.write($('[rel="#edicao"]').attr('data-id'));
 					</script>
 
 					</p>
