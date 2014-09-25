@@ -241,7 +241,11 @@ if(login_check($mysqli) == false) {
 				</div>
 				<div class="modal-body">
 
-					<p>Your room number is: <span class="roomNumber"></span>.</p> 
+					<p>Your room number is: <span class="roomNumber"></span>.</p>
+					<?php 
+						echo "i: " . $i . "<br>";
+
+					?>
 
 
 				</div>
