@@ -24,6 +24,7 @@ if (isset($_POST['so'])) {
 }
 
 if (isset($_POST['so_peso'])) {
+  echo "so_peso: " . $so_peso . "<br>";
   $so_weight=GetWeight($mysqli,$_POST['so_peso']);
 
 }
@@ -33,7 +34,7 @@ if (isset($_POST['so_ver'])) {
     $so_ver=xss_clean($_POST['so_ver']);
 }
 if (isset($_POST['so_ver_peso'])) {
-
+  echo "so_ver_peso: " . $so_ver_peso . "<br>"; 
   $so_ver_weight=GetWeight($mysqli,$_POST['so_ver_peso']);
 }
 //============================================================================================================
@@ -42,6 +43,7 @@ if (isset($_POST['p_name'])) {
 	$p_name=xss_clean($_POST['p_name']);
 }
 if (isset($_POST['p_name_peso'])) {
+  echo "p_name_peso: " . $p_name_peso . "<br>"; 
   $p_name_weight=GetWeight($mysqli,$_POST['p_name_peso']);
 }
 //============================================================================================================
@@ -50,6 +52,7 @@ if (isset($_POST['p_uid'])) {
 	$p_uid=xss_clean($_POST['p_uid']);
 }
 if (isset($_POST['p_uid_peso'])) {
+  echo "p_uid_peso: " . $p_uid_peso . "<br>"; 
   $p_uid_weight=GetWeight($mysqli,$_POST['p_uid_peso']);
 }
 //============================================================================================================
@@ -58,6 +61,7 @@ if (isset($_POST['p_gid'])) {
 	$p_gid=xss_clean($_POST['p_gid']);
 }
 if (isset($_POST['p_gid_peso'])) {
+  echo "p_gid_peso: " . $p_gid_peso . "<br>"; 
   $p_gid_weight=GetWeight($mysqli,$_POST['p_gid_peso']);
 }
 //============================================================================================================
@@ -66,6 +70,7 @@ if (isset($_POST['p_args'])) {
 	$p_args=xss_clean($_POST['p_args']);
 }
 if (isset($_POST['p_args_peso'])) {
+  echo "p_args_peso: " . $p_args_peso . "<br>"; 
   $p_args_weight=GetWeight($mysqli,$_POST['p_args_peso']);
 }
 //============================================================================================================
@@ -144,7 +149,7 @@ if (isset($_POST['p_solution'])) {
 }
 //============================================================================================================
 
-echo "1";
+die();
 
 // Atualizar tabela use_cases
 $stmt=$mysqli->prepare("INSERT INTO use_cases(date,status,origem,
