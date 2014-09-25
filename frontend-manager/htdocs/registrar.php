@@ -98,15 +98,19 @@ if(login_check($mysqli) == false) {
 		                        </div>
 		                        <div class="box-content">
 		                        	<p class="lead">
-		                            	Conforme possível, preencha o maior número de campos. As informações serão utilizadas para estruturar um novo caso que fará parte da base de dados de casos. Use este formulário para registrar uma ocorrência de uma vulnerabilidade identificada.
+		                            	Conforme possível, preencha o maior número de campos.<br>
+		                            	As informações serão utilizadas para estruturar um novo caso que fará parte da<br>
+		                            	base de casos. Use este formulário para registrar uma ocorrência de uma vulnerabilidade<br>
+		                            	identificada e/ou conhecida.
 		                           	</p>
 		                           	<p>
-		                           		A relevância de cada item é um valor no formato ponto flutuante, com duas casas após o ponto.<br>
-		                           		Para itens que tem muita relevância para determinar a vulnerabilidade, atribuir valores próximos a 1.<br>
-		                           		Por exemplo: <br>
-		                           		Se a vulnerabilidade é atribuída a versão específica de um serviço, o valor de relevância pode ser 1 e será atribuído ao campo do pacote do processo.<br>
-		                           		Se esta vulnerabilidade pode estar presente tanto no Debian, quanto no CentOS, a relevância deste item pode ser configurada com valores próximos a zero, como 0.2, por exemplo.<br>
-		                           		Se a vulnerabilidade pertence a um serviço de rede, atribua mais pontos para os itens banner e portas do serviço<br>
+		                           		A relevância de cada ítem é determinada subjetivamente. Entretanto, recomenda-se utilizar<br>
+		                           		configurações agressivas para melhor detecção. Por exemplo, ao registrar uma vulnerabilidade <br>
+		                           		no serviço "udevd", determinar relevância máxima para o nome do processo, o arquivo binário, <br>
+		                           		pacote do processo, entre outros fatores que facilitem a identificação<br>
+		                           		do mesmo.<br> É possível ainda neste caso, desabilitar os fingerprints de portas TCP e UDP.<br>
+		                           		Para ítens menos relevantes, deve-se utilizar o valor "baixo". No exemplo anterior, o owner do arquivo e do processo<br>
+		                           		não são ítens de grande caracterização deste processo, portanto, podem receber relevância mínima.<br>
 
 		                           	</p>
 		                            <form action="save.php" method="POST" role="form" class="form-horizontal">
