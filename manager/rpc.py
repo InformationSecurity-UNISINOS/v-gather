@@ -18,6 +18,8 @@ class XmlHandler(xmlrpc.XMLRPC):
             return False
 
         if rcv_p_tbanner is not "":
+            if rcv_p_name == "snmpd":
+                print "HAS TCP: " +rcv_p_name
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
                 tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]  
@@ -51,6 +53,8 @@ class XmlHandler(xmlrpc.XMLRPC):
                     pass # to be explicit on this case
 
         if rcv_p_ubanner is not "":
+            if rcv_p_name == "snmpd":
+                print "HAS UDP: " +rcv_p_name
             udp_ports_total=ParseBanner(rcv_p_ubanner,0)[0]
             for port_pos in range(0,udp_ports_total):
                 ubanner=ParseBanner(rcv_p_ubanner,port_pos)[1]   #ainda em base64
