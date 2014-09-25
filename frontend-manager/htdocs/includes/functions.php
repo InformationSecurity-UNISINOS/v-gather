@@ -26,7 +26,7 @@ function GetWeight($mysqli, $descr) {
     return $peso_alto;
   }
   if ( $descr == "medio" ) {
-    $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%médio%' ");
+    $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%médio%' or descr LIKE '%medio%' or descr LIKE '%M?dio%' ");
     $stmt->execute();
     $stmt->bind_result($peso_medio);
     $stmt->fetch();
