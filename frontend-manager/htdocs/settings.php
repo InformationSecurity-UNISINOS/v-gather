@@ -46,7 +46,15 @@ if(login_check($mysqli) == false) {
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->
-
+	<script>
+		$(document).on("click", ".edicao", function (e) {
+			e.preventDefault();
+			var _self = $(this);
+			var item = _self.data('id');
+			$("#edicao").val(item);
+			$(_self.attr('href')).modal('show');
+		});
+	</script>
 </head>
 
 <body>
@@ -135,7 +143,7 @@ if(login_check($mysqli) == false) {
 															echo '<td>'.$peso.'</td>';
 															echo '<td>'.$descricao.'</td>';
 															echo '<td>';
-																echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="btn btn-info" href="#edicao">';
+																echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="edicao btn btn-info" href="#edicao">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
 																echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
@@ -201,7 +209,7 @@ if(login_check($mysqli) == false) {
 															echo '<td>'.$corte.'</td>';
 															echo '<td>'.$descricao.'</td>';
 															echo '<td>';
-																echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="btn btn-info" href="#edicao">';
+																echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="edicao btn btn-info" href="#edicao">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
 																echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
