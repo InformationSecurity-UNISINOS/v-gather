@@ -46,7 +46,16 @@ if(login_check($mysqli) == false) {
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->
-	
+	<script>
+		$(document).on('click', 'li#edicao', function(){
+		    // get month
+		    var val = $(this).attr('data-id');
+
+		    $.post('settings.php', {editar: val}, function(data){
+		        console.log(data);
+		    });
+		});
+	</script>
 </head>
 
 <body>
@@ -235,14 +244,19 @@ if(login_check($mysqli) == false) {
 				<div class="modal-body">
 
 					</p> MODAL DE EDICAO do item: 
-					
+						<?php
+							if(isset($_POST['editar']) && !empty($_POST['editar'])) {
+   							echo "editando: " . $editar . "<br>";
+}
+
+						?>
 					</p>
 
 
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" id="save_btn" data-dismiss="modal">Salvar</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Salvar</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
