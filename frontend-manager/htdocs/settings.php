@@ -46,14 +46,6 @@ if(login_check($mysqli) == false) {
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->
-	<script>
-		$('#edicao').on('show.bs.modal', function (e) {
-		    var myRoomNumber = $(e.relatedTarget).attr('data-id');
-		    $(this).find('.roomNumber').text(myRoomNumber);
-		});
-
-
-	</script>
 </head>
 
 <body>
@@ -125,12 +117,12 @@ if(login_check($mysqli) == false) {
             												die ("Mysql Error: " . $mysqli->error);
         										}
 												$stmt->execute();
-												$stmt->bind_result($nro_servers);
+												$stmt->bind_result($pesos);
 												$stmt->fetch();
 												$stmt->free_result(); 
 
-												if ($nro_servers) {
-													for ($i = 1; $i <= $nro_servers; $i++) {
+												if ($pesos) {
+													for ($i = 1; $i <= $pesos; $i++) {
 														$stmt = $mysqli->prepare("SELECT weight,descr FROM weight_settings WHERE id = ?");
 														$stmt->bind_param('i', $i);
 												        $stmt->execute();
@@ -191,12 +183,12 @@ if(login_check($mysqli) == false) {
             												die ("Mysql Error: " . $mysqli->error);
         										}
 												$stmt->execute();
-												$stmt->bind_result($nro_servers);
+												$stmt->bind_result($pesos);
 												$stmt->fetch();
 												$stmt->free_result(); 
 
-												if ($nro_servers) {
-													for ($i = 1; $i <= $nro_servers; $i++) {
+												if ($pesos) {
+													for ($i = 1; $i <= $pesos; $i++) {
 														$stmt = $mysqli->prepare("SELECT value,descr FROM case_match WHERE id = ?");
 														$stmt->bind_param('i', $i);
 												        $stmt->execute();
@@ -208,7 +200,8 @@ if(login_check($mysqli) == false) {
 															echo '<td>'.$corte.'</td>';
 															echo '<td>'.$descricao.'</td>';
 															echo '<td>';
-																echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="edicao btn btn-info" href="#edicao">';
+																//echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="edicao btn btn-info" href="editar.php">';
+																echo '<a data-toggle="modal" href="editar.php?codigo='. $i .'data-target="#edicao">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
 																echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
@@ -232,30 +225,7 @@ if(login_check($mysqli) == false) {
 				<!-- end: Content -->
 			</div><!--/row-->		
 		</div><!--/container-->
-		<div class="modal fade" id="edicao">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Editar Item</h4>
-				</div>
-				<div class="modal-body">
-
-					<p>Your room number is: <span class="roomNumber"></span>.</p>
-					<?php 
-						echo "i: " . $i . "<br>";
-
-					?>
-
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Salvar</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+		
 	
 	<div class="clearfix"></div>
 	<footer>
