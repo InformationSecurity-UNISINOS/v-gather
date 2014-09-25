@@ -63,7 +63,7 @@ CREATE TABLE `case_match` (
 -- ----------------------------
 -- Records of status_types
 -- ----------------------------
-INSERT INTO case_match (value,descr) VALUES (6,"Valor padrão utilizado no sistema DUMBO");
+INSERT INTO case_match (value,descr) VALUES (30,"Valor obtido em avaliação comportamental");
 
 -- ----------------------------
 -- Table structure for status_types
