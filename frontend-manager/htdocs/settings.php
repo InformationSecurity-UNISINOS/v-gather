@@ -48,9 +48,11 @@ if(login_check($mysqli) == false) {
 	<!-- end: Favicon and Touch Icons -->
 	<script>
 		$('#edicao').on('show.bs.modal', function (e) {
-		    var itemid = $(e.relatedTarget).attr('data-id');
-		    $(this).find('.itemid').text(itemid);
+		    var item = $(e.relatedTarget).attr('data-id');
+		    $(this).find('.itemid').text(item);
 		});
+
+
 	</script>
 </head>
 
