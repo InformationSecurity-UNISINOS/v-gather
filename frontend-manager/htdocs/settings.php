@@ -50,7 +50,7 @@ if(login_check($mysqli) == false) {
 		$(document).ready(function(){
 	    	$(".launch-modal").click(function(){
 				$("#edicao").modal({
-					alert('Editando')
+					keyboard: false
 				});
 			});
 	    });
@@ -243,6 +243,7 @@ if(login_check($mysqli) == false) {
 				<div class="modal-body">
 					
 					</p> MODAL DE EDICAO </p>
+
 
 				</div>
 				<div class="modal-footer">
