@@ -19,7 +19,7 @@ def Similarity(string_a,string_b):
 
 def MatchData():
 	print "[+] MatchData"
-	debug=False
+	debug=3
 
 	total_cases=DbCountCases()
 	if total_cases == False:
@@ -79,7 +79,7 @@ def MatchData():
 			pdict['p_pkg_score']=str(p_pkg_score)
 
 
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "Gerenciador de Pacotes: " +str(p_pkgmgr_ratio)
 				print "Peso: " +str(p_pkgmgr_weight)
@@ -97,7 +97,7 @@ def MatchData():
 			p_name_score = p_name_ratio * p_name_weight
 			pdict['p_name_weight']=str(p_name_weight)
 			pdict['p_name_score']=str(p_name_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "PName: " +str(p_name_ratio)
 				print "Peso: " +str(p_name_weight)
@@ -110,7 +110,7 @@ def MatchData():
 	 		p_uid_score = p_uid_weight * p_uid_ratio
 	 		pdict['p_uid_weight']=str(p_uid_weight)
 	 		pdict['p_uid_score']=str(p_uid_score)
-	 		if debug==True:
+	 		if debug==2:
 				print "*"*50
 				print "P UID: " +str(p_uid_ratio)
 				print "Peso: " +str(p_uid_weight)
@@ -123,7 +123,7 @@ def MatchData():
 			p_gid_score = p_gid_ratio * p_gid_weight
 			pdict['p_gid_weight']=str(p_gid_weight)
 			pdict['p_gid_score']=str(p_gid_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "P GID: " +str(p_gid_ratio)
 				print "Peso: " +str(p_gid_weight)
@@ -136,7 +136,7 @@ def MatchData():
 			p_args_score = p_args_ratio * p_args_weight
 			pdict['p_args_weight']=str(p_args_weight)
 			pdict['p_args_score']=str(p_args_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "P ARGS: " +str(p_args_ratio)
 				print "Peso: " +str(p_args_weight)
@@ -149,7 +149,7 @@ def MatchData():
 			p_tcp_banner_score = p_tcp_banner_ratio * p_tcp_banner_weight
 			pdict['p_tcp_banner_weight']=str(p_tcp_banner_weight)
 			pdict['p_tcp_banner_score']=str(p_tcp_banner_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "P TCP BANNER: " +str(p_tcp_banner_ratio)
 				print "Peso: " +str(p_tcp_banner_weight)
@@ -162,7 +162,7 @@ def MatchData():
 			p_udp_banner_score = p_udp_banner_ratio * p_udp_banner_weight
 			pdict['p_udp_banner_weight']=str(p_udp_banner_weight)
 			pdict['p_udp_banner_score']=str(p_udp_banner_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "P UDP BANNER: " +str(p_udp_banner_ratio)
 				print "Peso: " +str(p_udp_banner_weight)
@@ -175,7 +175,7 @@ def MatchData():
 			pf_path_score = pf_path_ratio * pf_path_weight
 			pdict['pf_path_weight']=str(pf_path_weight)
 			pdict['pf_path_score']=str(pf_path_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "PF PATH: " +str(pf_path_ratio)
 				print "Peso: " +str(pf_path_weight)
@@ -188,7 +188,7 @@ def MatchData():
 			pf_uid_score = pf_uid_ratio * pf_uid_weight
 			pdict['pf_uid_weight']=str(pf_uid_weight)
 			pdict['pf_uid_score']=str(pf_uid_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "PF UID: " +str(pf_uid_ratio)
 				print "Peso: " +str(pf_uid_weight)
@@ -201,7 +201,7 @@ def MatchData():
 			pf_gid_score = pf_gid_ratio * pf_gid_weight
 			pdict['pf_gid_weight']=str(pf_gid_weight)
 			pdict['pf_gid_score']=str(pf_gid_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "PF GID: " +str(pf_gid_ratio)
 				print "Peso: " +str(pf_gid_weight)
@@ -214,7 +214,7 @@ def MatchData():
 			pf_dac_score = pf_dac_ratio * pf_dac_weight
 			pdict['pf_dac_weight']=str(pf_dac_weight)
 			pdict['pf_dac_score']=str(pf_dac_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "PF DAC: " +str(pf_dac_ratio)
 				print "Peso: " +str(pf_dac_weight)
@@ -227,7 +227,7 @@ def MatchData():
 			distro_version_score = distro_version_ratio * distro_version_weight
 			pdict['distro_version_weight']=str(distro_version_weight)
 			pdict['distro_version_score']=str(distro_version_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "DISTRO VERSION: " +str(distro_version_ratio)
 				print "Peso: " +str(distro_version_weight)
@@ -240,14 +240,14 @@ def MatchData():
  			distro_score = distro_ratio * distro_weight
  			pdict['distro_weight']=str(distro_weight)
  			pdict['distro_score']=str(distro_score)
-			if debug==True:
+			if debug==2:
 				print "*"*50
 				print "DISTRO NAME: " +str(distro_ratio)
 				print "Peso: " +str(distro_weight)
 				print "Score: " +str(distro_score)
 
 			final_score=distro_score + distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_score + p_pkgmgr_score + p_pkg_score
-			if debug==True:
+			if debug==3:
 				print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
 				print "*"*50
 
