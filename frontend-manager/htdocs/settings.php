@@ -233,13 +233,16 @@ if(login_check($mysqli) == false) {
 					<h4 class="modal-title">Editar Item</h4>
 				</div>
 				<div class="modal-body">
+
+					</p> MODAL DE EDICAO do item: 
 					<script>
 						$(document).on("click", ".open_modal", function () {
 						var item = $(this).data('id');
-
+						document.write(item);
 						});
 					</script>
-					</p> MODAL DE EDICAO do item: <script> document.write(item);</script> </p>
+
+					</p>
 
 
 				</div>
