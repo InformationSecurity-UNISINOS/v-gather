@@ -242,7 +242,7 @@ if(login_check($mysqli) == false) {
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" id="save_btn">Salvar</button>
+					<button type="button" class="btn btn-primary" id="save_btn" data-dismiss="modal">Salvar</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
