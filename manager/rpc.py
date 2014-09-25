@@ -102,9 +102,7 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["p_udp_banner"]=""
             #recvdata.AddQueue(ParamDict)
             AddQueue(rcv_queue,ParamDict)
-        if rcv_p_name == "snmpd":
-            print ParamDict
-            
+
         return True
         
     def xmlrpc_match(self):
