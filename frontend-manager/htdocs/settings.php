@@ -47,13 +47,9 @@ if(login_check($mysqli) == false) {
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->
 	<script>
-		$(document).on('click', 'li#edicao', function(){
-		    // get month
-		    var val = $(this).attr('data-id');
-
-		    $.post('settings.php', {editar: val}, function(data){
-		        console.log(data);
-		    });
+		$('#edicao').on('show.bs.modal', function (e) {
+		    var itemid = $(e.relatedTarget).attr('data-id');
+		    $(this).find('.itemid').text(itemid);
 		});
 	</script>
 </head>
@@ -244,12 +240,7 @@ if(login_check($mysqli) == false) {
 				<div class="modal-body">
 
 					</p> MODAL DE EDICAO do item: 
-						<?php
-							if(isset($_POST['editar']) && !empty($_POST['editar'])) {
-   							echo "editando: " . $editar . "<br>";
-}
-
-						?>
+						<span id="itemid">AAA</span>
 					</p>
 
 
