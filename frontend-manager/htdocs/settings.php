@@ -200,8 +200,7 @@ if(login_check($mysqli) == false) {
 															echo '<td>'.$corte.'</td>';
 															echo '<td>'.$descricao.'</td>';
 															echo '<td>';
-																//echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="edicao btn btn-info" href="editar.php">';
-																echo '<a data-toggle="modal" href="editar.php?codigo='. $i .'" data-target="#edicao">';
+																echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="edicao btn btn-info" href="editar.php?id='. $i .'">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
 																echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
