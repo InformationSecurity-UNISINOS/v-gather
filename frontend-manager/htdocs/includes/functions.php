@@ -16,7 +16,7 @@ function GetWeight($mysqli, $descr) {
     $stmt->bind_result($peso_exato);
     $stmt->fetch();
     $stmt->free_result();
-    $value=$peso_exato;
+    return $peso_exato;
   }
   if ( $descr == "alto" ) {
     $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%alto%' ");
@@ -25,7 +25,7 @@ function GetWeight($mysqli, $descr) {
     $stmt->bind_result($peso_alto);
     $stmt->fetch();
     $stmt->free_result();
-    $value=$peso_alto;
+    return $peso_alto;
   }
   if ( $descr == "medio" ) {
     $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%médio%' ");
@@ -34,7 +34,7 @@ function GetWeight($mysqli, $descr) {
     $stmt->bind_result($peso_medio);
     $stmt->fetch();
     $stmt->free_result();
-    $value=$peso_medio;
+    return $peso_medio;
   }
   if ( $descr == "baixo" ) {
     $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%baixo%' ");
@@ -43,7 +43,7 @@ function GetWeight($mysqli, $descr) {
     $stmt->bind_result($peso_baixo);
     $stmt->fetch();
     $stmt->free_result();
-    $value=$peso_baixo;
+    return $peso_baixo;
   }
   if ( $descr == "desabilitado" ) {
     $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%desabilitado%' ");
@@ -52,9 +52,8 @@ function GetWeight($mysqli, $descr) {
     $stmt->bind_result($peso_desabilitado);
     $stmt->fetch();
     $stmt->free_result();
-    $value=$peso_desabilitado;
+    return $peso_desabilitado;
   }
-  return $value;
 }
 
  /*

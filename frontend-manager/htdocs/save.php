@@ -13,9 +13,9 @@ if(login_check($mysqli) == false) {
         die();
 }
 
-echo "Exato: " . GetWeight($mysqli,"Exato") . "<br>";
-echo "Médio: " . GetWeight($mysqli,"Médio") . "<br>";
-echo "Baixo: " . GetWeight($mysqli,"Baixo") . "<br>";
+echo "Exato: " . GetWeight($mysqli,"exato") . "<br>";
+echo "Médio: " . GetWeight($mysqli,"medio") . "<br>";
+echo "Baixo: " . GetWeight($mysqli,"baixo") . "<br>";
 
 
 
