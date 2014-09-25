@@ -46,15 +46,7 @@ if(login_check($mysqli) == false) {
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->
-	<script type="text/javascript">
-		$(document).on("click", ".edicao", function (e) {
-			e.preventDefault();
-			var _self = $(this);
-			var item = _self.data('id');
-			$("#edicao").val(item);
-			$(_self.attr('href')).modal('show');
-		});
-	</script>
+	
 </head>
 
 <body>
@@ -243,15 +235,14 @@ if(login_check($mysqli) == false) {
 				<div class="modal-body">
 
 					</p> MODAL DE EDICAO do item: 
-					<input type="text" name="item" id="item" value="opa" />
-
+					
 					</p>
 
 
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary">Salvar</button>
+					<button type="button" class="btn btn-primary" id="save_btn">Salvar</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -297,7 +288,9 @@ if(login_check($mysqli) == false) {
 	<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	
-		
+	<script>
+	$('#save_btn').popover({content: 'Salvo!'},'click');    
+	</script>
 	
 	
 	<!-- page scripts -->
