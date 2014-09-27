@@ -1,26 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from collections import deque
-def DestroyQueue(q):
-	while LenQueue(q) >0:
-		q.popleft()
-
-def GetQueue(q):
-	item=q.popleft()
-	AddQueue(q,item)
-	return item
-
-def AddQueue(q,tdict):
-	if tdict is None: tdict = {}
-	q.append(tdict)
-
-def LenQueue(q):
-	return len(q)
-
-
-rcv_queue= deque()
-can_queue= deque()
+#from collections import deque
+#def DestroyQueue(q):
+#	while LenQueue(q) >0:
+#		q.popleft()
+#
+#def GetQueue(q):
+#	item=q.popleft()
+#	AddQueue(q,item)
+#	return item
+#
+#def AddQueue(q,tdict):
+#	if tdict is None: tdict = {}
+#	q.append(tdict)
+#
+#def LenQueue(q):
+#	return len(q)
+#rcv_queue= deque()
+#can_queue= deque()
 
 class Fila(object):
         def __init__(self):
