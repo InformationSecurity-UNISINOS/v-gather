@@ -35,8 +35,6 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["pf_gid"]=rcv_pf_gid
 
         print "> rcv_p_name: " + str(rcv_p_name)
-        print "> portas: " +str(ParseBanner(rcv_p_tbanner,0)[0])
-
         if rcv_p_tbanner != "" and len(str(rcv_p_tbanner)) >1:
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
