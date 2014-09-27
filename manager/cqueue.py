@@ -3,20 +3,20 @@
 
 from collections import deque
 def DestroyQueue(q):
-        while LenQueue(q) >0:
-                q.popleft()
+	while LenQueue(q) >0:
+		q.popleft()
 
 def GetQueue(q):
-        item=q.popleft()
-        AddQueue(q,item)
-        return item
+	item=q.popleft()
+	AddQueue(q,item)
+	return item
 
 def AddQueue(q,tdict):
-		if tdict is None: tdict = {}
-        q.append(tdict)
+	if tdict is None: tdict = {}
+	q.append(tdict)
 
 def LenQueue(q):
-        return len(q)
+	return len(q)
 
 
 rcv_queue= deque()
