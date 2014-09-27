@@ -27,24 +27,27 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["p_uid"]=rcv_p_uid
         ParamDict["p_gid"]=rcv_p_gid
         ParamDict["p_args"]=ParseArgs(rcv_p_args)
-        
-        if str(rcv_p_rpm) != "nada" and str(rcv_p_rpm) != "":
-            ParamDict["manager"]="RPM"
-            ParamDict["pacote"]=rcv_p_rpm
-            rpm=True
-
-        if str(rcv_p_dpkg) != "nada" and str(rcv_p_dpkg) != "":
-            ParamDict["manager"]="DPKG"
-            ParamDict["pacote"]=rcv_p_dpkg
-            dpkg=True
-
-        
-        
         ParamDict["pf_path"]=rcv_pf_path
         ParamDict["pf_dac"]=rcv_pf_dac
         ParamDict["pf_uid"]=rcv_pf_uid
         ParamDict["pf_gid"]=rcv_pf_gid
 
+        rpm=False
+        dpkg=False
+        if str(rcv_p_rpm) != "nada" and len(rcv_p_rpm) >1:
+            ParamDict["manager"]="RPM"
+            ParamDict["pacote"]=rcv_p_rpm
+            rpm=True
+
+        if str(rcv_p_dpkg) != "nada" and len(rcv_p_dpkg) >1:
+            ParamDict["manager"]="DPKG"
+            ParamDict["pacote"]=rcv_p_dpkg
+            dpkg=True
+
+        if rpm == False and dpkg == False:
+            ParamDict["manager"]=""
+            ParamDict["pacote"]=""
+        
         tbanner=""
         if rcv_p_tbanner != "" and len(str(rcv_p_tbanner)) >1:
             porta=rcv_p_tbanner.split(':')[0]
