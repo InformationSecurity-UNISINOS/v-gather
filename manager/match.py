@@ -39,7 +39,7 @@ def MatchData():
 		db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
 
 		#qlen=LenQueue(rcv_queue)
-		clen=recvdata.LenQueue()
+		qlen=recvdata.LenQueue()
 		while qlen>0:
 			pdict = {}
 			#pdict = GetQueue(rcv_queue)
