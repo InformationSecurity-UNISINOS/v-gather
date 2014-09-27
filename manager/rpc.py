@@ -73,9 +73,6 @@ class XmlHandler(xmlrpc.XMLRPC):
     def xmlrpc_match(self):
         MatchData()
         return True
-
-    def xmlrpc_ready(self):
-        return state
     
     def xmlrpc_Fault(self):
         raise xmlrpc.Fault(123, "Erro.")
