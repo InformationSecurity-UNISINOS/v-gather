@@ -260,8 +260,11 @@ def MatchData():
 					pdict['score']=str(final_score)
 					AddQueue(can_queue,pdict)
 					o=GetQueue(can_queue)
-					print "pdict->args_score: " + str(p_args_score)
-					print "queue->args_score: " + str(o['p_args_score'])
+					#print "pdict->args_score: " + str(p_args_score)
+					#print "queue->args_score: " + str(o['p_args_score'])
+					print "*"*50
+					print o
+					print "*"*50
 			qlen-=1	
 		case_id+=1
 	#recvdata.DestroyQueue()

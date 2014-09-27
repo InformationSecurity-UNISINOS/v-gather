@@ -188,8 +188,14 @@ def DbSimCases():
 		#
 		pdict2.pop("Gateway", None)
 		pdict2.pop("p_pid", None)
-		print "pdict2->p_name: " + str(pdict2['p_name'])
-		print "pdict2->args_score: " + str(pdict2['p_args_score'])
+		#print "pdict2->p_name: " + str(pdict2['p_name'])
+		#print "pdict2->args_score: " + str(pdict2['p_args_score'])
+		print "*"*50 + "base"
+		print pdict2
+		print "*"*50 + "/base"
+
+
+
 		# noarmalizando dados,
 		# antes de inserir na base:
 		#print "*"*50
