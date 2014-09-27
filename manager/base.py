@@ -164,13 +164,13 @@ def DbGetSoName(so_id):
 # mandei inserir diretamente, sem queue.
 # vai diminuir a performance, mas ...
 def DbSimCases():
-	#clen=candidates.LenQueue()
-	clen=LenQueue(can_queue)
+	clen=candidates.LenQueue()
+	#clen=LenQueue(can_queue)
 
 	while clen > 0:
 		pdict2={}
-		#pdict2=candidates.GetQueue()
-		pdict2=GetQueue(can_queue)
+		pdict2=candidates.GetQueue()
+		#pdict2=GetQueue(can_queue)
 		if pdict2['distro'] == "Debian":
 			so_id=1
 		else: 

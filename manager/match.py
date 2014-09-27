@@ -41,7 +41,8 @@ def MatchData():
 		qlen=LenQueue(rcv_queue)
 		while qlen>0:
 			pdict = {}
-			pdict = GetQueue(rcv_queue)
+			#pdict = GetQueue(rcv_queue)
+			pdict = recvdata.GetQueue()
 			scored = {}
 			final_score=0
 
@@ -211,18 +212,18 @@ def MatchData():
 					scored['pf_dac_score']=float(pf_dac_score)
 					scored['case_id_related']=case_id
 					scored['score']=float(final_score)
-					AddQueue(can_queue,scored)
+					candidates.AddQueue(can_queue,scored)
 					#DEBUG:
-					o=GetQueue(can_queue)
-					print "*"*50
-					for k,v in o.items():
-						print "%s => %s" %(k,v)
-					print "*"*50
+					#o=GetQueue(can_queue)
+					#print "*"*50
+					#for k,v in o.items():
+					#	print "%s => %s" %(k,v)
+					#print "*"*50
 					
 			qlen-=1	
 		case_id+=1
-	#recvdata.DestroyQueue()
-	DestroyQueue(rcv_queue)
+	recvdata.DestroyQueue()
+	#DestroyQueue(rcv_queue)
 	DbSimCases()
 	return True
 

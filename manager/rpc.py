@@ -17,8 +17,6 @@ class XmlHandler(xmlrpc.XMLRPC):
         if len(rcv_distro)==0 and len(rcv_p_name)==0:
             return False
 
-       
-
         if rcv_p_tbanner != "" and len(str(rcv_p_tbanner)) >1:
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
@@ -46,8 +44,8 @@ class XmlHandler(xmlrpc.XMLRPC):
                     ParamDict["pf_dac"]=rcv_pf_dac
                     ParamDict["pf_uid"]=rcv_pf_uid
                     ParamDict["pf_gid"]=rcv_pf_gid
-                    
-                    AddQueue(rcv_queue,ParamDict)
+                    recvdata.AddQueue(ParamDict)
+                    #AddQueue(rcv_queue,ParamDict)
                 else: 
                     pass # to be explicit on this case
 
@@ -78,8 +76,8 @@ class XmlHandler(xmlrpc.XMLRPC):
                     ParamDict["pf_dac"]=rcv_pf_dac
                     ParamDict["pf_uid"]=rcv_pf_uid
                     ParamDict["pf_gid"]=rcv_pf_gid
-                    
-                    AddQueue(rcv_queue,ParamDict)
+                    recvdata.AddQueue(ParamDict)
+                    #AddQueue(rcv_queue,ParamDict)
                 else:
                     pass
         if rcv_p_ubanner == "" and rcv_p_tbanner == "":
@@ -101,8 +99,8 @@ class XmlHandler(xmlrpc.XMLRPC):
             ParamDict["pf_gid"]=rcv_pf_gid
             ParamDict["p_tcp_banner"]=""
             ParamDict["p_udp_banner"]=""
-            #recvdata.AddQueue(ParamDict)
-            AddQueue(rcv_queue,ParamDict)
+            recvdata.AddQueue(ParamDict)
+            #AddQueue(rcv_queue,ParamDict)
 
         return True
         
