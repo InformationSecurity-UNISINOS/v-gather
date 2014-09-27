@@ -185,12 +185,8 @@ CREATE TABLE `use_cases` (
   `process_binary_dac_weight` FLOAT(3,2) DEFAULT NULL,
   `process_binary_dac_score` FLOAT(3,2) DEFAULT NULL,
   `candidate_final_score` FLOAT(3,2),
-  PRIMARY KEY (`id`),
-  KEY `so_id` (`so_id`),
-  KEY `package_type_id` (`package_type_id`),
-  CONSTRAINT `use_cases_ibfk_2` FOREIGN KEY (`package_type_id`) REFERENCES `package_types` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `use_cases_ibfk_1` FOREIGN KEY (`so_id`) REFERENCES `sos` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- ----------------------------
 -- Records of use_cases
@@ -206,10 +202,7 @@ CREATE TABLE `use_case_desc_solution` (
   `case_id` int(11) DEFAULT NULL,
   `description` varchar(10000) DEFAULT NULL,
   `solution` varchar(10000) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `case_id` (`case_id`),
-  CONSTRAINT `use_case_desc_solution_ibfk_1` FOREIGN KEY (`case_id`) REFERENCES `use_cases` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of use_case_desc_solution
