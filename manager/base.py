@@ -188,16 +188,17 @@ def DbSimCases():
 		#
 		pdict2.pop("Gateway", None)
 		pdict2.pop("p_pid", None)
-		
+		print "pdict2->p_name: " + str(pdict2['p_name'])
+		print "pdict2->args_score: " + str(pdict2['p_args_score'])
 		# noarmalizando dados,
 		# antes de inserir na base:
-		print "*"*50
-		for k,v in pdict2.items():
-			if v == "" or len(str(v)) == 0:
-				pdict2[k]=None
+		#print "*"*50
+		#for k,v in pdict2.items():
+		#	if v == "" or len(str(v)) == 0:
+		#		pdict2[k]=None
 
-			print "%s => %s" %(k,v)
-		print "*"*50
+		#	print "%s => %s" %(k,v)
+		#print "*"*50
 		
 		clen-=1
 		#
