@@ -56,7 +56,7 @@ def MatchData():
 			p_pkg_weight = float(db_case['package_name_weight'])
 			p_pkg_score = float(p_pkg_ratio) * float(p_pkg_weight)
 			
-			p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
+			p_pkgmgr_ratio = Similarity( pdict['manager'] , db_pkg_mgr )
 			p_pkgmgr_weight = float(db_case['package_type_id_weight'])
 			p_pkgmgr_score = float(p_pkgmgr_weight) * float(p_pkgmgr_ratio)
 			
