@@ -17,35 +17,37 @@ class XmlHandler(xmlrpc.XMLRPC):
         if len(rcv_distro)==0 and len(rcv_p_name)==0:
             return False
 
+        ParamDict={}
+        ParamDict["agent"]=rcv_agent
+        ParamDict["gateway"]=rcv_domain
+        ParamDict["distro"]=rcv_distro
+        ParamDict["distro_version"]=rcv_distro_version
+        ParamDict["p_pid"]=rcv_p_pid
+        ParamDict["p_name"]=rcv_p_name
+        ParamDict["p_uid"]=rcv_p_uid
+        ParamDict["p_gid"]=rcv_p_gid
+        ParamDict["p_args"]=ParseArgs(rcv_p_args)
+        ParamDict["p_rpm"]=rcv_p_rpm
+        ParamDict["p_dpkg"]=rcv_p_dpkg
+        ParamDict["pf_path"]=rcv_pf_path
+        ParamDict["pf_dac"]=rcv_pf_dac
+        ParamDict["pf_uid"]=rcv_pf_uid
+        ParamDict["pf_gid"]=rcv_pf_gid
+
+        print "> rcv_p_name: " + str(rcv_p_name)
         if rcv_p_tbanner != "" and len(str(rcv_p_tbanner)) >1:
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
-                tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]  
-                
+                tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]
                 if CheckKnownTcpPort(tbanner) == False:
-                    ParamDict={}
                     try:
                         ParamDict["p_tcp_banner"]=tbanner.split(':')[0]+":"+b64decode(tbanner.split(':')[1])
                     except:
                         ParamDict["p_tcp_banner"]=tbanner
+
+                    print "TCP> " + str(ParamDict["p_tcp_banner"])
                     ParamDict["p_udp_banner"]=""
-                    ParamDict["agent"]=rcv_agent
-                    ParamDict["gateway"]=rcv_domain
-                    ParamDict["distro"]=rcv_distro
-                    ParamDict["distro_version"]=rcv_distro_version
-                    ParamDict["p_pid"]=rcv_p_pid
-                    ParamDict["p_name"]=rcv_p_name
-                    ParamDict["p_uid"]=rcv_p_uid
-                    ParamDict["p_gid"]=rcv_p_gid
-                    ParamDict["p_args"]=ParseArgs(rcv_p_args)
-                    ParamDict["p_rpm"]=rcv_p_rpm
-                    ParamDict["p_dpkg"]=rcv_p_dpkg
-                    ParamDict["pf_path"]=rcv_pf_path
-                    ParamDict["pf_dac"]=rcv_pf_dac
-                    ParamDict["pf_uid"]=rcv_pf_uid
-                    ParamDict["pf_gid"]=rcv_pf_gid
                     recvdata.AddQueue(ParamDict)
-                    #AddQueue(rcv_queue,ParamDict)
                 else: 
                     pass # to be explicit on this case
 
@@ -60,47 +62,17 @@ class XmlHandler(xmlrpc.XMLRPC):
                         ParamDict["p_udp_banner"]=ubanner.split(':')[0]+":"+b64decode(ubanner.split(':')[1])
                     except:
                         ParamDict["p_udp_banner"]=ubanner
+
+                    print "UDP> " + str(ParamDict["p_udp_banner"])
                     ParamDict["p_tcp_banner"]=""
-                    ParamDict["agent"]=rcv_agent
-                    ParamDict["gateway"]=rcv_domain
-                    ParamDict["distro"]=rcv_distro
-                    ParamDict["distro_version"]=rcv_distro_version
-                    ParamDict["p_pid"]=rcv_p_pid
-                    ParamDict["p_name"]=rcv_p_name
-                    ParamDict["p_uid"]=rcv_p_uid
-                    ParamDict["p_gid"]=rcv_p_gid
-                    ParamDict["p_args"]=ParseArgs(rcv_p_args)
-                    ParamDict["p_rpm"]=rcv_p_rpm
-                    ParamDict["p_dpkg"]=rcv_p_dpkg
-                    ParamDict["pf_path"]=rcv_pf_path
-                    ParamDict["pf_dac"]=rcv_pf_dac
-                    ParamDict["pf_uid"]=rcv_pf_uid
-                    ParamDict["pf_gid"]=rcv_pf_gid
                     recvdata.AddQueue(ParamDict)
-                    #AddQueue(rcv_queue,ParamDict)
                 else:
                     pass
+
         if rcv_p_ubanner == "" and rcv_p_tbanner == "":
-            ParamDict={}
-            ParamDict["agent"]=rcv_agent
-            ParamDict["gateway"]=rcv_domain
-            ParamDict["distro"]=rcv_distro
-            ParamDict["distro_version"]=rcv_distro_version
-            ParamDict["p_pid"]=rcv_p_pid
-            ParamDict["p_name"]=rcv_p_name
-            ParamDict["p_uid"]=rcv_p_uid
-            ParamDict["p_gid"]=rcv_p_gid
-            ParamDict["p_args"]=ParseArgs(rcv_p_args)
-            ParamDict["p_rpm"]=rcv_p_rpm
-            ParamDict["p_dpkg"]=rcv_p_dpkg
-            ParamDict["pf_path"]=rcv_pf_path
-            ParamDict["pf_dac"]=rcv_pf_dac
-            ParamDict["pf_uid"]=rcv_pf_uid
-            ParamDict["pf_gid"]=rcv_pf_gid
             ParamDict["p_tcp_banner"]=""
             ParamDict["p_udp_banner"]=""
             recvdata.AddQueue(ParamDict)
-            #AddQueue(rcv_queue,ParamDict)
 
         return True
         
