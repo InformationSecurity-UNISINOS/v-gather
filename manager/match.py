@@ -213,7 +213,7 @@ def MatchData():
 					scored['pf_dac_score']=float(pf_dac_score)
 					scored['case_id_related']=case_id
 					scored['score']=float(final_score)
-					candidates.AddQueue(can_queue,scored)
+					candidates.AddQueue(scored)
 					#DEBUG:
 					#o=GetQueue(can_queue)
 					#print "*"*50
