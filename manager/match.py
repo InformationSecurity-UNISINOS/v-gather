@@ -42,18 +42,20 @@ def MatchData():
 		qlen=recvdata.LenQueue()
 		while qlen>0:
 			pdict = {}
-			#pdict = GetQueue(rcv_queue)
 			pdict = recvdata.GetQueue()
 			scored = {}
 			final_score=0
+
+			print "*"*50
+			print pdict
+			print "*"*50
+			continue
 
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
 			p_pkgmgr_ratio=p_pkg_ratio=0
-			print pdict
-			print "*"*50
-			continue
+
 			p_pkg_ratio = Similarity( pdict['pacote'] , db_case['package_name'] )
 			p_pkg_weight = float(db_case['package_name_weight'])
 			p_pkg_score = float(p_pkg_ratio) * float(p_pkg_weight)

@@ -67,15 +67,15 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["p_tcp_banner"]=tbanner
         ParamDict["p_udp_banner"]=ubanner
         recvdata.AddQueue(ParamDict)
-        print "*"*50
-        print ParamDict
-        print "*"*50
+        
         return True
         
     def xmlrpc_match(self):
-       # MatchData()
-        print ""
+        MatchData()
         return True
+
+    def xmlrpc_ready(self):
+        return state
     
     def xmlrpc_Fault(self):
         raise xmlrpc.Fault(123, "Erro.")
