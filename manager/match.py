@@ -87,28 +87,28 @@ def MatchData():
 			p_args_ratio = Similarity( str(pdict['p_args']) , str(db_case['process_args']) )
 			p_args_weight = float(db_case['process_args_weight'])
 			p_args_score = float(p_args_ratio) * float(p_args_weight)
-			final_score=final_score+p_args_score
+			final_score=final_score+p_args_score 
 			#########################################################################
 			# PROCESS TCP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
 			p_tcp_banner_ratio = Similarity( pdict['p_tcp_banner'] , db_case['process_tcp_banner'] )
 			p_tcp_banner_weight = float(db_case['process_tcp_banner_weight'])
 			p_tcp_banner_score = p_tcp_banner_ratio * p_tcp_banner_weight
-			final_score=final_score+p_tcp_banner_score
+			final_score=final_score+p_tcp_banner_score 
 			#########################################################################
 			# PROCESS UDP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
 			p_udp_banner_ratio = Similarity( pdict['p_udp_banner'] , db_case['process_udp_banner'] )
 			p_udp_banner_weight = float(db_case['process_udp_banner_weight'])
 			p_udp_banner_score = float(p_udp_banner_ratio) * float(p_udp_banner_weight)
-			final_score=final_score+p_udp_banner_score
+			final_score=final_score+p_udp_banner_score 
 			#########################################################################
 			# PROCESS FILE PATH
 			#########################################################################
 			pf_path_ratio = Similarity( pdict['pf_path'] , db_case['process_binary'] )
 			pf_path_weight = float(db_case['process_binary_weight'])
 			pf_path_score = float(pf_path_ratio) * float(pf_path_weight)
-			final_score=final_score+pf_path_score
+			final_score=final_score+pf_path_score 
 			#########################################################################
 			# PROCESS FILE UID OWNER
 			#########################################################################
@@ -146,6 +146,21 @@ def MatchData():
  			final_score=final_score+distro_score
 
  			print pdict
+ 			print "distro_score: " +str(distro_score)
+ 			print "distro_version_score: " +str(distro_version_score)
+ 			print "pf_gid_score: " +str(pf_gid_score)
+ 			print "pf_uid_score: " + str(pf_uid_score)
+ 			print "pf_dac_score: " +str(pf_dac_score)
+ 			print "p_pkg_score: "+str(p_pkg_score)
+ 			print "p_pkgmgr_score: "+str(p_pkgmgr_score)
+ 			print "p_name_score: "+str(p_name_score)
+ 			print "p_uid_score: "+str(p_uid_score)
+ 			print "pf_path_score: " +str(pf_path_score)
+ 			print "p_udp_banner_score: " +str(p_udp_banner_score)
+ 			print "p_tcp_banner_score: " +str(p_tcp_banner_score)
+ 			print "p_args_score: " +str(p_args_score)
+ 			print "p_gid_score: " +str(p_gid_score)
+ 			
  			if debug==3:
 				print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
 				print "*"*50
