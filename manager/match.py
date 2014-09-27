@@ -136,11 +136,14 @@ def MatchData():
 			p_args_score = p_args_ratio * p_args_weight
 			pdict['p_args_weight']=str(p_args_weight)
 			pdict['p_args_score']=str(p_args_score)
+			debug=2
 			if debug==2:
 				print "*"*50
+				print "P NAME: " +str(p_name)
 				print "P ARGS: " +str(p_args_ratio)
 				print "Peso: " +str(p_args_weight)
 				print "Score: " +str(p_args_score)
+			debug=0
 			#########################################################################
 			# PROCESS TCP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
