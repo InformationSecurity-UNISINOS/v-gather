@@ -11,7 +11,8 @@ def GetQueue(q):
         AddQueue(q,item)
         return item
 
-def AddQueue(q,tdict={}):
+def AddQueue(q,tdict=None):
+		if tdict is None: tdict = {}
         q.append(tdict)
 
 def LenQueue(q):
