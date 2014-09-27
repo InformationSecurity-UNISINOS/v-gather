@@ -51,33 +51,15 @@ def MatchData():
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
 			p_pkgmgr_ratio=p_pkg_ratio=0
-			manager=pacote="N/A"
-
-			if str(pdict['p_dpkg']) != "nada" and str(pdict['p_dpkg']) != "":
-				manager="DPKG"
-				pacote=pdict['p_dpkg']
-				dpkg=True
-			else:
-				dpkg=False
-
-			if str(pdict['p_rpm']) != "nada" and str(pdict['p_rpm']) != "":
-				manager="RPM"
-				pacote=pdict['p_rpm']
-				rpm=True
-			else:
-				rpm=False
-
-			if rpm == True or dpkg == True:
-				p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
-				p_pkg_ratio = Similarity( pacote , db_case['package_name'] )
 			
-				p_pkg_weight = float(db_case['package_name_weight'])
-				p_pkg_score = float(p_pkg_ratio) * float(p_pkg_weight)
-				p_pkgmgr_weight = float(db_case['package_type_id_weight'])
-				p_pkgmgr_score = float(p_pkgmgr_weight) * float(p_pkgmgr_ratio)
-			else:
-				p_pkgmgr_score=p_pkgmgr_weight=p_pkg_score=p_pkg_weight=0
-
+			p_pkg_ratio = Similarity( pdict['pacote'] , db_case['package_name'] )
+			p_pkg_weight = float(db_case['package_name_weight'])
+			p_pkg_score = float(p_pkg_ratio) * float(p_pkg_weight)
+			
+			p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
+			p_pkgmgr_weight = float(db_case['package_type_id_weight'])
+			p_pkgmgr_score = float(p_pkgmgr_weight) * float(p_pkgmgr_ratio)
+			
 			final_score=final_score+p_pkg_score+p_pkgmgr_score
 			#########################################################################
 			# PROCESS PROCESS NAME
@@ -193,10 +175,10 @@ def MatchData():
 					scored['p_udp_banner'] = pdict['p_udp_banner']
 					scored['p_udp_banner_weight']=float(p_udp_banner_weight)
 					scored['p_udp_banner_score']=float(p_udp_banner_score)
-					scored['p_pkgmgr']=manager
+					scored['p_pkgmgr']=pdict['manager']
 					scored['p_pkgmgr_weight']=float(p_pkgmgr_weight)
 					scored['p_pkgmgr_score']=float(p_pkgmgr_score)
-					scored['p_package']=pacote
+					scored['p_package']=pdict['pacote']
 					scored['p_pkg_weight']=float(p_pkg_weight)
 					scored['p_pkg_score']=float(p_pkg_score)
 					scored['pf_path'] = pdict['pf_path']

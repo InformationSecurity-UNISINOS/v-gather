@@ -27,52 +27,43 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["p_uid"]=rcv_p_uid
         ParamDict["p_gid"]=rcv_p_gid
         ParamDict["p_args"]=ParseArgs(rcv_p_args)
-        ParamDict["p_rpm"]=rcv_p_rpm
-        ParamDict["p_dpkg"]=rcv_p_dpkg
+        
+        if str(rcv_p_rpm) != "nada" and str(rcv_p_rpm) != "":
+            ParamDict["manager"]="RPM"
+            ParamDict["pacote"]=rcv_p_rpm
+            rpm=True
+
+        if str(rcv_p_dpkg) != "nada" and str(rcv_p_dpkg) != "":
+            ParamDict["manager"]="DPKG"
+            ParamDict["pacote"]=rcv_p_dpkg
+            dpkg=True
+
+        
+        
         ParamDict["pf_path"]=rcv_pf_path
         ParamDict["pf_dac"]=rcv_pf_dac
         ParamDict["pf_uid"]=rcv_pf_uid
         ParamDict["pf_gid"]=rcv_pf_gid
 
-        print "> rcv_p_name: " + str(rcv_p_name)
+        tbanner=""
         if rcv_p_tbanner != "" and len(str(rcv_p_tbanner)) >1:
-            tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
-            for port_pos in range(0,tcp_ports_total):
-                tbanner=ParseBanner(rcv_p_tbanner,port_pos)[1]
-                if CheckKnownTcpPort(tbanner) == False:
-                    try:
-                        ParamDict["p_tcp_banner"]=tbanner.split(':')[0]+":"+b64decode(tbanner.split(':')[1])
-                    except:
-                        ParamDict["p_tcp_banner"]=tbanner
+            porta=rcv_p_tbanner.split(':')[0]
+            try:
+                tbanner=b64decode(rcv_p_tbanner.split(':')[1])
+            except:
+                tbanner=rcv_p_tbanner.split(':')[1]
 
-                    print "  TCP> " + str(ParamDict["p_tcp_banner"])
-                    ParamDict["p_udp_banner"]=""
-                    recvdata.AddQueue(ParamDict)
-                else: 
-                    pass # to be explicit on this case
+        ubanner=""
+        if rcv_p_ubanner != "" and len(str(rcv_p_ubanner)) >1:
+            porta=rcv_p_ubanner.split(':')[0]
+            try:
+                ubanner=b64decode(rcv_p_ubanner.split(':')[1])
+            except:
+                ubanner=rcv_p_ubanner.split(':')[1]
 
-        if rcv_p_ubanner != "" and len(str(rcv_p_ubanner))>1:
-            udp_ports_total=ParseBanner(rcv_p_ubanner,0)[0]
-            for port_pos in range(0,udp_ports_total):
-                ubanner=ParseBanner(rcv_p_ubanner,port_pos)[1]   #ainda em base64
-                
-                if CheckKnownUdpPort(ubanner) == False:
-                    ParamDict={}
-                    try:
-                        ParamDict["p_udp_banner"]=ubanner.split(':')[0]+":"+b64decode(ubanner.split(':')[1])
-                    except:
-                        ParamDict["p_udp_banner"]=ubanner
-
-                    print "  UDP> " + str(ParamDict["p_udp_banner"])
-                    ParamDict["p_tcp_banner"]=""
-                    recvdata.AddQueue(ParamDict)
-                else:
-                    pass
-
-        if rcv_p_ubanner == "" and rcv_p_tbanner == "":
-            ParamDict["p_tcp_banner"]=""
-            ParamDict["p_udp_banner"]=""
-            recvdata.AddQueue(ParamDict)
+        ParamDict["p_tcp_banner"]=tbanner
+        ParamDict["p_udp_banner"]=ubanner
+        recvdata.AddQueue(ParamDict)
 
         return True
         
