@@ -140,6 +140,7 @@ def MatchData():
 			if debug==2:
 				print "*"*50
 				print "P NAME: " +str(pdict['p_name'])
+				print "P NAME DB: " +str(db_case['process_name'])
 				print "P ARGS: " +str(p_args_ratio)
 				print "Peso: " +str(p_args_weight)
 				print "Score: " +str(p_args_score)
