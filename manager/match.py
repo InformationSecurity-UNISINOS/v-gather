@@ -145,6 +145,7 @@ def MatchData():
  			distro_score = float(distro_ratio) * float(distro_weight)
  			final_score=final_score+distro_score
 
+ 			print pdict
  			if debug==3:
 				print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
 				print "*"*50
