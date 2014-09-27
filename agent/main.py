@@ -61,7 +61,8 @@ def StartScan(Dry,manageraddr):
             print "PROCESS FILE DAC: " +str(pf_dac)
 
         p_tcp_l = item.getDaemonTcp()                   # recebe 0.0.0.0:80
-        tcp_banner,udp_banner=""
+        tcp_banner=""
+        udp_banner=""
         tcp_pcount=0
         if p_tcp_l is not "" and p_tcp_l is not None:   # Se realmente recebeu uma tupla de porta aberta
             for svctcp in p_tcp_l.split(','):           # entao vamos tokenizar cada tupla separada por virgula (se tiver mais de1 porta aberta por processo)
