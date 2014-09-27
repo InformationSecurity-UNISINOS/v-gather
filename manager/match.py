@@ -262,7 +262,7 @@ def MatchData():
 					o=GetQueue(can_queue)
 					print "*"*50
 					for k,v in o.items():
-						print "o['%s'] => %s" %(k,v)
+						print "%s => %s" %(k,v)
 					print "*"*50
 					
 			qlen-=1	

@@ -194,7 +194,7 @@ def DbSimCases():
 			if v == "" or len(str(v)) == 0:
 				pdict2[k]=None
 
-			print "pdict2['%s'] => %s" %(k,v)
+			print "%s => %s" %(k,v)
 		print "*"*50
 		
 		clen-=1
