@@ -134,13 +134,13 @@ def MatchData():
 			p_args_ratio = Similarity( str(pdict['p_args']) , str(db_case['process_args']) )
 			p_args_weight = db_case['process_args_weight']
 			p_args_score = p_args_ratio * p_args_weight
-			pdict['p_args_weight']=str(p_args_weight)
-			pdict['p_args_score']=str(p_args_score)
+			pdict['p_args_weight']=p_args_weight
+			pdict['p_args_score']=p_args_score
 			debug=2
 			if debug==2:
 				print "*"*50
-				print "P NAME: " +str(pdict['p_name'])
-				print "P NAME DB: " +str(db_case['process_name'])
+				#print "P NAME: " +str(pdict['p_name'])
+				#print "P NAME DB: " +str(db_case['process_name'])
 				print "P ARGS: " +str(p_args_ratio)
 				print "Peso: " +str(p_args_weight)
 				print "Score: " +str(p_args_score)
@@ -259,6 +259,9 @@ def MatchData():
 					pdict['case_id_related']=case_id
 					pdict['score']=str(final_score)
 					AddQueue(can_queue,pdict)
+					o=GetQueue(can_queue)
+					print "pdict->args_score: " + str(p_args_score)
+					print "queue->args_score: " + o['p_args_score']
 			qlen-=1	
 		case_id+=1
 	#recvdata.DestroyQueue()
