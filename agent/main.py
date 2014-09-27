@@ -61,7 +61,7 @@ def StartScan(Dry,manageraddr):
             print "PROCESS FILE DAC: " +str(pf_dac)
 
         p_tcp_l = item.getDaemonTcp()                   # recebe 0.0.0.0:80
-        tcp_banner=""
+        tcp_banner,udp_banner=""
         tcp_pcount=0
         if p_tcp_l is not "" and p_tcp_l is not None:   # Se realmente recebeu uma tupla de porta aberta
             for svctcp in p_tcp_l.split(','):           # entao vamos tokenizar cada tupla separada por virgula (se tiver mais de1 porta aberta por processo)
@@ -75,10 +75,16 @@ def StartScan(Dry,manageraddr):
                     if Dry==True:
                          print "PROCESS TCP FINGERPRINT: " +str(porta)+":"+str(fp_item)
                     tcp_banner=tcp_banner+porta+":"+b64encode(fp_item) + ":" # porta:banner em base64 
+                    if PingManager(manageraddr)==1:
+                        sent_count+=1
+                        SendData(manageraddr,server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
+                    else:
+                        print "[x] Manager offline"
+
                     tcp_pcount+=1
+                    continue
                 except:
                     continue
-
 
         p_udp_l = item.getDaemonUdp()                   # recebe 0.0.0.0:80
         udp_banner=""
@@ -95,15 +101,20 @@ def StartScan(Dry,manageraddr):
                     if Dry==True:
                          print "PROCESS UDP FINGERPRINT: " +str(porta)+":"+str(fp_item)
                     udp_banner=porta+":"+b64encode(fp_item) # porta:banner em base64 
+                    if PingManager(manageraddr)==1:
+                        sent_count+=1
+                        SendData(manageraddr,server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
+                    else:
+                        print "[x] Manager offline"
                     udp_pcount+=1
-                    
+                    continue
                 except:
                     continue
 
         if Dry==True:
             print "*"*100
             continue
-
+        #no tcp and no udp:
         if PingManager(manageraddr)==1:
             sent_count+=1
             SendData(manageraddr,server,domain,GetLinuxDist(DIST_NAME),GetLinuxDist(DIST_VER),p_pid,p_name,p_uid,p_gid,p_rpm,p_dpkg,pf_path,pf_dac,pf_uid,pf_gid,p_args,tcp_banner,udp_banner)
