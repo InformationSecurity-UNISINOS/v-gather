@@ -35,6 +35,8 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["pf_gid"]=rcv_pf_gid
 
         print "> rcv_p_name: " + str(rcv_p_name)
+        print "> portas: " +str(ParseBanner(rcv_p_tbanner,0)[0])
+
         if rcv_p_tbanner != "" and len(str(rcv_p_tbanner)) >1:
             tcp_ports_total=ParseBanner(rcv_p_tbanner,0)[0]
             for port_pos in range(0,tcp_ports_total):
@@ -45,7 +47,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                     except:
                         ParamDict["p_tcp_banner"]=tbanner
 
-                    print "TCP> " + str(ParamDict["p_tcp_banner"])
+                    print "  TCP> " + str(ParamDict["p_tcp_banner"])
                     ParamDict["p_udp_banner"]=""
                     recvdata.AddQueue(ParamDict)
                 else: 
@@ -63,7 +65,7 @@ class XmlHandler(xmlrpc.XMLRPC):
                     except:
                         ParamDict["p_udp_banner"]=ubanner
 
-                    print "UDP> " + str(ParamDict["p_udp_banner"])
+                    print "  UDP> " + str(ParamDict["p_udp_banner"])
                     ParamDict["p_tcp_banner"]=""
                     recvdata.AddQueue(ParamDict)
                 else:
