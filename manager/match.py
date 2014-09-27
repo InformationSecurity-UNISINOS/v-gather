@@ -133,7 +133,7 @@ def MatchData():
 			#########################################################################
 			p_args_ratio = Similarity( str(pdict['p_args']) , str(db_case['process_args']) )
 			p_args_weight = db_case['process_args_weight']
-			p_args_score = p_args_ratio * p_args_weight
+			p_args_score = float(p_args_ratio) * float(p_args_weight)
 			pdict['p_args_weight']=p_args_weight
 			pdict['p_args_score']=p_args_score
 			debug=2
