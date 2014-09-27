@@ -42,6 +42,9 @@ def MatchData():
 		while qlen>0:
 			pdict = {}
 			pdict = GetQueue(rcv_queue)
+			scored = {}
+			final_score=0
+
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
@@ -73,192 +76,143 @@ def MatchData():
 			else:
 				p_pkgmgr_score=p_pkgmgr_weight=p_pkg_score=p_pkg_weight=0
 
-			pdict['p_pkgmgr_weight']=float(p_pkgmgr_weight)
-			pdict['p_pkgmgr_score']=float(p_pkgmgr_score)
-			pdict['p_pkg_weight']=float(p_pkg_weight)
-			pdict['p_pkg_score']=float(p_pkg_score)
-
-
-			if debug==2:
-				print "*"*50
-				print "Gerenciador de Pacotes: " +str(p_pkgmgr_ratio)
-				print "Peso: " +str(p_pkgmgr_weight)
-				print "Score: " +str(p_pkg_score)
-				print "*"*50
-				print "Pacote: " +str(p_pkg_ratio)
-				print "Peso: " +str(p_pkg_weight)
-				print "Score: " +str(p_pkg_score)
-				
+			final_score=final_score+p_pkg_score+p_pkgmgr_score
 			#########################################################################
 			# PROCESS PROCESS NAME
 			#########################################################################
 			p_name_ratio = Similarity( pdict['p_name'] , db_case['process_name'] )
 			p_name_weight = float(db_case['process_name_weight'])
 			p_name_score = float(p_name_ratio) * float(p_name_weight)
-			pdict['p_name_weight']=float(p_name_weight)
-			pdict['p_name_score']=float(p_name_score)
-			if debug==2:
-				print "*"*50
-				print "PName: " +str(p_name_ratio)
-				print "Peso: " +str(p_name_weight)
-				print "Score: " +str(p_name_score)
+			final_score=final_score+p_name_score
 			#########################################################################
 			# PROCESS UID:
 			#########################################################################
 	 		p_uid_ratio = Similarity( str(pdict['p_uid']) , str(db_case['process_uid']) )
 	 		p_uid_weight = float(db_case['process_uid_weight'])
 	 		p_uid_score = float(p_uid_weight) * float(p_uid_ratio)
-	 		pdict['p_uid_weight']=float(p_uid_weight)
-	 		pdict['p_uid_score']=float(p_uid_score)
-	 		if debug==2:
-				print "*"*50
-				print "P UID: " +str(p_uid_ratio)
-				print "Peso: " +str(p_uid_weight)
-				print "Score: " +str(p_uid_score)
+	 		final_score=final_score+p_uid_score
 			#########################################################################
 			# PROCESS GID:
 			#########################################################################
 			p_gid_ratio = Similarity( str(pdict['p_gid']) , str(db_case['process_gid']) )
 			p_gid_weight = float(db_case['process_gid_weight'])
 			p_gid_score = float(p_gid_ratio) * float(p_gid_weight)
-			pdict['p_gid_weight']=float(p_gid_weight)
-			pdict['p_gid_score']=float(p_gid_score)
-			if debug==2:
-				print "*"*50
-				print "P GID: " +str(p_gid_ratio)
-				print "Peso: " +str(p_gid_weight)
-				print "Score: " +str(p_gid_score)
+			final_score=final_score+p_gid_score
 			#########################################################################
 			# PROCESS PROCESS ARGS
 			#########################################################################
 			p_args_ratio = Similarity( str(pdict['p_args']) , str(db_case['process_args']) )
 			p_args_weight = float(db_case['process_args_weight'])
 			p_args_score = float(p_args_ratio) * float(p_args_weight)
-			pdict['p_args_weight']=float(p_args_weight)
-			pdict['p_args_score']=float(p_args_score)
-			
-			if debug==2:
-				print "*"*50
-				#print "P NAME: " +str(pdict['p_name'])
-				#print "P NAME DB: " +str(db_case['process_name'])
-				print "P ARGS: " +str(p_args_ratio)
-				print "Peso: " +str(p_args_weight)
-				print "Score: " +str(p_args_score)
-			
+			final_score=final_score+p_args_score
 			#########################################################################
 			# PROCESS TCP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
 			p_tcp_banner_ratio = Similarity( pdict['p_tcp_banner'] , db_case['process_tcp_banner'] )
 			p_tcp_banner_weight = float(db_case['process_tcp_banner_weight'])
 			p_tcp_banner_score = p_tcp_banner_ratio * p_tcp_banner_weight
-			pdict['p_tcp_banner_weight']=float(p_tcp_banner_weight)
-			pdict['p_tcp_banner_score']=float(p_tcp_banner_score)
-			if debug==2:
-				print "*"*50
-				print "P TCP BANNER: " +str(p_tcp_banner_ratio)
-				print "Peso: " +str(p_tcp_banner_weight)
-				print "Score: " +str(p_tcp_banner_score)
+			final_score=final_score+p_tcp_banner_score
 			#########################################################################
 			# PROCESS UDP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
 			p_udp_banner_ratio = Similarity( pdict['p_udp_banner'] , db_case['process_udp_banner'] )
 			p_udp_banner_weight = float(db_case['process_udp_banner_weight'])
 			p_udp_banner_score = float(p_udp_banner_ratio) * float(p_udp_banner_weight)
-			pdict['p_udp_banner_weight']=float(p_udp_banner_weight)
-			pdict['p_udp_banner_score']=float(p_udp_banner_score)
-			if debug==2:
-				print "*"*50
-				print "P UDP BANNER: " +str(p_udp_banner_ratio)
-				print "Peso: " +str(p_udp_banner_weight)
-				print "Score: " +str(p_udp_banner_score)
+			final_score=final_score+p_udp_banner_score
 			#########################################################################
 			# PROCESS FILE PATH
 			#########################################################################
 			pf_path_ratio = Similarity( pdict['pf_path'] , db_case['process_binary'] )
 			pf_path_weight = float(db_case['process_binary_weight'])
 			pf_path_score = float(pf_path_ratio) * float(pf_path_weight)
-			pdict['pf_path_weight']=float(pf_path_weight)
-			pdict['pf_path_score']=float(pf_path_score)
-			if debug==2:
-				print "*"*50
-				print "PF PATH: " +str(pf_path_ratio)
-				print "Peso: " +str(pf_path_weight)
-				print "Score: " +str(pf_path_score)
+			final_score=final_score+pf_path_score
 			#########################################################################
 			# PROCESS FILE UID OWNER
 			#########################################################################
 			pf_uid_ratio = Similarity( str(pdict['pf_uid']) , str(db_case['process_binary_uid']) )
 			pf_uid_weight = float(db_case['process_binary_uid_weight'])
 			pf_uid_score = float(pf_uid_ratio) * float(pf_uid_weight)
-			pdict['pf_uid_weight']=float(pf_uid_weight)
-			pdict['pf_uid_score']=float(pf_uid_score)
-			if debug==2:
-				print "*"*50
-				print "PF UID: " +str(pf_uid_ratio)
-				print "Peso: " +str(pf_uid_weight)
-				print "Score: " +str(pf_uid_score)
+			final_score=final_score+pf_uid_score
 			#########################################################################
 			# PROCESS FILE GID OWNER
 			#########################################################################
 			pf_gid_ratio = Similarity( str(pdict['pf_gid']) , str(db_case['process_binary_gid']) )
 			pf_gid_weight = float(db_case['process_binary_gid_weight'])
 			pf_gid_score = float(pf_gid_ratio) * float(pf_gid_weight)
-			pdict['pf_gid_weight']=float(pf_gid_weight)
-			pdict['pf_gid_score']=float(pf_gid_score)
-			if debug==2:
-				print "*"*50
-				print "PF GID: " +str(pf_gid_ratio)
-				print "Peso: " +str(pf_gid_weight)
-				print "Score: " +str(pf_gid_score)
+			final_score=final_score+pf_gid_score
 			#########################################################################
 			# PROCESS FILE DAC
 			#########################################################################
 			pf_dac_ratio = Similarity( str(pdict['pf_dac']) ,  str(db_case['process_binary_dac']) )
 			pf_dac_weight = float(db_case['process_binary_dac_weight'])
 			pf_dac_score = float(pf_dac_ratio) * float(pf_dac_weight)
-			pdict['pf_dac_weight']=float(pf_dac_weight)
-			pdict['pf_dac_score']=float(pf_dac_score)
-			if debug==2:
-				print "*"*50
-				print "PF DAC: " +str(pf_dac_ratio)
-				print "Peso: " +str(pf_dac_weight)
-				print "Score: " +str(pf_dac_score)
+			final_score=final_score+pf_dac_score
 			#########################################################################
 			# PROCESS DISTRO VERSION
 			#########################################################################
 			distro_version_ratio = Similarity( str(pdict['distro_version']) ,  str(db_case['so_version']) )
 			distro_version_weight = float(db_case['so_version_weight'])
 			distro_version_score = float(distro_version_ratio) * float(distro_version_weight)
-			pdict['distro_version_weight']=float(distro_version_weight)
-			pdict['distro_version_score']=float(distro_version_score)
-			if debug==2:
-				print "*"*50
-				print "DISTRO VERSION: " +str(distro_version_ratio)
-				print "Peso: " +str(distro_version_weight)
-				print "Score: " +str(distro_version_score)
+			final_score=final_score+distro_version_score
 			#########################################################################
 			# PROCESS DISTRO NAME
 			#########################################################################
 			distro_ratio = Similarity( str(pdict['distro']) , str(db_so_name) )
 			distro_weight = float(db_case['so_id_weight'])
  			distro_score = float(distro_ratio) * float(distro_weight)
- 			pdict['distro_weight']=float(distro_weight)
- 			pdict['distro_score']=float(distro_score)
-			if debug==2:
-				print "*"*50
-				print "DISTRO NAME: " +str(distro_ratio)
-				print "Peso: " +str(distro_weight)
-				print "Score: " +str(distro_score)
+ 			final_score=final_score+distro_score
 
-			final_score=distro_score + distro_version_score + pf_dac_score + pf_gid_score + pf_uid_score + pf_path_score + p_udp_banner_score + p_tcp_banner_score + p_args_score + p_gid_score + p_uid_score + p_name_score + p_pkgmgr_score + p_pkg_score
-			if debug==3:
+ 			if debug==3:
 				print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)
 				print "*"*50
 
 			if final_score > sim_point:
-					pdict['case_id_related']=case_id
-					pdict['score']=float(final_score)
-					AddQueue(can_queue,pdict)
+					scored['distro']=pdict['distro']
+		 			scored['distro_weight']=float(distro_weight)
+		 			scored['distro_score']=float(distro_score)
+		 			scored['distro_version']=str(pdict['distro_version'])
+					scored['distro_version_weight']=float(distro_version_weight)
+					scored['distro_version_score']=float(distro_version_score)
+		 			scored['p_name']=pdict['p_name']
+					scored['p_name_weight']=float(p_name_weight)
+					scored['p_name_score']=float(p_name_score)
+					scored['p_uid']=int(pdict['p_uid'])
+			 		scored['p_uid_weight']=float(p_uid_weight)
+			 		scored['p_uid_score']=float(p_uid_score)
+			 		scored['p_gid']=int(pdict['p_gid'])
+			 		scored['p_gid_weight']=float(p_gid_weight)
+			 		scored['p_gid_score']=float(p_gid_score)
+			 		scored['p_args']= str(pdict['p_args'])
+					scored['p_args_weight']=float(p_args_weight)
+					scored['p_args_score']=float(p_args_score)
+					scored['p_tcp_banner']=pdict['p_tcp_banner']
+					scored['p_tcp_banner_weight']=float(p_tcp_banner_weight)
+					scored['p_tcp_banner_score']=float(p_tcp_banner_score)
+					scored['p_udp_banner'] = pdict['p_udp_banner']
+					scored['p_udp_banner_weight']=float(p_udp_banner_weight)
+					scored['p_udp_banner_score']=float(p_udp_banner_score)
+					scored['p_pkgmgr']=manager
+					scored['p_pkgmgr_weight']=float(p_pkgmgr_weight)
+					scored['p_pkgmgr_score']=float(p_pkgmgr_score)
+					scored['p_package']=pacote
+					scored['p_pkg_weight']=float(p_pkg_weight)
+					scored['p_pkg_score']=float(p_pkg_score)
+					scored['pf_path'] = pdict['pf_path']
+					scored['pf_path_weight']=float(pf_path_weight)
+					scored['pf_path_score']=float(pf_path_score)
+					scored['pf_uid']=pdict['pf_uid']
+					scored['pf_uid_weight']=float(pf_uid_weight)
+					scored['pf_uid_score']=float(pf_uid_score)
+					scored['pf_gid']=pdict['pf_gid']
+					scored['pf_gid_weight']=float(pf_gid_weight)
+					scored['pf_gid_score']=float(pf_gid_score)
+					scored['pf_dac']=pdict['pf_dac']
+					scored['pf_dac_weight']=float(pf_dac_weight)
+					scored['pf_dac_score']=float(pf_dac_score)
+					scored['case_id_related']=case_id
+					scored['score']=float(final_score)
+					AddQueue(can_queue,scored)
+					#DEBUG:
 					o=GetQueue(can_queue)
 					print "*"*50
 					for k,v in o.items():

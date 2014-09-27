@@ -175,19 +175,6 @@ def DbSimCases():
 			so_id=1
 		else: 
 			so_id=2
-		if pdict2['p_dpkg']:
-			package_name=pdict2['p_dpkg']
-			package_manager=1
-			pdict2.pop("p_rpm",None)
-		else:
-			package_name=pdict2['p_rpm']
-			package_manager=2
-			pdict2.pop("p_dpkg",None)
-		
-		# eliminando chaves desnecessárias até o momento
-		#
-		pdict2.pop("Gateway", None)
-		pdict2.pop("p_pid", None)
 		
 		print "*"*50
 		for k,v in pdict2.items():
