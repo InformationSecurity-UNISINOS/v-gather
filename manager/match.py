@@ -66,17 +66,17 @@ def MatchData():
 				p_pkgmgr_ratio = Similarity( manager , db_pkg_mgr )
 				p_pkg_ratio = Similarity( pacote , db_case['package_name'] )
 			
-				p_pkg_weight = db_case['package_name_weight']
-				p_pkg_score = p_pkg_ratio * p_pkg_weight
-				p_pkgmgr_weight = db_case['package_type_id_weight']
-				p_pkgmgr_score = p_pkgmgr_weight * p_pkgmgr_ratio
+				p_pkg_weight = float(db_case['package_name_weight'])
+				p_pkg_score = float(p_pkg_ratio) * float(p_pkg_weight)
+				p_pkgmgr_weight = float(db_case['package_type_id_weight'])
+				p_pkgmgr_score = float(p_pkgmgr_weight) * float(p_pkgmgr_ratio)
 			else:
 				p_pkgmgr_score=p_pkgmgr_weight=p_pkg_score=p_pkg_weight=0
 
-			pdict['p_pkgmgr_weight']=str(p_pkgmgr_weight)
-			pdict['p_pkgmgr_score']=str(p_pkgmgr_score)
-			pdict['p_pkg_weight']=str(p_pkg_weight)
-			pdict['p_pkg_score']=str(p_pkg_score)
+			pdict['p_pkgmgr_weight']=float(p_pkgmgr_weight)
+			pdict['p_pkgmgr_score']=float(p_pkgmgr_score)
+			pdict['p_pkg_weight']=float(p_pkg_weight)
+			pdict['p_pkg_score']=float(p_pkg_score)
 
 
 			if debug==2:
@@ -93,10 +93,10 @@ def MatchData():
 			# PROCESS PROCESS NAME
 			#########################################################################
 			p_name_ratio = Similarity( pdict['p_name'] , db_case['process_name'] )
-			p_name_weight = db_case['process_name_weight']
-			p_name_score = p_name_ratio * p_name_weight
-			pdict['p_name_weight']=str(p_name_weight)
-			pdict['p_name_score']=str(p_name_score)
+			p_name_weight = float(db_case['process_name_weight'])
+			p_name_score = float(p_name_ratio) * float(p_name_weight)
+			pdict['p_name_weight']=float(p_name_weight)
+			pdict['p_name_score']=float(p_name_score)
 			if debug==2:
 				print "*"*50
 				print "PName: " +str(p_name_ratio)
@@ -106,10 +106,10 @@ def MatchData():
 			# PROCESS UID:
 			#########################################################################
 	 		p_uid_ratio = Similarity( str(pdict['p_uid']) , str(db_case['process_uid']) )
-	 		p_uid_weight = db_case['process_uid_weight']
-	 		p_uid_score = p_uid_weight * p_uid_ratio
-	 		pdict['p_uid_weight']=str(p_uid_weight)
-	 		pdict['p_uid_score']=str(p_uid_score)
+	 		p_uid_weight = float(db_case['process_uid_weight'])
+	 		p_uid_score = float(p_uid_weight) * float(p_uid_ratio)
+	 		pdict['p_uid_weight']=float(p_uid_weight)
+	 		pdict['p_uid_score']=float(p_uid_score)
 	 		if debug==2:
 				print "*"*50
 				print "P UID: " +str(p_uid_ratio)
@@ -119,10 +119,10 @@ def MatchData():
 			# PROCESS GID:
 			#########################################################################
 			p_gid_ratio = Similarity( str(pdict['p_gid']) , str(db_case['process_gid']) )
-			p_gid_weight = db_case['process_gid_weight']
-			p_gid_score = p_gid_ratio * p_gid_weight
-			pdict['p_gid_weight']=str(p_gid_weight)
-			pdict['p_gid_score']=str(p_gid_score)
+			p_gid_weight = float(db_case['process_gid_weight'])
+			p_gid_score = float(p_gid_ratio) * float(p_gid_weight)
+			pdict['p_gid_weight']=float(p_gid_weight)
+			pdict['p_gid_score']=float(p_gid_score)
 			if debug==2:
 				print "*"*50
 				print "P GID: " +str(p_gid_ratio)
@@ -132,10 +132,10 @@ def MatchData():
 			# PROCESS PROCESS ARGS
 			#########################################################################
 			p_args_ratio = Similarity( str(pdict['p_args']) , str(db_case['process_args']) )
-			p_args_weight = db_case['process_args_weight']
+			p_args_weight = float(db_case['process_args_weight'])
 			p_args_score = float(p_args_ratio) * float(p_args_weight)
-			pdict['p_args_weight']=p_args_weight
-			pdict['p_args_score']=p_args_score
+			pdict['p_args_weight']=float(p_args_weight)
+			pdict['p_args_score']=float(p_args_score)
 			debug=2
 			if debug==2:
 				print "*"*50
@@ -149,10 +149,10 @@ def MatchData():
 			# PROCESS TCP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
 			p_tcp_banner_ratio = Similarity( pdict['p_tcp_banner'] , db_case['process_tcp_banner'] )
-			p_tcp_banner_weight = db_case['process_tcp_banner_weight']
+			p_tcp_banner_weight = float(db_case['process_tcp_banner_weight'])
 			p_tcp_banner_score = p_tcp_banner_ratio * p_tcp_banner_weight
-			pdict['p_tcp_banner_weight']=str(p_tcp_banner_weight)
-			pdict['p_tcp_banner_score']=str(p_tcp_banner_score)
+			pdict['p_tcp_banner_weight']=float(p_tcp_banner_weight)
+			pdict['p_tcp_banner_score']=float(p_tcp_banner_score)
 			if debug==2:
 				print "*"*50
 				print "P TCP BANNER: " +str(p_tcp_banner_ratio)
@@ -162,10 +162,10 @@ def MatchData():
 			# PROCESS UDP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
 			p_udp_banner_ratio = Similarity( pdict['p_udp_banner'] , db_case['process_udp_banner'] )
-			p_udp_banner_weight = db_case['process_udp_banner_weight']
-			p_udp_banner_score = p_udp_banner_ratio * p_udp_banner_weight
-			pdict['p_udp_banner_weight']=str(p_udp_banner_weight)
-			pdict['p_udp_banner_score']=str(p_udp_banner_score)
+			p_udp_banner_weight = float(db_case['process_udp_banner_weight'])
+			p_udp_banner_score = float(p_udp_banner_ratio) * float(p_udp_banner_weight)
+			pdict['p_udp_banner_weight']=float(p_udp_banner_weight)
+			pdict['p_udp_banner_score']=float(p_udp_banner_score)
 			if debug==2:
 				print "*"*50
 				print "P UDP BANNER: " +str(p_udp_banner_ratio)
@@ -175,10 +175,10 @@ def MatchData():
 			# PROCESS FILE PATH
 			#########################################################################
 			pf_path_ratio = Similarity( pdict['pf_path'] , db_case['process_binary'] )
-			pf_path_weight = db_case['process_binary_weight']
-			pf_path_score = pf_path_ratio * pf_path_weight
-			pdict['pf_path_weight']=str(pf_path_weight)
-			pdict['pf_path_score']=str(pf_path_score)
+			pf_path_weight = float(db_case['process_binary_weight'])
+			pf_path_score = float(pf_path_ratio) * float(pf_path_weight)
+			pdict['pf_path_weight']=float(pf_path_weight)
+			pdict['pf_path_score']=float(pf_path_score)
 			if debug==2:
 				print "*"*50
 				print "PF PATH: " +str(pf_path_ratio)
@@ -188,10 +188,10 @@ def MatchData():
 			# PROCESS FILE UID OWNER
 			#########################################################################
 			pf_uid_ratio = Similarity( str(pdict['pf_uid']) , str(db_case['process_binary_uid']) )
-			pf_uid_weight = db_case['process_binary_uid_weight']
-			pf_uid_score = pf_uid_ratio * pf_uid_weight
-			pdict['pf_uid_weight']=str(pf_uid_weight)
-			pdict['pf_uid_score']=str(pf_uid_score)
+			pf_uid_weight = float(db_case['process_binary_uid_weight'])
+			pf_uid_score = float(pf_uid_ratio) * float(pf_uid_weight)
+			pdict['pf_uid_weight']=float(pf_uid_weight)
+			pdict['pf_uid_score']=float(pf_uid_score)
 			if debug==2:
 				print "*"*50
 				print "PF UID: " +str(pf_uid_ratio)
@@ -201,10 +201,10 @@ def MatchData():
 			# PROCESS FILE GID OWNER
 			#########################################################################
 			pf_gid_ratio = Similarity( str(pdict['pf_gid']) , str(db_case['process_binary_gid']) )
-			pf_gid_weight = db_case['process_binary_gid_weight']
-			pf_gid_score = pf_gid_ratio * pf_gid_weight
-			pdict['pf_gid_weight']=str(pf_gid_weight)
-			pdict['pf_gid_score']=str(pf_gid_score)
+			pf_gid_weight = float(db_case['process_binary_gid_weight'])
+			pf_gid_score = float(pf_gid_ratio) * float(pf_gid_weight)
+			pdict['pf_gid_weight']=float(pf_gid_weight)
+			pdict['pf_gid_score']=float(pf_gid_score)
 			if debug==2:
 				print "*"*50
 				print "PF GID: " +str(pf_gid_ratio)
@@ -214,10 +214,10 @@ def MatchData():
 			# PROCESS FILE DAC
 			#########################################################################
 			pf_dac_ratio = Similarity( str(pdict['pf_dac']) ,  str(db_case['process_binary_dac']) )
-			pf_dac_weight = db_case['process_binary_dac_weight']
-			pf_dac_score = pf_dac_ratio * pf_dac_weight
-			pdict['pf_dac_weight']=str(pf_dac_weight)
-			pdict['pf_dac_score']=str(pf_dac_score)
+			pf_dac_weight = float(db_case['process_binary_dac_weight'])
+			pf_dac_score = float(pf_dac_ratio) * float(pf_dac_weight)
+			pdict['pf_dac_weight']=float(pf_dac_weight)
+			pdict['pf_dac_score']=float(pf_dac_score)
 			if debug==2:
 				print "*"*50
 				print "PF DAC: " +str(pf_dac_ratio)
@@ -227,10 +227,10 @@ def MatchData():
 			# PROCESS DISTRO VERSION
 			#########################################################################
 			distro_version_ratio = Similarity( str(pdict['distro_version']) ,  str(db_case['so_version']) )
-			distro_version_weight = db_case['so_version_weight']
-			distro_version_score = distro_version_ratio * distro_version_weight
-			pdict['distro_version_weight']=str(distro_version_weight)
-			pdict['distro_version_score']=str(distro_version_score)
+			distro_version_weight = float(db_case['so_version_weight'])
+			distro_version_score = float(distro_version_ratio) * float(distro_version_weight)
+			pdict['distro_version_weight']=float(distro_version_weight)
+			pdict['distro_version_score']=float(distro_version_score)
 			if debug==2:
 				print "*"*50
 				print "DISTRO VERSION: " +str(distro_version_ratio)
@@ -240,10 +240,10 @@ def MatchData():
 			# PROCESS DISTRO NAME
 			#########################################################################
 			distro_ratio = Similarity( str(pdict['distro']) , str(db_so_name) )
-			distro_weight = db_case['so_id_weight']
- 			distro_score = distro_ratio * distro_weight
- 			pdict['distro_weight']=str(distro_weight)
- 			pdict['distro_score']=str(distro_score)
+			distro_weight = float(db_case['so_id_weight'])
+ 			distro_score = float(distro_ratio) * float(distro_weight)
+ 			pdict['distro_weight']=float(distro_weight)
+ 			pdict['distro_score']=float(distro_score)
 			if debug==2:
 				print "*"*50
 				print "DISTRO NAME: " +str(distro_ratio)
@@ -257,14 +257,14 @@ def MatchData():
 
 			if final_score > sim_point:
 					pdict['case_id_related']=case_id
-					pdict['score']=str(final_score)
+					pdict['score']=float(final_score)
 					AddQueue(can_queue,pdict)
 					o=GetQueue(can_queue)
-					#print "pdict->args_score: " + str(p_args_score)
-					#print "queue->args_score: " + str(o['p_args_score'])
 					print "*"*50
-					print o
+					for k,v in o.items():
+						print "o['%s'] => %s" %(k,v)
 					print "*"*50
+					
 			qlen-=1	
 		case_id+=1
 	#recvdata.DestroyQueue()
