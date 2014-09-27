@@ -52,17 +52,17 @@ class XmlHandler(xmlrpc.XMLRPC):
         if rcv_p_tbanner != "" and len(str(rcv_p_tbanner)) >1:
             porta=rcv_p_tbanner.split(':')[0]
             try:
-                tbanner=b64decode(rcv_p_tbanner.split(':')[1])
+                tbanner=porta+":"+b64decode(rcv_p_tbanner.split(':')[1])
             except:
-                tbanner=rcv_p_tbanner.split(':')[1]
+                tbanner=porta+":"+rcv_p_tbanner.split(':')[1]
 
         ubanner=""
         if rcv_p_ubanner != "" and len(str(rcv_p_ubanner)) >1:
             porta=rcv_p_ubanner.split(':')[0]
             try:
-                ubanner=b64decode(rcv_p_ubanner.split(':')[1])
+                ubanner=porta+":"+b64decode(rcv_p_ubanner.split(':')[1])
             except:
-                ubanner=rcv_p_ubanner.split(':')[1]
+                ubanner=porta+":"+rcv_p_ubanner.split(':')[1]
 
         ParamDict["p_tcp_banner"]=tbanner
         ParamDict["p_udp_banner"]=ubanner
