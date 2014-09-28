@@ -133,11 +133,7 @@ if(login_check($mysqli) == false) {
 			                                                process_tcp_banner, process_tcp_banner_weight,
 			                                                process_udp_banner, process_udp_banner_weight,
 			                                                package_name, package_name_weight,
-			                                                package_type_id, package_type_id_weight,
-			                                                process_binary, process_binary_weight,
-			                                                process_binary_dac, process_binary_dac_weight,
-			                                                process_binary_uid, process_binary_uid_weight,
-			                                                process_binary_gid, process_binary_gid_weight
+			                                                process_binary, process_binary_weight
 			                                               	FROM use_cases WHERE id = ?");
 														$stmt->bind_param('i', $i);
 														
@@ -152,11 +148,7 @@ if(login_check($mysqli) == false) {
 																			$process_tcp_banner,$process_tcp_banner_weight,
 																			$process_udp_banner,$process_udp_banner_weight,
 																			$package_name, $package_name_weight,
-																			$package_type_id, $package_type_id_weight,
-																			$process_binary, $process_binary_weight,
-																			$process_binary_dac, $process_binary_dac_weight,
-																			$process_binary_uid, $process_binary_uid_weight,
-																			$process_binary_gid, $process_binary_gid_weight);
+																			$process_binary, $process_binary_weight);
 														$stmt->fetch();
 														$stmt->free_result(); 
 
@@ -234,41 +226,10 @@ if(login_check($mysqli) == false) {
 	                                                        		echo '<td width="20%">'.  htmlentities(round($package_name_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
-	                                                   	 		$stmt = $mysqli->prepare("select name from package_types where id = ?");
-																$stmt->bind_param('i', $package_type_id);
-														        $stmt->execute();
-																$stmt->bind_result($pkg_mgr);
-																$stmt->fetch();
-																$stmt->free_result();
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Gerenciador de Pacotes" .'</td>';
-	                                                        		echo '<td>'.  htmlentities($pkg_mgr) .'</td>';
-	                                                        		echo '<td width="20%">'. htmlentities(round($package_type_id_weight,3)). '</td>';
-	                                                   	 		echo '</tr>';
-
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Binário do Processo" .'</td>';
 	                                                        		echo '<td>'.  htmlentities($process_binary) .'</td>';
 	                                                        		echo '<td width="20%">'.  htmlentities(round($process_binary_weight,3)) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "UID do Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  htmlentities($process_binary_uid) .'</td>';
-	                                                        		echo '<td width="20%">'.  htmlentities(round($process_binary_uid_weight,3)) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "GID do Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  htmlentities($process_binary_gid) .'</td>';
-	                                                        		echo '<td width="20%">'.  htmlentities(round($process_binary_gid_weight,3)) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "DAC do Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  htmlentities($process_binary_dac) .'</td>';
-	                                                        		echo '<td width="20%">'.  htmlentities(round($process_binary_dac_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
