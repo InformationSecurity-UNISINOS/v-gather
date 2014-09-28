@@ -140,25 +140,18 @@ def DbGetSoName(so_id):
 # vai diminuir a performance, mas ...
 def DbSimCases():
 	clen=candidates.LenQueue()
-	#clen=LenQueue(can_queue)
-
 	while clen > 0:
 		pdict2={}
 		pdict2=candidates.GetQueue()
-		#pdict2=GetQueue(can_queue)
 		if pdict2['distro'].lower() == "debian":
 			so_id=1
 		else: 
 			so_id=2
 		
-		#print "*"*50
 		for k,v in pdict2.items():
 			if v == "" or len(str(v)) == 0:
 				pdict2[k]="N/A"
-
-		#	print "%s => %s" %(k,v)
-		#print "*"*50
-		
+			print "%s => %s" %(k,v)
 		clen-=1
 		#
 		#
