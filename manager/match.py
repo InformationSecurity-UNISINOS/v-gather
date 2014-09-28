@@ -171,7 +171,7 @@ def MatchData():
 					# para evitar que um dicionário igual (processo com todos os dados iguais)
 					# seja cadastrado novamente
 					flen=filtro.LenQueue()
-					#ja_cadastrado=False
+					ja_cadastrado=False
 					while flen>0:
 						cadastrado = {}
 						cadastrado = filtro.GetQueue()
