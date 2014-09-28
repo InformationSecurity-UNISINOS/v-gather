@@ -175,11 +175,6 @@ def DbSimCases():
 			so_id=1
 		else: 
 			so_id=2
-		if pdict2['p_pkgmgr'] == "DPKG":
-			package_type_id=1
-		else: 
-			package_type_id=2
-
 		
 		#print "*"*50
 		for k,v in pdict2.items():
