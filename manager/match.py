@@ -36,8 +36,6 @@ def MatchData():
 		if db_case is 0 or db_case is False:
 			return False
 		db_so_name=DbGetSoName(db_case['so_id'])
-
-		#qlen=LenQueue(rcv_queue)
 		qlen=recvdata.LenQueue()
 		while qlen>0:
 			pdict = {}
@@ -178,14 +176,13 @@ def MatchData():
 						cadastrado = filtro.GetQueue()
 						if cmp(cadastrado,scored) == 0:
 							ja_cadastrado=True
+							break	
 						flen-=1
 					if ja_cadastrado==False:
 						candidates.AddQueue(scored)
 						filtro.AddQueue(scored)
-					#DEBUG:
-					#o=GetQueue(can_queue)
 					#print "*"*50
-					#for k,v in o.items():
+					#for k,v in scored.items():
 					#	print "%s => %s" %(k,v)
 					#print "*"*50
 					
