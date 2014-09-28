@@ -142,9 +142,9 @@ if(login_check($mysqli) == false) {
 											include_once 'includes/functions.php';
 
 											$stmt=$mysqli->prepare("SELECT COUNT(id) FROM managed_servers");
-												if ($stmt === FALSE) {
-	            									die ("Mysql Error: " . $mysqli->error);
-        										}
+											if ($stmt === FALSE) {
+	            								die ("Mysql Error: " . $mysqli->error);
+        									}
 											$stmt->execute();
 											$stmt->bind_result($nro_srv);
 											$stmt->fetch();

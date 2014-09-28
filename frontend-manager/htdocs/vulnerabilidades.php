@@ -136,6 +136,10 @@ if(login_check($mysqli) == false) {
 			                                                package_name, package_name_weight,
 			                                                process_binary, process_binary_weight
 			                                               	FROM use_cases WHERE id = ? AND status = 2");
+											        	if ($stmt2 === FALSE) {
+	            											die ("Mysql Error: " . $mysqli->error);
+        												}
+
 														$stmt2->bind_param('i', $field);
 														
 												        $stmt2->execute();
