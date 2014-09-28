@@ -26,5 +26,6 @@ class Fila(object):
 
 recvdata=Fila()
 candidates=Fila()
+filtro=Fila()
 
                 

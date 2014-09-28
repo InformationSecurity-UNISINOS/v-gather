@@ -53,11 +53,7 @@ def MatchData():
 			p_pkg_weight = float(db_case['package_name_weight'])
 			p_pkg_score = float(p_pkg_ratio) * float(p_pkg_weight)
 			
-			#p_pkgmgr_ratio = Similarity( pdict['manager'] , db_pkg_mgr )
-			#p_pkgmgr_weight = float(db_case['package_type_id_weight'])
-			#p_pkgmgr_score = float(p_pkgmgr_weight) * float(p_pkgmgr_ratio)
-			
-			final_score=final_score+p_pkg_score #+p_pkgmgr_score
+			final_score=final_score+p_pkg_score 
 			#########################################################################
 			# PROCESS PROCESS NAME
 			#########################################################################
@@ -108,27 +104,6 @@ def MatchData():
 			pf_path_score = float(pf_path_ratio) * float(pf_path_weight)
 			final_score=final_score+pf_path_score 
 			#########################################################################
-			# PROCESS FILE UID OWNER
-			#########################################################################
-			#pf_uid_ratio = Similarity( str(pdict['pf_uid']) , str(db_case['process_binary_uid']) )
-			#pf_uid_weight = float(db_case['process_binary_uid_weight'])
-			#pf_uid_score = float(pf_uid_ratio) * float(pf_uid_weight)
-			#final_score=final_score+pf_uid_score
-			#########################################################################
-			# PROCESS FILE GID OWNER
-			#########################################################################
-			#pf_gid_ratio = Similarity( str(pdict['pf_gid']) , str(db_case['process_binary_gid']) )
-			#pf_gid_weight = float(db_case['process_binary_gid_weight'])
-			#pf_gid_score = float(pf_gid_ratio) * float(pf_gid_weight)
-			#final_score=final_score+pf_gid_score
-			#########################################################################
-			# PROCESS FILE DAC
-			#########################################################################
-			#pf_dac_ratio = Similarity( str(pdict['pf_dac']) ,  str(db_case['process_binary_dac']) )
-			#pf_dac_weight = float(db_case['process_binary_dac_weight'])
-			#pf_dac_score = float(pf_dac_ratio) * float(pf_dac_weight)
-			#final_score=final_score+pf_dac_score
-			#########################################################################
 			# PROCESS DISTRO VERSION
 			#########################################################################
 			distro_version_ratio = Similarity( str(pdict['distro_version']) ,  str(db_case['so_version']) )
@@ -146,11 +121,7 @@ def MatchData():
  			print pdict
  			print "distro_score: " +str(distro_score)
  			print "distro_version_score: " +str(distro_version_score)
- 			#print "pf_gid_score: " +str(pf_gid_score)
- 			#print "pf_uid_score: " + str(pf_uid_score)
- 			#print "pf_dac_score: " +str(pf_dac_score)
  			print "p_pkg_score: "+str(p_pkg_score)
- 			#print "p_pkgmgr_score: "+str(p_pkgmgr_score)
  			print "p_name_score: "+str(p_name_score)
  			print "p_uid_score: "+str(p_uid_score)
  			print "pf_path_score: " +str(pf_path_score)
@@ -188,27 +159,29 @@ def MatchData():
 					scored['p_udp_banner'] = pdict['p_udp_banner']
 					scored['p_udp_banner_weight']=float(p_udp_banner_weight)
 					scored['p_udp_banner_score']=float(p_udp_banner_score)
-					#scored['p_pkgmgr']=pdict['manager']
-					#scored['p_pkgmgr_weight']=float(p_pkgmgr_weight)
-					#scored['p_pkgmgr_score']=float(p_pkgmgr_score)
 					scored['p_package']=pdict['pacote']
 					scored['p_pkg_weight']=float(p_pkg_weight)
 					scored['p_pkg_score']=float(p_pkg_score)
 					scored['pf_path'] = pdict['pf_path']
 					scored['pf_path_weight']=float(pf_path_weight)
 					scored['pf_path_score']=float(pf_path_score)
-					#scored['pf_uid']=pdict['pf_uid']
-					#scored['pf_uid_weight']=float(pf_uid_weight)
-					#scored['pf_uid_score']=float(pf_uid_score)
-					#scored['pf_gid']=pdict['pf_gid']
-					#scored['pf_gid_weight']=float(pf_gid_weight)
-					#scored['pf_gid_score']=float(pf_gid_score)
-					#scored['pf_dac']=pdict['pf_dac']
-					#scored['pf_dac_weight']=float(pf_dac_weight)
-					#scored['pf_dac_score']=float(pf_dac_score)
 					scored['case_id_related']=case_id
 					scored['score']=float(final_score)
-					candidates.AddQueue(scored)
+
+					# A rotina abaixo utiliza o objeto filtro
+					# para evitar que um dicionário igual (processo com todos os dados iguais)
+					# seja cadastrado novamente
+					flen=filtro.LenQueue()
+					ja_cadastrado=False
+					while flen>0:
+						cadastrado = {}
+						cadastrado = filtro.GetQueue()
+						if cmp(cadastrado,scored) == 0:
+							ja_cadastrado=True
+						flen-=1
+					if ja_cadastrado==False
+						candidates.AddQueue(scored)
+						filtro.AddQueue(scored)
 					#DEBUG:
 					#o=GetQueue(can_queue)
 					#print "*"*50
