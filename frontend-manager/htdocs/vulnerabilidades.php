@@ -178,7 +178,7 @@ if(login_check($mysqli) == false) {
 			                                                process_udp_banner, process_udp_banner_weight,
 			                                                package_name, package_name_weight,
 			                                                process_binary, process_binary_weight
-			                                               	FROM use_cases WHERE case_id_related = ? AND status = 1");
+			                                               	FROM use_cases WHERE id = ?");
 													$stmt2->bind_param('i', $case_related);
 														
 												    $stmt2->execute();
@@ -319,7 +319,7 @@ if(login_check($mysqli) == false) {
 
 	                                                   	echo '<tr align="center">';
 	                                                       	echo '<td>'. "Descrição do Caso Relacionado" .'</td>';
-	                                                        echo '<td colspan="4">'. $descricao . " DEBUG CASE RELATED: " . $case_related .'</td>';
+	                                                        echo '<td colspan="4">'. $descricao .'</td>';
 	                                                   	 echo '</tr>';
 
 	                                                   	 echo '<tr align="center">';
