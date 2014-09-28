@@ -208,9 +208,9 @@ if(login_check($mysqli) == false) {
 	                                                		echo '</tr>';
 	                                                    	echo '<tr>';
 	                                                        	echo '<th style="text-align:center;" width="20%">Itens</th>';
-	                                                        	echo '<th style="text-align:center;" width="30%">Valores</th>';
+	                                                        	echo '<th style="text-align:center;" width="30%">Dados</th>';
 	                                                        	echo '<th style="text-align:center;" width="20%">Score</th>';
-	                                                        	echo '<th style="text-align:center;" width="10%">Valores</th>';
+	                                                        	echo '<th style="text-align:center;" width="10%">Dados</th>';
 	                                                        	echo '<th style="text-align:center;" width="10%">Peso</th>';
 	                                                    	echo '</tr>';
 	                                                	echo '</thead>';
