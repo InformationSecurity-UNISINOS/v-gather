@@ -114,7 +114,7 @@ if(login_check($mysqli) == false) {
 
 												$stmt = $mysqli->prepare("SELECT id FROM `use_cases` WHERE status=2");
 												$stmt->execute();
-
+												$i=0;
 												$row = array();
 												stmt_bind_assoc($stmt, $row);
 												while ($stmt->fetch()) {
@@ -124,7 +124,7 @@ if(login_check($mysqli) == false) {
 											        	// ===============================================
 											        	// recupera o candidato 
 											        	// ===============================================
-											        	$stmt = $mysqli->prepare("SELECT id,date,
+											        	$stmt2 = $mysqli->prepare("SELECT id,date,
 			                                                so_id, so_id_weight, case_id_related,
 			                                                so_version, so_version_weight,
 			                                                process_name, process_name_weight,
@@ -136,10 +136,10 @@ if(login_check($mysqli) == false) {
 			                                                package_name, package_name_weight,
 			                                                process_binary, process_binary_weight
 			                                               	FROM use_cases WHERE id = ? AND status = 2");
-														$stmt->bind_param('i', $field);
+														$stmt2->bind_param('i', $field);
 														
-												        $stmt->execute();
-														$stmt->bind_result($case_id,$date,$case_related,
+												        $stmt2->execute();
+														$stmt2->bind_result($case_id,$date,$case_related,
 												        					$so_id, $so_id_weight,
 												        					$so_version, $so_version_weight,
 																			$process_name, $process_name_weight,
@@ -150,13 +150,13 @@ if(login_check($mysqli) == false) {
 																			$process_udp_banner,$process_udp_banner_weight,
 																			$package_name, $package_name_weight,
 																			$process_binary, $process_binary_weight);
-														$stmt->fetch();
-														$stmt->free_result(); 
+														$stmt2->fetch();
+														$stmt2->free_result(); 
 
 														// ===============================================
 											        	// recupera o caso relacionado para comparar 
 											        	// ===============================================
-														$stmt = $mysqli->prepare("SELECT id,date,
+														$stmt2 = $mysqli->prepare("SELECT id,date,
 			                                                so_id, so_id_weight,
 			                                                so_version, so_version_weight,
 			                                                process_name, process_name_weight,
@@ -168,10 +168,10 @@ if(login_check($mysqli) == false) {
 			                                                package_name, package_name_weight,
 			                                                process_binary, process_binary_weight
 			                                               	FROM use_cases WHERE case_id_related = ? AND status = 1");
-														$stmt->bind_param('i', $case_related);
+														$stmt2->bind_param('i', $case_related);
 														
-												        $stmt->execute();
-														$stmt->bind_result($r_case_id,$r_date,
+												        $stmt2->execute();
+														$stmt2->bind_result($r_case_id,$r_date,
 												        					$r_so_id, $r_so_id_score,
 												        					$r_so_version, $r_so_version_score,
 																			$r_process_name, $r_process_name_score,
@@ -182,8 +182,8 @@ if(login_check($mysqli) == false) {
 																			$r_process_udp_banner,$r_process_udp_banner_score,
 																			$r_package_name, $r_package_name_score,
 																			$r_process_binary, $r_process_binary_score);
-														$stmt->fetch();
-														$stmt->free_result(); 
+														$stmt2->fetch();
+														$stmt2->free_result(); 
 
 														echo '<table class="table table-bordered table-striped table-condensed" style="text-align:center;">';
 	                                                		echo '<thead>';
@@ -203,19 +203,19 @@ if(login_check($mysqli) == false) {
 	                                                		echo '</thead>';
 	                                                		echo '<tbody>';
 
-	                                                			$stmt = $mysqli->prepare("select name from sos where id = ?");
-																$stmt->bind_param('i', $so_id);
-														        $stmt->execute();
-																$stmt->bind_result($soname);
-																$stmt->fetch();
-																$stmt->free_result();
+	                                                			$stmt2= $mysqli->prepare("select name from sos where id = ?");
+																$stmt2->bind_param('i', $so_id);
+														        $stmt2->execute();
+																$stmt2->bind_result($soname);
+																$stmt2->fetch();
+																$stmt2->free_result();
 
-																$stmt = $mysqli->prepare("select name from sos where id = ?");
-																$stmt->bind_param('i', $r_so_id);
-														        $stmt->execute();
-																$stmt->bind_result($r_soname);
-																$stmt->fetch();
-																$stmt->free_result();
+																$stmt2= $mysqli->prepare("select name from sos where id = ?");
+																$stmt2->bind_param('i', $r_so_id);
+														        $stmt2->execute();
+																$stmt2->bind_result($r_soname);
+																$stmt2->fetch();
+																$stmt2->free_result();
 	                                                			 
 	                                                    		echo '<tr align="center">';
 	                                                        		echo '<td>'. "SO" .'</td>';
@@ -297,12 +297,12 @@ if(login_check($mysqli) == false) {
 	                                                        		echo '<td '. round($r_process_udp_banner_score,3) .'</td>';
 	                                                   	 		echo '</tr>';
 	                                                   	 		
-																$stmt=$mysqli->prepare("SELECT solution,description FROM use_case_desc_solution WHERE case_id = ?");
-																$stmt->bind_param('i', $case_related);
-														        $stmt->execute();
-																$stmt->bind_result($solucao,$descricao);
-																$stmt->fetch();
-																$stmt->free_result();
+																$stmt2=$mysqli->prepare("SELECT solution,description FROM use_case_desc_solution WHERE case_id = ?");
+																$stmt2->bind_param('i', $case_related);
+														        $stmt2->execute();
+																$stmt2->bind_result($solucao,$descricao);
+																$stmt2->fetch();
+																$stmt2->free_result();
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td>'. "Descrição do Caso Relacionado" .'</td>';
