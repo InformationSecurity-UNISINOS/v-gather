@@ -179,7 +179,7 @@ def MatchData():
 						if cmp(cadastrado,scored) == 0:
 							ja_cadastrado=True
 						flen-=1
-					if ja_cadastrado==False
+					if ja_cadastrado==False:
 						candidates.AddQueue(scored)
 						filtro.AddQueue(scored)
 					#DEBUG:
