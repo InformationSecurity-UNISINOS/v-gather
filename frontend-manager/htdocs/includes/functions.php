@@ -51,6 +51,27 @@ function GetWeight($mysqli, $descr) {
   }
 }
 
+
+/*
+*
+* função para recuperar dados da base e armazenar em um array
+*/
+function stmt_bind_assoc (&$stmt, &$out) {
+    $data = mysqli_stmt_result_metadata($stmt);
+    $fields = array();
+    $out = array();
+
+    $fields[0] = $stmt;
+    $count = 1;
+
+    while($field = mysqli_fetch_field($data)) {
+        $fields[$count] = &$out[$field->name];
+        $count++;
+    }
+    call_user_func_array(mysqli_stmt_bind_result, $fields);
+}
+
+
  /*
  * Funcão destinada a iniciar a sessao do usuario.
  * Adicionando httponly, secure, domain, path e lifetime no cookie

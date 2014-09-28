@@ -108,37 +108,24 @@ if(login_check($mysqli) == false) {
                                     
                                     <font face="MankSans" size="2pt">
                                         <div class="box-content">
-
-
-
-                                        	<?php
+											<?php
                                         		include_once 'includes/db_connect.php';
 												include_once 'includes/functions.php';
 
-												$stmt=$mysqli->prepare("SELECT id FROM use_cases WHERE status = 2 LIMIT 1");
-												if ($stmt === FALSE) {
-            												printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
-            												die ("Mysql Error: " . $mysqli->error);
-        										}
+												$stmt = $mysqli->prepare("SELECT id FROM `use_cases` WHERE status=2");
 												$stmt->execute();
-												$stmt->bind_result($vstart);
-												$stmt->fetch();
-												$stmt->free_result(); 
 
-												$stmt=$mysqli->prepare("SELECT count(id) FROM use_cases WHERE status = 2");
-												if ($stmt === FALSE) {
-            												printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
-            												die ("Mysql Error: " . $mysqli->error);
-        										}
-												$stmt->execute();
-												$stmt->bind_result($nro_casos);
-												$stmt->fetch();
-												$stmt->free_result(); 
-
-												if ($nro_casos) {
-													for ($i = $vstart; $i <= $nro_casos; $i++) {
-														$stmt = $mysqli->prepare("SELECT id,date,
-			                                                so_id, so_id_weight,
+												$row = array();
+												stmt_bind_assoc($stmt, $row);
+												while ($stmt->fetch()) {
+											    	foreach($row as $key => $field) {
+											        	//echo $i . " = " . $field . "<br>";
+											        	$i++;
+											        	// ===============================================
+											        	// recupera o candidato 
+											        	// ===============================================
+											        	$stmt = $mysqli->prepare("SELECT id,date,
+			                                                so_id, so_id_weight, case_id_related,
 			                                                so_version, so_version_weight,
 			                                                process_name, process_name_weight,
 			                                                process_uid, process_uid_weight,
@@ -149,10 +136,10 @@ if(login_check($mysqli) == false) {
 			                                                package_name, package_name_weight,
 			                                                process_binary, process_binary_weight
 			                                               	FROM use_cases WHERE id = ? AND status = 2");
-														$stmt->bind_param('i', $i);
+														$stmt->bind_param('i', $field);
 														
 												        $stmt->execute();
-														$stmt->bind_result($case_id,$date,
+														$stmt->bind_result($case_id,$date,$case_related,
 												        					$so_id, $so_id_weight,
 												        					$so_version, $so_version_weight,
 																			$process_name, $process_name_weight,
@@ -166,15 +153,52 @@ if(login_check($mysqli) == false) {
 														$stmt->fetch();
 														$stmt->free_result(); 
 
+														// ===============================================
+											        	// recupera o caso relacionado para comparar 
+											        	// ===============================================
+														$stmt = $mysqli->prepare("SELECT id,date,
+			                                                so_id, so_id_weight,
+			                                                so_version, so_version_weight,
+			                                                process_name, process_name_weight,
+			                                                process_uid, process_uid_weight,
+			                                                process_gid, process_gid_weight,
+			                                                process_args, process_args_weight,
+			                                                process_tcp_banner, process_tcp_banner_weight,
+			                                                process_udp_banner, process_udp_banner_weight,
+			                                                package_name, package_name_weight,
+			                                                process_binary, process_binary_weight
+			                                               	FROM use_cases WHERE case_id_related = ? AND status = 1");
+														$stmt->bind_param('i', $case_related);
+														
+												        $stmt->execute();
+														$stmt->bind_result($r_case_id,$r_date,
+												        					$r_so_id, $r_so_id_score,
+												        					$r_so_version, $r_so_version_score,
+																			$r_process_name, $r_process_name_score,
+																			$r_process_uid, $r_process_uid_score,
+																			$r_process_gid, $r_process_gid_score,
+																			$r_process_args, $r_process_args_score,
+																			$r_process_tcp_banner,$r_process_tcp_banner_score,
+																			$r_process_udp_banner,$r_process_udp_banner_score,
+																			$r_package_name, $r_package_name_score,
+																			$r_process_binary, $r_process_binary_score);
+														$stmt->fetch();
+														$stmt->free_result(); 
+
 														echo '<table class="table table-bordered table-striped table-condensed" style="text-align:center;">';
 	                                                		echo '<thead>';
 	                                                			echo '<tr>';
-	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="3"><font color="#FFFFFF">VULNERABILIDADE ' . $i . '</font></th>';
+	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="5"><font color="#FFFFFF">MATCH ' . $i . '</font></th>';
+	                                                					echo '<th style="text-align:center;background:#929497;" > - </th>';
+	                                                					echo '<th style="text-align:center;background:#929497;" colspan="2"><font color="#FFFFFF">CASO</font></th>';
+	                                                					echo '<th style="text-align:center;background:#929497;" colspan="2"><font color="#FFFFFF">CANDIDATO</font></th>';
 	                                                			echo '</tr>';
 	                                                    		echo '<tr>';
 	                                                        		echo '<th style="text-align:center;" width="100px">Itens</th>';
 	                                                        		echo '<th style="text-align:center;">Valores</th>';
 	                                                        		echo '<th style="text-align:center;" width="100px">Peso</th>';
+	                                                        		echo '<th style="text-align:center;">Valores</th>';
+	                                                        		echo '<th style="text-align:center;" width="100px">Score</th>';
 	                                                    		echo '</tr>';
 	                                                		echo '</thead>';
 	                                                		echo '<tbody>';
@@ -185,98 +209,115 @@ if(login_check($mysqli) == false) {
 																$stmt->bind_result($soname);
 																$stmt->fetch();
 																$stmt->free_result();
-	                                                			 
-	                                                    		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "SO" .'</td>';
-	                                                        		echo '<td>'.  $soname .'</td>';
-	                                                        		echo '<td width="20%"> '.  round($so_id_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
 
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Versão SO" .'</td>';
-	                                                        		echo '<td>'.  $so_version .'</td>';
-	                                                        		echo '<td width="20%">'.  round($so_version_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_name .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_name_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "UID do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_uid .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_uid_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "GID do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_gid .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_gid_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Argumentos do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_args .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_args_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Pacote do Processo" .'</td>';
-	                                                        		echo '<td>'.  $package_name .'</td>';
-	                                                        		echo '<td width="20%">'.  round($package_name_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		$stmt = $mysqli->prepare("select name from package_types where id = ?");
-																$stmt->bind_param('i', $package_type_id);
+																$stmt = $mysqli->prepare("select name from sos where id = ?");
+																$stmt->bind_param('i', $r_so_id);
 														        $stmt->execute();
-																$stmt->bind_result($pkg_mgr);
+																$stmt->bind_result($r_soname);
 																$stmt->fetch();
 																$stmt->free_result();
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_binary .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_binary_weight,3) .'</td>';
+	                                                			 
+	                                                    		echo '<tr align="center">';
+	                                                        		echo '<td>'. "SO" .'</td>';
+	                                                        		echo '<td>'. $soname .'</td>';
+	                                                        		echo '<td> '. round($so_id_weight,3) .'</td>';
+	                                                        		echo '<td>'. $r_soname .'</td>';
+	                                                        		echo '<td> '. round($r_so_id_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Banner de serviço TCP:" .'</td>';
-	                                                        		echo '<td>'.  $process_tcp_banner .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_tcp_banner_weight,3) .'</td>';
+	                                                        		echo '<td>'. "Versão SO" .'</td>';
+	                                                        		echo '<td>'. $so_version .'</td>';
+	                                                        		echo '<td>'. round($so_version_weight,3) .'</td>';
+	                                                        		echo '<td>'. $r_so_version .'</td>';
+	                                                        		echo '<td>'. round($r_so_version_score,3) .'</td>';
+	                                                   	 		echo '</tr>';
+
+	                                                   	 		echo '<tr align="center">';
+	                                                        		echo '<td>'. "Processo" .'</td>';
+	                                                        		echo '<td>'. $process_name .'</td>';
+	                                                        		echo '<td>'. round($process_name_weight,3) .'</td>';
+	                                                        		echo '<td>'. $r_process_name .'</td>';
+	                                                        		echo '<td>'. round($r_process_name_score,3) .'</td>';
+	                                                   	 		echo '</tr>';
+
+	                                                   	 		echo '<tr align="center">';
+	                                                        		echo '<td >'. "UID do Processo" .'</td>';
+	                                                        		echo '<td>'. $process_uid .'</td>';
+	                                                        		echo '<td'. round($process_uid_weight,3) .'</td>';
+	                                                        		echo '<td>'. $r_process_uid .'</td>';
+	                                                        		echo '<td'. round($r_process_uid_score,3) .'</td>';
+	                                                   	 		echo '</tr>';
+
+	                                                   	 		echo '<tr align="center">';
+	                                                        		echo '<td >'. "GID do Processo" .'</td>';
+	                                                        		echo '<td>'. $process_gid .'</td>';
+	                                                        		echo '<td >'. round($process_gid_weight,3) .'</td>';
+	                                                        		echo '<td>'. $r_process_gid .'</td>';
+	                                                        		echo '<td >'. round($r_process_gid_score,3) .'</td>';
+	                                                   	 		echo '</tr>';
+
+	                                                   	 		echo '<tr align="center">';
+	                                                        		echo '<td >'. "Argumentos do Processo" .'</td>';
+	                                                        		echo '<td>'. $process_args .'</td>';
+	                                                        		echo '<td >'. round($process_args_weight,3) .'</td>';
+	                                                        		echo '<td>'. $r_process_args .'</td>';
+	                                                        		echo '<td >'. round($r_process_args_score,3) .'</td>';
+	                                                   	 		echo '</tr>';
+
+	                                                   	 		echo '<tr align="center">';
+	                                                        		echo '<td >'. "Pacote do Processo" .'</td>';
+	                                                        		echo '<td>'. $package_name .'</td>';
+	                                                        		echo '<td >'. round($package_name_weight,3) .'</td>';
+	                                                        		echo '<td>'. $r_package_name .'</td>';
+	                                                        		echo '<td >'. round($r_package_name_score,3) .'</td>';
+	                                                   	 		echo '</tr>';
+
+	                                                   	 		echo '<tr align="center">';
+	                                                        		echo '<td >'. "Binário do Processo" .'</td>';
+	                                                        		echo '<td>'. $process_binary .'</td>';
+	                                                        		echo '<td >'. round($process_binary_weight,3) .'</td>';
+	                                                        		echo '<td>'. $r_process_binary .'</td>';
+	                                                        		echo '<td >'. round($r_process_binary_score,3) .'</td>';
+	                                                   	 		echo '</tr>';
+
+	                                                   	 		echo '<tr align="center">';
+	                                                        		echo '<td >'. "Banner de serviço TCP:" .'</td>';
+	                                                        		echo '<td>'. $process_tcp_banner .'</td>';
+	                                                        		echo '<td >'. round($process_tcp_banner_weight,3) .'</td>';
+	                                                        		echo '<td>'. $r_process_tcp_banner .'</td>';
+	                                                        		echo '<td >'. round($r_process_tcp_banner_score,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 																echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Banner de serviço UDP:" .'</td>';
-	                                                        		echo '<td>'.  $process_udp_banner .'</td>';
-	                                                        		echo '<td width="20%"'.  round($process_udp_banner_weight,3) .'</td>';
+	                                                        		echo '<td >'. "Banner de serviço UDP:" .'</td>';
+	                                                        		echo '<td>'. $process_udp_banner .'</td>';
+	                                                        		echo '<td '. round($process_udp_banner_weight,3) .'</td>';
+	                                                        		echo '<td>'. $r_process_udp_banner .'</td>';
+	                                                        		echo '<td '. round($r_process_udp_banner_score,3) .'</td>';
 	                                                   	 		echo '</tr>';
 	                                                   	 		
-																$stmt=$mysqli->prepare("select solution,description from use_case_desc_solution where case_id = ?");
-																$stmt->bind_param('i', $case_id);
+																$stmt=$mysqli->prepare("SELECT solution,description FROM use_case_desc_solution WHERE case_id = ?");
+																$stmt->bind_param('i', $case_related);
 														        $stmt->execute();
 																$stmt->bind_result($solucao,$descricao);
 																$stmt->fetch();
 																$stmt->free_result();
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td>'. "Descrição do Caso" .'</td>';
-	                                                        		echo '<td colspan="2">'. $descricao .'</td>';
+	                                                        		echo '<td>'. "Descrição do Caso Relacionado" .'</td>';
+	                                                        		echo '<td colspan="4">'. $descricao .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td>'. "Solução do Caso" .'</td>';
-	                                                        		echo '<td colspan="2">'. $solucao .'</td>';
+	                                                        		echo '<td>'. "Solução do Caso Relacionado" .'</td>';
+	                                                        		echo '<td colspan="4">'. $solucao .'</td>';
 	                                                   	 		echo '</tr>';
 	                                                    	
 	                                               			echo '</tbody>';
 	                                            		echo '</table>';
 	                                            	}
-
-											    } else {
-											    	echo "Nenhuma vulnerabilidade até o momento.";
-											    }
+											    } 
                                             ?>
 
                                         </div>
