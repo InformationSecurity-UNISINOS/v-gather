@@ -91,19 +91,7 @@ if (isset($_POST['p_package'])) {
 if (isset($_POST['p_package_peso'])) {
   $p_package_weight=GetWeight($mysqli,$_POST['p_package_peso']);
 }
-//============================================================================================================
 
-if (isset($_POST['p_package_type_id'])) {
-  if ($_POST['p_package_type_id'] == "dpkg") {
-    $p_package_type_id=1;
-  }
-  if ($_POST['p_package_type_id'] == "rpm") {
-    $p_package_type_id=2;
-  }
-}
-if (isset($_POST['p_package_type_id_peso'])) {
-  $p_package_type_id_weight=GetWeight($mysqli,$_POST['p_package_type_id_peso']);
-}
 //============================================================================================================
 
 if (isset($_POST['p_file'])) {
@@ -111,28 +99,6 @@ if (isset($_POST['p_file'])) {
 }
 if (isset($_POST['p_file_peso'])) {
   $p_file_weight=GetWeight($mysqli,$_POST['p_file_peso']);
-}
-//============================================================================================================
-
-if (isset($_POST['pf_dac'])) {
-  $pf_dac=xss_clean($_POST['pf_dac']);
-}
-if (isset($_POST['pf_dac_peso'])) {
-  $pf_dac_weight=GetWeight($mysqli,$_POST['pf_dac_peso']);
-}
-//============================================================================================================
-if (isset($_POST['pf_uid'])) {
-  $pf_uid=xss_clean($_POST['pf_uid']);
-}
-if (isset($_POST['pf_uid_peso'])) {
-  $pf_uid_weight=GetWeight($mysqli,$_POST['pf_uid_peso']);
-}
-//============================================================================================================
-if (isset($_POST['pf_gid'])) {
-  $pf_gid=xss_clean($_POST['pf_gid']);
-}
-if (isset($_POST['pf_gid_peso'])) {
-  $pf_gid_weight=GetWeight($mysqli,$_POST['pf_gid_peso']);
 }
 //============================================================================================================
 if (isset($_POST['p_descr'])) {
@@ -154,18 +120,14 @@ $stmt=$mysqli->prepare("INSERT INTO use_cases(date,status,origem,
                                                 process_tcp_banner, process_tcp_banner_weight,
                                                 process_udp_banner, process_udp_banner_weight,
                                                 package_name, package_name_weight,
-                                                package_type_id, package_type_id_weight,
-                                                process_binary, process_binary_weight,
-                                                process_binary_dac, process_binary_dac_weight,
-                                                process_binary_uid, process_binary_uid_weight,
-                                                process_binary_gid, process_binary_gid_weight)
-	                                           VALUES(CURRENT_TIMESTAMP,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                process_binary, process_binary_weight)
+	                                           VALUES(CURRENT_TIMESTAMP,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 if ($stmt === FALSE) {
     die ("Mysql Error 1: " . $mysqli->error);
 }
 $status=1;
 $origem=1;
-$stmt->bind_param('ssssssssssssssssssssssssssssss', $status, $origem,
+$stmt->bind_param('ssssssssssssssssssssssss', $status, $origem,
                       $so_id, $so_weight,
                       $so_ver, $so_ver_weight,
                       $p_name, $p_name_weight,
@@ -175,11 +137,7 @@ $stmt->bind_param('ssssssssssssssssssssssssssssss', $status, $origem,
                       $p_tcp_banner, $p_tcp_banner_weight,
                       $p_udp_banner, $p_udp_banner_weight,
                       $p_package, $p_package_weight,
-                      $p_package_type_id, $p_package_type_id_weight,
-                      $p_file, $p_file_weight,
-                      $pf_dac, $pf_dac_weight,
-                      $pf_uid, $pf_uid_weight,
-                      $pf_gid, $pf_gid_weight);
+                      $p_file, $p_file_weight);
 $stmt->execute();
 $stmt->free_result(); 
 
