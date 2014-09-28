@@ -120,8 +120,7 @@ if(login_check($mysqli) == false) {
 												stmt_bind_assoc($stmt, $row);
 												while ($stmt->fetch()) {
 											    	foreach($row as $key => $field) {
-											        	//echo $i . " = " . $field . "<br>";
-											        	$res[i]=$field;
+											        	$res[$i]=$field;
 											        	$i++;
 											        }
 											    }
