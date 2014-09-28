@@ -61,7 +61,7 @@
 
 				<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 login-box-locked type2">
 					
-					<img src="assets/img/infosec1.jpg" class="avatar"/>
+					<img src="assets/img/infosec1.png" class="avatar"/>
 					
 					<h2>V-Gather Manager Panel</h2>
 					<p>Por favor, identifique-se:</p>
