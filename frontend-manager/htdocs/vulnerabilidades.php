@@ -200,7 +200,7 @@ if(login_check($mysqli) == false) {
 													echo '<table class="table table-bordered table-striped table-condensed" style="text-align:center;">';
 	                                                	echo '<thead>';
 	                                                		echo '<tr>';
-	                                                			echo '<th style="text-align:center;background:#34383c;" colspan="5"><font color="#FFFFFF">MATCH ' . $i / " SCORE: " . $candidate_final_score .'</font></th>';
+	                                                			echo '<th style="text-align:center;background:#34383c;" colspan="5"><font color="#FFFFFF">MATCH ' . $i / " SCORE: " . $round(candidate_final_score,4) .'</font></th>';
 	                                                		echo '</tr>';
 	                                                		echo '<tr>';
 	                                                			echo '<th style="text-align:center;background:#929497;" > - </th>';
@@ -306,7 +306,7 @@ if(login_check($mysqli) == false) {
 														echo '<tr align="center">';
 	                                                       	echo '<td >'. "Banner de serviço UDP:" .'</td>';
 	                                                       	echo '<td width="30%">'. $process_udp_banner .'</td>';
-	                                                       	echo '<td width="10%">'. round($process_udp_banner_score,3) .'</td>';
+	                                                       	echo '<td width="10%">'. round($process_udp_banner_score,2) .'</td>';
 	                                                       	echo '<td width="30%">'. $r_process_udp_banner .'</td>';
 	                                                        echo '<td width="10%"> '. round($r_process_udp_banner_weight,3) .'</td>';
 	                                                   	 echo '</tr>';
