@@ -127,8 +127,8 @@ CREATE TABLE `sos` (
 -- ----------------------------
 -- Records of sos
 -- ----------------------------
-INSERT INTO sos (id,name) VALUES (1,"debian");
-INSERT INTO sos (id,name) VALUES (2,"centos");
+INSERT INTO sos (id,name) VALUES (1,"Debian");
+INSERT INTO sos (id,name) VALUES (2,"CentOS");
 
 -- ----------------------------
 -- Table structure for use_cases
