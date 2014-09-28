@@ -146,7 +146,7 @@ def DbSimCases():
 		pdict2={}
 		pdict2=candidates.GetQueue()
 		#pdict2=GetQueue(can_queue)
-		if pdict2['distro'] == "Debian":
+		if pdict2['distro'].lower() == "debian":
 			so_id=1
 		else: 
 			so_id=2
