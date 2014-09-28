@@ -127,7 +127,7 @@ if ($stmt === FALSE) {
 }
 $status=1;
 $origem=1;
-$stmt->bind_param('ssssssssssssssssssssssss', $status, $origem,
+$stmt->bind_param('ssssssssssssssssssssss', $status, $origem,
                       $so_id, $so_weight,
                       $so_ver, $so_ver_weight,
                       $p_name, $p_name_weight,
