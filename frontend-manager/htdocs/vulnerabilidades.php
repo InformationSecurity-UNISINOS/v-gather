@@ -131,8 +131,8 @@ if(login_check($mysqli) == false) {
 											        // ===============================================
 											        // recupera o candidato 
 											        // ===============================================
-											        $stmt2 = $mysqli->prepare("SELECT id,date,
-			                                               so_id, so_id_weight, case_id_related,
+											        $stmt2 = $mysqli->prepare("SELECT id,date, case_id_related,
+			                                               so_id, so_id_weight, 
 			                                               so_version, so_version_score,
 			                                               process_name, process_name_score,
 			                                               process_uid, process_uid_score,
