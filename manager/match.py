@@ -36,7 +36,6 @@ def MatchData():
 		if db_case is 0 or db_case is False:
 			return False
 		db_so_name=DbGetSoName(db_case['so_id'])
-		db_pkg_mgr=DbGetPkgMgr(db_case['package_type_id'])
 
 		#qlen=LenQueue(rcv_queue)
 		qlen=recvdata.LenQueue()
@@ -49,8 +48,7 @@ def MatchData():
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
-			p_pkgmgr_ratio=p_pkg_ratio=0
-
+		
 			p_pkg_ratio = Similarity( pdict['pacote'] , db_case['package_name'] )
 			p_pkg_weight = float(db_case['package_name_weight'])
 			p_pkg_score = float(p_pkg_ratio) * float(p_pkg_weight)

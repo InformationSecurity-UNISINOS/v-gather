@@ -81,11 +81,7 @@ def DbGetCase(case_id):
 	process_tcp_banner, process_tcp_banner_weight,\
 	process_udp_banner, process_udp_banner_weight,\
 	package_name, package_name_weight,\
-	package_type_id, package_type_id_weight,\
 	process_binary, process_binary_weight,\
-	process_binary_dac, process_binary_dac_weight,\
-	process_binary_uid, process_binary_uid_weight,\
-	process_binary_gid, process_binary_gid_weight\
 	from use_cases where id=%i and status=1" %case_id 
 
 	cursor.execute(query)
@@ -110,32 +106,11 @@ def DbGetCase(case_id):
 	db_case['process_udp_banner_weight']=results[0][16]
 	db_case['package_name']=results[0][17]
 	db_case['package_name_weight']=results[0][18]
-	db_case['package_type_id']=results[0][19]
-	db_case['package_type_id_weight']=results[0][20]
-	db_case['process_binary']=results[0][21]
-	db_case['process_binary_weight']=results[0][22]
-	db_case['process_binary_dac']=results[0][23]
-	db_case['process_binary_dac_weight']=results[0][24]
-	db_case['process_binary_uid']=results[0][25]
-	db_case['process_binary_uid_weight']=results[0][26]
-	db_case['process_binary_gid']=results[0][27]
-	db_case['process_binary_gid_weight']=results[0][28]
+	db_case['process_binary']=results[0][19]
+	db_case['process_binary_weight']=results[0][20]
+	
 	conn.close()
 	return db_case
-	
-def DbGetPkgMgr(package_type_id):
-	conn=DbConnect()
-	if conn == None:
-		return False
-	if DbCountCases == 0:
-		# nao existem casos na base
-		return 0 
-	cursor = conn.cursor()
-	query="Select name from package_types where id=%i" %int(package_type_id)
-	cursor.execute(query)
-	results = cursor.fetchone()
-	conn.close()
-	return results[0]
 
 def DbGetSoName(so_id):
 	conn=DbConnect()
