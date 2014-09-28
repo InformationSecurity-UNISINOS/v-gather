@@ -81,7 +81,7 @@ def DbGetCase(case_id):
 	process_tcp_banner, process_tcp_banner_weight,\
 	process_udp_banner, process_udp_banner_weight,\
 	package_name, package_name_weight,\
-	process_binary, process_binary_weight,\
+	process_binary, process_binary_weight \
 	from use_cases where id=%i and status=1" %case_id 
 
 	cursor.execute(query)
