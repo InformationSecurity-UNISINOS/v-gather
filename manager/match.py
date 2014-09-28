@@ -182,14 +182,16 @@ def MatchData():
 					if ja_cadastrado==False:
 						candidates.AddQueue(scored)
 						filtro.AddQueue(scored)
-						#print "*"*50
-						#for k,v in scored.items():
-						#	print "%s => %s" %(k,v)
-						#print "*"*50
+						esse=candidates.GetQueue()
+						print "#"*50
+						for k,v in esse.items():
+							print "%s => %s" %(k,v)
+						print "#"*50
 					
 			qlen-=1	
 		case_id+=1
 	recvdata.DestroyQueue()
+	filtro.DestroyQueue()
 	DbSimCases()
 	return True
 
