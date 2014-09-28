@@ -134,7 +134,7 @@ if(login_check($mysqli) == false) {
 			                                                process_udp_banner, process_udp_banner_weight,
 			                                                package_name, package_name_weight,
 			                                                process_binary, process_binary_weight
-			                                               	FROM use_cases WHERE id = ?");
+			                                               	FROM use_cases WHERE id = ? AND status=1");
 														$stmt->bind_param('i', $i);
 														
 												        $stmt->execute();
