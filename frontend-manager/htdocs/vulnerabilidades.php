@@ -203,8 +203,8 @@ if(login_check($mysqli) == false) {
 	                                                		echo '</tr>';
 	                                                		echo '<tr>';
 	                                                			echo '<th style="text-align:center;background:#929497;" > - </th>';
-	                                                				echo '<th style="text-align:center;background:#929497;" colspan="2"><font color="#FFFFFF">CASO</font></th>';
 	                                                				echo '<th style="text-align:center;background:#929497;" colspan="2"><font color="#FFFFFF">CANDIDATO</font></th>';
+	                                                				echo '<th style="text-align:center;background:#929497;" colspan="2"><font color="#FFFFFF">CASO RELACIONADO</font></th>';
 	                                                		echo '</tr>';
 	                                                    	echo '<tr>';
 	                                                        	echo '<th style="text-align:center;" width="100px">Itens</th>';
@@ -235,7 +235,7 @@ if(login_check($mysqli) == false) {
 	                                                        echo '<td>'. $soname .'</td>';
 	                                                        echo '<td width="10%"> '. round($so_id_weight,3) .'</td>';
 	                                                        echo '<td>'. $r_soname .'</td>';
-	                                                        echo '<td> '. round($r_so_id_weight,3) .'</td>';
+	                                                        echo '<td> '. round($r_so_id_score,3) .'</td>';
 	                                                   	echo '</tr>';
 
 	                                                   	echo '<tr align="center">';
