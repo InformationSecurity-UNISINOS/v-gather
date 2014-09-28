@@ -111,7 +111,7 @@ if(login_check($mysqli) == false) {
                                         	<?php
                                         		include_once 'includes/db_connect.php';
 												include_once 'includes/functions.php';
-												$stmt=$mysqli->prepare("SELECT COUNT(id) FROM use_cases");
+												$stmt=$mysqli->prepare("SELECT COUNT(id) FROM use_cases WHERE status=1");
 												if ($stmt === FALSE) {
             												printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
             												die ("Mysql Error: " . $mysqli->error);
