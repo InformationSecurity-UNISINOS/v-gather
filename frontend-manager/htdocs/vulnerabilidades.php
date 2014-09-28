@@ -112,7 +112,7 @@ if(login_check($mysqli) == false) {
                                         		include_once 'includes/db_connect.php';
 												include_once 'includes/functions.php';
 
-												$stmt = $mysqli->prepare("SELECT id FROM `use_cases` WHERE status=2");
+												$stmt = $mysqli->prepare("SELECT id FROM use_cases WHERE status = 2 ORDER BY candidate_final_score DESC");
 												$stmt->execute();
 												$i=0;
 												$row = array();
@@ -142,7 +142,7 @@ if(login_check($mysqli) == false) {
 			                                               process_udp_banner, process_udp_banner_score,
 			                                               package_name, package_name_score,
 			                                               process_binary, process_binary_score, candidate_final_score
-			                                              FROM use_cases WHERE id = ? AND status = 2 ORDER BY candidate_final_score DESC");
+			                                              FROM use_cases WHERE id IN = ? AND status = 2 ORDER BY candidate_final_score DESC");
 											        if ($stmt2 === FALSE) {
 	            										die ("Mysql Error: " . $mysqli->error);
         											}
