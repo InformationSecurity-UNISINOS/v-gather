@@ -197,7 +197,9 @@ if(login_check($mysqli) == false) {
 														echo '<table class="table table-bordered table-striped table-condensed" style="text-align:center;">';
 	                                                		echo '<thead>';
 	                                                			echo '<tr>';
-	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="5"><font color="#FFFFFF">MATCH ' . $i . '</font></th>';
+	                                                				echo '<th style="text-align:center;background:#34383c;" colspan="5"><font color="#FFFFFF">MATCH ' . $i . '</font></th>';
+	                                                			echo '</tr>';
+	                                                			echo '<tr>';
 	                                                					echo '<th style="text-align:center;background:#929497;" > - </th>';
 	                                                					echo '<th style="text-align:center;background:#929497;" colspan="2"><font color="#FFFFFF">CASO</font></th>';
 	                                                					echo '<th style="text-align:center;background:#929497;" colspan="2"><font color="#FFFFFF">CANDIDATO</font></th>';
