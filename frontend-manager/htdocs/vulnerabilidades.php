@@ -142,7 +142,7 @@ if(login_check($mysqli) == false) {
 			                                               process_udp_banner, process_udp_banner_score,
 			                                               package_name, package_name_score,
 			                                               process_binary, process_binary_score, candidate_final_score
-			                                              FROM use_cases WHERE id IN = ? AND status = 2 ORDER BY candidate_final_score DESC");
+			                                              FROM use_cases WHERE id = ?");
 											        if ($stmt2 === FALSE) {
 	            										die ("Mysql Error: " . $mysqli->error);
         											}
