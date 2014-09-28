@@ -169,7 +169,7 @@ def DbSimCases():
 		# que precisou ser adaptada, seja porque não propôs a melhor solução para a situação. Nesses casos,
 		# a experiência obtida com o processo deve ser retida no sistema através de um novo caso.
 		#
-		continue
+		#continue
 		conn=DbConnect()
 		if conn == None:
 			return False
