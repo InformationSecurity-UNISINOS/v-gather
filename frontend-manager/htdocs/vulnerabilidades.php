@@ -207,11 +207,11 @@ if(login_check($mysqli) == false) {
 	                                                				echo '<th style="text-align:center;background:#929497;" colspan="2"><font color="#FFFFFF">CASO RELACIONADO</font></th>';
 	                                                		echo '</tr>';
 	                                                    	echo '<tr>';
-	                                                        	echo '<th style="text-align:center;" width="100px">Itens</th>';
-	                                                        	echo '<th style="text-align:center;">Valores</th>';
-	                                                        	echo '<th style="text-align:center;" width="100px">Peso</th>';
-	                                                        	echo '<th style="text-align:center;">Valores</th>';
-	                                                        	echo '<th style="text-align:center;" width="100px">Score</th>';
+	                                                        	echo '<th style="text-align:center;" width="20%">Itens</th>';
+	                                                        	echo '<th style="text-align:center;" width="10%">Valores</th>';
+	                                                        	echo '<th style="text-align:center;" width="20%">Peso</th>';
+	                                                        	echo '<th style="text-align:center;" width="10%">Valores</th>';
+	                                                        	echo '<th style="text-align:center;" width="10%">Score</th>';
 	                                                    	echo '</tr>';
 	                                                	echo '</thead>';
 	                                                	echo '<tbody>';
@@ -235,7 +235,7 @@ if(login_check($mysqli) == false) {
 	                                                        echo '<td>'. $soname .'</td>';
 	                                                        echo '<td width="10%"> '. round($so_id_weight,3) .'</td>';
 	                                                        echo '<td>'. $r_soname .'</td>';
-	                                                        echo '<td> '. round($r_so_id_score,3) .'</td>';
+	                                                        echo '<td width="10%"> '. round($r_so_id_score,3) .'</td>';
 	                                                   	echo '</tr>';
 
 	                                                   	echo '<tr align="center">';
@@ -243,7 +243,7 @@ if(login_check($mysqli) == false) {
 	                                                        echo '<td>'. $so_version .'</td>';
 	                                                       	echo '<td width="10%">'. round($so_version_weight,3) .'</td>';
 	                                                       	echo '<td>'. $r_so_version .'</td>';
-	                                                       	echo '<td>'. round($r_so_version_score,3) .'</td>';
+	                                                       	echo '<td width="10%">'. round($r_so_version_score,3) .'</td>';
 	                                                   	echo '</tr>';
 
 	                                                   	echo '<tr align="center">';
@@ -251,7 +251,7 @@ if(login_check($mysqli) == false) {
 	                                                        echo '<td>'. $process_name .'</td>';
 	                                                        echo '<td width="10%">'. round($process_name_weight,3) .'</td>';
 	                                                        echo '<td>'. $r_process_name .'</td>';
-	                                                        echo '<td>'. round($r_process_name_score,3) .'</td>';
+	                                                        echo '<td width="10%">'. round($r_process_name_score,3) .'</td>';
 	                                                   	echo '</tr>';
 
 	                                                   	echo '<tr align="center">';
@@ -259,7 +259,7 @@ if(login_check($mysqli) == false) {
 	                                                        echo '<td>'. $process_uid .'</td>';
 	                                                        echo '<td width="10%">'. round($process_uid_weight,3) .'</td>';
 	                                                        echo '<td>'. $r_process_uid .'</td>';
-	                                                        echo '<td>'. round($r_process_uid_score,3) .'</td>';
+	                                                        echo '<td width="10%">'. round($r_process_uid_score,3) .'</td>';
 	                                                   	echo '</tr>';
 
 	                                                   	echo '<tr align="center">';
@@ -267,7 +267,7 @@ if(login_check($mysqli) == false) {
 	                                                        echo '<td>'. $process_gid .'</td>';
 	                                                        echo '<td width="10%">'. round($process_gid_weight,3) .'</td>';
 	                                                        echo '<td>'. $r_process_gid .'</td>';
-	                                                        echo '<td >'. round($r_process_gid_score,3) .'</td>';
+	                                                        echo '<td width="10%">'. round($r_process_gid_score,3) .'</td>';
 	                                                   	echo '</tr>';
 
 	                                                   	echo '<tr align="center">';
@@ -275,7 +275,7 @@ if(login_check($mysqli) == false) {
 	                                                        echo '<td>'. $process_args .'</td>';
 	                                                        echo '<td width="10%">'. round($process_args_weight,3) .'</td>';
 	                                                        echo '<td>'. $r_process_args .'</td>';
-	                                                        echo '<td >'. round($r_process_args_score,3) .'</td>';
+	                                                        echo '<td width="10%">'. round($r_process_args_score,3) .'</td>';
 	                                                   	echo '</tr>';
 
 	                                                   	echo '<tr align="center">';
@@ -283,7 +283,7 @@ if(login_check($mysqli) == false) {
 	                                                        echo '<td>'. $package_name .'</td>';
 	                                                        echo '<td width="10%">'. round($package_name_weight,3) .'</td>';
 	                                                        echo '<td>'. $r_package_name .'</td>';
-	                                                        echo '<td >'. round($r_package_name_score,3) .'</td>';
+	                                                        echo '<td width="10%">'. round($r_package_name_score,3) .'</td>';
 	                                                   	echo '</tr>';
 
 	                                                   	echo '<tr align="center">';
@@ -291,7 +291,7 @@ if(login_check($mysqli) == false) {
 	                                                       	echo '<td>'. $process_binary .'</td>';
 	                                                        echo '<td width="10%">'. round($process_binary_weight,3) .'</td>';
 	                                                        echo '<td>'. $r_process_binary .'</td>';
-	                                                       	echo '<td >'. round($r_process_binary_score,3) .'</td>';
+	                                                       	echo '<td width="10%">'. round($r_process_binary_score,3) .'</td>';
 	                                                   	echo '</tr>';
 
 	                                                   	 echo '<tr align="center">';
@@ -299,7 +299,7 @@ if(login_check($mysqli) == false) {
 	                                                        echo '<td>'. $process_tcp_banner .'</td>';
 	                                                        echo '<td width="10%">'. round($process_tcp_banner_weight,3) .'</td>';
 	                                                       	echo '<td>'. $r_process_tcp_banner .'</td>';
-	                                                        echo '<td >'. round($r_process_tcp_banner_score,3) .'</td>';
+	                                                        echo '<td width="10%">'. round($r_process_tcp_banner_score,3) .'</td>';
 	                                                   	 echo '</tr>';
 
 														echo '<tr align="center">';
@@ -307,7 +307,7 @@ if(login_check($mysqli) == false) {
 	                                                       	echo '<td>'. $process_udp_banner .'</td>';
 	                                                       	echo '<td width="10%">'. round($process_udp_banner_weight,3) .'</td>';
 	                                                       	echo '<td>'. $r_process_udp_banner .'</td>';
-	                                                        echo '<td> '. round($r_process_udp_banner_score,3) .'</td>';
+	                                                        echo '<td width="10%"> '. round($r_process_udp_banner_score,3) .'</td>';
 	                                                   	 echo '</tr>';
 	                                                   	 		
 														$stmt2=$mysqli->prepare("SELECT solution,description FROM use_case_desc_solution WHERE case_id = ?");
