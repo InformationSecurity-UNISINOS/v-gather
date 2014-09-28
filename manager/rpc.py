@@ -28,24 +28,24 @@ class XmlHandler(xmlrpc.XMLRPC):
         ParamDict["p_gid"]=rcv_p_gid
         ParamDict["p_args"]=ParseArgs(rcv_p_args)
         ParamDict["pf_path"]=rcv_pf_path
-        ParamDict["pf_dac"]=rcv_pf_dac
-        ParamDict["pf_uid"]=rcv_pf_uid
-        ParamDict["pf_gid"]=rcv_pf_gid
+        #ParamDict["pf_dac"]=rcv_pf_dac
+        #ParamDict["pf_uid"]=rcv_pf_uid
+        #ParamDict["pf_gid"]=rcv_pf_gid
 
         rpm=False
         dpkg=False
         if str(rcv_p_rpm) != "nada" and len(rcv_p_rpm) >1:
-            ParamDict["manager"]="RPM"
+            #ParamDict["manager"]="RPM"
             ParamDict["pacote"]=rcv_p_rpm
             rpm=True
 
         if str(rcv_p_dpkg) != "nada" and len(rcv_p_dpkg) >1:
-            ParamDict["manager"]="DPKG"
+            #ParamDict["manager"]="DPKG"
             ParamDict["pacote"]=rcv_p_dpkg
             dpkg=True
 
         if rpm == False and dpkg == False:
-            ParamDict["manager"]=""
+            #ParamDict["manager"]=""
             ParamDict["pacote"]=""
         
         tbanner=""
