@@ -200,7 +200,7 @@ if(login_check($mysqli) == false) {
 													echo '<table class="table table-bordered table-striped table-condensed" style="text-align:center;">';
 	                                                	echo '<thead>';
 	                                                		echo '<tr>';
-	                                                			echo '<th style="text-align:center;background:#34383c;" colspan="5"><font color="#FFFFFF">MATCH ' . $i / " SCORE: " . round($candidate_final_score,4) .'</font></th>';
+	                                                			echo '<th style="text-align:center;background:#34383c;" colspan="5"><font color="#FFFFFF">MATCH: ' . $i . " SCORE: " . round($candidate_final_score,4) .'</font></th>';
 	                                                		echo '</tr>';
 	                                                		echo '<tr>';
 	                                                			echo '<th style="text-align:center;background:#929497;" > - </th>';
