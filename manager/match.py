@@ -172,26 +172,25 @@ def MatchData():
 					# seja cadastrado novamente
 					flen=filtro.LenQueue()
 					#ja_cadastrado=False
-					#while flen>0:
-					#	cadastrado = {}
-					#	cadastrado = filtro.GetQueue()
-					#	if cmp(cadastrado,scored) == 0:
-					#		ja_cadastrado=True
-					#		break
-					#	flen-=1
-					#if ja_cadastrado==False:
+					while flen>0:
+						cadastrado = {}
+						cadastrado = filtro.GetQueue()
+						if cmp(cadastrado,scored) == 0:
+							ja_cadastrado=True
+							break
+						flen-=1
+					if ja_cadastrado==False:
 					candidates.AddQueue(scored)
-					#	filtro.AddQueue(scored)
-					#print "*"*50
-					#for k,v in scored.items():
-					#	print "%s => %s" %(k,v)
-					#print "*"*50
+					filtro.AddQueue(scored)
+					print "*"*50
+					for k,v in scored.items():
+						print "%s => %s" %(k,v)
+					print "*"*50
 					
 			qlen-=1	
 		case_id+=1
 	recvdata.DestroyQueue()
-	#DestroyQueue(rcv_queue)
-	DbSimCases()
+	#DbSimCases()
 	return True
 
 
