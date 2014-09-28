@@ -115,6 +115,15 @@ if(login_check($mysqli) == false) {
                                         		include_once 'includes/db_connect.php';
 												include_once 'includes/functions.php';
 
+												$stmt=$mysqli->prepare("SELECT id FROM use_cases WHERE status = 2 LIMIT 1");
+												if ($stmt === FALSE) {
+            												printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
+            												die ("Mysql Error: " . $mysqli->error);
+        										}
+												$stmt->execute();
+												$stmt->bind_result($vstart);
+												$stmt->fetch();
+												$stmt->free_result(); 
 
 												$stmt=$mysqli->prepare("SELECT count(id) FROM use_cases WHERE status = 2");
 												if ($stmt === FALSE) {
@@ -127,7 +136,7 @@ if(login_check($mysqli) == false) {
 												$stmt->free_result(); 
 
 												if ($nro_casos) {
-													for ($i = 1; $i <= $nro_casos; $i++) {
+													for ($i = $vstart; $i <= $nro_casos; $i++) {
 														$stmt = $mysqli->prepare("SELECT id,date,
 			                                                so_id, so_id_weight,
 			                                                so_version, so_version_weight,
@@ -138,11 +147,7 @@ if(login_check($mysqli) == false) {
 			                                                process_tcp_banner, process_tcp_banner_weight,
 			                                                process_udp_banner, process_udp_banner_weight,
 			                                                package_name, package_name_weight,
-			                                                package_type_id, package_type_id_weight,
-			                                                process_binary, process_binary_weight,
-			                                                process_binary_dac, process_binary_dac_weight,
-			                                                process_binary_uid, process_binary_uid_weight,
-			                                                process_binary_gid, process_binary_gid_weight
+			                                                process_binary, process_binary_weight
 			                                               	FROM use_cases WHERE id = ? AND status = 2");
 														$stmt->bind_param('i', $i);
 														
@@ -157,11 +162,7 @@ if(login_check($mysqli) == false) {
 																			$process_tcp_banner,$process_tcp_banner_weight,
 																			$process_udp_banner,$process_udp_banner_weight,
 																			$package_name, $package_name_weight,
-																			$package_type_id, $package_type_id_weight,
-																			$process_binary, $process_binary_weight,
-																			$process_binary_dac, $process_binary_dac_weight,
-																			$process_binary_uid, $process_binary_uid_weight,
-																			$process_binary_gid, $process_binary_gid_weight);
+																			$process_binary, $process_binary_weight);
 														$stmt->fetch();
 														$stmt->free_result(); 
 
@@ -235,33 +236,9 @@ if(login_check($mysqli) == false) {
 																$stmt->free_result();
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Gerenciador de Pacotes" .'</td>';
-	                                                        		echo '<td>'.  $pkg_mgr .'</td>';
-	                                                        		echo '<td width="20%">'. round($package_type_id_weight,3). '</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Binário do Processo" .'</td>';
 	                                                        		echo '<td>'.  $process_binary .'</td>';
 	                                                        		echo '<td width="20%">'.  round($process_binary_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "UID do Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_binary_uid .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_binary_uid_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "GID do Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_binary_gid .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_binary_gid_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "DAC do Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_binary_dac .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_binary_dac_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
@@ -269,6 +246,7 @@ if(login_check($mysqli) == false) {
 	                                                        		echo '<td>'.  $process_tcp_banner .'</td>';
 	                                                        		echo '<td width="20%">'.  round($process_tcp_banner_weight,3) .'</td>';
 	                                                   	 		echo '</tr>';
+
 																echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Banner de serviço UDP:" .'</td>';
 	                                                        		echo '<td>'.  $process_udp_banner .'</td>';
@@ -299,7 +277,6 @@ if(login_check($mysqli) == false) {
 											    } else {
 											    	echo "Nenhuma vulnerabilidade até o momento.";
 											    }
-	                                            
                                             ?>
 
                                         </div>
@@ -308,19 +285,10 @@ if(login_check($mysqli) == false) {
                             </div> <!-- /Criterios de Impacto -->
 					</div><!--/row-->
 
-
 				</div><!--/col-->
-				
-			
-				
+
 			</div><!--/row-->	
-			
-			
-			
-							
-			
-     
-					
+				
 			</div>
 			<!-- end: Content -->
 				
