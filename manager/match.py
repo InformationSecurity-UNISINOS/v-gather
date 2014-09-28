@@ -180,12 +180,12 @@ def MatchData():
 							break
 						flen-=1
 					if ja_cadastrado==False:
-					candidates.AddQueue(scored)
-					filtro.AddQueue(scored)
-					print "*"*50
-					for k,v in scored.items():
-						print "%s => %s" %(k,v)
-					print "*"*50
+						candidates.AddQueue(scored)
+						filtro.AddQueue(scored)
+						print "*"*50
+						for k,v in scored.items():
+							print "%s => %s" %(k,v)
+						print "*"*50
 					
 			qlen-=1	
 		case_id+=1
