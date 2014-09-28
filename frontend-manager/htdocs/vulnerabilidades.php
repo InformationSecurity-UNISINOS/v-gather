@@ -146,7 +146,6 @@ if(login_check($mysqli) == false) {
 											        if ($stmt2 === FALSE) {
 	            										die ("Mysql Error: " . $mysqli->error);
         											}
-
 													$stmt2->bind_param('i', $field);
 														
 												    $stmt2->execute();
@@ -217,14 +216,14 @@ if(login_check($mysqli) == false) {
 	                                                	echo '</thead>';
 	                                                	echo '<tbody>';
 
-														$stmt2= $mysqli->prepare("select name from sos where id = ?");
+														$stmt2= $mysqli->prepare("SELECT name FROM sos WHERE id = ?");
 														$stmt2->bind_param('i', $so_id);
 														$stmt2->execute();
 														$stmt2->bind_result($soname);
 														$stmt2->fetch();
 														$stmt2->free_result();
 
-														$stmt2= $mysqli->prepare("select name from sos where id = ?");
+														$stmt2= $mysqli->prepare("SELECT name FROM sos WHERE id = ?");
 														$stmt2->bind_param('i', $r_so_id);
 														$stmt2->execute();
 														$stmt2->bind_result($r_soname);
@@ -320,7 +319,7 @@ if(login_check($mysqli) == false) {
 
 	                                                   	echo '<tr align="center">';
 	                                                       	echo '<td>'. "Descrição do Caso Relacionado" .'</td>';
-	                                                        echo '<td colspan="4">'. $descricao .'</td>';
+	                                                        echo '<td colspan="4">'. $descricao . " DEBUG CASE RELATED: " . $case_related .'</td>';
 	                                                   	 echo '</tr>';
 
 	                                                   	 echo '<tr align="center">';
