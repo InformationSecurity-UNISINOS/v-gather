@@ -151,8 +151,8 @@ def DbSimCases():
 		for k,v in pdict2.items():
 			if v == "" or len(str(v)) == 0:
 				pdict2[k]="N/A"
-			print "pdict2: %s => %s" %(k,v)
-		clen-=1
+			#print "pdict2: %s => %s" %(k,v)
+		
 		#
 		#
 		# Dumbo - 5.5.4 Aprendizado - página 107

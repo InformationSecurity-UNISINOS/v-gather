@@ -182,11 +182,11 @@ def MatchData():
 					if ja_cadastrado==False:
 						candidates.AddQueue(scored)
 						filtro.AddQueue(scored)
-						esse=candidates.GetQueue()
-						print "#"*50
-						for k,v in esse.items():
-							print "%s => %s" %(k,v)
-						print "#"*50
+						#esse=candidates.GetQueue()
+						#print "#"*50
+						#for k,v in esse.items():
+					#		print "esse: %s => %s" %(k,v)
+					#	print "#"*50
 					
 			qlen-=1	
 		case_id+=1
