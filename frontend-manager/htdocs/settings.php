@@ -51,7 +51,7 @@ if(login_check($mysqli) == false) {
 			
 			//e.preventDefault();
 			var _self = $(this);
-			var item = _self.data('id');
+			var item = $(this).attr("data-id");
 			//$("#edicao").val(item);
 			alert(item);
 			$(_self.attr('href')).modal('show');
