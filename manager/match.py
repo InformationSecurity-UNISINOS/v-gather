@@ -16,11 +16,11 @@ Received 1 December 1998; accepted 17 March 1999
 def Similarity(item1,item2):
 	import Levenshtein
 	import math
-	if isinstance(item1, (int, long, float, complex)) and isinstance(item2, (int, long, float, complex)): #numero
+	if isinstance(item1, (int, long, float, complex)) and isinstance(item2, (int, long, float, complex)):
 		a=item1*item1
 		b=item2*item2
 		return (round(a/math.sqrt(a*b),2)
-	else: #string
+	else: 
 		return round(Levenshtein.ratio(item1,item2),2)
 
 def MatchData():
