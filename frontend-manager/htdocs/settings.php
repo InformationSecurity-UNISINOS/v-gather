@@ -243,7 +243,7 @@ if(login_check($mysqli) == false) {
 				</div>
 				<div class="modal-body">
 
-					<form action="settings.php" method="POST" role="form" class="form-horizontal">
+					<form action="save-settings.php" method="POST" role="form" class="form-horizontal">
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
@@ -270,11 +270,7 @@ if(login_check($mysqli) == false) {
 							</tbody>
 						</table>
 					</form>
-					<?php
-							echo "novo valor: " . $_POST['novo_valor'] . "<br>";
-							echo "nova desc: " . $_POST['nova_desc'] . "<br>";
-							echo "id: " . $_POST['tupla'] . "<br>"; 
-					?>	
+					
 					
 					
 				</div>
