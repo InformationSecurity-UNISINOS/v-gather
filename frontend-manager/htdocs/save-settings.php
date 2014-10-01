@@ -12,9 +12,18 @@ if(login_check($mysqli) == false) {
         die();
 }
 
-echo "novo valor: " . $_POST['novo_valor'] . "<br>";
-echo "nova desc: " . $_POST['nova_desc'] . "<br>";
-echo "id: " . $_POST['tupla'] . "<br>"; 
+$valor=xss_clean($_POST['novo_valor']);
+$descricao=xss_clean($_POST['nova_desc']);
+$id=$_POST['tupla'];
+
+$stmt=$mysqli->prepare("UPDATE TABLE weight_settings SET weight=?,descr=? WHERE id=?");
+if ($stmt === FALSE) {
+    die ("Mysql Error 1: " . $mysqli->error);
+}
+
+$stmt->bind_param('ssi', $valor,$descricao,$id );
+$stmt->execute();
+$stmt->free_result();
 
 ?>
 </body>
