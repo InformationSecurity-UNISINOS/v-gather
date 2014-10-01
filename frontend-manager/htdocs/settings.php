@@ -50,10 +50,10 @@ if(login_check($mysqli) == false) {
 		function editar(btn) { 
 			
 			var item = $(btn).attr("data-id");
-			$('#editar #novo_valor').val($("td",$(btn).parent().parent())[0].innerText);
-			$('#editar #nova_desc').val($("td",$(btn).parent().parent())[1].innerText);
-			$('#editar #novo_valor').val(item);
-			$('#editar').modal('toggle');
+			$('#edicao #novo_valor').val($("td",$(btn).parent().parent())[0].innerText);
+			$('#edicao #nova_desc').val($("td",$(btn).parent().parent())[1].innerText);
+			$('#edicao #novo_valor').val(item);
+			$('#edicao').modal('toggle');
 		}
 	</script>
 </head>
