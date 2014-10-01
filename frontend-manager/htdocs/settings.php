@@ -237,13 +237,12 @@ if(login_check($mysqli) == false) {
 		<div class="modal fade" id="edicao">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Editar Item</h4>
-				</div>
-				<div class="modal-body">
-
-					<form action="save-settings.php" method="POST" role="form" class="form-horizontal">
+				<form action="save-settings.php" method="POST" role="form" class="form-horizontal">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Editar Item</h4>
+					</div>
+					<div class="modal-body">
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
@@ -269,15 +268,12 @@ if(login_check($mysqli) == false) {
 								</tr>
 							</tbody>
 						</table>
-					</form>
-					
-					
-					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" >Salvar</button>
-				</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary" >Salvar</button>
+					</div>
+				</form>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
