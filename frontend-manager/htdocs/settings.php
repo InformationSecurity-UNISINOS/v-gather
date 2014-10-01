@@ -142,7 +142,7 @@ if(login_check($mysqli) == false) {
 
 														echo '<tr>';
 															echo '<td>'.$peso.'</td>';
-															echo '<td>'.$descricao.'</td>';
+															echo '<td>'.htmlentities($descricao).'</td>';
 															echo '<td>';
 																echo '<a onclick="editar(this)" data-id="'.$i.'" class="edicao btn btn-info" href="#">';
 																	echo '<i class="fa fa-edit "></i>';
@@ -208,7 +208,7 @@ if(login_check($mysqli) == false) {
 
 														echo '<tr>';
 															echo '<td>'.$corte.'</td>';
-															echo '<td>'.$descricao.'</td>';
+															echo '<td> '.htmlentities($descricao).'</td>';
 															echo '<td>';
 																echo '<a onclick="editar(this)" data-id="'.$i.'" class="edicao btn btn-info" href="">';
 																	echo '<i class="fa fa-edit "></i>';
@@ -245,10 +245,6 @@ if(login_check($mysqli) == false) {
 					<input placeholder="VALOR" class="form-control focused" id="novo_valor" name="novo_valor" type="text" autocomplete="disabled" >
 					<input placeholder="DESC" class="form-control focused" id="nova_desc" name="nova_desc" type="text" autocomplete="disabled" >
 					<input placeholder="HIDDEN" class="form-control focused" id="hidden_1" name="hidden_1" type="text" autocomplete="disabled" >
-
-					<?php 
-						echo "MODAL VAZIO!<br>Vai ter que editar direto no banco!!!!";
-					?>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
