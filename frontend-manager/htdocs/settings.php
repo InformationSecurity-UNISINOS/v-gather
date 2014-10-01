@@ -47,14 +47,15 @@ if(login_check($mysqli) == false) {
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->
 	<script>
-		$(document).on("click", ".edicao", function (e) {
-			e.preventDefault();
+		function editar() { 
+			
+			//e.preventDefault();
 			var _self = $(this);
 			var item = _self.data('id');
 			//$("#edicao").val(item);
 			alert(item);
 			$(_self.attr('href')).modal('show');
-		});
+		}
 	</script>
 </head>
 
@@ -210,7 +211,7 @@ if(login_check($mysqli) == false) {
 															echo '<td>'.$corte.'</td>';
 															echo '<td>'.$descricao.'</td>';
 															echo '<td>';
-																echo '<a data-toggle="modal" data-target="#edicao" data-id="'.$i.'" class="edicao btn btn-info" href="#edicao">';
+																echo '<a onclick="editar" data-id="'.$i.'" class="edicao btn btn-info" href="#edicao">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
 																echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
