@@ -13,9 +13,15 @@ Received 1 December 1998; accepted 17 March 1999
 
 - Similarities are usually normalised to fall within a range of zero to one
 '''
-def Similarity(string_a,string_b):
+def Similarity(item1,item2):
 	import Levenshtein
-	return round(Levenshtein.ratio(string_a,string_b),2)
+	import math
+	if isinstance(item1, (int, long, float, complex)) and isinstance(item2, (int, long, float, complex)): #numero
+		a=item1*item1
+		b=item2*item2
+		return (round(a/math.sqrt(a*b),2)
+	else: #string
+		return round(Levenshtein.ratio(item1,item2),2)
 
 def MatchData():
 	print "[+] MatchData"
