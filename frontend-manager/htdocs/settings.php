@@ -139,10 +139,10 @@ if(login_check($mysqli) == false) {
 														$stmt->bind_result($peso,$descricao);
 														$stmt->fetch();
 														$stmt->free_result(); 
-
+														
 														echo '<tr>';
 															echo '<td>'.$peso.'</td>';
-															echo '<td>'.htmlEntities($descricao).'</td>';
+															echo '<td>'. $descricao .'</td>';
 															echo '<td>';
 																echo '<a onclick="editar(this)" data-id="'.$i.'" class="edicao btn btn-info" href="#">';
 																	echo '<i class="fa fa-edit "></i>';
@@ -208,7 +208,7 @@ if(login_check($mysqli) == false) {
 
 														echo '<tr>';
 															echo '<td>'.$corte.'</td>';
-															echo '<td> '.htmlEntities($descricao).'</td>';
+															echo '<td> '.$descricao.'</td>';
 															echo '<td>';
 																echo '<a onclick="editar(this)" data-id="'.$i.'" class="edicao btn btn-info" href="">';
 																	echo '<i class="fa fa-edit "></i>';
