@@ -47,11 +47,11 @@ if(login_check($mysqli) == false) {
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->
 	<script>
-		function editar() { 
+		function editar(btn) { 
 			
 			//e.preventDefault();
 			var _self = $(this);
-			var item = $(this).attr("data-id");
+			var item = $(btn).attr("data-id");
 			//$("#edicao").val(item);
 			alert(item);
 			$(_self.attr('href')).modal('show');
@@ -145,7 +145,7 @@ if(login_check($mysqli) == false) {
 															echo '<td>'.$peso.'</td>';
 															echo '<td>'.$descricao.'</td>';
 															echo '<td>';
-																echo '<a onclick="editar()" data-id="'.$i.'" class="edicao btn btn-info" href="#">';
+																echo '<a onclick="editar(this)" data-id="'.$i.'" class="edicao btn btn-info" href="#">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
 																echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
@@ -211,7 +211,7 @@ if(login_check($mysqli) == false) {
 															echo '<td>'.$corte.'</td>';
 															echo '<td>'.$descricao.'</td>';
 															echo '<td>';
-																echo '<a onclick="editar()" data-id="'.$i.'" class="edicao btn btn-info" href="">';
+																echo '<a onclick="editar(this)" data-id="'.$i.'" class="edicao btn btn-info" href="">';
 																	echo '<i class="fa fa-edit "></i>';
 																echo '</a>';
 																echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
