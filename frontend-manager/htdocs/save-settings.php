@@ -16,7 +16,7 @@ $valor=xss_clean($_POST['novo_valor']);
 $descricao=xss_clean($_POST['nova_desc']);
 $id=$_POST['tupla'];
 
-$stmt=$mysqli->prepare("UPDATE TABLE weight_settings SET weight=?,descr=? WHERE id=?");
+$stmt=$mysqli->prepare("UPDATE weight_settings SET weight=?, descr=? WHERE id=?");
 if ($stmt === FALSE) {
     die ("Mysql Error 1: " . $mysqli->error);
 }
