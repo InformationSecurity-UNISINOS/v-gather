@@ -54,6 +54,7 @@ if(login_check($mysqli) == false) {
 			var item = $(btn).attr("data-id");
 			//$("#edicao").val(item);
 			alert(item);
+			$('#editar #novo_valor').val($(btn).parent().child(0));
 			$(_self.attr('href')).modal('show');
 		}
 	</script>
@@ -243,6 +244,10 @@ if(login_check($mysqli) == false) {
 					<h4 class="modal-title">Editar Item</h4>
 				</div>
 				<div class="modal-body">
+					<input placeholder="VALOR" class="form-control focused" id="novo_valor" name="novo_valor" type="text" autocomplete="disabled" >
+					<input placeholder="DESC" class="form-control focused" id="nova_desc" name="nova_desc" type="text" autocomplete="disabled" >
+					<input placeholder="HIDDEN" class="form-control focused" id="hidden_1" name="hidden_1" type="text" autocomplete="disabled" >
+
 					<?php 
 						echo "MODAL VAZIO!<br>Vai ter que editar direto no banco!!!!";
 					?>
