@@ -25,6 +25,7 @@ $stmt->bind_param('ssi', $valor,$descricao,$id );
 $stmt->execute();
 $stmt->free_result();
 
+header('Location: settings.php');
 ?>
 </body>
 </html>
