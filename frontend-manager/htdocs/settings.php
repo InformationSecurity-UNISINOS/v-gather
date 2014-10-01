@@ -52,7 +52,7 @@ if(login_check($mysqli) == false) {
 			var item = $(btn).attr("data-id");
 			$('#edicao #novo_valor').val($("td",$(btn).parent().parent())[0].innerText);
 			$('#edicao #nova_desc').val($("td",$(btn).parent().parent())[1].innerText);
-			$('#edicao #novo_valor').val(item);
+			$('#edicao #tupla').val(item);
 			$('#edicao').modal('toggle');
 		}
 	</script>
@@ -95,7 +95,7 @@ if(login_check($mysqli) == false) {
 						
 				<!-- start: Content -->
 				<div id="content" class="col-lg-10 col-sm-11 ">
-					<div class="row">		
+					<div class="row">
 						<ol class="breadcrumb">
 					  		<li><a href="#">V-Gather</a></li>
 					  		<li class="active" >Configurações</li>
@@ -242,9 +242,41 @@ if(login_check($mysqli) == false) {
 					<h4 class="modal-title">Editar Item</h4>
 				</div>
 				<div class="modal-body">
-					<input placeholder="VALOR" class="form-control focused" id="novo_valor" name="novo_valor" type="text" autocomplete="disabled" >
-					<input placeholder="DESC" class="form-control focused" id="nova_desc" name="nova_desc" type="text" autocomplete="disabled" >
-					<input placeholder="HIDDEN" class="form-control focused" id="hidden_1" name="hidden_1" type="text" autocomplete="disabled" >
+
+					<form action="settings.php" method="POST" role="form" class="form-horizontal">
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Valor</th>
+									<th>Descrição</th>
+								</tr>
+							</thead>   
+							<tbody>
+								<tr>
+									<td>
+										<input class="form-control focused" id="novo_valor" name="novo_valor" type="text" autocomplete="disabled" >
+									</td>
+									<td> 
+										<input class="form-control focused" id="nova_desc" name="nova_desc" type="text" autocomplete="disabled" >
+									</td>
+									<td>
+										<input type="hidden" class="form-control focused" id="tupla" name="tupla" type="text" autocomplete="disabled" >
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<?php
+							echo "novo valor: " . $_POST['novo_valor'] . "<br>";
+							echo "nova desc: " . $_POST['nova_desc'] . "<br>";
+							echo "id: " . $_POST['tupla'] . "<br>"; 
+					?>	
+					
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
