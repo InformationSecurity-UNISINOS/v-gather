@@ -49,13 +49,11 @@ if(login_check($mysqli) == false) {
 	<script>
 		function editar(btn) { 
 			
-			//e.preventDefault();
-			var _self = $(this);
 			var item = $(btn).attr("data-id");
-			//$("#edicao").val(item);
-			alert(item);
-			$('#editar #novo_valor').val($(btn).parent().child(0));
-			$(_self.attr('href')).modal('show');
+			$('#editar #novo_valor').val($("td",$(btn).parent().parent())[0].innerText);
+			$('#editar #nova_desc').val($("td",$(btn).parent().parent())[1].innerText);
+			$('#editar #novo_valor').val(item);
+			$('#editar').modal('toggle');
 		}
 	</script>
 </head>
