@@ -70,21 +70,21 @@ def MatchData():
 			#########################################################################
 			# PROCESS UID:
 			#########################################################################
-	 		p_uid_ratio = Similarity( str(pdict['p_uid']) , str(db_case['process_uid']) )
+	 		p_uid_ratio = Similarity(pdict['p_uid'] , db_case['process_uid'])
 	 		p_uid_weight = float(db_case['process_uid_weight'])
 	 		p_uid_score = float(p_uid_weight) * float(p_uid_ratio)
 	 		final_score=final_score+p_uid_score
 			#########################################################################
 			# PROCESS GID:
 			#########################################################################
-			p_gid_ratio = Similarity( str(pdict['p_gid']) , str(db_case['process_gid']) )
+			p_gid_ratio = Similarity( pdict['p_gid'] , db_case['process_gid'])
 			p_gid_weight = float(db_case['process_gid_weight'])
 			p_gid_score = float(p_gid_ratio) * float(p_gid_weight)
 			final_score=final_score+p_gid_score
 			#########################################################################
 			# PROCESS PROCESS ARGS
 			#########################################################################
-			p_args_ratio = Similarity( str(pdict['p_args']) , str(db_case['process_args']) )
+			p_args_ratio = Similarity(pdict['p_args'] ,db_case['process_args'])
 			p_args_weight = float(db_case['process_args_weight'])
 			p_args_score = float(p_args_ratio) * float(p_args_weight)
 			final_score=final_score+p_args_score 
@@ -112,7 +112,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS DISTRO VERSION
 			#########################################################################
-			distro_version_ratio = Similarity( str(pdict['distro_version']) ,  str(db_case['so_version']) )
+			distro_version_ratio = Similarity(pdict['distro_version'], db_case['so_version'])
 			distro_version_weight = float(db_case['so_version_weight'])
 			distro_version_score = float(distro_version_ratio) * float(distro_version_weight)
 			final_score=final_score+distro_version_score
