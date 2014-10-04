@@ -330,9 +330,14 @@ if(login_check($mysqli) == false) {
 	                                                   	 echo '<tr>';
 	                                                   	 	echo '<td>Escolher este caso e eleger melhor solução</td>'; 
 															echo '<td colspan="4">';
-																echo '<a data-toggle="modal" class="btn btn-info" href="#">';
-																	echo '<i class="fa fa-mail-forward"></i>';
-																echo '</a>';
+																echo '<form action="save-settings.php" method="POST" role="form" class="form-horizontal">';
+																	echo '<a data-toggle="modal" class="btn btn-success" href="#">';
+																			echo '<i class="fa fa-mail-forward"></i>';
+																	echo '</a>';
+																	echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
+																			echo '<i class="fa fa-trash"></i>';
+																	echo '</a>';
+																echo '</form>';
 															echo '</td>';
 														echo '</tr>';
 
