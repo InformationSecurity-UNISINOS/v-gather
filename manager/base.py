@@ -12,8 +12,6 @@
 #
 #
 #
-
-
 import MySQLdb
 from common import *
 from cqueue import *
@@ -120,7 +118,7 @@ def DbGetSoName(so_id):
 		# nao existem casos na base
 		return 0 
 	cursor = conn.cursor()
-	query="Select name from sos where id=%i" %int(so_id)
+	query="SELECT name FROM sos WHERE id=%i" %int(so_id)
 	cursor.execute(query)
 	results = cursor.fetchone()
 	conn.close()
@@ -154,8 +152,7 @@ def DbSimCases():
 
 			print "%s => %s" %(k,v)
 		print "*"*50
-		
-		#
+
 		#
 		# Dumbo - 5.5.4 Aprendizado - página 107
 		# Após o caso ser solucionado, ele é encerrado podendo ou não ser aprendido pelo sistema.
