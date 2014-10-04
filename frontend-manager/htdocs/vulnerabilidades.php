@@ -332,10 +332,10 @@ if(login_check($mysqli) == false) {
 															echo '<td colspan="4">';
 																echo '<form action="save-settings.php" method="POST" role="form" class="form-horizontal">';
 																	echo '<a data-toggle="modal" class="btn btn-success" href="#">';
-																		echo 'Aplicar: <i class="fa fa-mail-forward"></i>';
+																		echo ' Aplicar  <i class="fa fa-mail-forward"></i>';
 																	echo '</a>';
 																	echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
-																		echo ' Rejeitar: <i class="fa fa-trash-o"></i>';
+																		echo ' Rejeitar  <i class="fa fa-trash-o"></i>';
 																	echo '</a>';
 																echo '</form>';
 															echo '</td>';
