@@ -125,10 +125,6 @@ function login($email, $password, $mysqli) {
         
         // hash the password with the unique salt.
         $password = hash('sha512', $password . $salt);
-        print "hashed: " . $password . "<br>";
-        print "db_password: " . $db_password . "<br>";
-        print "salt: " . $salt . "<br>";
-        die();
 
         if ($stmt->num_rows == 1) {
             // If the user exists we check if the account is locked
