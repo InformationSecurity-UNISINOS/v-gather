@@ -191,6 +191,7 @@ CREATE TABLE `use_cases` (
 -- ----------------------------
 -- Records of use_cases
 -- ----------------------------
+INSERT INTO `use_cases` VALUES (1,'2014-09-26 16:52:23',1,1,NULL,2,5.00,NULL,'6.5',1.00,NULL,'httpd',5.00,NULL,48,1.00,NULL,48,1.00,NULL,'',0.00,NULL,'80:Apache httpd',5.00,NULL,'',0.00,NULL,'httpd-2.2.15',5.00,NULL,NULL,NULL,NULL,'/usr/sbin/httpd',5.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'2014-10-02 14:28:01',2,2,1,1,5.00,1.65,'7.4',1.00,0.33,'apache2',5.00,0.85,0,1.00,0.00,0,1.00,0.00,'-k start ',0.00,0.00,'80:Apache httpd',5.00,5.00,'N/A',0.00,0.00,'apache2-2.2.22-13+deb7u1',5.00,1.95,NULL,NULL,NULL,'/usr/lib/apache2/mpm-prefork/apache2',5.00,1.75,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,11.53),(3,'2014-10-02 14:28:01',2,2,1,1,5.00,1.65,'7.4',1.00,0.33,'atd',5.00,2.50,0,1.00,0.00,0,1.00,0.00,'N/A',0.00,0.00,'N/A',5.00,0.00,'N/A',0.00,0.00,'at-3.1.13-2',5.00,2.15,NULL,NULL,NULL,'/usr/sbin/atd',5.00,4.30,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,10.93),(4,'2014-10-02 14:28:01',2,2,1,1,5.00,1.65,'7.4',1.00,0.33,'apache2',5.00,0.85,33,1.00,0.00,33,1.00,0.00,'-k start ',0.00,0.00,'80:Apache httpd',5.00,5.00,'N/A',0.00,0.00,'apache2-2.2.22-13+deb7u1',5.00,1.95,NULL,NULL,NULL,'/usr/lib/apache2/mpm-prefork/apache2',5.00,1.75,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,11.53),(5,'2014-10-02 14:28:01',2,2,1,1,5.00,1.65,'7.4',1.00,0.33,'ntpd',5.00,3.35,109,1.00,0.00,114,1.00,0.40,'-p /var/run/ntpd.pid -g -u 109:114 ',0.00,0.00,'N/A',5.00,0.00,'123:NTP',0.00,0.00,'ntp-1:4.2.6.p5+dfsg-2',5.00,2.10,NULL,NULL,NULL,'/usr/sbin/ntpd',5.00,4.50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12.33),(6,'2014-10-02 14:28:01',2,2,1,1,5.00,1.65,'7.4',1.00,0.33,'sshd',5.00,2.20,0,1.00,0.00,0,1.00,0.00,'N/A',0.00,0.00,'22:OpenSSH',5.00,1.20,'N/A',0.00,0.00,'openssh-server-1:6.0p1-4',5.00,1.10,NULL,NULL,NULL,'/usr/sbin/sshd',5.00,4.15,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,10.63);
 
 
 -- ----------------------------
@@ -208,25 +209,6 @@ CREATE TABLE `use_case_desc_solution` (
 -- Records of use_case_desc_solution
 -- ----------------------------
 
-
-
-
--- ----------------------------
--- Table structure for mgr_users
--- ----------------------------
-DROP TABLE IF EXISTS `mgr_users`;
-CREATE TABLE `mgr_users` (
-    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `username` VARCHAR(30) NOT NULL,
-    `email` VARCHAR(50) NOT NULL,
-    `password` CHAR(128) NOT NULL,
-    `salt` CHAR(128) NOT NULL 
-) ENGINE = InnoDB;
--- ----------------------------
--- Table structure for mgr_users
--- ----------------------------
-
-
 -- ----------------------------
 -- Table structure for mgr_login_attempts
 -- ----------------------------
@@ -239,6 +221,18 @@ CREATE TABLE `mgr_login_attempts` (
 -- Table structure for mgr_login_attempts
 -- ----------------------------
 
+-- ----------------------------
+-- Table structure for mgr_users
+-- ----------------------------
+
+DROP TABLE IF EXISTS `mgr_users`;
+CREATE TABLE `mgr_users` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(30) NOT NULL,
+    `email` VARCHAR(50) NOT NULL,
+    `password` CHAR(128) NOT NULL,
+    `salt` CHAR(128) NOT NULL 
+) ENGINE = InnoDB;
 
 -- -----------
 -- default creds:
@@ -247,8 +241,7 @@ CREATE TABLE `mgr_login_attempts` (
 --  senha: 6ZaxN2Vzm9NUJT2y
 -- -----------
 INSERT INTO mgr_users VALUES(1, 'vmgr', 'vmgr@teste.com',
-'00807432eae173f652f2064bdca1b61b290b52d40e429a7d295d76a71084aa96c0233b82f1feac45529e0726559645acaed6f3ae58a286b9f075916ebf66cacc',
+'445fc3655cede6a6c841d08f0776fac92a0118d1d1597046e09909310b2664538642292515aee4737c39826d70508466f5df36417f09274cb470ca4b6857be7a',
 'f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef');
-
 
 
