@@ -243,12 +243,6 @@ if(login_check($mysqli) == false) {
 	                                                        		echo '<td>'.  htmlentities($process_udp_banner) .'</td>';
 	                                                        		echo '<td width="20%">'.  htmlentities(round($process_udp_banner_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
-
-																echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Banner de serviço UDP:" .'</td>';
-	                                                        		echo '<td>'.  htmlentities($process_udp_banner) .'</td>';
-	                                                        		echo '<td width="20%"'.  htmlentities(round($process_udp_banner_weight,3)) .'</td>';
-	                                                   	 		echo '</tr>';
 	                                                   	 		
 																$stmt=$mysqli->prepare("select solution,description from use_case_desc_solution where case_id = ?");
 																$stmt->bind_param('i', $case_id);
