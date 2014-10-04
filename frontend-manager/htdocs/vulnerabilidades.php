@@ -328,12 +328,17 @@ if(login_check($mysqli) == false) {
 	                                                   	 echo '</tr>';
 
 	                                                   	 echo '<tr>';
-	                                                   	 	echo '<td>Escolher este caso e eleger melhor solução</td>'; 
-															echo '<td colspan="4">';
+	                                                   	 	echo '<td></td>'; 
+															echo '<td>Este é o melhor caso, aplicar solução</td>';
+															 echo '<td>';
 																echo '<form action="save-settings.php" method="POST" role="form" class="form-horizontal">';
 																	echo '<a data-toggle="modal" class="btn btn-success" href="#">';
 																			echo '<i class="fa fa-mail-forward"></i>';
 																	echo '</a>';
+															echo '</td>';
+															echo '<td>Este não é o melhor caso, rejeitar</td>';
+															echo '<td>';
+																	echo '<td>Escolher este caso e eleger melhor solução</td>';
 																	echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
 																			echo '<i class="fa fa-trash-o"></i>';
 																	echo '</a>';
