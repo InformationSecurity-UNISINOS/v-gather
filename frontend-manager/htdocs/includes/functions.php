@@ -113,16 +113,19 @@ function sec_session_start() {
  * através de ataques de raimbow tables.
  */ 
 function login($email, $password, $mysqli) { 
-    // 445fc3655cede6a6c841d08f0776fac92a0118d1d1597046e09909310b2664538642292515aee4737c39826d70508466f5df36417f09274cb470ca4b6857be7a
+    // 
+    echo "EMAIL: " . $email . "<br>";
+    echo "PASSWORD: " . $password . "<br>";
+
     if ($stmt = $mysqli->prepare("SELECT id, username, password, salt FROM mgr_users WHERE email = ? LIMIT 1")) {
         $stmt->bind_param('s', $email);     // Bind "$email" to parameter.
         $stmt->execute();                  // Execute the prepared query.
         $stmt->store_result();
- 
-        // get variables from result.
         $stmt->bind_result($user_id, $username, $db_password, $salt);
         $stmt->fetch();
 
+        print "db_password: " . $db_password . "<br>";
+        print "salt: " . $salt . "<br>";
 
         // hash the password with the unique salt.
         $password = hash('sha512', $password . $salt);
