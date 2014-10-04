@@ -17,12 +17,15 @@ def Similarity(item1,item2):
 	import Levenshtein
 	import math
 	# SE É NUMERO
-	if isinstance(item1, (int, long, float, complex)) and isinstance(item2, (int, long, float, complex)):
+	if ( type(item1) == int or type(item1) == float ) and (type(item2) == int or type(item2) == float):
 		a=item1*item1
 		b=item2*item2
-		sim=round(a/math.sqrt(a*b),2)
+		if a < b:
+			sim=round(a/math.sqrt(a*b),2)
+		else:
+			sim=round(a/math.sqrt(b*a),2)
 	else:
-		sim=round(Levenshtein.ratio(item1,item2),2)
+		sim=round(Levenshtein.ratio(str(item1),str(item2)),2)
 	return sim
 
 def MatchData():
