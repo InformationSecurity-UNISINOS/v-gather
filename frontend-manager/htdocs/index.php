@@ -76,11 +76,11 @@
 								</tr>
 								<tr>
 									<td>
-										<input id="prependedInput" class="form-control" size="16" type="password" placeholder="Password" name="password">
+										<input id="prependedInput" class="form-control" size="16" type="password" placeholder="Password" name="p">
 									</td>
 									<td>
 										<span class="input-group-btn">
-											<button class="btn btn-info" type="button" onclick="formhash(this.form, this.form.password);"><i class="fa fa-unlock"></i></button>
+											<button class="btn btn-info" type="button" onclick="formhash(this.form, this.form.p);"><i class="fa fa-unlock"></i></button>
 			
 										</span>
 									</td>
