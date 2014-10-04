@@ -326,6 +326,18 @@ if(login_check($mysqli) == false) {
 	                                                       	echo '<td>'. "Solução do Caso Relacionado" .'</td>';
 	                                                       	echo '<td colspan="4">'. $solucao .'</td>';
 	                                                   	 echo '</tr>';
+
+	                                                   	 echo '<tr>';
+	                                                   	 	echo '<td>Escolher este caso e eleger melhor solução</td>'; 
+															echo '<td colspan="3">';
+																echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
+																	echo '<i class="fa fa-mail-forward"></i>';
+																echo '</a>';
+															echo '</td>';
+														echo '</tr>';
+
+
+
 	                                                    	
 	                                               	echo '</tbody>';
 	                                            echo '</table>';
