@@ -114,8 +114,6 @@ function sec_session_start() {
  */ 
 function login($email, $password, $mysqli) { 
     // 
-    echo "EMAIL: " . $email . "<br>";
-    echo "PASSWORD: " . $password . "<br>";
 
     if ($stmt = $mysqli->prepare("SELECT id, username, password, salt FROM mgr_users WHERE email = ? LIMIT 1")) {
         $stmt->bind_param('s', $email);     // Bind "$email" to parameter.
@@ -124,11 +122,14 @@ function login($email, $password, $mysqli) {
         $stmt->bind_result($user_id, $username, $db_password, $salt);
         $stmt->fetch();
 
+        
+        // hash the password with the unique salt.
+        $password = hash('sha512', $password . $salt);
+        print "hashed: " . $password . "<br>";
         print "db_password: " . $db_password . "<br>";
         print "salt: " . $salt . "<br>";
         die();
-        // hash the password with the unique salt.
-        $password = hash('sha512', $password . $salt);
+
         if ($stmt->num_rows == 1) {
             // If the user exists we check if the account is locked
             // from too many login attempts 
