@@ -237,6 +237,13 @@ if(login_check($mysqli) == false) {
 	                                                        		echo '<td>'.  htmlentities($process_tcp_banner) .'</td>';
 	                                                        		echo '<td width="20%">'.  htmlentities(round($process_tcp_banner_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
+
+	                                                   	 		echo '<tr align="center">';
+	                                                        		echo '<td width="20%">'. "Banner de serviço UDP:" .'</td>';
+	                                                        		echo '<td>'.  htmlentities($process_udp_banner) .'</td>';
+	                                                        		echo '<td width="20%">'.  htmlentities(round($process_udp_banner_weight,3)) .'</td>';
+	                                                   	 		echo '</tr>';
+
 																echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Banner de serviço UDP:" .'</td>';
 	                                                        		echo '<td>'.  htmlentities($process_udp_banner) .'</td>';
