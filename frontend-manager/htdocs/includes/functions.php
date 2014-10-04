@@ -126,7 +126,7 @@ function login($email, $password, $mysqli) {
 
         print "db_password: " . $db_password . "<br>";
         print "salt: " . $salt . "<br>";
-
+        die();
         // hash the password with the unique salt.
         $password = hash('sha512', $password . $salt);
         if ($stmt->num_rows == 1) {
@@ -168,6 +168,7 @@ function login($email, $password, $mysqli) {
             return false;
         }
     }
+
 
 }
 
