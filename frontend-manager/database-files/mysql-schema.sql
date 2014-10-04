@@ -1,3 +1,7 @@
+CREATE DATABASE  IF NOT EXISTS `vgather` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `vgather`;
+
+
 /*
 Navicat MySQL Data Transfer
 
@@ -186,12 +190,10 @@ CREATE TABLE `use_cases` (
   `process_binary_dac_score` FLOAT(5,2) DEFAULT NULL,
   `candidate_final_score` FLOAT(5,2),
   PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 -- ----------------------------
 -- Records of use_cases
 -- ----------------------------
-INSERT INTO `use_cases` VALUES (1,'2014-09-26 16:52:23',1,1,NULL,2,5.00,NULL,'6.5',1.00,NULL,'httpd',5.00,NULL,48,1.00,NULL,48,1.00,NULL,'',0.00,NULL,'80:Apache httpd',5.00,NULL,'',0.00,NULL,'httpd-2.2.15',5.00,NULL,NULL,NULL,NULL,'/usr/sbin/httpd',5.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+INSERT INTO `use_cases` VALUES (1,'2014-10-02 17:13:23',1,1,NULL,2,5.00,NULL,'6.5',1.00,NULL,'httpd',5.00,NULL,48,1.00,NULL,48,1.00,NULL,'',0.00,NULL,'80:Apache httpd',5.00,NULL,'',0.00,NULL,'httpd-2.2.15',5.00,NULL,NULL,NULL,NULL,'/usr/sbin/httpd',1.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 
 -- ----------------------------
@@ -208,6 +210,9 @@ CREATE TABLE `use_case_desc_solution` (
 -- ----------------------------
 -- Records of use_case_desc_solution
 -- ----------------------------
+
+INSERT INTO `use_case_desc_solution` VALUES (1,1,'O Apache sofre de uma vulnerabilidade x,y,z.','Para solucionar, Ã© preciso aplicar as recomendaÃ§Ãµes de hardening do documento xyzw');
+
 
 -- ----------------------------
 -- Table structure for mgr_login_attempts
