@@ -335,7 +335,7 @@ if(login_check($mysqli) == false) {
 																			echo '<i class="fa fa-mail-forward"></i>';
 																	echo '</a>';
 																	echo '<a data-toggle="modal" class="btn btn-danger" href="#">';
-																			echo '<i class="fa fa-trash"></i>';
+																			echo '<i class="fa fa-trash-o"></i>';
 																	echo '</a>';
 																echo '</form>';
 															echo '</td>';
