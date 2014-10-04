@@ -21,8 +21,7 @@ def Similarity(item1,item2):
 		a=item1*item1
 		b=item2*item2
 		return (round(a/math.sqrt(a*b),2)
-	# SE É STRING: Usar a função de Levenshtein
-	else: 
+	else:
 		return round(Levenshtein.ratio(item1,item2),2)
 
 def MatchData():
