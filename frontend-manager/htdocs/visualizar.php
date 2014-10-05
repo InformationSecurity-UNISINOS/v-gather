@@ -178,7 +178,7 @@ if(login_check($mysqli) == false) {
 	                                                		echo '</thead>';
 	                                                		echo '<tbody>';
 
-	                                                			$stmt = $mysqli->prepare("select name from sos where id = ?");
+	                                                			$stmt = $mysqli->prepare("SELECT name FROM sos WHERE id = ?");
 																$stmt->bind_param('i', $so_id);
 														        $stmt->execute();
 																$stmt->bind_result($soname);
@@ -245,7 +245,7 @@ if(login_check($mysqli) == false) {
 	                                                        		echo '<td width="20%">'.  htmlentities(round($process_udp_banner_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 	                                                   	 		
-																$stmt=$mysqli->prepare("select solution,description from use_case_desc_solution where case_id = ?");
+																$stmt=$mysqli->prepare("SELECT solution,description FROM use_case_desc_solution WHERE case_id = ?");
 																$stmt->bind_param('i', $case_id);
 														        $stmt->execute();
 																$stmt->bind_result($solucao,$descricao);
