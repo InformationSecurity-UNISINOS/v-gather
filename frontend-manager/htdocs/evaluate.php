@@ -113,7 +113,7 @@ if(login_check($mysqli) == false) {
                                         		include_once 'includes/db_connect.php';
 												include_once 'includes/functions.php';
 
-												$stmt = $mysqli->prepare("SELECT id FROM use_cases WHERE status = 2 ORDER BY candidate_final_score DESC");
+												$stmt = $mysqli->prepare("SELECT id FROM use_cases WHERE status = 3 ORDER BY candidate_final_score DESC");
 												$stmt->execute();
 												$i=0;
 												$row = array();
@@ -337,11 +337,15 @@ if(login_check($mysqli) == false) {
 																// THIS IS A POC OF AN ARTICLE, NOT A PROFESSIONAL TOOL. DO NOT USE ON YOUR ENVIRONMENT
 																// DUE TO SECURITY ISSUES.
 																echo '<form action="reject.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-default"><i class="fa fa-trash-o"> Rejeitar </i></button>';
+																	echo '<button type="submit" class="btn btn-default" name="reject"><i class="fa fa-trash-o"> Rejeitar </i></button>';
 																echo '</form>';
 																echo '<form action="apply.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-primary" ><i class="fa fa-mail-forward"> Aplicar </i></button>';
+																	echo '<button type="submit" class="btn btn-primary" name="edit"><i class="fa fa-mail-forward"> Aplicar </i></button>';
 																echo '</form>';
+																echo '<form action="apply.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
+																	echo '<button type="submit" class="btn btn-primary" name="apply"><i class="fa fa-mail-forward"> Aplicar </i></button>';
+																echo '</form>';
+
 															echo '</td>';
 														echo '</tr>';
 
