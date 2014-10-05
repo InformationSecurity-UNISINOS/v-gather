@@ -331,13 +331,8 @@ if(login_check($mysqli) == false) {
 	                                                   	 	echo '<td>Deseja eleger este como melhor caso e aplicar a solução?</td>'; 
 															echo '<td colspan="4">';
 																echo '<form action="matching.php" method="POST" role="form" class="form-horizontal">';
-																	echo '<a class="btn btn-danger" href="#">';
-																		echo ' Rejeitar  <i class="fa fa-trash-o"></i>';
-																	echo '</a>';
-																	echo '<a data-toggle="modal" class="btn btn-success" href="#">';
-																		echo ' Aplicar  <i class="fa fa-mail-forward"></i>';
-																	echo '</a>';
-																	
+																	echo '<button type="button" class="btn btn-default" data-dismiss="modal">Rejeitar</button>';
+																	echo '<button type="submit" class="btn btn-primary" >Aplicar</button>';
 																echo '</form>';
 															echo '</td>';
 														echo '</tr>';
