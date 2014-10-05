@@ -44,14 +44,17 @@ def MatchData():
 		return False
 
 	lista_casos=DbGetCaseID()
-	print lista_casos
-	import sys
-	sys.exit(1)
 	for case_id in lista_casos:
 		db_case={}
 		db_case=DbGetCase(case_id)
 		if db_case is 0 or db_case is False:
 			return False
+		print "lista_casos: "
+		print lista_casos
+		print "CASE ID: " + str(case_id)
+		import sys
+		sys.exit(1)
+		
 		db_so_name=DbGetSoName(db_case['so_id'])
 		qlen=recvdata.LenQueue()
 		while qlen>0:
