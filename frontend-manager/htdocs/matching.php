@@ -336,10 +336,10 @@ if(login_check($mysqli) == false) {
 																// THIS IS A POC OF AN ARTICLE, NOT A PROFESSIONAL TOOL. DO NOT USE ON YOUR ENVIRONMENT
 																// DUE TO SECURITY ISSUES.
 																echo '<form action="reject.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-default" id="Rejeitar" name="rejeitar"><i class="fa fa-trash-o"> Rejeitar </i></button>';
+																	echo '<button type="submit" class="btn btn-default"><i class="fa fa-trash-o"> Rejeitar </i></button>';
 																echo '</form>';
 																echo '<form action="apply.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-primary" name="aplicar" id="aplicar"><i class="fa fa-forward-o"> Aplicar </i></button>';
+																	echo '<button type="submit" class="btn btn-primary" ><i class="fa fa-forward-o"> Aplicar </i></button>';
 																echo '</form>';
 															echo '</td>';
 														echo '</tr>';
