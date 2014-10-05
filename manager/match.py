@@ -5,6 +5,7 @@ from base import *
 from parser import *
 from cqueue import *
 
+
 '''
 Similaridade:
 Case-based reasoning is a methodology not a technology - I. Watson
@@ -43,6 +44,9 @@ def MatchData():
 		return False
 
 	lista_casos=DbGetCaseID()
+	print lista_casos
+	import sys
+	sys.exit(1)
 	for case_id in lista_casos:
 		db_case={}
 		db_case=DbGetCase(case_id)
