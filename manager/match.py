@@ -69,6 +69,8 @@ def MatchData():
 			p_pkg_score = float(p_pkg_ratio) * float(p_pkg_weight)
 			
 			final_score=final_score+p_pkg_score 
+			if p_pkg_score == p_pkg_weight:
+				perfect=1
 			#########################################################################
 			# PROCESS PROCESS NAME
 			#########################################################################
@@ -76,6 +78,10 @@ def MatchData():
 			p_name_weight = float(db_case['process_name_weight'])
 			p_name_score = float(p_name_ratio) * float(p_name_weight)
 			final_score=final_score+p_name_score
+
+			if p_name_score == p_name_weight:
+				perfect+=1
+
 			#########################################################################
 			# PROCESS UID:
 			#########################################################################
@@ -83,6 +89,10 @@ def MatchData():
 	 		p_uid_weight = float(db_case['process_uid_weight'])
 	 		p_uid_score = float(p_uid_weight) * float(p_uid_ratio)
 	 		final_score=final_score+p_uid_score
+
+	 		if p_uid_score == p_uid_weight:
+	 			perfect+=1
+
 			#########################################################################
 			# PROCESS GID:
 			#########################################################################
@@ -90,6 +100,10 @@ def MatchData():
 			p_gid_weight = float(db_case['process_gid_weight'])
 			p_gid_score = float(p_gid_ratio) * float(p_gid_weight)
 			final_score=final_score+p_gid_score
+
+			if p_gid_score == p_gid_weight:
+				perfect+=1
+
 			#########################################################################
 			# PROCESS PROCESS ARGS
 			#########################################################################
@@ -97,6 +111,10 @@ def MatchData():
 			p_args_weight = float(db_case['process_args_weight'])
 			p_args_score = float(p_args_ratio) * float(p_args_weight)
 			final_score=final_score+p_args_score 
+
+			if p_args_score == p_args_weight:
+				perfect+=1
+
 			#########################################################################
 			# PROCESS TCP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
@@ -104,6 +122,10 @@ def MatchData():
 			p_tcp_banner_weight = float(db_case['process_tcp_banner_weight'])
 			p_tcp_banner_score = p_tcp_banner_ratio * p_tcp_banner_weight
 			final_score=final_score+p_tcp_banner_score 
+
+			if p_tcp_banner_score==p_tcp_banner_weight:
+				perfect+=1
+
 			#########################################################################
 			# PROCESS UDP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
@@ -111,6 +133,10 @@ def MatchData():
 			p_udp_banner_weight = float(db_case['process_udp_banner_weight'])
 			p_udp_banner_score = float(p_udp_banner_ratio) * float(p_udp_banner_weight)
 			final_score=final_score+p_udp_banner_score 
+
+			if p_udp_banner_score==p_udp_banner_weight:
+				perfect+=1
+
 			#########################################################################
 			# PROCESS FILE PATH
 			#########################################################################
@@ -118,6 +144,10 @@ def MatchData():
 			pf_path_weight = float(db_case['process_binary_weight'])
 			pf_path_score = float(pf_path_ratio) * float(pf_path_weight)
 			final_score=final_score+pf_path_score 
+
+			if pf_path_score==pf_path_weight:
+				perfect+=1
+
 			#########################################################################
 			# PROCESS DISTRO VERSION
 			#########################################################################
@@ -125,6 +155,9 @@ def MatchData():
 			distro_version_weight = float(db_case['so_version_weight'])
 			distro_version_score = float(distro_version_ratio) * float(distro_version_weight)
 			final_score=final_score+distro_version_score
+
+			if distro_version_score==distro_version_weight:
+				perfect+=1
 			#########################################################################
 			# PROCESS DISTRO NAME
 			#########################################################################
@@ -132,6 +165,9 @@ def MatchData():
 			distro_weight = float(db_case['so_id_weight'])
  			distro_score = float(distro_ratio) * float(distro_weight)
  			final_score=final_score+distro_score
+
+ 			if distro_score== distro_weight
+ 				perfect+=1
 
  			# so pra debug
  			#print pdict
@@ -199,6 +235,8 @@ def MatchData():
 					if ja_cadastrado==False:
 						candidates.AddQueue(scored)
 						filtro.AddQueue(scored)
+					if perfect==10:
+						break
 			qlen-=1	
 		case_id+=1
 	recvdata.DestroyQueue()
