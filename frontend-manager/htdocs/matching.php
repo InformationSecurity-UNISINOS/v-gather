@@ -337,7 +337,7 @@ if(login_check($mysqli) == false) {
 																// DUE TO SECURITY ISSUES.
 																echo '<form action="reject.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
 																	echo '<button type="submit" class="btn btn-default" id="Rejeitar" name="rejeitar">Rejeitar</button>';
-																echo '</form>'
+																echo '</form>';
 																echo '<form action="apply.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
 																	echo '<button type="submit" class="btn btn-primary" name="aplicar" id="aplicar">Aplicar</button>';
 																echo '</form>';
