@@ -38,16 +38,12 @@ def MatchData():
 	print "[+] MatchData"
 	debug=3
 
-	total_cases=DbCountCases()
-	if total_cases == False:
-		print "  + Não existem casos na base. Cadastre-os primeiramente."
-		return False
-	case_id=1
 	sim_point=DbSimilarPoint()
 	if sim_point == None:
 		return False
 
-	while case_id <= total_cases:
+	lista_casos=DbGetCaseID()
+	for case_id in lista_casos:
 		db_case={}
 		db_case=DbGetCase(case_id)
 		if db_case is 0 or db_case is False:
