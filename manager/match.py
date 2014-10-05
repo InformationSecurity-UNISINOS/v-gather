@@ -58,7 +58,7 @@ def MatchData():
 			pdict = {}
 			pdict = recvdata.GetQueue()
 			scored = {}
-			final_score=0
+			final_score=perfect=0
 
 			#########################################################################
 			# PAACKAGE MANAGER AND NAME
@@ -70,7 +70,7 @@ def MatchData():
 			
 			final_score=final_score+p_pkg_score 
 			if p_pkg_score == p_pkg_weight:
-				perfect=1
+				perfect+=1
 			#########################################################################
 			# PROCESS PROCESS NAME
 			#########################################################################
