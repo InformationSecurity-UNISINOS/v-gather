@@ -68,7 +68,7 @@ function stmt_bind_assoc (&$stmt, &$out) {
         $fields[$count] = &$out[$field->name];
         $count++;
     }
-    call_user_func_array(mysqli_stmt_bind_result, $fields);
+    call_user_func_array("mysqli_stmt_bind_result", $fields);
 }
 
 
