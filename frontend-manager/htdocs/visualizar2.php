@@ -113,7 +113,7 @@ if(login_check($mysqli) == false) {
                                         		include_once 'includes/db_connect.php';
 												include_once 'includes/functions.php';
 
-												$stmt = $mysqli->prepare("SELECT id FROM use_cases WHERE status = 3 ORDER BY candidate_final_score DESC");
+												$stmt = $mysqli->prepare("SELECT id FROM use_cases WHERE status = 1");
 												$stmt->execute();
 												$i=0;
 												$row = array();
@@ -140,7 +140,7 @@ if(login_check($mysqli) == false) {
 			                                                process_udp_banner, process_udp_banner_weight,
 			                                                package_name, package_name_weight,
 			                                                process_binary, process_binary_weight
-			                                               	FROM use_cases WHERE id = ? AND status=1");
+			                                               	FROM use_cases WHERE id = ?");
 														$stmt2->bind_param('i', $field);
 														
 												        $stmt2->execute();
