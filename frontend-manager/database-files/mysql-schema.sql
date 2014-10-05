@@ -1,6 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `vgather` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `vgather` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `vgather`;
-
 
 /*
 Navicat MySQL Data Transfer
