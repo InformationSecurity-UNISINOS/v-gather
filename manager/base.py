@@ -35,7 +35,7 @@ def DbCountCases():
 	return int(result[0])
 
 def DbGetCaseID():
-	qtde=DbCountCases()
+	total_cases=DbCountCases()
 	if total_cases == False:
 		print "  + Não existem casos na base. Cadastre-os primeiramente."
 		return False
