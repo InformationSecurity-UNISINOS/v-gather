@@ -29,7 +29,7 @@ def Similarity(item1,item2):
 		if a < b:
 			sim=round(a/math.sqrt(a*b),2)
 		else:
-			sim=round(a/math.sqrt(b*a),2)
+			sim=round(b/math.sqrt(a*b),2)
 	else:
 		sim=round(Levenshtein.ratio(str(item1),str(item2)),2)
 	return sim
