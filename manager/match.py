@@ -44,14 +44,9 @@ def MatchData():
 		return False
 
 	lista_casos=DbGetCaseID()
-	for case_id in lista_casos:
-		print "lista_casos: "
-		print lista_casos
-		print "CASE ID: " + str(case_id[0])
-		import sys
-		sys.exit(1)
-
-
+	for caso in lista_casos:
+		case_id=caso[0]
+		
 		db_case={}
 		db_case=DbGetCase(case_id)
 		if db_case is 0 or db_case is False:
