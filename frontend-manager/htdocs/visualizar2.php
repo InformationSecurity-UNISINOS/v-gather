@@ -268,9 +268,6 @@ if(login_check($mysqli) == false) {
 	                                                   	 		echo '</tr>';
 	                                               			echo '</tbody>';
 	                                            		echo '</table>';
-	                                            	}//for
-											    } else {
-											    	echo "Nenhum caso registrado.";
 											    }
 	                                            
                                             ?>
