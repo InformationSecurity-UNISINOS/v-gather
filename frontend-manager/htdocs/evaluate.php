@@ -350,7 +350,7 @@ if(login_check($mysqli) == false) {
 																	echo '<i class="fa fa-trash-o"> Rejeitar Matching</i>';
 																echo '</a>';
 																
-																echo '<a onclick="editar(this)" data-id="'.$i.'" class="edicao btn btn-info" href="#">';
+																echo '<a onclick="editar(this)" data-id="'.$field.'" class="edicao btn btn-info" href="#">';
 																	echo '<i class="fa fa-edit"> Adaptar Solução </i>';
 																echo '</a>';
 
