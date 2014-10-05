@@ -87,11 +87,6 @@ if ( $_GET['mode'] == "adapt" ) {
 		$solution=$_POST['solucao'];
 		$description=$_POST['descricao'];
 
-		echo $description . "<br>";
-		echo $solution . "<br>";
-		echo $field . "<br>";
-		die();
-
 		$stmt=$mysqli->prepare("UPDATE use_cases SET status=1 WHERE id=? ");
 		if ($stmt === FALSE) {
 		    die ("Mysql Error 1: " . $mysqli->error);
