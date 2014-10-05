@@ -341,7 +341,6 @@ if(login_check($mysqli) == false) {
 																echo '<form action="apply.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
 																	echo '<button type="submit" class="btn btn-primary" name="aplicar" id="aplicar">Aplicar</button>';
 																echo '</form>';
-																}
 															echo '</td>';
 														echo '</tr>';
 
