@@ -404,7 +404,7 @@ if(login_check($mysqli) == false) {
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-							<button type="submit" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+							<button type="submit" class="btn btn-primary">Salvar</button>
 						</div>
 					</form>
 				</div><!-- /.modal-content -->
