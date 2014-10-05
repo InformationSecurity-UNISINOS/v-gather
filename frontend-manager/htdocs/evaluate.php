@@ -336,14 +336,18 @@ if(login_check($mysqli) == false) {
 																// This webconsole should not be published on production server.
 																// THIS IS A POC OF AN ARTICLE, NOT A PROFESSIONAL TOOL. DO NOT USE ON YOUR ENVIRONMENT
 																// DUE TO SECURITY ISSUES.
-																echo '<form class="btn-group">';
-																    echo '<button class="btn">Button One</button>';
-																    echo '<input type="hidden" class="btn"><!-- fake sibling to right -->';
-																echo '</form>';
-																echo '<form class="btn-group">';
-																    echo '<input type="hidden" class="btn"><!-- fake sibling to left -->';
-																    echo '<button class="btn">Button Two</button>';
-																echo '</form>';
+																
+																echo '<a class="btn btn-danger" href="action.php?field='.$field.'&mode=reject">';
+																	echo '<i class="fa fa-trash-o"> Rejeitar Matching</i>';
+																echo '</a>';
+																
+																echo '<a data-toggle="modal" class="btn btn-info" href="#">';
+																	echo '<i class="fa fa-edit"> Adaptar Solução </i>';
+																echo '</a>';
+
+																echo '<a data-toggle="modal" class="btn btn-info" href="action.php?field='.$field.'&mode=perfect">';
+																	echo '<i class="fa fa-check-square-o"> Solução Aplicada</i>';
+																echo '</a>';
 
 															echo '</td>';
 														echo '</tr>';
