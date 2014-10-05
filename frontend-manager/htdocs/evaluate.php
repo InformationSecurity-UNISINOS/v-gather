@@ -50,9 +50,8 @@ if(login_check($mysqli) == false) {
 		function editar(btn) { 
 			
 			var item = $(btn).attr("data-id");
-			$('#edicao #novo_valor').val($("td",$(btn).parent().parent())[0].innerText);
-			$('#edicao #nova_desc').val($("td",$(btn).parent().parent())[1].innerText);
-			$('#edicao #tupla').val(item);
+			$('#edicao #atual_solucao').val($("td",$(this).parent().children().InnerText)[53].textContent);
+			$('#edicao #field').val(item);
 			$('#edicao').modal('toggle');
 		}
 	</script>
@@ -394,35 +393,13 @@ if(login_check($mysqli) == false) {
 							<h4 class="modal-title">Editar Solução</h4>
 						</div>
 						<div class="modal-body">
-							<table class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th>Antiga</th>
-										<th>Nova</th>
-									</tr>
-								</thead>   
-								<tbody>
-									<tr>
-										<td>
-											<input class="form-control focused" id="novo_valor" name="novo_valor" type="textbox">
-										</td>
-										<td> 
-											<input class="form-control focused" id="nova_desc" name="nova_desc" type="textbox">
-										</td>
-										<td>
-											<input type="hidden" class="form-control focused" id="tupla" name="tupla" type="textbox">
-										</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
+
+							<input class="form-control focused" id="atual_solucao" name="atual_solucao" type="textbox">
+
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-							<button type="submit" class="btn btn-primary">Salvar</button>
+							<button type="submit" class="btn btn-primary" data-dismiss="modal">Salvar</button>
 						</div>
 					</form>
 				</div><!-- /.modal-content -->
