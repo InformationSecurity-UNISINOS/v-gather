@@ -46,7 +46,7 @@ if(login_check($mysqli) == false) {
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->	
-	<script>
+	<script >
 	(function($) {
   		RemoveTableRow = function(handler) {
     		var tr = $(handler).closest('tr');
@@ -342,7 +342,7 @@ if(login_check($mysqli) == false) {
 															echo '<td colspan="4">';
 																echo '<form action="matching.php" method="POST" role="form" class="form-horizontal">';
 																	echo '<button onclick="RemoveTableRow(this)" type="button">Remove</button>';
-																	echo '<button type="submit" class="btn btn-primary" name="aplicar" id="aplicar">Aplicar</button>';
+																	echo '<button type="submit" class="btn btn-primary" name="aplicar" id="aplicar">AAplicar</button>';
 																echo '</form>';
 															echo '</td>';
 														echo '</tr>';
