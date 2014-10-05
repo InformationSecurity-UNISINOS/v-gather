@@ -16,6 +16,7 @@ if ( $_GET['mode'] == "reject" ) {
 		$stmt2->execute(); 
 		$stmt2->free_result();
 		$stmt2->close();
+		header('Location: matching.php');
 	}
 }
 
@@ -27,6 +28,7 @@ if ( $_GET['mode'] == "evaluate" ) {
 		$stmt2->execute(); 
 		$stmt2->free_result();
 		$stmt2->close();
+		header('Location: matching.php');
 	}
 }
 
@@ -38,6 +40,7 @@ if ( $_GET['mode'] == "perfect" ) {
 		$stmt2->execute(); 
 		$stmt2->free_result();
 		$stmt2->close();
+		header('Location: evaluate.php');
 	}
 }
 
@@ -60,6 +63,6 @@ if ( $_GET['mode'] == "endpoint" ) {
 }
 
 
-header('Location: matching.php');
+
 
 ?>
