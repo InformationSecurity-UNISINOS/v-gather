@@ -345,7 +345,7 @@ if(login_check($mysqli) == false) {
 																	echo '<i class="fa fa-edit"> Adaptar Solução </i>';
 																echo '</a>';
 
-																echo '<a data-toggle="modal" class="btn btn-info" href="action.php?field='.$field.'&mode=perfect">';
+																echo '<a data-toggle="modal" class="btn btn-success" href="action.php?field='.$field.'&mode=perfect">';
 																	echo '<i class="fa fa-check-square-o"> Solução Aplicada</i>';
 																echo '</a>';
 
