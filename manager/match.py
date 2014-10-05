@@ -12,6 +12,12 @@ AI-CBR, University of Salford, Salford M5 4WT, UK
 Received 1 December 1998; accepted 17 March 1999
 
 - Similarities are usually normalised to fall within a range of zero to one
+
+
+Para as strings, usei Levenshtein, para números usei cosine similarity
+
+
+http://stackoverflow.com/questions/18424228/cosine-similarity-between-2-number-lists
 '''
 def Similarity(item1,item2):
 	import Levenshtein
