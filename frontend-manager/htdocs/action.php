@@ -41,9 +41,23 @@ if ( $_GET['mode'] == "perfect" ) {
 	}
 }
 
+if ( $_GET['mode'] == "endpoint" ) {
+	if ( isset($_POST['new_ag_hostname']) && isset($_POST['new_ag_ipaddr']) ) {
+		$new_ag_ipaddr=xss_clean($_POST['new_ag_ipaddr']);
+		$new_ag_hostname=xss_clean($_POST['new_ag_hostname']);
 
-
-
+		$stmt=$mysqli->prepare("INSERT INTO managed_servers (ipaddress,hostname,created,updated)
+		VALUES(?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)");
+		if ($stmt === FALSE) {
+			die ("Mysql Error 1: " . $mysqli->error);
+		}
+		$stmt->bind_param('ss',$new_ag_ipaddr,$new_ag_hostname);
+		$stmt->execute();
+		$stmt->free_result();
+		$stmt->close();
+		header('Location: endpoints.php');
+	}
+}
 
 
 header('Location: matching.php');

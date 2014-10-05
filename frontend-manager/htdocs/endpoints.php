@@ -99,27 +99,26 @@ if(login_check($mysqli) == false) {
 								</div>
 								<div class="box-content">
 									<table class="table table-striped">
-
-										<form action="save-endpoint.php" method="POST" role="form" class="form-horizontal">
-			                            <tr>
-											<td>
-												Hostname:
-											</td>
-											<td>
-												<input class="form-control focused" id="new_ag_hostname" name="new_ag_hostname" type="text" autocomplete="disabled" required>
-											</td>
-											<td>
-												Endereço IP:
-											</td>
-											<td>
-												<input class="form-control focused" id="new_ag_ipaddr" name="new_ag_ipaddr" type="text" autocomplete="disabled" required>
-											</td>
-											<td width="30%">
-												<div class="form-actions">
-										  			<button type="submit" class="btn btn-primary">Salvar</button>
-												</div>
-											<td>
-										</tr>
+										<form action="action.php?mode=endpoint" method="POST" role="form" class="form-horizontal">
+				                            <tr>
+												<td>
+													Hostname:
+												</td>
+												<td>
+													<input class="form-control focused" id="new_ag_hostname" name="new_ag_hostname" type="text" autocomplete="disabled" required>
+												</td>
+												<td>
+													Endereço IP:
+												</td>
+												<td>
+													<input class="form-control focused" id="new_ag_ipaddr" name="new_ag_ipaddr" type="text" autocomplete="disabled" required>
+												</td>
+												<td width="30%">
+													<div class="form-actions">
+											  			<button type="submit" class="btn btn-primary">Salvar</button>
+													</div>
+												<td>
+											</tr>
 										</form>
 									</table>
 								</div>
