@@ -87,24 +87,24 @@ if ( $_GET['mode'] == "adapt" ) {
 		$solution=$_POST['solucao'];
 		$description=$_POST['descricao'];
 
-		echo $field . "<br>";
-		echo $description . "<br>";
-		echo $solution . "<br>";
-		die();
-
-		$stmt=$mysqli->prepare("UPDATE use_cases SET status=1 WHERE id=? ");
-		if ($stmt === FALSE) {
-		    die ("Mysql Error 1: " . $mysqli->error);
-		}
-		$stmt->bind_param('i', $field);
-		$stmt->execute();
-		$stmt->free_result(); 
+		//echo $field . "<br>";
+		//echo $description . "<br>";
+		//echo $solution . "<br>";
+		//die();
 
 		$stmt=$mysqli->prepare("INSERT INTO use_case_desc_solution (case_id,description,solution) VALUES(?,?,?)");
 		if ($stmt === FALSE) {
 		    die ("Mysql Error 1: " . $mysqli->error);
 		}
 		$stmt->bind_param('iss', $field, $description, $solution);
+		$stmt->execute();
+		$stmt->free_result(); 
+
+		$stmt=$mysqli->prepare("UPDATE use_cases SET status=1 WHERE id=? ");
+		if ($stmt === FALSE) {
+		    die ("Mysql Error 1: " . $mysqli->error);
+		}
+		$stmt->bind_param('i', $field);
 		$stmt->execute();
 		$stmt->free_result(); 
 
