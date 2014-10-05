@@ -85,7 +85,7 @@ if ( $_GET['mode'] == "adapt" ) {
 	if ( isset($_POST['field']) AND isset($_POST['solucao']) AND isset($_POST['descricao'])) {
 		$field=$_POST['field'];
 		$solution=$_POST['solucao'];
-		$description=$_POST['description'];
+		$description=$_POST['descricao'];
 
 		echo $description . "<br>";
 		echo $solution . "<br>";
