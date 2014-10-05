@@ -335,10 +335,10 @@ if(login_check($mysqli) == false) {
 																// This webconsole should not be published on production server.
 																// THIS IS A POC OF AN ARTICLE, NOT A PROFESSIONAL TOOL. DO NOT USE ON YOUR ENVIRONMENT
 																// DUE TO SECURITY ISSUES.
-																echo '<form action="reject.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
+																echo '<form action="reject.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
 																	echo '<button type="submit" class="btn btn-default"><i class="fa fa-trash-o"> Rejeitar </i></button>';
 																echo '</form>';
-																echo '<form action="apply.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
+																echo '<form action="apply.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
 																	echo '<button type="submit" class="btn btn-primary" ><i class="fa fa-forward-o"> Aplicar </i></button>';
 																echo '</form>';
 															echo '</td>';
