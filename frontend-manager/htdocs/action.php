@@ -95,7 +95,7 @@ if ( $_GET['mode'] == "adapt" ) {
 		$stmt->execute();
 		$stmt->free_result(); 
 
-		$stmt=$mysqli->prepare("INSERT INTO use_case_desc_solution (case_id,description,solution) VALUES(?,?,?) ");
+		$stmt=$mysqli->prepare("INSERT INTO use_case_desc_solution (case_id,description,solution) VALUES(?,?,?)");
 		if ($stmt === FALSE) {
 		    die ("Mysql Error 1: " . $mysqli->error);
 		}
@@ -103,11 +103,7 @@ if ( $_GET['mode'] == "adapt" ) {
 		$stmt->execute();
 		$stmt->free_result(); 
 
-
-
-
-
-
+		header('Location: evaluate.php');
 	}
 }
 
