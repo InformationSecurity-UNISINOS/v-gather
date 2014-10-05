@@ -35,26 +35,21 @@ def DbCountCases():
 	return int(result[0])
 
 def DbGetCaseID():
+	i=0
 	total_cases=DbCountCases()
 	if total_cases == False:
 		print "  + Não existem casos na base. Cadastre-os primeiramente."
 		return False
-	case_id=1
-	casos=[]
-	while case_id <= total_cases:
-		conn=DbConnect()
-		if conn == None:
+	query="SELECT id from use_cases WHERE status=1"
+	conn=DbConnect()
+	if conn == None:
 			return False
-		cursor = conn.cursor()
-		case_sum="SELECT id from use_cases WHERE status=1"
-		cursor.execute (case_sum)
-		result = cursor.fetchone()
-		if result[0] is not None and result[0] > 0:
-			casos.append(result[0])
-		case_id+=1;
-
+	cursor = conn.cursor()
+	cursor.execute (query)
+	data = cursor.fetchall()
 	conn.close()
-	return casos
+
+	return data
 
 
 def DbSimilarPoint():
