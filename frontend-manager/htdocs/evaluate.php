@@ -46,7 +46,16 @@ if(login_check($mysqli) == false) {
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="assets/ico/favicon.png">
 	<!-- end: Favicon and Touch Icons -->	
-		
+	<script>
+		function editar(btn) { 
+			
+			var item = $(btn).attr("data-id");
+			$('#edicao #novo_valor').val($("td",$(btn).parent().parent())[0].innerText);
+			$('#edicao #nova_desc').val($("td",$(btn).parent().parent())[1].innerText);
+			$('#edicao #tupla').val(item);
+			$('#edicao').modal('toggle');
+		}
+	</script>
 </head>
 
 <body>
@@ -329,7 +338,7 @@ if(login_check($mysqli) == false) {
 	                                                   	 echo '</tr>';
 
 	                                                   	 echo '<tr>';
-	                                                   	 	echo '<td>Deseja eleger este como melhor caso e aplicar a solução?</td>'; 
+	                                                   	 	echo '<td>A solução proposta no caso foi aplicada com sucesso? Qual ação deseja tomar?</td>'; 
 															echo '<td colspan="4">';
 
 																// The above code should be checked against CSRF vulnerability:
@@ -341,12 +350,12 @@ if(login_check($mysqli) == false) {
 																	echo '<i class="fa fa-trash-o"> Rejeitar Matching</i>';
 																echo '</a>';
 																
-																echo '<a data-toggle="modal" class="btn btn-info" href="#">';
+																echo '<a onclick="editar(this)" data-id="'.$i.'" class="edicao btn btn-info" href="#">';
 																	echo '<i class="fa fa-edit"> Adaptar Solução </i>';
 																echo '</a>';
 
 																echo '<a data-toggle="modal" class="btn btn-success" href="action.php?field='.$field.'&mode=perfect">';
-																	echo '<i class="fa fa-check-square-o"> Solução Aplicada</i>';
+																	echo '<i class="fa fa-check-square-o"> Solução Válida </i>';
 																echo '</a>';
 
 															echo '</td>';
@@ -376,23 +385,49 @@ if(login_check($mysqli) == false) {
 	</div><!--/container-->
 	
 	
-	<div class="modal fade" id="myModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Modal title</h4>
-				</div>
-				<div class="modal-body">
-					<p>Here settings can be configured...</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	<div class="modal fade" id="edicao">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<form action="solution.php" method="POST" role="form" class="form-horizontal">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Editar Solução</h4>
+						</div>
+						<div class="modal-body">
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>Antiga</th>
+										<th>Nova</th>
+									</tr>
+								</thead>   
+								<tbody>
+									<tr>
+										<td>
+											<input class="form-control focused" id="novo_valor" name="novo_valor" type="textbox">
+										</td>
+										<td> 
+											<input class="form-control focused" id="nova_desc" name="nova_desc" type="textbox">
+										</td>
+										<td>
+											<input type="hidden" class="form-control focused" id="tupla" name="tupla" type="textbox">
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 	
 	<div class="clearfix"></div>
 	

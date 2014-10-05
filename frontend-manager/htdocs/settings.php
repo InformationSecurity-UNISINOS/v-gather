@@ -236,48 +236,48 @@ if(login_check($mysqli) == false) {
 			</div><!--/row-->		
 		</div><!--/container-->
 		<div class="modal fade" id="edicao">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form action="save-settings.php" method="POST" role="form" class="form-horizontal">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title">Editar Item</h4>
-					</div>
-					<div class="modal-body">
-						<table class="table table-striped table-bordered">
-							<thead>
-								<tr>
-									<th>Valor</th>
-									<th>Descrição</th>
-								</tr>
-							</thead>   
-							<tbody>
-								<tr>
-									<td>
-										<input class="form-control focused" id="novo_valor" name="novo_valor" type="text" autocomplete="disabled" >
-									</td>
-									<td> 
-										<input class="form-control focused" id="nova_desc" name="nova_desc" type="text" autocomplete="disabled" >
-									</td>
-									<td>
-										<input type="hidden" class="form-control focused" id="tupla" name="tupla" type="text" autocomplete="disabled" >
-									</td>
-								</tr>
-								<tr>
-									<td></td>
-									<td></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-						<button type="submit" class="btn btn-primary" >Salvar</button>
-					</div>
-				</form>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<form action="save-settings.php" method="POST" role="form" class="form-horizontal">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Editar Item</h4>
+						</div>
+						<div class="modal-body">
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>Valor</th>
+										<th>Descrição</th>
+									</tr>
+								</thead>   
+								<tbody>
+									<tr>
+										<td>
+											<input class="form-control focused" id="novo_valor" name="novo_valor" type="text" autocomplete="disabled" >
+										</td>
+										<td> 
+											<input class="form-control focused" id="nova_desc" name="nova_desc" type="text" autocomplete="disabled" >
+										</td>
+										<td>
+											<input type="hidden" class="form-control focused" id="tupla" name="tupla" type="text" autocomplete="disabled" >
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-primary" >Salvar</button>
+						</div>
+					</form>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 
 	
 	<div class="clearfix"></div>
