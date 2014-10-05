@@ -348,8 +348,6 @@ if(login_check($mysqli) == false) {
 																	$stmt2->execute(); 
 																	$stmt2->free_result();
 																	$stmt2->close();
-																	
-																	header('matching.php');
 																}
 															echo '</td>';
 														echo '</tr>';
