@@ -112,19 +112,24 @@ if(login_check($mysqli) == false) {
                                         	<?php
                                         		include_once 'includes/db_connect.php';
 												include_once 'includes/functions.php';
-												$stmt=$mysqli->prepare("SELECT COUNT(id) FROM use_cases WHERE status=1");
-												if ($stmt === FALSE) {
-            												printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
-            												die ("Mysql Error: " . $mysqli->error);
-        										}
-												$stmt->execute();
-												$stmt->bind_result($nro_casos);
-												$stmt->fetch();
-												$stmt->free_result(); 
 
-												if ($nro_casos) {
-													for ($i = 1; $i <= $nro_casos; $i++) {
-														$stmt = $mysqli->prepare("SELECT id,date, origem,
+												$stmt = $mysqli->prepare("SELECT id FROM use_cases WHERE status = 1");
+												$stmt->execute();
+												$i=0;
+												$row = array();
+												$res = array();
+												stmt_bind_assoc($stmt, $row);
+												while ($stmt->fetch()) {
+											    	foreach($row as $key => $field) {
+											        	$res[$i]=$field;
+											        	$i++;
+											        }
+											    }
+											    $i=0;
+											    $stmt->free_result();
+											    foreach($res as $key => $field) {
+											    	$i++;
+														$stmt2 = $mysqli->prepare("SELECT id,date, origem,
 			                                                so_id, so_id_weight,
 			                                                so_version, so_version_weight,
 			                                                process_name, process_name_weight,
@@ -135,11 +140,11 @@ if(login_check($mysqli) == false) {
 			                                                process_udp_banner, process_udp_banner_weight,
 			                                                package_name, package_name_weight,
 			                                                process_binary, process_binary_weight
-			                                               	FROM use_cases WHERE id = ? AND status=1");
-														$stmt->bind_param('i', $i);
+			                                               	FROM use_cases WHERE id = ?");
+														$stmt2->bind_param('i', $field);
 														
-												        $stmt->execute();
-														$stmt->bind_result($case_id,$date,$origem,
+												        $stmt2->execute();
+														$stmt2->bind_result($case_id,$date,$origem,
 												        					$so_id, $so_id_weight,
 												        					$so_version, $so_version_weight,
 																			$process_name, $process_name_weight,
@@ -150,8 +155,8 @@ if(login_check($mysqli) == false) {
 																			$process_udp_banner,$process_udp_banner_weight,
 																			$package_name, $package_name_weight,
 																			$process_binary, $process_binary_weight);
-														$stmt->fetch();
-														$stmt->free_result(); 
+														$stmt2->fetch();
+														$stmt2->free_result(); 
 
 														echo '<table class="table table-bordered table-striped table-condensed" style="text-align:center;">';
 	                                                		echo '<thead>';
@@ -178,12 +183,12 @@ if(login_check($mysqli) == false) {
 	                                                		echo '</thead>';
 	                                                		echo '<tbody>';
 
-	                                                			$stmt = $mysqli->prepare("SELECT name FROM sos WHERE id = ?");
-																$stmt->bind_param('i', $so_id);
-														        $stmt->execute();
-																$stmt->bind_result($soname);
-																$stmt->fetch();
-																$stmt->free_result();
+	                                                			$stmt2 = $mysqli->prepare("SELECT name FROM sos WHERE id = ?");
+																$stmt2->bind_param('i', $so_id);
+														        $stmt2->execute();
+																$stmt2->bind_result($soname);
+																$stmt2->fetch();
+																$stmt2->free_result();
 	                                                			 
 	                                                    		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "SO" .'</td>';
@@ -245,12 +250,12 @@ if(login_check($mysqli) == false) {
 	                                                        		echo '<td width="20%">'.  htmlentities(round($process_udp_banner_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 	                                                   	 		
-																$stmt=$mysqli->prepare("SELECT solution,description FROM use_case_desc_solution WHERE case_id = ?");
-																$stmt->bind_param('i', $case_id);
-														        $stmt->execute();
-																$stmt->bind_result($solucao,$descricao);
-																$stmt->fetch();
-																$stmt->free_result();
+																$stmt2=$mysqli->prepare("SELECT solution,description FROM use_case_desc_solution WHERE case_id = ?");
+																$stmt2->bind_param('i', $case_id);
+														        $stmt2->execute();
+																$stmt2->bind_result($solucao,$descricao);
+																$stmt2->fetch();
+																$stmt2->free_result();
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td>Descrição do Caso</td>';
@@ -263,9 +268,6 @@ if(login_check($mysqli) == false) {
 	                                                   	 		echo '</tr>';
 	                                               			echo '</tbody>';
 	                                            		echo '</table>';
-	                                            	}//for
-											    } else {
-											    	echo "Nenhum caso registrado.";
 											    }
 	                                            
                                             ?>
