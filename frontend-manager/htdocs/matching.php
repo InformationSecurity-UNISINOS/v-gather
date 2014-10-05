@@ -342,10 +342,13 @@ if(login_check($mysqli) == false) {
 																if (isset($_POST['rejeitar'])) {
 																	$id=$_POST['rejeitar'];
 																	echo "OPCAO: " . $id . "<br>";
-																	$stmt2=$mysqli->prepare("DELETE FROM use_cases WHERE id = ?");
+
+																	$stmt2 = $mysqli->prepare("DELETE FROM use_cases WHERE id = ?");
 																	$stmt2->bind_param('i', $id);
-																	$stmt2->execute();
+																	$stmt2->execute(); 
 																	$stmt2->free_result();
+																	$stmt2->close();
+																	
 																	header('matching.php');
 																}
 															echo '</td>';
@@ -354,6 +357,7 @@ if(login_check($mysqli) == false) {
 	                                               	echo '</tbody>';
 	                                            echo '</table>';
 											    } 
+											    $stmt->close();
                                             ?>
 
                                         </div>
