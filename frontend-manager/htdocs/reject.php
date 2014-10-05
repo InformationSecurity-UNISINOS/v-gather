@@ -9,9 +9,6 @@ if(login_check($mysqli) == false) {
 }
 
 $row_id=$_REQUEST['field'];
-echo $row_id;
-die();
-
 $stmt2 = $mysqli->prepare("DELETE FROM use_cases WHERE id = ?");
 $stmt2->bind_param('i', $row_id);
 $stmt2->execute(); 
