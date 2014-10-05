@@ -9,7 +9,7 @@ if(login_check($mysqli) == false) {
 }
 
 if ( $_GET['mode'] == "reject" ) {
-	if isset($_GET['field']) { 
+	if (isset($_GET['field'])) { 
 		$row_id=$_GET['field'];
 		$stmt2 = $mysqli->prepare("DELETE FROM use_cases WHERE id = ?");
 		$stmt2->bind_param('i', $row_id);
@@ -20,7 +20,7 @@ if ( $_GET['mode'] == "reject" ) {
 }
 
 if ( $_GET['mode'] == "evaluate" ) {
-	if isset($_GET['field']) { 
+	if ( isset($_GET['field']) ) { 
 		$row_id=$_REQUEST['field'];
 		$stmt2 = $mysqli->prepare("UPDATE use_cases SET status=3 WHERE id = ?");
 		$stmt2->bind_param('i', $row_id);
@@ -31,7 +31,7 @@ if ( $_GET['mode'] == "evaluate" ) {
 }
 
 if ( $_GET['mode'] == "perfect" ) {
-	if isset($_GET['field']) { 
+	if ( isset($_GET['field']) ) { 
 		$row_id=$_REQUEST['field'];
 		$stmt2 = $mysqli->prepare("UPDATE use_cases SET status=1 WHERE id = ?");
 		$stmt2->bind_param('i', $row_id);
