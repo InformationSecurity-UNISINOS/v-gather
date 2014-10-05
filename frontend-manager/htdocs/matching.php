@@ -335,19 +335,12 @@ if(login_check($mysqli) == false) {
 																// This webconsole should not be published on production server.
 																// THIS IS A POC OF AN ARTICLE, NOT A PROFESSIONAL TOOL. DO NOT USE ON YOUR ENVIRONMENT
 																// DUE TO SECURITY ISSUES.
-																echo '<form action="matching.php?action='.$field.'" method="POST" role="form" class="form-horizontal">';
+																echo '<form action="reject.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
 																	echo '<button type="submit" class="btn btn-default" id="Rejeitar" name="rejeitar">Rejeitar</button>';
+																echo '</form>'
+																echo '<form action="apply.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
 																	echo '<button type="submit" class="btn btn-primary" name="aplicar" id="aplicar">Aplicar</button>';
 																echo '</form>';
-																if (isset($_POST['rejeitar'])) {
-																	$id=$_POST['rejeitar'];
-																	echo "OPCAO: " . $id . "<br>";
-
-																	$stmt2 = $mysqli->prepare("DELETE FROM use_cases WHERE id = ?");
-																	$stmt2->bind_param('i', $id);
-																	$stmt2->execute(); 
-																	$stmt2->free_result();
-																	$stmt2->close();
 																}
 															echo '</td>';
 														echo '</tr>';
