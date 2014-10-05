@@ -137,7 +137,10 @@ def DbGetSoName(so_id):
 # mandei inserir diretamente, sem queue.
 # vai diminuir a performance, mas ...
 def DbSimCases():
+	print "> DbSimCases"
 	clen=candidates.LenQueue()
+	print "DbSimCases > clen: " +str(clen)
+	
 	while clen > 0:
 		pdict2={}
 		pdict2=candidates.GetQueue()
