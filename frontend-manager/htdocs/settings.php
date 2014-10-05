@@ -238,7 +238,7 @@ if(login_check($mysqli) == false) {
 		<div class="modal fade" id="edicao">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<form action="save-settings.php" method="POST" role="form" class="form-horizontal">
+					<form action="action.php?mode=settings" method="POST" role="form" class="form-horizontal">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h4 class="modal-title">Editar Item</h4>
