@@ -336,12 +336,13 @@ if(login_check($mysqli) == false) {
 																// This webconsole should not be published on production server.
 																// THIS IS A POC OF AN ARTICLE, NOT A PROFESSIONAL TOOL. DO NOT USE ON YOUR ENVIRONMENT
 																// DUE TO SECURITY ISSUES.
-																echo '<form action="reject.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-default"><i class="fa fa-trash-o"> Rejeitar </i></button>';
-																echo '</form>';
-																echo '<form action="apply.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-primary" ><i class="fa fa-mail-forward"> Aplicar </i></button>';
-																echo '</form>';
+																echo '<a class="btn btn-danger" href="action.php?field='.$field.'&mode=reject">';
+																	echo '<i class="fa fa-trash-o"> Rejeitar Matching</i>';
+																echo '</a>';
+
+																echo '<a class="btn btn-info" href="action.php?field='.$field.'&mode=evaluate">';
+																	echo '<i class="fa fa-mail-forward"> Testar Solução</i>';
+																echo '</a>';
 															echo '</td>';
 														echo '</tr>';
 
