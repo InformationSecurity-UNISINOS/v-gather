@@ -137,10 +137,7 @@ def DbGetSoName(so_id):
 # mandei inserir diretamente, sem queue.
 # vai diminuir a performance, mas ...
 def DbSimCases():
-	print "> DbSimCases"
 	clen=candidates.LenQueue()
-	print "DbSimCases > clen: " +str(clen)
-	
 	while clen > 0:
 		pdict2={}
 		pdict2=candidates.GetQueue()
@@ -167,7 +164,6 @@ def DbSimCases():
 		#continue
 		conn=DbConnect()
 		if conn == None:
-			print "Falhou a conexao com a base para inserir"
 			return False
 		cursor = conn.cursor()
 		query = "INSERT INTO use_cases ( status, origem, case_id_related, \

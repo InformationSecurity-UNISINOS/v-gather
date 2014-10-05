@@ -194,7 +194,6 @@ def MatchData():
 						cadastrado = filtro.GetQueue()
 						if cmp(cadastrado,scored) == 0:
 							ja_cadastrado=True
-							print "ja cadastrado"
 							break
 						flen-=1
 					if ja_cadastrado==False:
@@ -204,7 +203,6 @@ def MatchData():
 		case_id+=1
 	recvdata.DestroyQueue()
 	filtro.DestroyQueue()
-	print "chamando DbSimCases"
 	DbSimCases()
 	return True
 
