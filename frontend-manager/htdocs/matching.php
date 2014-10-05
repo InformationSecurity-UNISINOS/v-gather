@@ -330,10 +330,19 @@ if(login_check($mysqli) == false) {
 	                                                   	 echo '<tr>';
 	                                                   	 	echo '<td>Deseja eleger este como melhor caso e aplicar a solução?</td>'; 
 															echo '<td colspan="4">';
-																echo '<form action="matching.php" method="POST" role="form" class="form-horizontal">';
-																	echo '<button type="button" class="btn btn-default" data-dismiss="modal">Rejeitar</button>';
+
+																// The above code should be checked against CSRF vulnerability:
+																// This webconsole should not be published on production server.
+																// THIS IS A POC OF AN ARTICLE, NOT A PROFESSIONAL TOOL. DO NOT USE ON YOUR ENVIRONMENT
+																// DUE TO SECURITY ISSUES.
+																echo '<form action="matching.php?action='.$field.'" method="POST" role="form" class="form-horizontal">';
+																	echo '<button type="submit" class="btn btn-default" id="Rejeitar" name="rejeitar">Rejeitar</button>';
 																	echo '<button type="submit" class="btn btn-primary" name="aplicar" id="aplicar">Aplicar</button>';
 																echo '</form>';
+																if (isset($_POST['rejeitar'])) {
+																	echo "OPCAO: " . $_POST['rejeitar'];
+
+																}
 															echo '</td>';
 														echo '</tr>';
 
