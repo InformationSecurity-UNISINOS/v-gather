@@ -166,7 +166,7 @@ def MatchData():
  			distro_score = float(distro_ratio) * float(distro_weight)
  			final_score=final_score+distro_score
 
- 			if distro_score== distro_weight
+ 			if distro_score== distro_weight:
  				perfect+=1
 
  			# so pra debug
