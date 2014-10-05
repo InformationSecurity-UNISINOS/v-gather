@@ -199,8 +199,6 @@ def MatchData():
 					if ja_cadastrado==False:
 						candidates.AddQueue(scored)
 						filtro.AddQueue(scored)
-
-					
 			qlen-=1	
 		case_id+=1
 	recvdata.DestroyQueue()

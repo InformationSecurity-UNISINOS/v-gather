@@ -164,6 +164,7 @@ def DbSimCases():
 		#continue
 		conn=DbConnect()
 		if conn == None:
+			print "Falhou a conexao com a base para inserir"
 			return False
 		cursor = conn.cursor()
 		query = "INSERT INTO use_cases ( status, origem, case_id_related, \
