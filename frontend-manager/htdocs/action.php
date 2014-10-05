@@ -62,7 +62,6 @@ if ( $_GET['mode'] == "endpoint" ) {
 	}
 }
 
-
 if ( $_GET['mode'] == "settings" ) {
 	if ( isset($_POST['novo_valor']) AND isset($_POST['nova_desc']) AND isset($_POST['tupla']) ) {
 		$valor=xss_clean($_POST['novo_valor']);
@@ -81,6 +80,37 @@ if ( $_GET['mode'] == "settings" ) {
 		header('Location: settings.php');
 	}
 }
+
+if ( $_GET['mode'] == "adapt" ) {
+	if ( isset($_POST['field']) AND isset($_POST['solucao']) AND isset($_POST['descricao'])) {
+		$field=$_POST['field'];
+		$solution=$_POST['solucao'];
+		$description=$_POST['description'];
+
+		$stmt=$mysqli->prepare("UPDATE use_cases SET status=1 WHERE id=? ");
+		if ($stmt === FALSE) {
+		    die ("Mysql Error 1: " . $mysqli->error);
+		}
+		$stmt->bind_param('i', $field,);
+		$stmt->execute();
+		$stmt->free_result(); 
+
+		$stmt=$mysqli->prepare("INSERT INTO use_case_desc_solution (case_id,description,solution) VALUES(?,?,?) ");
+		if ($stmt === FALSE) {
+		    die ("Mysql Error 1: " . $mysqli->error);
+		}
+		$stmt->bind_param('iss', $field, $description, $solucao);
+		$stmt->execute();
+		$stmt->free_result(); 
+
+
+
+
+
+
+	}
+}
+
 
 
 ?>

@@ -50,7 +50,8 @@ if(login_check($mysqli) == false) {
 		function editar(btn) { 
 			
 			var item = $(btn).attr("data-id");
-			$('#edicao #atual_solucao').val($("td",$(this).parent().children().InnerText)[53].textContent);
+			$('#edicao #solucao').val($("td",$(this).parent().children().InnerText)[53].textContent);
+			$('#edicao #descricao').val($("td",$(this).parent().children().InnerText)[51].textContent);
 			$('#edicao #field').val(item);
 			$('#edicao').modal('toggle');
 		}
@@ -387,14 +388,18 @@ if(login_check($mysqli) == false) {
 	<div class="modal fade" id="edicao">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<form action="solution.php" method="POST" role="form" class="form-horizontal">
+					<form action="action.php?mode=adapt" method="POST" role="form" class="form-horizontal">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title">Editar Solução</h4>
+							<h4 class="modal-title">Adaptar Solução</h4>
 						</div>
 						<div class="modal-body">
-
-							<input class="form-control focused" id="atual_solucao" name="atual_solucao" type="textbox">
+							<p>A partir da adaptação da solução de um caso existente na base,<br>
+							uma nova experiência será aprendida, ou seja, um novo caso será incluído contendo sua nova<br>
+							solução.<p>
+							<p>Descrição: </p><input class="form-control focused" id="descricao" name="descricao" type="textbox" rows="3">
+							<p>Solução: </p><input class="form-control focused" id="solucao" name="solucao" type="textbox" rows="3">
+							<input class="form-control focused" id="field" name="field" type="hidden">
 
 						</div>
 						<div class="modal-footer">
