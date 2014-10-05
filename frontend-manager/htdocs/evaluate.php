@@ -73,10 +73,11 @@ if(login_check($mysqli) == false) {
 					<ul class="nav main-menu">
 						<li><a href="dashboard.php"><i class="fa fa-dashboard"></i><span class="hidden-sm text"> Dashboard</span></a></li>	
 						<li><a href="registrar.php"><i class="fa fa-edit"></i><span class="hidden-sm text"> Registrar Casos</span></a></li>
-						<li><a href="visualizar.php"><i class="fa fa-tags"></i><span class="hidden-sm text"> Visualizar Casos</span></a></li>
-						<li><a href="matching.php"><i class="fa fa-warning"></i><span class="hidden-sm text"> Matching</span></a></li>
+						<li><a href="visualizar.php"><i class="fa fa-tags"></i><span class="hidden-sm text"> Ver Casos</span></a></li>
+						<li><a href="matching.php"><i class="fa fa-dot-circle-o"></i><span class="hidden-sm text"> Matching</span></a></li>
+						<li><a href="evaluate.php"><i class="fa fa-gears"></i><span class="hidden-sm text"> Avaliação</span></a></li>
 						<li><a href="endpoints.php"><i class="fa fa-eye"></i><span class="hidden-sm text"> Endpoints</span></a></li>
-						<li><a href="novousuario.php"><i class="fa fa-user"></i><span class="hidden-sm text"> Usuários</span></a></li>
+						<li><a href="novousuario.php"><i class="fa fa-users"></i><span class="hidden-sm text"> Usuários</span></a></li>
 						<li><a href="settings.php"><i class="fa fa-wrench"></i><span class="hidden-sm text"> Configurações</span></a></li>
 					</ul>
 				</div>
@@ -335,11 +336,11 @@ if(login_check($mysqli) == false) {
 																// This webconsole should not be published on production server.
 																// THIS IS A POC OF AN ARTICLE, NOT A PROFESSIONAL TOOL. DO NOT USE ON YOUR ENVIRONMENT
 																// DUE TO SECURITY ISSUES.
-																echo '<form action="reject.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-default" id="Rejeitar" name="rejeitar">Rejeitar</button>';
+																echo '<form action="reject.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
+																	echo '<button type="submit" class="btn btn-default"><i class="fa fa-trash-o"> Rejeitar </i></button>';
 																echo '</form>';
-																echo '<form action="apply.php?field='.$field.'" method="GET" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-primary" name="aplicar" id="aplicar">Aplicar</button>';
+																echo '<form action="apply.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
+																	echo '<button type="submit" class="btn btn-primary" ><i class="fa fa-mail-forward"> Aplicar </i></button>';
 																echo '</form>';
 															echo '</td>';
 														echo '</tr>';
