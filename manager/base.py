@@ -51,7 +51,7 @@ def DbGetCaseID():
 		result = cursor.fetchone()
 		if result[0] is not None and result[0] > 0:
 			casos.append(case_sum)
-		case_id++;
+		case_id+=1;
 
 	conn.close()
 	return casos
