@@ -91,12 +91,12 @@ if ( $_GET['mode'] == "adapt" ) {
 		echo $solution . "<br>";
 		echo $field . "<br>";
 		die();
-		
+
 		$stmt=$mysqli->prepare("UPDATE use_cases SET status=1 WHERE id=? ");
 		if ($stmt === FALSE) {
 		    die ("Mysql Error 1: " . $mysqli->error);
 		}
-		$stmt->bind_param('i', $field,);
+		$stmt->bind_param('i', $field);
 		$stmt->execute();
 		$stmt->free_result(); 
 
