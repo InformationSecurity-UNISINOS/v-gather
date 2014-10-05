@@ -340,7 +340,7 @@ if(login_check($mysqli) == false) {
 																	echo '<button type="submit" class="btn btn-primary" name="aplicar" id="aplicar">Aplicar</button>';
 																echo '</form>';
 																if (isset($_POST['rejeitar'])) {
-																	$id=$_POST['rejeitar']
+																	$id=$_POST['rejeitar'];
 																	echo "OPCAO: " . $id . "<br>";
 																	$stmt2=$mysqli->prepare("DELETE FROM use_cases WHERE id = ?");
 																	$stmt2->bind_param('i', $id);
