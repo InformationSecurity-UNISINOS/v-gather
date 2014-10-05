@@ -40,7 +40,7 @@ def DbGetCaseID():
 		print "  + Não existem casos na base. Cadastre-os primeiramente."
 		return False
 	case_id=1
-	casos={}
+	casos=[]
 	while case_id <= total_cases:
 		conn=DbConnect()
 		if conn == None:
