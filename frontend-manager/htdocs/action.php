@@ -99,7 +99,7 @@ if ( $_GET['mode'] == "adapt" ) {
 		if ($stmt === FALSE) {
 		    die ("Mysql Error 1: " . $mysqli->error);
 		}
-		$stmt->bind_param('iss', $field, $description, $solucao);
+		$stmt->bind_param('iss', $field, $description, $solution);
 		$stmt->execute();
 		$stmt->free_result(); 
 
