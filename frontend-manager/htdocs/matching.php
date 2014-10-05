@@ -348,7 +348,6 @@ if(login_check($mysqli) == false) {
 	                                               	echo '</tbody>';
 	                                            echo '</table>';
 											    } 
-											    $stmt->close();
                                             ?>
 
                                         </div>

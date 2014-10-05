@@ -103,7 +103,7 @@ if(login_check($mysqli) == false) {
                                 <div class="box">
                                     <div class="box-header">
                                         <h2><i class="fa fa-bookmark-o"></i>
-                                            <font face="MankSans" size="5pt">Matching</font>
+                                            <font face="MankSans" size="5pt">Avaliação</font>
                                         </h2>
                                     </div>
                                     
