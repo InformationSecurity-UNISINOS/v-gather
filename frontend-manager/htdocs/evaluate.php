@@ -336,14 +336,13 @@ if(login_check($mysqli) == false) {
 																// This webconsole should not be published on production server.
 																// THIS IS A POC OF AN ARTICLE, NOT A PROFESSIONAL TOOL. DO NOT USE ON YOUR ENVIRONMENT
 																// DUE TO SECURITY ISSUES.
-																echo '<form action="reject.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-default" name="reject"><i class="fa fa-trash-o"> Rejeitar </i></button>';
+																echo '<form class="btn-group">';
+																    echo '<button class="btn">Button One</button>';
+																    echo '<input type="hidden" class="btn"><!-- fake sibling to right -->';
 																echo '</form>';
-																echo '<form action="apply.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-primary" name="edit"><i class="fa fa-mail-forward"> Aplicar </i></button>';
-																echo '</form>';
-																echo '<form action="apply.php?field='.$field.'" method="POST" role="form" class="form-horizontal">';
-																	echo '<button type="submit" class="btn btn-primary" name="apply"><i class="fa fa-mail-forward"> Aplicar </i></button>';
+																echo '<form class="btn-group">';
+																    echo '<input type="hidden" class="btn"><!-- fake sibling to left -->';
+																    echo '<button class="btn">Button Two</button>';
 																echo '</form>';
 
 															echo '</td>';
