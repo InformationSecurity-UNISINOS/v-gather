@@ -397,9 +397,9 @@ if(login_check($mysqli) == false) {
 							<p>A partir da adaptação da solução de um caso existente na base,<br>
 							uma nova experiência será aprendida, ou seja, um novo caso será incluído contendo sua nova<br>
 							solução.<p>
-							<p>Descrição: </p><input class="form-control focused" id="descricao" name="descricao" type="textbox" rows="3">
-							<p>Solução: </p><input class="form-control focused" id="solucao" name="solucao" type="textbox" rows="3">
-							<input class="form-control focused" id="field" name="field" type="hidden">
+							<p>Descrição: </p><input class="form-control" id="descricao" name="descricao" type="textbox" rows="3">
+							<p>Solução: </p><input class="form-control" id="solucao" name="solucao" type="textbox" rows="3">
+							<input class="form-control" id="field" name="field" type="hidden">
 
 						</div>
 						<div class="modal-footer">
