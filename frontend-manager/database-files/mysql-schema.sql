@@ -193,8 +193,7 @@ CREATE TABLE `use_cases` (
 -- ----------------------------
 -- Records of use_cases
 -- ----------------------------
-INSERT INTO `use_cases` VALUES (1,'2014-10-02 17:13:23',1,1,NULL,2,5.00,NULL,'6.5',1.00,NULL,'httpd',5.00,NULL,48,1.00,NULL,48,1.00,NULL,'',0.00,NULL,'80:Apache httpd',5.00,NULL,'',0.00,NULL,'httpd-2.2.15',5.00,NULL,NULL,NULL,NULL,'/usr/sbin/httpd',1.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-
+INSERT INTO `use_cases` VALUES (1,'2014-10-02 17:13:23',1,1,NULL,2,5.00,NULL,'6.5',1.00,NULL,'httpd',5.00,NULL,48,1.00,NULL,48,1.00,NULL,'',0.00,NULL,'80:Apache httpd',5.00,NULL,'',0.00,NULL,'httpd-2.2.15',5.00,NULL,NULL,NULL,NULL,'/usr/sbin/httpd',1.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
 
 -- ----------------------------
 -- Table structure for use_case_desc_solution
