@@ -62,7 +62,7 @@ def MatchData():
 			# PAACKAGE MANAGER AND NAME
 			#########################################################################
 		
-			p_pkg_ratio = Similarity( pdict['pacote'] , db_case['package_name'] )
+			p_pkg_ratio = Similarity( pdict['pacote'].lower() , db_case['package_name'].lower() )
 			p_pkg_weight = float(db_case['package_name_weight'])
 			p_pkg_score = float(p_pkg_ratio) * float(p_pkg_weight)
 			
@@ -72,7 +72,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS PROCESS NAME
 			#########################################################################
-			p_name_ratio = Similarity( pdict['p_name'] , db_case['process_name'] )
+			p_name_ratio = Similarity( pdict['p_name'].lower() , db_case['process_name'].lower() )
 			p_name_weight = float(db_case['process_name_weight'])
 			p_name_score = float(p_name_ratio) * float(p_name_weight)
 			final_score=final_score+p_name_score
@@ -83,7 +83,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS UID:
 			#########################################################################
-	 		p_uid_ratio = Similarity(pdict['p_uid'] , db_case['process_uid'])
+	 		p_uid_ratio = Similarity(int(pdict['p_uid']) , int(db_case['process_uid']))
 	 		p_uid_weight = float(db_case['process_uid_weight'])
 	 		p_uid_score = float(p_uid_weight) * float(p_uid_ratio)
 	 		final_score=final_score+p_uid_score
@@ -94,7 +94,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS GID:
 			#########################################################################
-			p_gid_ratio = Similarity( pdict['p_gid'] , db_case['process_gid'])
+			p_gid_ratio = Similarity( int(pdict['p_gid']) , int(db_case['process_gid']))
 			p_gid_weight = float(db_case['process_gid_weight'])
 			p_gid_score = float(p_gid_ratio) * float(p_gid_weight)
 			final_score=final_score+p_gid_score
@@ -105,7 +105,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS PROCESS ARGS
 			#########################################################################
-			p_args_ratio = Similarity(pdict['p_args'] ,db_case['process_args'])
+			p_args_ratio = Similarity(pdict['p_args'].lower() ,db_case['process_args'].lower())
 			p_args_weight = float(db_case['process_args_weight'])
 			p_args_score = float(p_args_ratio) * float(p_args_weight)
 			final_score=final_score+p_args_score 
@@ -116,7 +116,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS TCP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
-			p_tcp_banner_ratio = Similarity( pdict['p_tcp_banner'] , db_case['process_tcp_banner'] )
+			p_tcp_banner_ratio = Similarity( pdict['p_tcp_banner'].lower() , db_case['process_tcp_banner'].lower() )
 			p_tcp_banner_weight = float(db_case['process_tcp_banner_weight'])
 			p_tcp_banner_score = p_tcp_banner_ratio * p_tcp_banner_weight
 			final_score=final_score+p_tcp_banner_score 
@@ -127,7 +127,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS UDP PORT AND BANNER (fromato: porta:banner)
 			#########################################################################
-			p_udp_banner_ratio = Similarity( pdict['p_udp_banner'] , db_case['process_udp_banner'] )
+			p_udp_banner_ratio = Similarity( pdict['p_udp_banner'].lower() , db_case['process_udp_banner'].lower() )
 			p_udp_banner_weight = float(db_case['process_udp_banner_weight'])
 			p_udp_banner_score = float(p_udp_banner_ratio) * float(p_udp_banner_weight)
 			final_score=final_score+p_udp_banner_score 
@@ -138,7 +138,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS FILE PATH
 			#########################################################################
-			pf_path_ratio = Similarity( pdict['pf_path'] , db_case['process_binary'] )
+			pf_path_ratio = Similarity( pdict['pf_path'].lower() , db_case['process_binary'].lower() )
 			pf_path_weight = float(db_case['process_binary_weight'])
 			pf_path_score = float(pf_path_ratio) * float(pf_path_weight)
 			final_score=final_score+pf_path_score 
@@ -159,7 +159,7 @@ def MatchData():
 			#########################################################################
 			# PROCESS DISTRO NAME
 			#########################################################################
-			distro_ratio = Similarity( str(pdict['distro']) , str(db_so_name) )
+			distro_ratio = Similarity( str(pdict['distro']).lower() , str(db_so_name).lower() )
 			distro_weight = float(db_case['so_id_weight'])
  			distro_score = float(distro_ratio) * float(distro_weight)
  			final_score=final_score+distro_score
