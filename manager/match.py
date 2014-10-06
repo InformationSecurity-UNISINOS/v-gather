@@ -156,6 +156,12 @@ def MatchData():
 			distro_version_score = float(distro_version_ratio) * float(distro_version_weight)
 			final_score=final_score+distro_version_score
 
+			print "ag dist ver: " + str(pdict['distro_version'])
+			print "db dist ver: " + str(db_case['so_version'])
+			print "ratio: " +str(distro_version_ratio)
+			print "weight: " +str(distro_version_weight)
+			print "score: " +str(distro_version_score)
+ 
 			if distro_version_score==distro_version_weight:
 				perfect+=1
 			#########################################################################
