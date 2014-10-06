@@ -25,7 +25,9 @@ def Similarity(item1,item2):
 	if ( type(item1) == int or type(item1) == float ) and (type(item2) == int or type(item2) == float):
 		a=item1*item1
 		b=item2*item2
-		if a < b:
+		if a == 0 or b == 0:
+			sim=round(Levenshtein.ratio(str(item1),str(item2)),2)
+		elif a < b:
 			sim=round(a/math.sqrt(a*b),2)
 		else:
 			sim=round(b/math.sqrt(a*b),2)
