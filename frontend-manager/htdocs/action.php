@@ -33,13 +33,22 @@ if ( $_GET['mode'] == "evaluate" ) {
 }
 
 if ( $_GET['mode'] == "perfect" ) {
-	if ( isset($_GET['field']) ) { 
-		$row_id=$_REQUEST['field'];
-		$stmt2 = $mysqli->prepare("UPDATE use_cases SET status=1 WHERE id = ?");
+	if ( isset($_GET['field']) AND isset($_GET['related']) ) { 
+		$row_id=$_GET['field'];
+		$related=$_GET['related'];
+
+		$stmt2 = $mysqli->prepare("UPDATE use_cases SET case_weight=case_weight+1 WHERE id = ?");
 		$stmt2->bind_param('i', $row_id);
 		$stmt2->execute(); 
 		$stmt2->free_result();
 		$stmt2->close();
+
+		$stmt2 = $mysqli->prepare("DELETE FROM use_cases WHERE id = ?");
+		$stmt2->bind_param('i', $related);
+		$stmt2->execute(); 
+		$stmt2->free_result();
+		$stmt2->close();
+
 		header('Location: evaluate.php');
 	}
 }
