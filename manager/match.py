@@ -25,7 +25,6 @@ def Similarity(item1,item2):
 	import math
 	# SE É NUMERO
 	if ( type(item1) == int or type(item1) == float ) and (type(item2) == int or type(item2) == float):
-		print "numero"
 		a=item1*item1
 		b=item2*item2
 		if a < b:
@@ -33,7 +32,6 @@ def Similarity(item1,item2):
 		else:
 			sim=round(b/math.sqrt(a*b),2)
 	else:
-		print "string"
 		sim=round(Levenshtein.ratio(str(item1),str(item2)),2)
 	return sim
 
@@ -153,16 +151,10 @@ def MatchData():
 			#########################################################################
 			# PROCESS DISTRO VERSION
 			#########################################################################
-			distro_version_ratio = Similarity(pdict['distro_version'], db_case['so_version'])
+			distro_version_ratio = Similarity(float(pdict['distro_version']), float(db_case['so_version']))
 			distro_version_weight = float(db_case['so_version_weight'])
 			distro_version_score = float(distro_version_ratio) * float(distro_version_weight)
 			final_score=final_score+distro_version_score
-
-			print "ag dist ver: " + str(pdict['distro_version'])
-			print "db dist ver: " + str(db_case['so_version'])
-			print "ratio: " +str(distro_version_ratio)
-			print "weight: " +str(distro_version_weight)
-			print "score: " +str(distro_version_score)
  
 			if distro_version_score==distro_version_weight:
 				perfect+=1
