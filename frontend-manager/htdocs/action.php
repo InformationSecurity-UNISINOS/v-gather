@@ -38,13 +38,13 @@ if ( $_GET['mode'] == "perfect" ) {
 		$related=$_GET['related'];
 
 		$stmt2 = $mysqli->prepare("UPDATE use_cases SET case_weight=case_weight+1 WHERE id = ?");
-		$stmt2->bind_param('i', $row_id);
+		$stmt2->bind_param('i', $related);
 		$stmt2->execute(); 
 		$stmt2->free_result();
 		$stmt2->close();
 
 		$stmt2 = $mysqli->prepare("DELETE FROM use_cases WHERE id = ?");
-		$stmt2->bind_param('i', $related);
+		$stmt2->bind_param('i', $row_id);
 		$stmt2->execute(); 
 		$stmt2->free_result();
 		$stmt2->close();
