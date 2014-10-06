@@ -29,7 +29,7 @@ CREATE TABLE `managed_servers` (
   `created` TIMESTAMP NOT NULL,
   `updated` TIMESTAMP NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 -- ----------------------------
 -- Records of managed_servers
 -- ----------------------------
@@ -43,7 +43,7 @@ CREATE TABLE `weight_settings` (
   `weight` FLOAT(5,2),
   `descr` varchar(255),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 -- ----------------------------
 -- Records of weight_settings
 -- ----------------------------
@@ -62,7 +62,7 @@ CREATE TABLE `case_match` (
   `value` int(11) NOT NULL,
   `descr` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 -- ----------------------------
 -- Records of status_types
 -- ----------------------------
@@ -76,7 +76,7 @@ CREATE TABLE `status_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- ----------------------------
 -- Records of status_types
@@ -92,7 +92,7 @@ CREATE TABLE `origem_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- ----------------------------
 -- Records of status_types
@@ -108,7 +108,7 @@ CREATE TABLE `package_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- ----------------------------
 -- Records of package_types
@@ -125,7 +125,7 @@ CREATE TABLE `sos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 -- ----------------------------
 -- Records of sos
@@ -187,8 +187,9 @@ CREATE TABLE `use_cases` (
   `process_binary_dac` int DEFAULT NULL,
   `process_binary_dac_weight` FLOAT(5,2) DEFAULT NULL,
   `process_binary_dac_score` FLOAT(5,2) DEFAULT NULL,
+  `case_weight` int DEFAULT NULL,
   `candidate_final_score` FLOAT(5,2),
-  PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`) ) ENGINE=InnoDB;
 -- ----------------------------
 -- Records of use_cases
 -- ----------------------------
@@ -204,7 +205,7 @@ CREATE TABLE `use_case_desc_solution` (
   `case_id` int(11) DEFAULT NULL,
   `description` varchar(10000) DEFAULT NULL,
   `solution` varchar(10000) DEFAULT NULL,
-  PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`) ) ENGINE=InnoDB;
 
 -- ----------------------------
 -- Records of use_case_desc_solution
