@@ -169,18 +169,6 @@ def MatchData():
  			if distro_score== distro_weight:
  				perfect+=1
 
- 			# so pra debug
- 			#print pdict
- 			#print "distro_score: " +str(distro_score)
- 			#print "distro_version_score: " +str(distro_version_score)
- 			#print "p_pkg_score: "+str(p_pkg_score)
- 			#print "p_name_score: "+str(p_name_score)
- 			#print "p_uid_score: "+str(p_uid_score)
- 			#print "pf_path_score: " +str(pf_path_score)
- 			#print "p_udp_banner_score: " +str(p_udp_banner_score)
- 			#print "p_tcp_banner_score: " +str(p_tcp_banner_score)
- 			#print "p_args_score: " +str(p_args_score)
- 			#print "p_gid_score: " +str(p_gid_score)
  			
  			if debug==3:
 				print "AG_PNAME: "+str(pdict['p_name']) + " / CASE_ID: " +str(case_id) + " / DB_PNAME: "+str( db_case['process_name']) + " / FINAL SCORE: " +str(final_score)

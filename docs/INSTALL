@@ -37,4 +37,5 @@ Instalar no CentOS e Debian:
 	pip install netifaces
 	pip install python-Levenshtein (manager apenas)
 	pip install MySqlDb-python (manager apenas)
-
+	pip install twisted
+	pip install treedict
