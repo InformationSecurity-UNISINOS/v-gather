@@ -8,9 +8,13 @@ PORT_BIND=3339
 
 # this should reflect your MySQL server config:
 <<<<<<< HEAD
+<<<<<<< HEAD
 sqlhost="10.211.55.12" 
 =======
 sqlhost="10.211.55.11" 
+>>>>>>> master
+=======
+sqlhost="10.211.55.12" 
 >>>>>>> master
 sqluser="vmgr"
 sqlpass="teste"
@@ -22,7 +26,6 @@ GENERAL=100
 BANNER=200
 ARGS=300
 IOFILES=400
-
 
 tcp_ports_already_verirified=[]
 udp_ports_already_verirified=[]

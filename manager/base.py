@@ -1,42 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
- 
-'''
-O server abre o listener e chama o rpc pra receber os dados.
-o rpc recebe os dados do agente e joga pro queue organizar tudo em uma fila de dicionários (um dicionário por processo)
-Quando os dados estiverem organizados, o queue.py deve retornar a lista para o rpc.
-O rpc vai receber os dados tratados e encaminhar para o core.py
-
-O core.py vai solicitar para o base.py um caso usando um index (case_id) incremental, via laço for.
-o base.py vai pesquisar no MySQL o caso com o case_id solicitado pelo core.py e devolver um dicionário.
-O core.py terá na mão o caso da base e a lista de dicionários recebida através do rpc.py
-o core.py vai então encaminhar os pares de casos (base e dado do agente) pro match.py
-
-O match.py vai recever dois dicionários do core.py, e calcular a similaridade dos atributos entre o caso da base e o dado do agente.
-
-O estado (dado do agente) que tiver mais que <60%> de similaridade com algum caso da base, será adicionado a uma nova lista de dicionários.
-Quando todos os estados (dado do agente) forem comparados com todos os itens da base, a lista de dicionário final (passo anterior),
-será enviada para o base.py
-
-O base.py vai receber a lista de casos que devem ser adaptados, e inserir no MySQL com status '2'.
-
-No front-end, os itens da base com status '2' devem ser exibidos em pares:
-ESTADO COLETADO DO AGENTE X CASO DA BASE SEMELHANTE 
-O usuário deverá selecionar se ele quer aplicar a solução do caso da base, no estado coletado. Ou será necessário adaptar.
-Caso o usuário entenda que é melhor adaptar, ele deverá editar o campo solução e poderá adicionar descrição.
-
-Quando ele salvar esse resultado, o status no mysql deve ser alterado pra 1, e a data deve ser inserida.
-Talvez seja interessante colocar uma outra flag pra determinar que este foi um caso APRENDIDO.
-
-A lista de todos os casos já está disponível no frontend
-
-'''
+#
+#
+# A organização dos casos funciona no esquema
+# 2.5.1.1 Memória linear com busca serial (dumbo)
+#
+# A adaptação da solução será baseada em crítica.
+# O usuário vai observar a solução e fazer a adaptação manualmente, caso seja necessário.
+# Caso não seja necessário, a adaptação nula é adotada (apenas aplica como está)
+#
+#
+#
+#
 import MySQLdb
 from common import *
+from cqueue import *
 
 def DbConnect():
 	try:
-		ret=MySQLdb.connect(host=sqlhost, user=sqluser, passwd=sqlpass, db=sqldb)
+		ret=MySQLdb.connect(host=sqlhost, port=3306, user=sqluser, passwd=sqlpass, db=sqldb)
 	except:
 		ret=None
 	return ret
@@ -46,8 +28,37 @@ def DbCountCases():
 	if conn == None:
 		return False
 	cursor = conn.cursor()
-	case_sum="SELECT COUNT(id) from use_cases"
+	case_sum="SELECT COUNT(id) from use_cases WHERE status=1"
 	cursor.execute (case_sum)
+	result = cursor.fetchone()
+	conn.close()
+	return int(result[0])
+
+def DbGetCaseID():
+	i=0
+	total_cases=DbCountCases()
+	if total_cases == False:
+		print "  + Não existem casos na base. Cadastre-os primeiramente."
+		return False
+	query="SELECT id from use_cases WHERE status=1"
+	conn=DbConnect()
+	if conn == None:
+			return False
+	cursor = conn.cursor()
+	cursor.execute (query)
+	data = cursor.fetchall()
+	conn.close()
+
+	return data
+
+
+def DbSimilarPoint():
+	conn=DbConnect()
+	if conn == None:
+		return False
+	cursor = conn.cursor()
+	decpoint="SELECT value FROM case_match"
+	cursor.execute (decpoint)
 	result = cursor.fetchone()
 	conn.close()
 	return int(result[0])
@@ -85,15 +96,9 @@ def DbGetCase(case_id):
 	process_args, process_args_weight,\
 	process_tcp_banner, process_tcp_banner_weight,\
 	process_udp_banner, process_udp_banner_weight,\
-	process_tcp_portas, process_tcp_portas_weight,\
-	process_udp_portas, process_udp_portas_weight, \
 	package_name, package_name_weight,\
-	package_type_id, package_type_id_weight,\
-	process_binary, process_binary_weight,\
-	process_binary_dac, process_binary_dac_weight,\
-	process_binary_uid, process_binary_uid_weight,\
-	process_binary_gid, process_binary_gid_weight\
-	from use_cases where id=%i" %case_id 
+	process_binary, process_binary_weight \
+	from use_cases where id=%i and status=1" %case_id
 
 	cursor.execute(query)
 	results = cursor.fetchall()
@@ -115,38 +120,13 @@ def DbGetCase(case_id):
 	db_case['process_tcp_banner_weight']=results[0][14]
 	db_case['process_udp_banner']=results[0][15]
 	db_case['process_udp_banner_weight']=results[0][16]
-	db_case['process_tcp_portas']=results[0][17]
-	db_case['process_tcp_portas_weight']=results[0][18]
-	db_case['process_udp_portas']=results[0][19]
-	db_case['process_udp_portas_weight']=results[0][20]
-	db_case['package_name']=results[0][21]
-	db_case['package_name_weight']=results[0][22]
-	db_case['package_type_id']=results[0][23]
-	db_case['package_type_id_weight']=results[0][24]
-	db_case['process_binary']=results[0][25]
-	db_case['process_binary_weight']=results[0][26]
-	db_case['process_binary_dac']=results[0][27]
-	db_case['process_binary_dac_weight']=results[0][28]
-	db_case['process_binary_uid']=results[0][29]
-	db_case['process_binary_uid_weight']=results[0][30]
-	db_case['process_binary_gid']=results[0][31]
-	db_case['process_binary_gid_weight']=results[0][32]
+	db_case['package_name']=results[0][17]
+	db_case['package_name_weight']=results[0][18]
+	db_case['process_binary']=results[0][19]
+	db_case['process_binary_weight']=results[0][20]
+	
 	conn.close()
 	return db_case
-	
-def DbGetPkgMgr(package_type_id):
-	conn=DbConnect()
-	if conn == None:
-		return False
-	if DbCountCases == 0:
-		# nao existem casos na base
-		return 0 
-	cursor = conn.cursor()
-	query="Select name from package_types where id=%i" %int(package_type_id)
-	cursor.execute(query)
-	results = cursor.fetchone()
-	conn.close()
-	return results[0]
 
 def DbGetSoName(so_id):
 	conn=DbConnect()
@@ -156,27 +136,73 @@ def DbGetSoName(so_id):
 		# nao existem casos na base
 		return 0 
 	cursor = conn.cursor()
-	query="Select name from sos where id=%i" %int(so_id)
+	query="SELECT name FROM sos WHERE id=%i" %int(so_id)
 	cursor.execute(query)
 	results = cursor.fetchone()
 	conn.close()
 	return results[0]
+#
+# Eu havia criado uma classe de fila
+# pra instanciar filas como objetos.
+# O problema é que quando eu alimentava os valores da 
+# fila filtrada (a ser inserida na base),
+# os valores float nos scores eram totalmente modificados.
+# valor que deveria ser 3.0, estava como 0.45.
+# nao consegui resolver esse problema, nao encontrei a causa raíz.
+# fiquei um dia inteiro em cima desse problema e nada.
+# pra evitar perder tanto tempo, mudei a abordagem
+# ao invés de usar uma queue de dados pra inserir na base
+# mandei inserir diretamente, sem queue.
+# vai diminuir a performance, mas ...
+def DbSimCases():
+	clen=candidates.LenQueue()
+	while clen > 0:
+		pdict2={}
+		pdict2=candidates.GetQueue()
+		if pdict2['distro'].lower() == "debian":
+			so_id=1
+		else: 
+			so_id=2
+		print "*"*50
+		for k,v in pdict2.items():
+			if v == "" or len(str(v)) == 0:
+				pdict2[k]="N/A"
 
+			print "%s => %s" %(k,v)
+		print "*"*50
 
+		#
+		# Dumbo - 5.5.4 Aprendizado - página 107
+		# Após o caso ser solucionado, ele é encerrado podendo ou não ser aprendido pelo sistema.
+		# Um caso é aprendido quando ele representa uma experiência nova, uma experiência para a qual
+		# o sistema não foi capaz de propor uma solução adequada — seja porque o sistema propôs uma solução
+		# que precisou ser adaptada, seja porque não propôs a melhor solução para a situação. Nesses casos,
+		# a experiência obtida com o processo deve ser retida no sistema através de um novo caso.
+		#
+		#continue
+		conn=DbConnect()
+		if conn == None:
+			return False
+		cursor = conn.cursor()
+		query = "INSERT INTO use_cases ( status, origem, case_id_related, \
+										so_id, so_id_weight, so_id_score, \
+										so_version, so_version_weight, so_version_score, \
+										process_name, process_name_weight, process_name_score, \
+										process_uid, process_uid_weight, process_uid_score, \
+										process_gid, process_gid_weight, process_gid_score, \
+										process_args, process_args_weight, process_args_score, \
+										process_tcp_banner, process_tcp_banner_weight, process_tcp_banner_score, \
+										process_udp_banner, process_udp_banner_weight, process_udp_banner_score, \
+										package_name, package_name_weight, package_name_score, \
+										process_binary, process_binary_weight, process_binary_score, \
+										candidate_final_score) VALUES ( '%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s' )" % ( 2, 2, str(pdict2['case_id_related']),str(so_id), str(pdict2['distro_weight']), str(pdict2['distro_score']), str(pdict2['distro_version']), str(pdict2['distro_version_weight']), str(pdict2['distro_version_score']), str(pdict2['p_name']),str(pdict2['p_name_weight']), str(pdict2['p_name_score']), str(pdict2['p_uid']), str(pdict2['p_uid_weight']), str(pdict2['p_uid_score']), str(pdict2['p_gid']), str(pdict2['p_gid_weight']), str(pdict2['p_gid_score']), str(pdict2['p_args']),str(pdict2['p_args_weight']), str(pdict2['p_args_score']), str(pdict2['p_tcp_banner']), str(pdict2['p_tcp_banner_weight']), str(pdict2['p_tcp_banner_score']), str(pdict2['p_udp_banner']), str(pdict2['p_udp_banner_weight']), str(pdict2['p_udp_banner_score']), str(pdict2['p_package']), str(pdict2['p_pkg_weight']), str(pdict2['p_pkg_score']), str(pdict2['pf_path']), str(pdict2['pf_path_weight']), str(pdict2['pf_path_score']), str(round(pdict2['score'],2)) )
+		
+		cursor.execute(query)
+		conn.commit()
+		conn.close ()
+		clen-=1
 
-def SqlInsert():
-	conn = MySQLdb.connect (host = sqlhost, user = sqluser, passwd = sqlpass, db = sqldb)
-	cursor = conn.cursor()
-	sql = "INSERT INTO EMPLOYEE(FIRST_NAME,LAST_NAME, AGE, SEX, INCOME) \
-       VALUES ('%s', '%s', '%d', '%c', '%d' )" % \
-       ('Mac', 'Mohan', 20, 'M', 2000)
-	try:
-		cursor.execute(sql)
-   		conn.commit()
-	except:
-   		# Rollback in case there is any error
-   		conn.rollback()
-   	conn.close ()
+	candidates.DestroyQueue()
 
 
 

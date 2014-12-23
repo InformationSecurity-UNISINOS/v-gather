@@ -6,7 +6,7 @@ include_once 'includes/functions.php';
 sec_session_start(); 
 if(login_check($mysqli) == false) {
 
-        die('You are not authorized to access this page, please login.');
+        header('Location: index.php');
 }
 ?>
 <html lang="en">
@@ -72,9 +72,11 @@ if(login_check($mysqli) == false) {
 						<li><a href="dashboard.php"><i class="fa fa-dashboard"></i><span class="hidden-sm text"> Dashboard</span></a></li>	
 						<li><a href="registrar.php"><i class="fa fa-edit"></i><span class="hidden-sm text"> Registrar Casos</span></a></li>
 						<li><a href="visualizar.php"><i class="fa fa-tags"></i><span class="hidden-sm text"> Visualizar Casos</span></a></li>
-						<li><a href="vulnerabilidades.php"><i class="fa fa-warning"></i><span class="hidden-sm text"> Vulnerabilidades</span></a></li>
-						<li><a href="agentes.php"><i class="fa fa-eye"></i><span class="hidden-sm text"> Agentes</span></a></li>
-						<li><a href="novousuario.php"><i class="fa fa-user"></i><span class="hidden-sm text"> Usuários</span></a></li>
+						<li><a href="matching.php"><i class="fa fa-dot-circle-o"></i><span class="hidden-sm text"> Matching</span></a></li>
+						<li><a href="evaluate.php"><i class="fa fa-gears"></i><span class="hidden-sm text"> Avaliação</span></a></li>
+						<li><a href="endpoints.php"><i class="fa fa-eye"></i><span class="hidden-sm text"> Endpoints</span></a></li>
+						<li><a href="novousuario.php"><i class="fa fa-users"></i><span class="hidden-sm text"> Usuários</span></a></li>
+						<li><a href="settings.php"><i class="fa fa-wrench"></i><span class="hidden-sm text"> Configurações</span></a></li>
 					</ul>
 				</div>
 				<a href="#" id="main-menu-min" class="full visible-md visible-lg"><i class="fa fa-angle-double-left"></i></a>
@@ -84,36 +86,44 @@ if(login_check($mysqli) == false) {
 			<!-- start: Content -->
 				<div id="content" class="col-lg-10 col-sm-11 ">
 					<div class="row"> <!-- INICIO PRIMEIRA LINHA-->
+						<ol class="breadcrumb">
+					  		<li><a href="#">V-Gather</a></li>
+					  		<li class="active" >Registro de Caso</li>
+						</ol>
 		                <div class="col-lg-12 col-md-12">
 		                    <div class="box">
 		                        <div class="box-header">
 		                            <h2><i class="fa fa-bookmark-o"></i>
-		                                <font face="MankSans" size="5pt">Registro de Caso</font>
+		                                <font face="MankSans" size="5pt">Novo Caso</font>
 		                            </h2>
 		                        </div>
 		                        <div class="box-content">
 		                        	<p class="lead">
-		                            	Conforme possível, preencha o maior número de campos. As informações serão utilizadas para estruturar um novo caso que fará parte da base de dados de casos. Use este formulário para registrar uma ocorrência de uma vulnerabilidade identificada.
+		                            	Conforme possível, preencha o maior número de campos.<br>
+		                            	As informações serão utilizadas para estruturar um novo caso que fará parte da<br>
+		                            	base de casos. Use este formulário para registrar uma ocorrência de uma vulnerabilidade<br>
+		                            	identificada e/ou conhecida.
 		                           	</p>
 		                           	<p>
-		                           		A relevância de cada item é um valor no formato ponto flutuante, com duas casas após o ponto.<br>
-		                           		Para itens que tem muita relevância para determinar a vulnerabilidade, atribuir valores próximos a 1.<br>
-		                           		Por exemplo: <br>
-		                           		Se a vulnerabilidade é atribuída a versão específica de um serviço, o valor de relevância pode ser 1 e será atribuído ao campo do pacote do processo.<br>
-		                           		Se esta vulnerabilidade pode estar presente tanto no Debian, quanto no CentOS, a relevância deste item pode ser configurada com valores próximos a zero, como 0.2, por exemplo.<br>
-		                           		Se a vulnerabilidade pertence a um serviço de rede, atribua mais pontos para os itens banner e portas do serviço<br>
+		                           		A relevância de cada ítem é determinada subjetivamente. Entretanto, recomenda-se utilizar<br>
+		                           		configurações agressivas para melhor detecção. Por exemplo, ao registrar uma vulnerabilidade <br>
+		                           		no serviço "udevd", determinar relevância máxima para o nome do processo, o arquivo binário, <br>
+		                           		pacote do processo, entre outros fatores que facilitem a identificação<br>
+		                           		do mesmo.<br> É possível ainda neste caso, desabilitar os fingerprints de portas TCP e UDP.<br>
+		                           		Para ítens menos relevantes, deve-se utilizar o valor "baixo". No exemplo anterior, o owner do arquivo e do processo<br>
+		                           		não são ítens de grande caracterização deste processo, portanto, podem receber relevância mínima.<br>
 
 		                           	</p>
 		                            <form action="save.php" method="POST" role="form" class="form-horizontal">
 		                            	<table class="table table-striped">
 		                            		<thead>
 		                            			<tr>
-		                            				<td>Categoria</td><td>Itens</td><td>Relevância</td>
+		                            				<td width="30%">Categoria</td><td>Itens</td><td>Relevância</td>
 		                            			</tr>
 		                            		</thead>
 		                            		<tbody>
 												<tr>
-													<td>
+													<td width="30%">
 														Distribuição GNU/Linux
 													</td>
 													<td>
@@ -125,29 +135,74 @@ if(login_check($mysqli) == false) {
 														 </label>
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_weight" name="so_weight" type="text" required>
+														<!-- 
+															<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_weight" name="so_weight" type="text" >
+														-->
+														<label class="radio-inline">
+														    <input type="radio" name="so_peso" id="so_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_peso" id="so_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_peso" id="so_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_peso" id="so_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_peso" id="so_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td width="30%">
 														Versão da Distribuição GNU/Linux
 													</td>
 													<td>
-														<input placeholder="Exemplo: 7.4" class="form-control focused" id="so_ver" name="so_ver" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplo: 7.4" class="form-control focused" id="so_ver" name="so_ver" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="so_ver_weight" name="so_ver_weight" type="text" required>
+														<label class="radio-inline">
+														    <input type="radio" name="so_ver_peso" id="so_ver_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_ver_peso" id="so_ver_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_ver_peso" id="so_ver_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_ver_peso" id="so_ver_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="so_ver_peso" id="so_ver_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td width="30%">
 														Nome do Processo
 													</td>
 													<td>
-														<input placeholder="Exemplos: apache2, mysqld, ntpd, cron" class="form-control focused" id="p_name" name="p_name" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplos: apache2, mysqld, ntpd, cron" class="form-control focused" id="p_name" name="p_name" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_name_weight" name="p_name_weight" type="text" required>
+														<label class="radio-inline">
+														    <input type="radio" name="p_name_peso" id="p_name_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_name_peso" id="p_name_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_name_peso" id="p_name_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_name_peso" id="p_name_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_name_peso" id="p_name_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 
@@ -156,10 +211,24 @@ if(login_check($mysqli) == false) {
 														UID do processo
 													</td>
 													<td>
-														<input placeholder="Exemplos: 33, 0, 80"class="form-control focused" id="p_uid" name="p_uid" type="number" autocomplete="disabled" required>
+														<input placeholder="Exemplos: 33, 0, 80"class="form-control focused" id="p_uid" name="p_uid" type="number" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_uid_weight" name="p_uid_weight" type="text" required>
+														<label class="radio-inline">
+														    <input type="radio" name="p_uid_peso" id="p_uid_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_uido_peso" id="p_uid_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_uid_peso" id="p_uid_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_uid_peso" id="p_uid_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_uid_peso" id="p_uid_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 
@@ -168,10 +237,24 @@ if(login_check($mysqli) == false) {
 														GID do processo
 													</td>
 													<td>
-														<input placeholder="Exemplos: 33, 0, 80"class="form-control focused" id="p_gid" name="p_gid" type="number" autocomplete="disabled" required>
+														<input placeholder="Exemplos: 33, 0, 80"class="form-control focused" id="p_gid" name="p_gid" type="number" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_gid_weight" name="p_gid_weight" type="text" required>
+														<label class="radio-inline">
+														    <input type="radio" name="p_gid_peso" id="p_gid_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_gid_peso" id="p_uid_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_gid_peso" id="p_uid_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_gid_peso" id="p_uid_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_gid_peso" id="p_uid_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 
@@ -180,10 +263,24 @@ if(login_check($mysqli) == false) {
 														Argumentos do processo
 													</td>
 													<td>
-														<input placeholder="Exemplos: -k start --config=/etc/config/config.conf"class="form-control focused" id="p_args" name="p_args" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplos: -k start --config=/etc/config/config.conf"class="form-control focused" id="p_args" name="p_args" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_args_weight" name="p_args_weight" type="text" required>
+														<label class="radio-inline">
+														    <input type="radio" name="p_args_peso" id="p_args_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_args_peso" id="p_args_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_args_peso" id="p_args_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_args_peso" id="p_args_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_args_peso" id="p_args_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 
@@ -195,10 +292,24 @@ if(login_check($mysqli) == false) {
 			                                    		</font>
 													</td>
 													<td>
-														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_tcp_banner" name="p_tcp_banner" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_tcp_banner" name="p_tcp_banner" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_tcp_banner_weight" name="p_tcp_banner_weight" type="text" required>
+														<label class="radio-inline">
+														    <input type="radio" name="p_tcp_banner_peso" id="p_tcp_banner_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_tcp_banner_peso" id="p_tcp_banner_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_tcp_banner_peso" id="p_tcp_banner_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_tcp_banner_peso" id="p_tcp_banner_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_tcp_banner_peso" id="p_tcp_banner_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 		
@@ -211,10 +322,24 @@ if(login_check($mysqli) == false) {
 			                                    		</font>
 													</td>
 													<td>
-														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_udp_banner" name="p_udp_banner" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplos: 80:Apache httpd"class="form-control focused" id="p_udp_banner" name="p_udp_banner" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_udp_banner_weight" name="p_udp_banner_weight" type="text" required>
+														<label class="radio-inline">
+														    <input type="radio" name="p_udp_banner_peso" id="p_udp_banner_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_udp_banner_peso" id="p_udp_banner_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_udp_banner_peso" id="p_udp_banner_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_udp_banner_peso" id="p_udp_banner_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_udp_banner_peso" id="p_udp_banner_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
 
@@ -223,10 +348,25 @@ if(login_check($mysqli) == false) {
 														Arquivo executável do processo
 													</td>
 													<td>
-														<input placeholder="Exemplo: /usr/lib/apache2/mpm-prefork/apache2"class="form-control focused" id="p_file" name="p_file" type="text" autocomplete="disabled" required>
+														<input placeholder="Exemplo: /usr/lib/apache2/mpm-prefork/apache2"class="form-control focused" id="p_file" name="p_file" type="text" autocomplete="disabled" >
 													</td>
 													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_file_weight" name="p_file_weight" type="text" required>
+														<label class="radio-inline">
+														    <input type="radio" name="p_file_peso" id="p_file_peso" value="exato" checked> Exato
+														 </label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_file_peso" id="p_file_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_file_peso" id="p_file_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_file_peso" id="p_file_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_file_peso" id="p_file_peso" value="desabilitado"> Desabilitado
+														</label>
+													
 													</td>
 												</tr>
 
@@ -235,70 +375,32 @@ if(login_check($mysqli) == false) {
 														Pacote a qual pertence o processo
 													</td>
 													<td>
-														<input placeholder="Exemplo: apache2-2.2.22"class="form-control focused" id="p_package" name="p_package" type="text" autocomplete="disabled" required>
-													</td>
-													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_package_weight" name="p_package_weight" type="text" required>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														Pacote RPM ou DPKG?
+														<input placeholder="Exemplo: apache2-2.2.22"class="form-control focused" id="p_package" name="p_package" type="text" autocomplete="disabled" >
 													</td>
 													<td>
 														<label class="radio-inline">
-														    <input type="radio" name="p_package_type_id" id="dpkg" value="dpkg" checked> Dpkg
+														    <input type="radio" name="p_package_peso" id="p_package_peso" value="exato" checked> Exato
 														 </label>
 														<label class="radio-inline">
-														   	<input type="radio" name="p_package_type_id" id="rpm" value="rpm"> Rpm
-														 </label>
-													</td>
-													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="p_package_type_id_weight" name="p_package_type_id_weight" type="text" required>
-													</td>
-												</tr>
-
-												<tr>
-													<td>
-														Esquema de permissões DAC do arquivo executável do processo
-													</td>
-													<td>
-														<input placeholder="Exemplo: 755, 740"class="form-control focused" id="pf_dac" name="pf_dac" type="text" autocomplete="disabled" required>
-													</td>
-													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_dac_weight" name="pf_dac_weight" type="text" required>
+														   	<input type="radio" name="p_package_peso" id="p_package_peso" value="alto"> Alto
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_peso" id="p_package_peso" value="medio"> Médio
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_peso" id="p_package_peso" value="baixo"> Baixo
+														</label>
+														<label class="radio-inline">
+														   	<input type="radio" name="p_package_peso" id="p_package_peso" value="desabilitado"> Desabilitado
+														</label>
 													</td>
 												</tr>
-
-												<tr>
-													<td>
-														UID do arquivo executável do processo
-													</td>
-													<td>
-														<input placeholder="Exemplo: 0"class="form-control focused" id="pf_uid" name="pf_uid" type="text" autocomplete="disabled" required>
-													</td>
-													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_uid_weight" name="pf_uid_weight" type="text" required>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														GID do arquivo executável do processo
-													</td>
-													<td>
-														<input placeholder="Exemplo: 0"class="form-control focused" id="pf_gid" name="pf_gid" type="text" autocomplete="disabled" required>
-													</td>
-													<td>
-														<input placeholder="0 a 1. Números como 0.6, 0.43 e 0.11, são aceitos" class="form-control focused" id="pf_gid_weight" name="pf_gid_weight" type="text" required>
-													</td>
-												</tr>
-
 												<tr>
 													<td>
 														Descrição da vulnerabilidade
 													</td>
 													<td colspan="2">
-														<textarea id="p_descr" name="p_descr" rows="3" style="width:100%" autocomplete="disabled" required></textarea>
+														<textarea id="p_descr" name="p_descr" rows="3" style="width:100%" autocomplete="disabled" ></textarea>
 													</td>
 												</tr>
 
@@ -307,7 +409,7 @@ if(login_check($mysqli) == false) {
 														Solução para vulnerabilidade
 													</td>
 													<td colspan="2">
-														<textarea id="p_solution" name="p_solution" rows="3" style="width:100%" autocomplete="disabled" required></textarea>
+														<textarea id="p_solution" name="p_solution" rows="3" style="width:100%" autocomplete="disabled" ></textarea>
 													</td>
 												</tr>
 												<tr>

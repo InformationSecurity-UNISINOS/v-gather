@@ -1,3 +1,5 @@
 .DS_Store
 ./frontend-manager/logs/*.log
 *.log
+*.pyc
+*.orig

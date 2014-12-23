@@ -30,13 +30,27 @@ Instalar no CentOS e Debian:
 	CentOS: yum install nmap
 	Debian: apt-get install nmap
 
+<<<<<<< HEAD
 5 - Para o manager, instalar a biblioteca de desenvolvimento do mysql client
 	CentOS: yum install mysql-devel 
 	Debian: apt-get install libmysqlclient-dev
 5 - instalar bibliotecas (CentOS e Debian)
+=======
+5 - Para o manager apenas, instalar bibliotecas do mysql
+	CentOS: yum install mysql-devel
+	Debian: apt-get install libmysqlclient-dev
+
+6 - instalar bibliotecas (CentOS e Debian)
+>>>>>>> master
 	pip install psutil
 	pip install -U python-nmap
-	pip install python-Levenshtein
 	pip install netifaces
+<<<<<<< HEAD
 	pip install MySQL-python (for the manager server only)
 
+=======
+	pip install python-Levenshtein (manager apenas)
+	pip install MySqlDb-python (manager apenas)
+	pip install twisted
+	pip install treedict
+>>>>>>> master

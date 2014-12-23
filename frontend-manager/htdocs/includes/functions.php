@@ -2,6 +2,75 @@
 include_once 'db.php';
 require_once 'xss_clean.php';
  
+/*
+* Função GeetWeight
+* Recupera métricas CBR da base.
+*
+*/
+function GetWeight($mysqli, $descr) {
+
+  if ( $descr == "exato" ) {
+    $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%exato%' ");
+    $stmt->execute();
+    $stmt->bind_result($peso_exato);
+    $stmt->fetch();
+    $stmt->free_result();
+    return $peso_exato;
+  }
+  if ( $descr == "alto" ) {
+    $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%alto%' ");
+    $stmt->execute();
+    $stmt->bind_result($peso_alto);
+    $stmt->fetch();
+    $stmt->free_result();
+    return $peso_alto;
+  }
+  if ( $descr == "medio" ) {
+    $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%médio%' or descr LIKE '%medio%' or descr LIKE '%M?dio%' ");
+    $stmt->execute();
+    $stmt->bind_result($peso_medio);
+    $stmt->fetch();
+    $stmt->free_result();
+    return $peso_medio;
+  }
+  if ( $descr == "baixo" ) {
+    $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%baixo%' ");
+    $stmt->execute();
+    $stmt->bind_result($peso_baixo);
+    $stmt->fetch();
+    $stmt->free_result();
+    return $peso_baixo;
+  }
+  if ( $descr == "desabilitado" ) {
+    $stmt=$mysqli->prepare("SELECT weight from weight_settings WHERE descr LIKE '%desabilitado%' ");
+    $stmt->execute();
+    $stmt->bind_result($peso_desabilitado);
+    $stmt->fetch();
+    $stmt->free_result();
+    return $peso_desabilitado;
+  }
+}
+
+
+/*
+*
+* função para recuperar dados da base e armazenar em um array
+*/
+function stmt_bind_assoc (&$stmt, &$out) {
+    $data = mysqli_stmt_result_metadata($stmt);
+    $fields = array();
+    $out = array();
+
+    $fields[0] = $stmt;
+    $count = 1;
+
+    while($field = mysqli_fetch_field($data)) {
+        $fields[$count] = &$out[$field->name];
+        $count++;
+    }
+    call_user_func_array("mysqli_stmt_bind_result", $fields);
+}
+
 
  /*
  * Funcão destinada a iniciar a sessao do usuario.
@@ -15,7 +84,7 @@ function sec_session_start() {
     $httponly = true;
     // Forces sessions to only use cookies.
     if (ini_set('session.use_only_cookies', 1) === FALSE) {
-        header("Location: ../error.php?err=Could not initiate a safe session (ini_set)");
+        header("Location: ../error.php?err=Could+not+initiate+a+safe+sessio+ini_set)");
         exit();
     }
     // Gets current cookies params.
@@ -44,19 +113,19 @@ function sec_session_start() {
  * através de ataques de raimbow tables.
  */ 
 function login($email, $password, $mysqli) { 
-    // 445fc3655cede6a6c841d08f0776fac92a0118d1d1597046e09909310b2664538642292515aee4737c39826d70508466f5df36417f09274cb470ca4b6857be7a
+    // 
+
     if ($stmt = $mysqli->prepare("SELECT id, username, password, salt FROM mgr_users WHERE email = ? LIMIT 1")) {
         $stmt->bind_param('s', $email);     // Bind "$email" to parameter.
         $stmt->execute();                  // Execute the prepared query.
         $stmt->store_result();
- 
-        // get variables from result.
         $stmt->bind_result($user_id, $username, $db_password, $salt);
         $stmt->fetch();
 
-
+        
         // hash the password with the unique salt.
         $password = hash('sha512', $password . $salt);
+
         if ($stmt->num_rows == 1) {
             // If the user exists we check if the account is locked
             // from too many login attempts 
@@ -96,6 +165,7 @@ function login($email, $password, $mysqli) {
             return false;
         }
     }
+
 
 }
 

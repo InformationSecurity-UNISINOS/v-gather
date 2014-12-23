@@ -5,7 +5,7 @@ include_once 'includes/functions.php';
 sec_session_start(); 
 if(login_check($mysqli) == false) {
 
-        die('You are not authorized to access this page, please login.');
+        header('Location: index.php');
 }
 ?>
 
@@ -74,9 +74,11 @@ if(login_check($mysqli) == false) {
 						<li><a href="dashboard.php"><i class="fa fa-dashboard"></i><span class="hidden-sm text"> Dashboard</span></a></li>	
 						<li><a href="registrar.php"><i class="fa fa-edit"></i><span class="hidden-sm text"> Registrar Casos</span></a></li>
 						<li><a href="visualizar.php"><i class="fa fa-tags"></i><span class="hidden-sm text"> Visualizar Casos</span></a></li>
-						<li><a href="vulnerabilidades.php"><i class="fa fa-warning"></i><span class="hidden-sm text"> Vulnerabilidades</span></a></li>
-						<li><a href="agentes.php"><i class="fa fa-eye"></i><span class="hidden-sm text"> Agentes</span></a></li>
-						<li><a href="novousuario.php"><i class="fa fa-user"></i><span class="hidden-sm text"> Usuários</span></a></li>
+						<li><a href="matching.php"><i class="fa fa-dot-circle-o"></i><span class="hidden-sm text"> Matching</span></a></li>
+						<li><a href="evaluate.php"><i class="fa fa-gears"></i><span class="hidden-sm text"> Avaliação</span></a></li>
+						<li><a href="endpoints.php"><i class="fa fa-eye"></i><span class="hidden-sm text"> Endpoints</span></a></li>
+						<li><a href="novousuario.php"><i class="fa fa-users"></i><span class="hidden-sm text"> Usuários</span></a></li>
+						<li><a href="settings.php"><i class="fa fa-wrench"></i><span class="hidden-sm text"> Configurações</span></a></li>
 					</ul>
 				</div>
 				<a href="#" id="main-menu-min" class="full visible-md visible-lg"><i class="fa fa-angle-double-left"></i></a>
@@ -107,27 +109,27 @@ if(login_check($mysqli) == false) {
                                     
                                     <font face="MankSans" size="2pt">
                                         <div class="box-content">
-
-
-
                                         	<?php
                                         		include_once 'includes/db_connect.php';
 												include_once 'includes/functions.php';
 
-
-												$stmt=$mysqli->prepare("SELECT COUNT(id) FROM use_cases");
-												if ($stmt === FALSE) {
-            												printf('errno: %d, <br>error: %s <br>', $stmt->errno, $stmt->error);
-            												die ("Mysql Error: " . $mysqli->error);
-        										}
+												$stmt = $mysqli->prepare("SELECT id FROM use_cases WHERE status = 1");
 												$stmt->execute();
-												$stmt->bind_result($nro_casos);
-												$stmt->fetch();
-												$stmt->free_result(); 
-
-												if ($nro_casos) {
-													for ($i = 1; $i <= $nro_casos; $i++) {
-														$stmt = $mysqli->prepare("SELECT id,date,
+												$i=0;
+												$row = array();
+												$res = array();
+												stmt_bind_assoc($stmt, $row);
+												while ($stmt->fetch()) {
+											    	foreach($row as $key => $field) {
+											        	$res[$i]=$field;
+											        	$i++;
+											        }
+											    }
+											    $i=0;
+											    $stmt->free_result();
+											    foreach($res as $key => $field) {
+											    	$i++;
+														$stmt2 = $mysqli->prepare("SELECT id,date, origem,
 			                                                so_id, so_id_weight,
 			                                                so_version, so_version_weight,
 			                                                process_name, process_name_weight,
@@ -136,19 +138,13 @@ if(login_check($mysqli) == false) {
 			                                                process_args, process_args_weight,
 			                                                process_tcp_banner, process_tcp_banner_weight,
 			                                                process_udp_banner, process_udp_banner_weight,
-			                                                process_tcp_portas, process_tcp_portas_weight,
-			                                                process_udp_portas, process_udp_portas_weight, 
 			                                                package_name, package_name_weight,
-			                                                package_type_id, package_type_id_weight,
-			                                                process_binary, process_binary_weight,
-			                                                process_binary_dac, process_binary_dac_weight,
-			                                                process_binary_uid, process_binary_uid_weight,
-			                                                process_binary_gid, process_binary_gid_weight
+			                                                process_binary, process_binary_weight
 			                                               	FROM use_cases WHERE id = ?");
-														$stmt->bind_param('i', $i);
+														$stmt2->bind_param('i', $field);
 														
-												        $stmt->execute();
-														$stmt->bind_result($case_id,$date,
+												        $stmt2->execute();
+														$stmt2->bind_result($case_id,$date,$origem,
 												        					$so_id, $so_id_weight,
 												        					$so_version, $so_version_weight,
 																			$process_name, $process_name_weight,
@@ -157,21 +153,27 @@ if(login_check($mysqli) == false) {
 																			$process_args, $process_args_weight,
 																			$process_tcp_banner,$process_tcp_banner_weight,
 																			$process_udp_banner,$process_udp_banner_weight,
-																			$process_tcp_portas,$process_tcp_portas_weight,
-																			$process_udp_portas,$process_udp_portas_weight,
 																			$package_name, $package_name_weight,
-																			$package_type_id, $package_type_id_weight,
-																			$process_binary, $process_binary_weight,
-																			$process_binary_dac, $process_binary_dac_weight,
-																			$process_binary_uid, $process_binary_uid_weight,
-																			$process_binary_gid, $process_binary_gid_weight);
-														$stmt->fetch();
-														$stmt->free_result(); 
+																			$process_binary, $process_binary_weight);
+														$stmt2->fetch();
+														$stmt2->free_result(); 
 
 														echo '<table class="table table-bordered table-striped table-condensed" style="text-align:center;">';
 	                                                		echo '<thead>';
 	                                                			echo '<tr>';
-	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="3"><font color="#FFFFFF">CASO ' . $case_id . '</font></th>';
+	                                                					echo '<th style="text-align:center;background:#34383c;" colspan="3"><font color="#FFFFFF">CASO ' . htmlentities($case_id) . '</font></th>';	                                                					
+
+	                                                			echo '</tr>';
+	                                                			echo '<tr>';
+	                                                			if ($origem == 1) { 
+	                                                				echo '<th style="text-align:center;">Registrado em</th>';
+	                                                        		echo '<th style="text-align:center;">'. htmlentities($date) .'</th>';
+	                                                        		echo '<th style="text-align:center;"></th>';
+	                                                        	} else {
+	                                                        		echo '<th style="text-align:center;">Aprendido em</th>';
+	                                                        		echo '<th style="text-align:center;">'. htmlentities($date) .'</th>';
+	                                                        		echo '<th style="text-align:center;"></th>';
+	                                                        	}
 	                                                			echo '</tr>';
 	                                                    		echo '<tr>';
 	                                                        		echo '<th style="text-align:center;" width="100px">Itens</th>';
@@ -181,143 +183,94 @@ if(login_check($mysqli) == false) {
 	                                                		echo '</thead>';
 	                                                		echo '<tbody>';
 
-	                                                			$stmt = $mysqli->prepare("select name from sos where id = ?");
-																$stmt->bind_param('i', $so_id);
-														        $stmt->execute();
-																$stmt->bind_result($soname);
-																$stmt->fetch();
-																$stmt->free_result();
+	                                                			$stmt2 = $mysqli->prepare("SELECT name FROM sos WHERE id = ?");
+																$stmt2->bind_param('i', $so_id);
+														        $stmt2->execute();
+																$stmt2->bind_result($soname);
+																$stmt2->fetch();
+																$stmt2->free_result();
 	                                                			 
 	                                                    		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "SO" .'</td>';
-	                                                        		echo '<td>'.  $soname .'</td>';
-	                                                        		echo '<td width="20%"> '.  round($so_id_weight,3) .'</td>';
+	                                                        		echo '<td>'.  htmlentities($soname) .'</td>';
+	                                                        		echo '<td width="20%"> '.  htmlentities(round($so_id_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Versão SO" .'</td>';
-	                                                        		echo '<td>'.  $so_version .'</td>';
-	                                                        		echo '<td width="20%">'.  round($so_version_weight,3) .'</td>';
+	                                                        		echo '<td>'.  htmlentities($so_version) .'</td>';
+	                                                        		echo '<td width="20%">'.  htmlentities(round($so_version_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_name .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_name_weight,3) .'</td>';
+	                                                        		echo '<td>'.  htmlentities($process_name) .'</td>';
+	                                                        		echo '<td width="20%">'.  htmlentities(round($process_name_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "UID do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_uid .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_uid_weight,3) .'</td>';
+	                                                        		echo '<td>'.  htmlentities($process_uid) .'</td>';
+	                                                        		echo '<td width="20%">'.  htmlentities(round($process_uid_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "GID do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_gid .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_gid_weight,3) .'</td>';
+	                                                        		echo '<td>'.  htmlentities($process_gid) .'</td>';
+	                                                        		echo '<td width="20%">'.  htmlentities(round($process_gid_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Argumentos do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_args .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_args_weight,3) .'</td>';
+	                                                        		echo '<td>'.  htmlentities($process_args) .'</td>';
+	                                                        		echo '<td width="20%">'.  htmlentities(round($process_args_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Pacote do Processo" .'</td>';
-	                                                        		echo '<td>'.  $package_name .'</td>';
-	                                                        		echo '<td width="20%">'.  round($package_name_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		$stmt = $mysqli->prepare("select name from package_types where id = ?");
-																$stmt->bind_param('i', $package_type_id);
-														        $stmt->execute();
-																$stmt->bind_result($pkg_mgr);
-																$stmt->fetch();
-																$stmt->free_result();
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Gerenciador de Pacotes" .'</td>';
-	                                                        		echo '<td>'.  $pkg_mgr .'</td>';
-	                                                        		echo '<td width="20%">'. round($package_type_id_weight,3). '</td>';
+	                                                        		echo '<td>'.  htmlentities($package_name) .'</td>';
+	                                                        		echo '<td width="20%">'.  htmlentities(round($package_name_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_binary .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_binary_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "UID do Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_binary_uid .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_binary_uid_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "GID do Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_binary_gid .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_binary_gid_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "DAC do Binário do Processo" .'</td>';
-	                                                        		echo '<td>'.  $process_binary_dac .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_binary_dac_weight,3) .'</td>';
+	                                                        		echo '<td>'.  htmlentities($process_binary) .'</td>';
+	                                                        		echo '<td width="20%">'.  htmlentities(round($process_binary_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Banner de serviço TCP:" .'</td>';
-	                                                        		echo '<td>'.  $process_tcp_banner .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_tcp_banner_weight,3) .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Quantidade de portas TCP usadas:" .'</td>';
-	                                                        		echo '<td>'.  $process_tcp_portas .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_tcp_portas_weight,3) .'</td>';
+	                                                        		echo '<td>'.  htmlentities($process_tcp_banner) .'</td>';
+	                                                        		echo '<td width="20%">'.  htmlentities(round($process_tcp_banner_weight,3)) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
 	                                                        		echo '<td width="20%">'. "Banner de serviço UDP:" .'</td>';
-	                                                        		echo '<td>'.  $process_udp_banner .'</td>';
-	                                                        		echo '<td width="20%"'.  round($process_udp_banner_weight,3) .'</td>';
+	                                                        		echo '<td>'.  htmlentities($process_udp_banner) .'</td>';
+	                                                        		echo '<td width="20%">'.  htmlentities(round($process_udp_banner_weight,3)) .'</td>';
+	                                                   	 		echo '</tr>';
+	                                                   	 		
+																$stmt2=$mysqli->prepare("SELECT solution,description FROM use_case_desc_solution WHERE case_id = ?");
+																$stmt2->bind_param('i', $case_id);
+														        $stmt2->execute();
+																$stmt2->bind_result($solucao,$descricao);
+																$stmt2->fetch();
+																$stmt2->free_result();
+
+	                                                   	 		echo '<tr align="center">';
+	                                                        		echo '<td>Descrição do Caso</td>';
+	                                                        		echo '<td colspan="2">'. htmlentities($descricao) .'</td>';
 	                                                   	 		echo '</tr>';
 
 	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td width="20%">'. "Quantidade de portas UDP usadas:" .'</td>';
-	                                                        		echo '<td>'.  $process_udp_portas .'</td>';
-	                                                        		echo '<td width="20%">'.  round($process_udp_portas_weight,3) .'</td>';
+	                                                        		echo '<td>Solução do Caso</td>';
+	                                                        		echo '<td colspan="2">'. htmlentities($solucao) .'</td>';
 	                                                   	 		echo '</tr>';
-																	
-																$stmt=$mysqli->prepare("select solution,description from use_case_desc_solution where case_id = ?");
-																$stmt->bind_param('i', $case_id);
-														        $stmt->execute();
-																$stmt->bind_result($solucao,$descricao);
-																$stmt->fetch();
-																$stmt->free_result();
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td>'. "Descrição do Caso" .'</td>';
-	                                                        		echo '<td colspan="2">'. $descricao .'</td>';
-	                                                   	 		echo '</tr>';
-
-	                                                   	 		echo '<tr align="center">';
-	                                                        		echo '<td>'. "Solução do Caso" .'</td>';
-	                                                        		echo '<td colspan="2">'. $solucao .'</td>';
-	                                                   	 		echo '</tr>';
-	                                                    	
 	                                               			echo '</tbody>';
 	                                            		echo '</table>';
-	                                            	}
-
-											    } else {
-											    	echo "Nenhum caso registrado.";
 											    }
 	                                            
                                             ?>
-
                                         </div>
                                     </font>
                                 </div>
