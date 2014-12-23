@@ -19,14 +19,16 @@ import sys
 '               Caso nada coincida, o retorno será zero
 '
 '''
-def CheckLinuxDist(distname,distver,verbose):
-    
-    ret=0
-    dist=platform.linux_distribution()
+
+
+def CheckLinuxDist(distname, distver, verbose):
+
+    ret = 0
+    dist = platform.linux_distribution()
     if distname in dist[0]:
-        ret=1
+        ret = 1
     if distver in dist[1]:
-        ret=2
+        ret = 2
     if verbose == True:
         if ret == 0:
             print "<+> Distribuição diferente"
@@ -34,13 +36,15 @@ def CheckLinuxDist(distname,distver,verbose):
             print "<+> Distribuição igual, versão diferente"
         if ret == 2:
             print "<+> Distribuição igual, versão igual"
-            
+
     return ret
 
 '''
 '' Retorna qual distribuição (sem versão) Linux está em uso
 ''
 '''
+
+
 def GetLinuxDist(opt):
     if opt == DIST_NAME:
         return platform.linux_distribution()[0]
@@ -51,26 +55,29 @@ def GetLinuxDist(opt):
 '' Verifica arquivos abertos por processos
 ''
 '''
+
+
 def GetProcArgs(pid):
-    args=""
-    p=psutil.Process(pid)
-    first=0
+    args = ""
+    p = psutil.Process(pid)
+    first = 0
     for tokens in iter(p.cmdline()):
-        if first==1:
-            args+=tokens + " "
-        first=1
+        if first == 1:
+            args += tokens + " "
+        first = 1
     return args
 
 
 def GetProcCmd(pid):
-    p=psutil.Process(pid)
+    p = psutil.Process(pid)
     daemon = p.exe()
     if len(daemon) == 0:
-        daemon=p.name()
+        daemon = p.name()
     return daemon
 
+
 def GetDaemons():
-    pids=psutil.pids()
+    pids = psutil.pids()
     for pid in pids:
         try:
             p = psutil.Process(pid)
@@ -78,65 +85,60 @@ def GetDaemons():
             continue
         daemon = p.name()
         if len(daemon) == 0:
-                daemon=p.exe()
-        u_real,u_eff,u_saved = p.uids()
-        g_real,g_eff,g_saved = p.gids()
-        udp_port=tcp_port=""
-        nodo=DaemonInfo()
-        
+            daemon = p.exe()
+        u_real, u_eff, u_saved = p.uids()
+        g_real, g_eff, g_saved = p.gids()
+        udp_port = tcp_port = ""
+        nodo = DaemonInfo()
+
         for x in p.connections('udp'):
-                if x.status == 'LISTEN' or x.status == 'NONE':
-                        ipaddr=x.laddr[0]
-                        udpport=x.laddr[1]
-                        if CheckIpv6(ipaddr) == True:
-                            ipaddr="0.0.0.0"
-                        if udpport in svc_udp_checked.keys():
-                            svc_ident=svc_udp_checked.get(udpport)
-                        else:
-                            svc_ident=CheckSvcFPrint(ipaddr,udpport,"UDP")
-                            svc_udp_checked[udpport]=svc_ident
-                        udp_port+=str(ipaddr)+":"+str(udpport)+","
-                        nodo.svc_udp_fp[udpport]=svc_ident
+            if x.status == 'LISTEN' or x.status == 'NONE':
+                ipaddr = x.laddr[0]
+                udpport = x.laddr[1]
+                if CheckIpv6(ipaddr) == True:
+                    ipaddr = "0.0.0.0"
+                if udpport in svc_udp_checked.keys():
+                    svc_ident = svc_udp_checked.get(udpport)
+                else:
+                    svc_ident = CheckSvcFPrint(ipaddr, udpport, "UDP")
+                    svc_udp_checked[udpport] = svc_ident
+                udp_port += str(ipaddr) + ":" + str(udpport) + ","
+                nodo.svc_udp_fp[udpport] = svc_ident
 
         for x in p.connections('tcp'):
-                svc={}
-                if x.status == 'LISTEN' or x.status == 'NONE':
-                        ipaddr=x.laddr[0]
-                        tcpport=x.laddr[1]
-                        if CheckIpv6(ipaddr) == True:
-                            ipaddr="0.0.0.0"
-                        # verifica se ja tem fingerprint desta porta
-                        # se ja tiver registro, nao precisa scanear novamente
-                        if tcpport in svc_tcp_checked.keys(): 
-                            svc_ident=svc_tcp_checked.get(tcpport)
-                        else:
-                            svc_ident=CheckSvcFPrint(ipaddr,tcpport,"TCP")
-                            svc_tcp_checked[tcpport]=svc_ident
-                        tcp_port+=str(ipaddr)+":"+str(tcpport)+","
-                        nodo.svc_tcp_fp[tcpport]=svc_ident
+            svc = {}
+            if x.status == 'LISTEN' or x.status == 'NONE':
+                ipaddr = x.laddr[0]
+                tcpport = x.laddr[1]
+                if CheckIpv6(ipaddr) == True:
+                    ipaddr = "0.0.0.0"
+                # verifica se ja tem fingerprint desta porta
+                # se ja tiver registro, nao precisa scanear novamente
+                if tcpport in svc_tcp_checked.keys():
+                    svc_ident = svc_tcp_checked.get(tcpport)
+                else:
+                    svc_ident = CheckSvcFPrint(ipaddr, tcpport, "TCP")
+                    svc_tcp_checked[tcpport] = svc_ident
+                tcp_port += str(ipaddr) + ":" + str(tcpport) + ","
+                nodo.svc_tcp_fp[tcpport] = svc_ident
 
-        nodo.daemon=daemon
-        nodo.downer_uid=u_real
-        nodo.downer_gid=g_real
-        nodo.pid=pid
-        nodo.args=GetProcArgs(pid)
-        nodo.tcp=tcp_port
-        nodo.udp=udp_port
-        arq=GetProcCmd(pid)
-        if GetLinuxDist(DIST_NAME).lower()=="debian":
-            nodo.dpkg=mfs.FileToDpkg(arq)
-        if GetLinuxDist(DIST_NAME).lower()=="centos":
-            nodo.rpm=mfs.FileToRpm(arq)
+        nodo.daemon = daemon
+        nodo.downer_uid = u_real
+        nodo.downer_gid = g_real
+        nodo.pid = pid
+        nodo.args = GetProcArgs(pid)
+        nodo.tcp = tcp_port
+        nodo.udp = udp_port
+        arq = GetProcCmd(pid)
+        if GetLinuxDist(DIST_NAME).lower() == "debian":
+            nodo.dpkg = mfs.FileToDpkg(arq)
+        if GetLinuxDist(DIST_NAME).lower() == "centos":
+            nodo.rpm = mfs.FileToRpm(arq)
 
-        nodo.file_path=arq
-        nodo.file_dac=mfs.GetDacMode(arq)
-        owner=mfs.CheckIdOwner(arq)
-        nodo.file_uid=owner[0]
-        nodo.file_gid=owner[1]
-        
+        nodo.file_path = arq
+        nodo.file_dac = mfs.GetDacMode(arq)
+        owner = mfs.CheckIdOwner(arq)
+        nodo.file_uid = owner[0]
+        nodo.file_gid = owner[1]
+
         nlist.append(nodo)
-
-
-
-
-

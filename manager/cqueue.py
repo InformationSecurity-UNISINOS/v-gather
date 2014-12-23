@@ -3,29 +3,28 @@
 
 
 class Fila(object):
-        def __init__(self):
-                from collections import deque
-                self.pqueue = deque()
 
-        def DestroyQueue(self):
-                while self.LenQueue() >0:
-                        self.pqueue.popleft()
-                return True
+    def __init__(self):
+        from collections import deque
+        self.pqueue = deque()
 
-        def GetQueue(self):
-                item=self.pqueue.popleft()
-                self.AddQueue(item)
-                return item
+    def DestroyQueue(self):
+        while self.LenQueue() > 0:
+            self.pqueue.popleft()
+        return True
 
-        def AddQueue(self,dict={}):
-                self.pqueue.append(dict)
-                return True
+    def GetQueue(self):
+        item = self.pqueue.popleft()
+        self.AddQueue(item)
+        return item
 
-        def LenQueue(self):
-                return len(self.pqueue)
+    def AddQueue(self, dict={}):
+        self.pqueue.append(dict)
+        return True
 
-recvdata=Fila()
-candidates=Fila()
-filtro=Fila()
+    def LenQueue(self):
+        return len(self.pqueue)
 
-                
+recvdata = Fila()
+candidates = Fila()
+filtro = Fila()
